@@ -1,0 +1,180 @@
+// ============================================================================
+// SGFIDM — Tema personalizado de Angular Material
+// Variables CSS desde _tokens.scss aplicadas sobre componentes Material.
+// ============================================================================
+
+@use './tokens';
+
+// ── Clases utilitarias de tema SGFIDM ──
+.sgfidm-theme {
+  background-color: var(--sgfidm-color-background);
+  color: var(--sgfidm-color-text-primary);
+  font-family: var(--sgfidm-font-family);
+}
+
+// Tarjetas y paneles: surface (#FFFFFF)
+.sgfidm-surface {
+  background-color: var(--sgfidm-color-surface);
+  border: var(--sgfidm-border-width) var(--sgfidm-border-style) var(--sgfidm-color-outline);
+  border-radius: var(--sgfidm-radius-lg);
+}
+
+// Foco: anillo 1.5px #2A2A2A, nunca solo cambio de tono (WCAG 1.4.11)
+.sgfidm-focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--sgfidm-focus-ring-width) var(--sgfidm-color-focus-ring);
+}
+
+// Estados disabled: valores crudos de Figma (sin tokens propios)
+.sgfidm-disabled {
+  background-color: #EDEDED;
+  color: #A3A3A3;
+  border-color: #C6C6C6;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+// Feedback: siempre con texto o icono, nunca solo color
+.sgfidm-feedback-error {
+  border-color: var(--sgfidm-color-error);
+  color: var(--sgfidm-color-error);
+}
+
+.sgfidm-feedback-success {
+  border-color: var(--sgfidm-color-success);
+  color: var(--sgfidm-color-success);
+}
+
+.sgfidm-feedback-warning {
+  border-color: var(--sgfidm-color-warning);
+  color: var(--sgfidm-color-warning);
+}
+
+.sgfidm-feedback-info {
+  border-color: var(--sgfidm-color-info);
+  color: var(--sgfidm-color-info);
+}
+
+// Override de Angular Material: usar colores SGFIDM como variables CSS
+.mat-mdc-button-base {
+  --mdc-container-color: var(--sgfidm-color-primary);
+  --mdc-container-color-hover: var(--sgfidm-color-primary);
+  --mdc-container-color-disabled: #EDEDED;
+  --mdc-primary-on-container-color: var(--sgfidm-color-on-primary);
+  --mdc-disabled-on-container-color: #A3A3A3;
+  --mdc-shape-small: var(--sgfidm-radius-md);
+  --mdc-typography-button-font-family: var(--sgfidm-font-family);
+  --mdc-typography-button-font-weight: 500;
+  --mdc-typography-button-font-size: 12.5px;
+  --mdc-typography-button-letter-spacing: 0.15px;
+}
+
+.mat-mdc-icon-button {
+  --mdc-container-color: transparent;
+  --mdc-container-color-hover: #F5F5F5;
+  --mdc-icon-state-layer-opacity: 0.08;
+  --mdc-shape-small: var(--sgfidm-radius-full);
+  height: var(--sgfidm-hit-target);
+  width: var(--sgfidm-hit-target);
+}
+
+.mat-mdc-text-field {
+  --mdc-container-color: var(--sgfidm-color-surface);
+  --mdc-container-color-hover: var(--sgfidm-color-surface);
+  --mdc-container-color-disabled: #EDEDED;
+  --mdc-outline-color-hover: var(--sgfidm-color-outline);
+  --mdc-outline-color-focused: var(--sgfidm-color-focus-ring);
+  --mdc-outline-color-error: var(--sgfidm-color-error);
+  --mdc-shape-small: var(--sgfidm-radius-md);
+  --mdc-typography-body1-font-family: var(--sgfidm-font-family);
+  --mdc-typography-body1-font-size: 16px;
+  --mdc-text-field-input-font-family: var(--sgfidm-font-family);
+  --mdc-text-field-input-font-size: 16px;
+  --mdc-text-field-label-text-color: #8B8B8B;
+  --mdc-text-field-label-floating-text-color: var(--sgfidm-color-focus-ring);
+  --mdc-text-field-label-shake-animation-text-color: var(--sgfidm-color-error);
+}
+
+.mat-mdc-select {
+  --mdc-container-color: var(--sgfidm-color-surface);
+  --mdc-container-color-disabled: #EDEDED;
+  --mdc-outline-color-focused: var(--sgfidm-color-focus-ring);
+}
+
+.mat-mdc-checkbox {
+  --mdc-container-color: var(--sgfidm-color-primary);
+  --mdc-unchecked-color: #C6C6C6;
+  --mdc-disabled-color: #EDEDED;
+}
+
+.mat-mdc-radio {
+  --mdc-container-color: var(--sgfidm-color-primary);
+  --mdc-unchecked-color: #C6C6C6;
+}
+
+.mat-mdc-slide-toggle {
+  --mdc-container-color-active: var(--sgfidm-color-primary);
+  --mdc-container-color-inactive: #DBDBDB;
+}
+
+.mat-mdc-chip {
+  --mdc-container-color: var(--sgfidm-color-surface);
+  --mdc-container-color-selected: var(--sgfidm-color-primary);
+  --mdc-elements-container-color-hover: #F5F5F5;
+  --mdc-shape-small: 14px;
+}
+
+.mat-mdc-tab {
+  --mdc-tab-indicator-active-indicator-color: var(--sgfidm-color-text-primary);
+  --mdc-tab-text-color-active: var(--sgfidm-color-text-primary);
+  --mdc-tab-text-color-inactive: #8B8B8B;
+}
+
+.mat-mdc-dialog-container {
+  --mdc-container-color: var(--sgfidm-color-surface);
+  --mdc-shape-large: var(--sgfidm-radius-xl);
+}
+
+.mat-mdc-snack-bar-container {
+  --mdc-container-color: var(--sgfidm-color-surface);
+  --mdc-shape-small: var(--sgfidm-radius-lg);
+}
+
+.mat-mdc-progress-bar {
+  --mdc-container-color: #DBDBDB;
+  --mdc-primary-color: var(--sgfidm-color-primary);
+}
+
+.mat-mdc-progress-spinner {
+  --mdc-container-color: var(--sgfidm-color-primary);
+}
+
+.mat-mdc-badge {
+  --mdc-container-color: var(--sgfidm-color-primary);
+  --mdc-badge-text-color: var(--sgfidm-color-on-primary);
+}
+
+.mat-mdc-card {
+  --mdc-container-color: var(--sgfidm-color-surface);
+  --mdc-shape-medium: var(--sgfidm-radius-lg);
+}
+
+.mat-mdc-divider {
+  --mdc-container-color: var(--sgfidm-color-outline-variant);
+}
+
+.mat-mdc-menu {
+  --mdc-container-color: var(--sgfidm-color-surface);
+  --mdc-elements-container-color: var(--sgfidm-color-surface);
+}
+
+.mat-mdc-tooltip {
+  --mdc-container-color: #1C1C1C;
+  --mdc-tooltip-text-color: #EBEBEB;
+  --mdc-shape-small: var(--sgfidm-radius-md);
+}
+
+.mat-mdc-icon {
+  --mdc-icon-color: var(--sgfidm-color-text-primary);
+  font-family: 'Material Symbols Outlined';
+}

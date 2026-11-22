@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - 'feature/**'
+      - 'fix/**'
+      - 'ci/**'
+      - develop
+  pull_request:
+    branches: [ main, develop ]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: Frontend/PWA/package-lock.json
+
+      - name: Install dependencies
+        working-directory: Frontend/PWA
+        run: npm ci
+
+      - name: Build (development)
+        working-directory: Frontend/PWA
+        run: npm run build -- --configuration=development
+
+      - name: Test
+        working-directory: Frontend/PWA
+        run: npm test -- --watch=false
+
+      - name: Build (production)
+        working-directory: Frontend/PWA
+        run: npm run build -- --configuration=production
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: sgfidm-pwa-build
+          path: Frontend/PWA/dist/sgfidm-pwa/browser/
+          retention-days: 7

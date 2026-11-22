@@ -1,0 +1,20 @@
+<button
+  type="button"
+  class="sgfidm-button sgfidm-focus-ring"
+  [class.sgfidm-button--primary]="type() === 'primary'"
+  [class.sgfidm-button--secondary]="type() === 'secondary'"
+  [class.sgfidm-button--tertiary]="type() === 'tertiary'"
+  [class.sgfidm-button--destructive]="type() === 'destructive'"
+  [class.sgfidm-button--disabled]="disabled() || loading()"
+  [style.height]="height()"
+  [style.padding-inline]="paddingX()"
+  [disabled]="disabled() || loading()"
+  (click)="onClick($event)"
+>
+  @if (loading()) {
+    <span class="sgfidm-button__spinner"></span>
+    <span class="sgfidm-button__label">Cargando…</span>
+  } @else {
+    <ng-content />
+  }
+</button>

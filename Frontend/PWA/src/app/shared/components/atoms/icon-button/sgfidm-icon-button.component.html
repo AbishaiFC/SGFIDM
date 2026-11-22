@@ -1,0 +1,14 @@
+<button
+  type="button"
+  class="sgfidm-icon-button sgfidm-focus-ring"
+  [class.sgfidm-icon-button--standard]="type() === 'standard'"
+  [class.sgfidm-icon-button--filled]="type() === 'filled'"
+  [class.sgfidm-icon-button--disabled]="disabled()"
+  [style.width]="size()"
+  [style.height]="size()"
+  [style.border-radius]="radius()"
+  [disabled]="disabled()"
+  (click)="onClick($event)"
+>
+  <ng-content />
+</button>

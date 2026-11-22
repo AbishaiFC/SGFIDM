@@ -1,0 +1,53 @@
+.sgfidm-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--sgfidm-focus-ring-width) var(--sgfidm-color-focus-ring);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  svg, mat-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.sgfidm-icon-button--standard {
+  background-color: transparent;
+  color: var(--sgfidm-color-text-secondary);
+
+  &:not(:disabled):hover {
+    background-color: var(--sgfidm-color-surface-variant);
+    color: var(--sgfidm-color-text-primary);
+  }
+}
+
+.sgfidm-icon-button--filled {
+  background-color: var(--sgfidm-color-primary);
+  color: var(--sgfidm-color-on-primary);
+
+  &:not(:disabled):hover {
+    background-color: #1C1C1C; /* ink-800 */
+  }
+}
+
+.sgfidm-icon-button--disabled {
+  background-color: #EDEDED; /* ink-25 */
+  color: var(--sgfidm-color-text-disabled);
+
+  &:hover {
+    background-color: #EDEDED;
+  }
+}

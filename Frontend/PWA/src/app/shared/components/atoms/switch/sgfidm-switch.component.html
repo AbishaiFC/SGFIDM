@@ -1,0 +1,17 @@
+<label class="sgfidm-switch sgfidm-focus-ring"
+     [class.sgfidm-switch--checked]="isChecked()"
+     [class.sgfidm-switch--disabled]="isDisabled()">
+  <input type="checkbox"
+         class="sgfidm-switch__input"
+         [checked]="isChecked()"
+         [disabled]="isDisabled()"
+         [attr.aria-label]="label() || undefined"
+         (change)="onChange($event)" />
+
+  <span class="sgfidm-switch__track"></span>
+  <span class="sgfidm-switch__thumb"></span>
+
+  @if (label()) {
+    <span class="sgfidm-switch__label">{{ label() }}</span>
+  }
+</label>

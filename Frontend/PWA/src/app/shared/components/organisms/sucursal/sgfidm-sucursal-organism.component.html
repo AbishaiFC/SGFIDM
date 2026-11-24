@@ -1,0 +1,42 @@
+<div class="sgfidm-sucursal-organism" role="region" aria-label="Sucursales">
+  <!-- Encabezado -->
+  <div class="sgfidm-sucursal-organism__header">
+    <h2 class="sgfidm-sucursal-organism__title">Sucursales</h2>
+    <p class="sgfidm-sucursal-organism__subtitle">Gestión de sucursales de la sucursal activa</p>
+  </div>
+
+  <!-- Indicadores -->
+  <div class="sgfidm-sucursal-organism__indicators">
+    <sgfidm-indicator-card eyebrow="TOTAL DE SUCURSALES" [value]="totalSucursales"
+      delta="Abre para ver detalle" />
+    <sgfidm-indicator-card eyebrow="ACTIVAS" [value]="activasCount" [delta]="deltaActivas" />
+  </div>
+
+  <!-- Listado -->
+  <sgfidm-panel-card eyebrow="LISTA DE SUCURSALES" class="sgfidm-sucursal-organism__panel">
+    <div class="sgfidm-sucursal-organism__list">
+      @if (sucursales().length === 0) {
+        <div class="sgfidm-sucursal-organism__empty">
+          Sin sucursales registradas
+        </div>
+      } @else {
+        @for (s of sucursales(); track s.id) {
+          <div class="sgfidm-sucursal-organism__item" role="button" tabindex="0"
+            [class.sgfidm-sucursal-organism__item--archivada]="s.status === 'archivada'"
+            (click)="accion.emit({sucursal: s, tipo: 'detalle'})"
+            (keydown.enter)="accion.emit({sucursal: s, tipo: 'detalle'})">
+            <div class="sgfidm-sucursal-organism__info">
+              <span class="sgfidm-sucursal-organism__name">{{ s.nombre }}</span>
+              @if (s.direccion) {
+                <span class="sgfidm-sucursal-organism__sub">{{ s.direccion }}</span>
+              }
+            </div>
+            <span class="sgfidm-sucursal-organism__status">
+              {{ s.status ?? 'activa' }}
+            </span>
+          </div>
+        }
+      }
+    </div>
+  </sgfidm-panel-card>
+</div>

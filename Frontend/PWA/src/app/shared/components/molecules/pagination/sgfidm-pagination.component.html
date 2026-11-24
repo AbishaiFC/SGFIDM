@@ -1,0 +1,40 @@
+<div class="sgfidm-pagination" role="navigation" aria-label="Paginación">
+  <!-- Anterior -->
+  <button
+    type="button"
+    class="sgfidm-pagination__btn"
+    aria-label="Página anterior"
+    [attr.disabled]="currentPage() <= 1 ? true : null"
+    (click)="onPrev()"
+  >
+    &lsaquo;
+  </button>
+
+  <!-- Páginas -->
+  @for (page of visiblePages(); track page) {
+    @if (page === 'ellipsis') {
+      <span class="sgfidm-pagination__ellipsis" aria-hidden="true">…</span>
+    } @else {
+      <button
+        type="button"
+        class="sgfidm-pagination__page"
+        [class.sgfidm-pagination__page--active]="page === currentPage()"
+        [attr.aria-current]="page === currentPage() ? 'page' : null"
+        (click)="onPageSelect(page)"
+      >
+        {{ page }}
+      </button>
+    }
+  }
+
+  <!-- Siguiente -->
+  <button
+    type="button"
+    class="sgfidm-pagination__btn"
+    aria-label="Página siguiente"
+    [attr.disabled]="currentPage() >= totalPages() ? true : null"
+    (click)="onNext()"
+  >
+    &rsaquo;
+  </button>
+</div>

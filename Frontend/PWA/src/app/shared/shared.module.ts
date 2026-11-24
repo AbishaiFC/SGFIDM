@@ -51,6 +51,8 @@ import { SgfidmTooltipComponent } from './components/atoms/tooltip/sgfidm-toolti
 import { SgfidmProgressComponent } from './components/atoms/progress/sgfidm-progress.component';
 // Atomos SGFIDM - entrada de PIN
 import { SgfidmPinInputComponent } from './components/atoms/pin-input/sgfidm-pin-input.component';
+// Moleculas SGFIDM
+import { SgfidmFormFieldComponent } from './components/molecules/form-field/sgfidm-form-field.component';
 /**
  * SharedModule: centraliza imports/exports de Angular Material y componentes propios SGFIDM.
  * Las feature modules importan SharedModule en lugar de importar Material directamente.
@@ -107,6 +109,8 @@ import { SgfidmPinInputComponent } from './components/atoms/pin-input/sgfidm-pin
     SgfidmProgressComponent,
     // Atomos SGFIDM - entrada de PIN
     SgfidmPinInputComponent,
+    // Moleculas SGFIDM
+    SgfidmFormFieldComponent,
   ],
   exports: [
     CommonModule,
@@ -159,6 +163,8 @@ import { SgfidmPinInputComponent } from './components/atoms/pin-input/sgfidm-pin
     SgfidmProgressComponent,
     // Atomos SGFIDM - entrada de PIN
     SgfidmPinInputComponent,
+    // Moleculas SGFIDM
+    SgfidmFormFieldComponent,
   ],
 })
 export class SharedModule { }

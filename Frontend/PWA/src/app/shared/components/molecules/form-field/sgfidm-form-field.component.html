@@ -1,0 +1,51 @@
+<div class="sgfidm-form-field" [class.sgfidm-form-field--focus]="state() === 'focus'"
+  [class.sgfidm-form-field--filled]="state() === 'filled'" [class.sgfidm-form-field--error]="state() === 'error'"
+  [class.sgfidm-form-field--disabled]="state() === 'disabled'" [class.sgfidm-form-field--has-leading]="leadingIcon()"
+  [class.sgfidm-form-field--has-trailing]="trailingIcon()">
+  <!-- Leading icon -->
+  @if (leadingIcon()) {
+  <span class="sgfidm-form-field__leading-icon material-icons" aria-hidden="true">
+    {{ leadingIcon() }}
+  </span>
+  }
+
+  <!-- Input wrapper -->
+  <div class="sgfidm-form-field__input-wrap">
+    <label class="sgfidm-form-field__label" [class.sgfidm-form-field__label--floated]="labelFloated()"
+      [attr.for]="inputId()">
+      {{ label() }}@if (required()) {<span class="sgfidm-form-field__required" aria-hidden="true"> *</span>}
+    </label>
+
+    <input #inputRef class="sgfidm-form-field__input" [id]="inputId()" [type]="type()"
+      [placeholder]="labelFloated() ? placeholder() : ''" [attr.disabled]="disabled() ? true : null"
+      [required]="required()" [autocomplete]="autocomplete()" [attr.aria-invalid]="state() === 'error'"
+      [attr.aria-describedby]="errorMessage() ? inputId() + '-msg' : null" [(ngModel)]="value" (focus)="onFocus()"
+      (blur)="onBlur()" />
+  </div>
+
+  <!-- Trailing icon -->
+  @if (trailingIcon()) {
+  <button type="button" class="sgfidm-form-field__trailing-icon" tabindex="-1" [attr.aria-label]="'Acción de campo'"
+    (click)="onTrailingIconClick()">
+    <span class="material-icons" aria-hidden="true">{{ trailingIcon() }}</span>
+  </button>
+  }
+
+  <!-- Outline border (rendered via ::before/::after in SCSS) -->
+  <fieldset class="sgfidm-form-field__outline" aria-hidden="true">
+    <legend class="sgfidm-form-field__outline-legend">
+      <span>{{ labelFloated() ? label() : '' }}</span>
+    </legend>
+  </fieldset>
+</div>
+
+<!-- Message line -->
+@if (errorMessage() || helperText()) {
+<p class="sgfidm-form-field__message" [class.sgfidm-form-field__message--error]="!!errorMessage()"
+  [id]="inputId() + '-msg'" role="alert">
+  @if (errorMessage()) {
+  <span class="material-icons sgfidm-form-field__message-icon" aria-hidden="true">error_outline</span>
+  }
+  {{ errorMessage() || helperText() }}
+</p>
+}

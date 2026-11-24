@@ -1,0 +1,204 @@
+// ── Tokens SGFIDM (via CSS custom properties de _tokens.scss) ──────────────
+// primary      : var(--sgfidm-primary)      #2A2A2A
+// error        : var(--sgfidm-error)        #A9442E
+// outline      : var(--sgfidm-outline)      #C6C6C6
+// text-primary : var(--sgfidm-text-primary) #1C1C1C
+// text-muted   : var(--sgfidm-text-muted)   #8B8B8B
+// surface      : var(--sgfidm-surface)      #FFFFFF
+// radius-2     : var(--sgfidm-radius-2)     4px
+// radius-4     : var(--sgfidm-radius-4)     8px
+
+$field-height:        44px;
+$border-width:        1px;
+$border-width-active: 2px;
+$label-font:          11px;
+$input-font:          14px;
+$icon-size:           20px;
+$transition:          200ms ease;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+// ── Wrapper ─────────────────────────────────────────────────────────────────
+.sgfidm-form-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: $field-height;
+  background: var(--sgfidm-surface, #fff);
+  border-radius: var(--sgfidm-radius-4, 8px);
+  cursor: text;
+
+  &:hover:not(.sgfidm-form-field--disabled) .sgfidm-form-field__outline {
+    border-color: var(--sgfidm-text-primary, #1c1c1c);
+  }
+
+  // ── State modifiers ─────────���────────────────────────────────────────────
+  &--focus .sgfidm-form-field__outline {
+    border-color: var(--sgfidm-primary, #2a2a2a);
+    border-width: $border-width-active;
+  }
+
+  &--error {
+    .sgfidm-form-field__outline      { border-color: var(--sgfidm-error, #a9442e); }
+    .sgfidm-form-field__label        { color: var(--sgfidm-error, #a9442e); }
+    .sgfidm-form-field__leading-icon { color: var(--sgfidm-error, #a9442e); }
+  }
+
+  &--disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    .sgfidm-form-field__outline { border-style: dashed; }
+  }
+
+  // ── Icon spacing ─────────────────────────────────────────────────────────
+  &--has-leading .sgfidm-form-field__input-wrap { padding-left: 0; }
+  &--has-trailing .sgfidm-form-field__input-wrap { padding-right: 0; }
+}
+
+// ── Outline (fieldset trick para hueco en el borde bajo la label) ──────────
+.sgfidm-form-field__outline {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0 8px;
+  border: $border-width solid var(--sgfidm-outline, #c6c6c6);
+  border-radius: inherit;
+  pointer-events: none;
+  transition: border-color $transition, border-width $transition;
+}
+
+.sgfidm-form-field__outline-legend {
+  display: block;
+  padding: 0;
+  height: 0;
+  font-size: $label-font;
+  line-height: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  max-width: 0;
+  transition: max-width $transition;
+
+  span { padding: 0 2px; }
+}
+
+// Cuando la label está flotada abrimos el hueco
+.sgfidm-form-field__label--floated ~ .sgfidm-form-field__outline,
+.sgfidm-form-field--focus .sgfidm-form-field__outline {
+  .sgfidm-form-field__outline-legend { max-width: 100%; }
+}
+
+// ── Input wrap ───────────────────────────────────────────────────────────────
+.sgfidm-form-field__input-wrap {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+  min-width: 0;
+}
+
+// ── Label ────────────────────────────────────────────────────────────────────
+.sgfidm-form-field__label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  font-family: 'Inter', sans-serif;
+  font-size: $input-font;
+  color: var(--sgfidm-text-muted, #8b8b8b);
+  pointer-events: none;
+  transition: top $transition, transform $transition, font-size $transition, color $transition;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 24px);
+  z-index: 1;
+
+  &--floated {
+    top: 0;
+    transform: translateY(-50%);
+    font-size: $label-font;
+    color: var(--sgfidm-primary, #2a2a2a);
+    background: var(--sgfidm-surface, #fff);
+    padding: 0 2px;
+  }
+}
+
+.sgfidm-form-field--error .sgfidm-form-field__label--floated {
+  color: var(--sgfidm-error, #a9442e);
+}
+
+.sgfidm-form-field__required { color: var(--sgfidm-error, #a9442e); }
+
+// ── Input ─────────────────────────────────────────────────────────────────────
+.sgfidm-form-field__input {
+  width: 100%;
+  height: $field-height;
+  padding: 18px 0 6px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-size: $input-font;
+  color: var(--sgfidm-text-primary, #1c1c1c);
+  line-height: 1.4;
+
+  &::placeholder { color: var(--sgfidm-text-muted, #8b8b8b); }
+  &:disabled      { cursor: not-allowed; }
+
+  // Remove browser autofill styling
+  &:-webkit-autofill {
+    box-shadow: 0 0 0 1000px var(--sgfidm-surface, #fff) inset;
+    -webkit-text-fill-color: var(--sgfidm-text-primary, #1c1c1c);
+  }
+}
+
+// ── Icons ─────────────────────────────────────────────────────────────────────
+.sgfidm-form-field__leading-icon,
+.sgfidm-form-field__trailing-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: $field-height;
+  flex-shrink: 0;
+  color: var(--sgfidm-text-muted, #8b8b8b);
+
+  .material-icons { font-size: $icon-size; }
+}
+
+.sgfidm-form-field__leading-icon { padding-left: 4px; }
+
+.sgfidm-form-field__trailing-icon {
+  padding-right: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background $transition;
+
+  &:hover { background: var(--sgfidm-surface-variant, #f5f5f5); }
+  &:focus-visible {
+    outline: 1.5px solid var(--sgfidm-primary, #2a2a2a);
+    outline-offset: -2px;
+  }
+}
+
+// ── Message ──────────────────────────────────────────────────────────────────
+.sgfidm-form-field__message {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 4px 12px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: var(--sgfidm-text-muted, #8b8b8b);
+  line-height: 1.4;
+
+  &--error { color: var(--sgfidm-error, #a9442e); }
+}
+
+.sgfidm-form-field__message-icon { font-size: 14px !important; }

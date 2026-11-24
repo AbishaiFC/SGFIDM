@@ -1,0 +1,41 @@
+<div class="sgfidm-inventario-organism" role="region" aria-label="Inventario">
+  <!-- Encabezado -->
+  <div class="sgfidm-inventario-organism__header">
+    <h2 class="sgfidm-inventario-organism__title">Inventario</h2>
+    <p class="sgfidm-inventario-organism__subtitle">Productos con cotización según stock</p>
+  </div>
+
+  <!-- Indicadores rápidos -->
+  <div class="sgfidm-inventario-organism__indicators">
+    <sgfidm-indicator-card eyebrow="PRODUCTOS TOTALES" [value]="totalProductos"
+      delta="Stock útil" />
+    <sgfidm-indicator-card eyebrow="STOCK CRÍTICO" [value]="totalStockCritico"
+      [delta]="deltaStockCritico" />
+  </div>
+
+  <!-- Listado de productos -->
+  @if (mostrarEmptyState()) {
+    <!-- EmptyState estándar y bloqueante (decisión B12) -->
+    <sgfidm-empty-state
+      icon="folder_off"
+      title="Sin productos"
+      message="Agrega el primer producto para comenzar a operar"
+      actionLabel="Nuevo producto"
+      (action)="onAccion({id: '', nombre: '', costo: '$0.00', precio: '$0.00', stock: 0, stockCritico: 0})"
+    />
+  } @else {
+    <sgfidm-panel-card eyebrow="PRODUCTOS" class="sgfidm-inventario-organism__panel">
+      <div class="sgfidm-inventario-organism__products">
+        @for (p of productos(); track p.id) {
+          <div class="sgfidm-inventario-organism__product" role="row"
+            (click)="onAccion(p)">
+            <span class="sgfidm-inventario-organism__name">{{ p.nombre }}</span>
+            <span class="sgfidm-inventario-organism__cost">{{ p.costo }}</span>
+            <span class="sgfidm-inventario-organism__price">{{ p.precio }}</span>
+            <span class="sgfidm-inventario-organism__stock">Stock: {{ p.stock }}</span>
+          </div>
+        }
+      </div>
+    </sgfidm-panel-card>
+  }
+</div>

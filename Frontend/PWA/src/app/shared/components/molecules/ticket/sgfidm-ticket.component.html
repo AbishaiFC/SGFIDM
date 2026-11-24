@@ -1,0 +1,27 @@
+<div class="sgfidm-ticket" aria-label="Comprobante" role="document">
+  <!-- Encabezado -->
+  @if (company()) {
+    <div class="sgfidm-ticket__header">
+      <h2 class="sgfidm-ticket__company">{{ company() }}</h2>
+      @if (branch()) {
+        <div class="sgfidm-ticket__branch">{{ branch() }}</div>
+      }
+      @if (folio()) {
+        <div class="sgfidm-ticket__folio">{{ folio() }}</div>
+      }
+    </div>
+  }
+
+  <!-- Líneas de detalle (proyectadas) -->
+  <div class="sgfidm-ticket__body">
+    <ng-content />
+  </div>
+
+  <!-- Línea de total + leyenda obligatoria -->
+  @if (showFooter()) {
+    <div class="sgfidm-ticket__footer">
+      <div class="sgfidm-ticket__total">{{ totalLine() }}</div>
+      <p class="sgfidm-ticket__legend">"No válido como factura"</p>
+    </div>
+  }
+</div>

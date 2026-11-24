@@ -1,0 +1,93 @@
+// ── Tokens SGFIDM (CSS custom properties de _tokens.scss) ────────────────────
+// surface      : var(--sgfidm-color-surface)      #FFFFFF
+// outline      : var(--sgfidm-color-outline)      #C6C6C6
+// text-primary : var(--sgfidm-color-text-primary) #1C1C1C
+// text-secondary: var(--sgfidm-color-text-secondary) #575757
+// text-muted   : var(--sgfidm-color-text-muted)   #8B8B8B
+// radius-md    : var(--sgfidm-radius-md)          6px (especificado, sin binding Figma — también presente)
+
+// ── Dimensiones (Figma 195:2738: 240×320) ────────────────────────────────────
+$ticket-width: 240px;
+$ticket-height: 320px;
+$font-body: 11px; // body/small per ritmo del ticket
+$padding: 16px;
+
+:host {
+  display: block;
+}
+
+.sgfidm-ticket {
+  width: $ticket-width;
+  height: $ticket-height;
+  background: var(--sgfidm-color-surface, #fff);
+  border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+  border-radius: var(--sgfidm-radius-md, 6px);
+  padding: var(--sgfidm-space-4);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  // En pantallas pequeñas: ocupar el ancho completo
+  @media (max-width: 320px) {
+    width: 100%;
+  }
+}
+
+// ── Encabezado (comercio, sucursal, folio) ───────────────────────────────────
+.sgfidm-ticket__header {
+  text-align: center;
+  margin-bottom: var(--sgfidm-space-2);
+}
+
+.sgfidm-ticket__company {
+  margin: 0;
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+}
+
+.sgfidm-ticket__branch {
+  margin-top: var(--sgfidm-space-1);
+  font-family: var(--sgfidm-font-family);
+  font-size: 9px;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+}
+
+.sgfidm-ticket__folio {
+  margin-top: var(--sgfidm-space-1);
+  font-family: var(--sgfidm-font-family);
+  font-size: 9px;
+  color: var(--sgfidm-color-text-secondary, #575757);
+}
+
+// ── Líneas de detalle (proyectadas) ──────────────────────────────────────────
+.sgfidm-ticket__body {
+  flex: 1;
+  font-family: var(--sgfidm-font-family);
+  font-size: $font-body;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+}
+
+// ── Footer: total + leyenda obligatoria ─────────────────────────────────────
+.sgfidm-ticket__footer {
+  margin-top: var(--sgfidm-space-2);
+  border-top: 1px dashed var(--sgfidm-color-outline, #c6c6c6);
+  padding-top: var(--sgfidm-space-2);
+}
+
+.sgfidm-ticket__total {
+  font-family: var(--sgfidm-font-family);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+}
+
+.sgfidm-ticket__legend {
+  margin: var(--sgfidm-space-1) 0 0;
+  font-family: var(--sgfidm-font-family);
+  font-size: 8px;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+  font-style: italic;
+}

@@ -1,0 +1,95 @@
+.sgfidm-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sgfidm-space-2);
+  border: none;
+  border-radius: var(--sgfidm-radius-md);
+  cursor: pointer;
+  font-family: var(--sgfidm-font-family);
+  font-weight: 500;
+  font-size: var(--sgfidm-label-large);
+  letter-spacing: 0.15px;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--sgfidm-focus-ring-width) var(--sgfidm-color-focus-ring);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &__spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--sgfidm-color-on-primary);
+    border-radius: var(--sgfidm-radius-full);
+    animation: sgfidm-spin 0.8s linear infinite;
+  }
+
+  &__label {
+    font-weight: 500;
+  }
+}
+
+// Variantes de color (según Design System §04.1.1)
+.sgfidm-button--primary {
+  background-color: var(--sgfidm-color-primary);
+  color: var(--sgfidm-color-on-primary);
+
+  &:not(:disabled):hover {
+    background-color: var(--sgfidm-color-inverse-surface);
+  }
+}
+
+.sgfidm-button--secondary {
+  background-color: var(--sgfidm-color-surface);
+  color: var(--sgfidm-color-text-primary);
+  border: 1px solid var(--sgfidm-color-outline);
+
+  &:not(:disabled):hover {
+    background-color: var(--sgfidm-color-surface-variant);
+  }
+}
+
+.sgfidm-button--tertiary {
+  background-color: transparent;
+  color: var(--sgfidm-color-text-primary);
+
+  &:not(:disabled):hover {
+    background-color: var(--sgfidm-color-surface-variant);
+  }
+}
+
+.sgfidm-button--destructive {
+  background-color: var(--sgfidm-color-error);
+  color: var(--sgfidm-color-on-error);
+
+  &:not(:disabled):hover {
+    background-color: var(--sgfidm-color-on-error-container);
+  }
+}
+
+.sgfidm-button--disabled {
+  background-color: var(--sgfidm-color-outline-variant);
+  color: var(--sgfidm-color-text-disabled);
+  border-color: var(--sgfidm-color-outline);
+
+  &:hover {
+    background-color: var(--sgfidm-color-outline-variant);
+  }
+}
+
+@keyframes sgfidm-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

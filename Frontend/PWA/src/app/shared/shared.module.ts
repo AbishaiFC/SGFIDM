@@ -25,7 +25,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
-
+// Atomos SGFIDM - accion y entrada
+import { SgfidmButtonComponent } from './components/atoms/button/sgfidm-button.component';
+import { SgfidmIconButtonComponent } from './components/atoms/icon-button/sgfidm-icon-button.component';
+import { SgfidmTextFieldComponent } from './components/atoms/text-field/sgfidm-text-field.component';
 /**
  * SharedModule: centraliza imports/exports de Angular Material y componentes propios SGFIDM.
  * Las feature modules importan SharedModule en lugar de importar Material directamente.
@@ -56,6 +59,10 @@ import { MatCardModule } from '@angular/material/card';
     MatTooltipModule,
     MatDividerModule,
     MatCardModule,
+    // Atomos SGFIDM - accion y entrada
+    SgfidmButtonComponent,
+    SgfidmIconButtonComponent,
+    SgfidmTextFieldComponent,
   ],
   exports: [
     CommonModule,
@@ -82,6 +89,10 @@ import { MatCardModule } from '@angular/material/card';
     MatTooltipModule,
     MatDividerModule,
     MatCardModule,
+    // Atomos SGFIDM - accion y entrada
+    SgfidmButtonComponent,
+    SgfidmIconButtonComponent,
+    SgfidmTextFieldComponent,
   ],
 })
-export class SharedModule {}
+export class SharedModule { }

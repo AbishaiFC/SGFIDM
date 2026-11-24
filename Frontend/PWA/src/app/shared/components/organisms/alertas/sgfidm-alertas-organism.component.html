@@ -1,0 +1,38 @@
+<div class="sgfidm-alertas-organism" role="region" aria-label="Alertas">
+  <!-- Encabezado -->
+  <div class="sgfidm-alertas-organism__header">
+    <h2 class="sgfidm-alertas-organism__title">Alertas y notificaciones</h2>
+    <p class="sgfidm-alertas-organism__subtitle">Alertas operativas — requieren acción inmediata</p>
+  </div>
+
+  <!-- Indicadores -->
+  <div class="sgfidm-alertas-organism__indicators">
+    <sgfidm-indicator-card eyebrow="ALERTAS ACTIVAS" [value]="totalAlertas" delta="Ver detalle" />
+    <sgfidm-indicator-card eyebrow="CRÍTICAS" [value]="altasCount" [delta]="altasDelta" />
+  </div>
+
+  <!-- Lista de alertas -->
+  <sgfidm-panel-card eyebrow="ALERTAS" class="sgfidm-alertas-organism__panel">
+    <div class="sgfidm-alertas-organism__list">
+      @if (alertas().length === 0) {
+        <div class="sgfidm-alertas-organism__empty">Sin alertas activas</div>
+      } @else {
+        @for (a of alertas(); track a.id) {
+          <div class="sgfidm-alertas-organism__item" role="button" tabindex="0"
+            [attr.aria-label]="'Ver detalle de alerta ' + a.id" (click)="onDetalle(a)" (keydown.enter)="onDetalle(a)">
+            <!-- Notification (molécula con variantes) -->
+            <sgfidm-notification
+              [variant]="a.estado"
+              [eyebrow]="'Alerta · ' + a.estado.toUpperCase()"
+              [message]="a.mensaje"
+              class="sgfidm-alertas-organism__notification"
+            />
+            <sgfidm-badge [variant]="badgeVariant(a)" class="sgfidm-alertas-organism__badge">
+              {{ a.estado.toUpperCase() }}
+            </sgfidm-badge>
+          </div>
+        }
+      }
+    </div>
+  </sgfidm-panel-card>
+</div>

@@ -1,0 +1,23 @@
+<div class="sgfidm-search-bar" role="search">
+  <span class="sgfidm-search-bar__icon material-icons" aria-hidden="true">search</span>
+  <input
+    class="sgfidm-search-bar__input"
+    type="search"
+    [attr.placeholder]="placeholder()"
+    [attr.disabled]="disabled() ? true : null"
+    [value]="value"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+    (keydown)="onSearchKeyDown($event)"
+  />
+  @if (hasValue()) {
+    <button
+      type="button"
+      class="sgfidm-search-bar__clear"
+      aria-label="Borrar búsqueda"
+      (click)="onClear()"
+    >
+      <span class="material-icons">close</span>
+    </button>
+  }
+</div>

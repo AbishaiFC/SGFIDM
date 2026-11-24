@@ -1,0 +1,14 @@
+<button
+  type="button"
+  class="sgfidm-sidebar-item"
+  [class.sgfidm-sidebar-item--active]="variant() === 'active'"
+  [class.sgfidm-sidebar-item--disabled]="variant() === 'disabled'"
+  [attr.aria-disabled]="variant() === 'disabled' ? true : null"
+  [attr.aria-current]="variant() === 'active' ? 'page' : null"
+  (click)="onClick()"
+>
+  <span class="sgfidm-sidebar-item__icon material-icons" aria-hidden="true">
+    {{ icon() }}
+  </span>
+  <span class="sgfidm-sidebar-item__label">{{ label() }}</span>
+</button>

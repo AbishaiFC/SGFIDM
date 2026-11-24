@@ -1,0 +1,15 @@
+<div
+  class="sgfidm-widget"
+  role="widget"
+  [attr.aria-label]="eyebrow() || null"
+>
+  <!-- Eyebrow (label único del widget, caps) -->
+  @if (eyebrow()) {
+    <span class="sgfidm-widget__eyebrow">{{ eyebrow() }}</span>
+  }
+
+  <!-- Zona de cuerpo (valor principal y metadatos, proyectado) -->
+  <div class="sgfidm-widget__body">
+    <ng-content />
+  </div>
+</div>

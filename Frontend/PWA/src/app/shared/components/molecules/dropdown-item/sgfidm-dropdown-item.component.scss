@@ -1,0 +1,54 @@
+// ── Tokens SGFIDM (CSS custom properties de _tokens.scss) ────────────────────
+// text-primary   : var(--sgfidm-color-text-primary)   #1C1C1C
+// text-disabled  : var(--sgfidm-color-text-disabled)  #A3A3A3
+// radius-md      : var(--sgfidm-radius-md)            6px
+
+$item-height: 38px;  // Figma 195:2815: 220×38
+$icon-font: 16px;
+$label-font: 12px;
+$gap: var(--sgfidm-space-3); // gap 12 px (verdad System)
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.sgfidm-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: $gap;
+  width: 100%;
+  height: $item-height;
+  padding: 0 var(--sgfidm-space-4);
+  box-sizing: border-box;
+  border: none;
+  background: transparent;
+  border-radius: var(--sgfidm-radius-md, 6px);
+  cursor: pointer;
+
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+
+  &:focus-visible {
+    outline: 1.5px solid var(--sgfidm-focus-ring, #2a2a2a);
+    outline-offset: -2px;
+  }
+
+  // ── Disabled: texto #A3A3F3 (disabled) ────────────────────────────────────
+  // Nota: "Opción no disponible"
+  &--disabled {
+    color: var(--sgfidm-color-text-disabled, #a3a3a3);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.sgfidm-dropdown-item__icon {
+  font-size: $icon-font;
+  flex-shrink: 0;
+}
+
+.sgfidm-dropdown-item__label {
+  font-family: var(--sgfidm-font-family);
+  font-size: $label-font;
+  font-weight: 500;
+}

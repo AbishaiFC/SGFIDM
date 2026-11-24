@@ -1,0 +1,66 @@
+// ── Tokens SGFIDM (CSS custom properties de _tokens.scss) ────────────────────
+// surface      : var(--sgfidm-color-surface)      #FFFFFF
+// outline      : var(--sgfidm-color-outline)      #C6C6C6
+// text-primary : var(--sgfidm-color-text-primary) #1C1C1C
+// text-muted   : var(--sgfidm-color-text-muted)   #8B8B8B
+// text-secondary: var(--sgfidm-color-text-secondary) #575757
+// radius-lg    : var(--sgfidm-radius-lg)          10px
+
+// ── Dimensiones (Figma 195:2853: 268×150, radio 10) ──────────────────────────
+$widget-width: 268px;
+$widget-height: 150px;
+$gap: var(--sgfidm-space-2);
+
+:host {
+  display: block;
+}
+
+.sgfidm-widget {
+  width: $widget-width;
+  height: $widget-height;
+  padding: var(--sgfidm-space-3);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  background: var(--sgfidm-color-surface, #fff);
+  border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+  border-radius: var(--sgfidm-radius-lg, 10px);
+
+  // Arrastrable (arrastrar para reordenar — INICIO-08)
+  cursor: grab;
+  &:active {
+    cursor: grabbing;
+  }
+
+  // En pantallas pequeñas: ocupar el ancho completo
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+}
+
+// ── Eyebrow "NOMBRE DEL WIDGET" ─────────────────────────────────────────────
+.sgfidm-widget__eyebrow {
+  font-family: var(--sgfidm-font-family);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+}
+
+// ── Zona de cuerpo (valor principal y metadatos) ───────────────────────────
+.sgfidm-widget__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgfidm-space-1);
+  font-family: var(--sgfidm-font-family);
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  font-size: 12px;
+  line-height: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,100 @@
+.sgfidm-pin-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgfidm-space-4);
+  width: 320px;
+  padding: var(--sgfidm-space-6);
+  background-color: var(--sgfidm-color-surface);
+  border: 1px solid var(--sgfidm-color-outline);
+  border-radius: var(--sgfidm-radius-xl);
+  box-sizing: border-box;
+  font-family: var(--sgfidm-font-family);
+
+  &:focus-within {
+    border-color: var(--sgfidm-color-focus-ring);
+    box-shadow: 0 0 0 var(--sgfidm-focus-ring-width) var(--sgfidm-color-focus-ring);
+  }
+
+  &.sgfidm-pin-input--error {
+    border-color: var(--sgfidm-color-error);
+  }
+
+  &.sgfidm-pin-input--disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sgfidm-space-1);
+  }
+
+  &__label {
+    font-size: var(--sgfidm-title-medium);
+    font-weight: 600;
+    color: var(--sgfidm-color-text-primary);
+  }
+
+  &__subtitle {
+    font-size: var(--sgfidm-body-small);
+    color: var(--sgfidm-color-text-muted);
+  }
+
+  &__digits {
+    display: flex;
+    gap: var(--sgfidm-space-2);
+    justify-content: center;
+  }
+
+  &__digit {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--sgfidm-color-outline);
+    border-radius: var(--sgfidm-radius-md);
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--sgfidm-color-text-primary);
+    background-color: var(--sgfidm-color-surface);
+    box-sizing: border-box;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: none;
+      border-color: var(--sgfidm-color-focus-ring);
+      box-shadow: 0 0 0 var(--sgfidm-focus-ring-width) var(--sgfidm-color-focus-ring);
+    }
+
+    &:disabled {
+      background-color: #EDEDED;
+      color: var(--sgfidm-color-text-disabled);
+      cursor: not-allowed;
+    }
+  }
+
+  &__error {
+    font-size: var(--sgfidm-body-small);
+    color: var(--sgfidm-color-error);
+  }
+
+  &__clear {
+    align-self: flex-start;
+    padding: var(--sgfidm-space-2) var(--sgfidm-space-4);
+    font-size: var(--sgfidm-body-small);
+    color: var(--sgfidm-color-text-secondary);
+    background: transparent;
+    border: 1px solid var(--sgfidm-color-outline);
+    border-radius: var(--sgfidm-radius-md);
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background-color: var(--sgfidm-color-surface-variant);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+}

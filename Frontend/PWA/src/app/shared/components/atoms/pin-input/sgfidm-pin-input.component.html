@@ -1,0 +1,35 @@
+<div class="sgfidm-pin-input"
+     [class.sgfidm-pin-input--error]="hasError()"
+     [class.sgfidm-pin-input--disabled]="disabled()">
+  <div class="sgfidm-pin-input__header">
+    <span class="sgfidm-pin-input__label">{{ label() }}</span>
+    <span class="sgfidm-pin-input__subtitle">{{ subtitle() }}</span>
+  </div>
+
+  <div class="sgfidm-pin-input__digits">
+    @for (digit of digits(); track digit) {
+      <input
+        type="text"
+        class="sgfidm-pin-input__digit"
+        [attr.data-pin-index]="digit"
+        maxlength="1"
+        [value]="value()[digit] || ''"
+        [disabled]="disabled()"
+        [attr.aria-label]="'Dígito ' + (digit + 1)"
+        (input)="onDigitInput(digit, $event)"
+        (keydown)="onDigitKeydown(digit, $event)"
+      />
+    }
+  </div>
+
+  @if (hasError()) {
+    <span class="sgfidm-pin-input__error">{{ error() }}</span>
+  }
+
+  <button type="button"
+          class="sgfidm-pin-input__clear"
+          (click)="clear()"
+          [disabled]="!isComplete() || disabled()">
+    Limpiar
+  </button>
+</div>

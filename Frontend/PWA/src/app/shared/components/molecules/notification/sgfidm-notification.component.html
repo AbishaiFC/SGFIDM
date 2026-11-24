@@ -1,0 +1,40 @@
+<div
+  class="sgfidm-notification"
+  [class.sgfidm-notification--alta]="variant() === 'alta'"
+  [class.sgfidm-notification--media]="variant() === 'media'"
+  [class.sgfidm-notification--baja]="variant() === 'baja'"
+  [class.sgfidm-notification--exito]="variant() === 'exito'"
+  role="status"
+>
+  <!-- Barra de acento 4×46 px a la izquierda -->
+  <div class="sgfidm-notification__accent" [style.background]="accent()" aria-hidden="true"></div>
+
+  <!-- Bloque de contenido -->
+  <div class="sgfidm-notification__content">
+    <!-- Eyebrow CAPS 10 px text-muted -->
+    <span class="sgfidm-notification__eyebrow">{{ eyebrowText() }}</span>
+    <!-- Mensaje 13 px text-primary -->
+    <p class="sgfidm-notification__message">{{ message() }}</p>
+    <!-- "Ver detalle →" 12 px text-secondary (solo si hay mensaje) -->
+    @if (message()) {
+      <button
+        type="button"
+        class="sgfidm-notification__detail"
+        [attr.aria-label]="'Ver detalle de ' + eyebrowText()"
+        (click)="onDetail()"
+      >
+        Ver detalle →
+      </button>
+    }
+  </div>
+
+  <!-- "Cerrar" (✕) #8B8B8B -->
+  <button
+    type="button"
+    class="sgfidm-notification__close"
+    aria-label="Cerrar notificación"
+    (click)="onClose()"
+  >
+    <span class="material-icons sgfidm-notification__close-icon">close</span>
+  </button>
+</div>

@@ -1,0 +1,117 @@
+// ── Tokens SGFIDM (CSS custom properties de _tokens.scss) ────────────────────
+// surface        : var(--sgfidm-color-surface)        #FFFFFF
+// outline        : var(--sgfidm-color-outline)        #C6C6C6
+// text-muted     : var(--sgfidm-color-text-muted)     #8B8B8B
+// text-primary   : var(--sgfidm-color-text-primary)   #1C1C1C
+// text-secondary : var(--sgfidm-color-text-secondary) #575757
+// error          : var(--sgfidm-color-error)          #A9442E
+// warning        : var(--sgfidm-color-warning)        #8A6414
+// info           : var(--sgfidm-color-info)           #33566E
+// success        : var(--sgfidm-color-success)        #3E6B4F
+// radius-lg      : var(--sgfidm-radius-lg)            10px
+
+// ── Dimensiones (Figma 195:2794: 343×72, radio 10) ───────────────────────────
+$width: 343px;
+$height: 72px;
+$accent-width: 4px;
+$accent-height: 46px;
+
+:host {
+  display: block;
+}
+
+.sgfidm-notification {
+  width: $width;
+  height: $height;
+  padding: 0 var(--sgfidm-space-4);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--sgfidm-space-3);
+  background: var(--sgfidm-color-surface, #fff);
+  border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+  border-radius: var(--sgfidm-radius-lg, 10px);
+
+  // En pantallas pequeñas: ocupar el ancho completo
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+}
+
+// ── Barra de acento (4×46 px a la izquierda, x=0) ───────────────────────────
+.sgfidm-notification__accent {
+  width: $accent-width;
+  height: $accent-height;
+  flex-shrink: 0;
+  border-radius: 0 2px 2px 0;
+}
+
+// ── Bloque de contenido ─────────────────────────────────────────────────────
+.sgfidm-notification__content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgfidm-space-1);
+}
+
+// ── Eyebrow (CAPS 10 px, text-muted) ────────────────────────────────────────
+.sgfidm-notification__eyebrow {
+  font-family: var(--sgfidm-font-family);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+}
+
+// ── Mensaje (13 px, text-primary) ───────────────────────────────────────────
+.sgfidm-notification__message {
+  margin: 0;
+  font-family: var(--sgfidm-font-family);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 17px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ── "Ver detalle →" (12 px, text-secondary) ─────────────────────────────────
+.sgfidm-notification__detail {
+  display: inline-block;
+  margin-top: var(--sgfidm-space-1);
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--sgfidm-color-text-secondary, #575757);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+// ── "Cerrar" (✕) ────────────────────────────────────────────────────────────
+.sgfidm-notification__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+
+  .sgfidm-notification__close-icon {
+    font-size: 16px;
+    color: var(--sgfidm-color-text-muted, #8b8b8b);
+  }
+
+  &:focus-visible {
+    outline: 1.5px solid var(--sgfidm-focus-ring, #2a2a2a);
+    outline-offset: -2px;
+  }
+}

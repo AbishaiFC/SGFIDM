@@ -1,0 +1,16 @@
+<div class="sgfidm-dashboard-organism">
+  <h1 class="sgfidm-dashboard-organism__title">Dashboard Operativo</h1>
+  <p class="sgfidm-dashboard-organism__subtitle">Resumen de indicadores del negocio</p>
+
+  @if (indicators().length > 0) {
+    <div class="sgfidm-dashboard-organism__indicators-grid">
+      @for (ind of indicators(); track $index) {
+        <sgfidm-indicator-card
+          [eyebrow]="ind.eyebrow"
+          [value]="ind.value"
+          [delta]="ind.delta"
+        />
+      }
+    </div>
+  }
+</div>

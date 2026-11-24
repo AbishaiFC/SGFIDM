@@ -1,0 +1,66 @@
+// ── Tokens SGFIDM (CSS custom properties de _tokens.scss) ────────────────────
+// surface        : var(--sgfidm-color-surface)        #FFFFFF
+// outline-variant: var(--sgfidm-color-outline-variant) #DBDBDB
+// text-secondary : var(--sgfidm-color-text-secondary)  #575757
+// text-muted     : var(--sgfidm-color-text-muted)      #8B8B8B
+
+// ── Dimensiones (Figma 195:2863: 1112×64) ────────────────────────────────────
+$width: 1112px;
+$height: 64px;
+$search-width: 320px; // Match Figma: campo "Buscar…" 320×44
+
+:host {
+  display: block;
+}
+
+.sgfidm-top-bar {
+  width: $width;
+  height: $height;
+  padding: 0 var(--sgfidm-space-8);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sgfidm-space-4);
+  background: var(--sgfidm-color-surface, #fff);
+  border-bottom: 1px solid var(--sgfidm-color-outline-variant, #dbdbdb);
+
+  // Sin sombra (confirmación impresa de "sin elevación decorativa")
+
+  // En pantallas pequeñas: ocupar el ancho completo
+  @media (max-width: 480px) {
+    width: 100%;
+    padding: 0 var(--sgfidm-space-4);
+  }
+}
+
+// ── Migas: breadcrumbs separadas por "/" ────────────────────────────────────
+.sgfidm-top-bar__breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--sgfidm-space-2);
+  min-width: 0;
+}
+
+.sgfidm-top-bar__crumb {
+  font-family: var(--sgfidm-font-family);
+  font-size: 11px;
+  color: var(--sgfidm-color-text-secondary, #575757);
+  white-space: nowrap;
+}
+
+.sgfidm-top-bar__crumb-sep {
+  font-family: var(--sgfidm-font-family);
+  font-size: 11px;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+}
+
+// ── Campo de búsqueda ───────────────────────────────────────────────────────
+.sgfidm-top-bar__search {
+  flex-shrink: 0;
+  width: $search-width;
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+}

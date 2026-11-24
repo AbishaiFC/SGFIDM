@@ -1,0 +1,22 @@
+# Configuracion local del editor — no compartir
+.vscode/
+.history/
+*.suo
+*.user
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Secretos y entornos locales
+.env
+.env.local
+*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Kiro (sesiones y cache del agente)
+.kiro/
+MEMORY.md

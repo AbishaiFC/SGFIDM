@@ -1,0 +1,38 @@
+// ── Tokens SGFIDM (via CSS custom properties de _tokens.scss) ──────────────
+// surface        : var(--sgfidm-color-surface)       #FFFFFF
+// outline        : var(--sgfidm-color-outline)       #C6C6C6
+// text-primary   : var(--sgfidm-color-text-primary)  #1C1C1C
+// space-2,4,6    : var(--sgfidm-space-2|4|6)         8px | 16px | 24px
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.login-organism-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgfidm-space-6);
+}
+
+.login-organism-password-wrapper {
+  position: relative;
+}
+
+.login-organism-password-toggle {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.login-organism-actions {
+  margin-top: var(--sgfidm-space-4);
+}
+
+.login-organism-button-text {
+  display: inline-block;
+  text-transform: none;
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  font-weight: 400;
+}

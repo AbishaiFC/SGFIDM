@@ -1,0 +1,42 @@
+<div class="sgfidm-empleados-organism" role="region" aria-label="Empleados">
+  <!-- Encabezado -->
+  <div class="sgfidm-empleados-organism__header">
+    <h2 class="sgfidm-empleados-organism__title">Empleados</h2>
+    <p class="sgfidm-empleados-organism__subtitle">Gestión de empleados, roles y permisos</p>
+  </div>
+
+  <!-- Indicadores -->
+  <div class="sgfidm-empleados-organism__indicators">
+    <sgfidm-indicator-card eyebrow="TOTAL" [value]="totalEmpleados" delta="Empleados registrados" />
+    <sgfidm-indicator-card eyebrow="ACTIVOS" [value]="empleadosActivosCount" [delta]="deltaActivos" />
+  </div>
+
+  <!-- Listado -->
+  <sgfidm-panel-card eyebrow="EMPLEADOS" class="sgfidm-empleados-organism__panel">
+    <div class="sgfidm-empleados-organism__list">
+      @if (empleados().length === 0) {
+        <sgfidm-empty-state
+          icon="people_outline"
+          title="Sin empleados"
+          message="Añade tu primer empleado para comenzar"
+          [actionLabel]="actionLabel()"
+          (action)="nuevo.emit()"
+        />
+      } @else {
+        @for (e of empleados(); track e.id) {
+          <div class="sgfidm-empleados-organism__item" role="button" tabindex="0"
+            (click)="accion.emit({empleado: e, tipo: 'detalle'})"
+            (keydown.enter)="accion.emit({empleado: e, tipo: 'detalle'})">
+            <div class="sgfidm-empleados-organism__info">
+              <span class="sgfidm-empleados-organism__name">{{ e.nombre }}</span>
+              <span class="sgfidm-empleados-organism__role">{{ e.rol }}</span>
+            </div>
+            <sgfidm-badge class="sgfidm-empleados-organism__status"
+              [variant]="e.status === 'suspendido' ? 'warning' : 'neutral'"
+            >{{ e.status ?? 'activo' }}</sgfidm-badge>
+          </div>
+        }
+      }
+    </div>
+  </sgfidm-panel-card>
+</div>

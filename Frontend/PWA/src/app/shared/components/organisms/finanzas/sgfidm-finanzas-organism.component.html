@@ -1,0 +1,43 @@
+<div class="sgfidm-finanzas-organism" role="region" aria-label="Finanzas">
+  <!-- Encabezado -->
+  <div class="sgfidm-finanzas-organism__header">
+    <h2 class="sgfidm-finanzas-organism__title">Finanzas</h2>
+    <p class="sgfidm-finanzas-organism__subtitle">Resumen financiero — FIN-01</p>
+  </div>
+
+  <!-- Indicadores financieros -->
+  <div class="sgfidm-finanzas-organism__indicators">
+    <sgfidm-indicator-card eyebrow="INGRESOS DEL MES" [value]="ingresosTotal" delta="Por confirmar" />
+    <sgfidm-indicator-card eyebrow="GASTOS DEL MES" [value]="gastosTotal" delta="A favor del mes en curso" />
+    <sgfidm-indicator-card eyebrow="MOVIMIENTOS" [value]="totalMovimientos" />
+  </div>
+
+  <!-- Listado de movimientos -->
+  <sgfidm-panel-card eyebrow="MOVIMIENTOS FINANCIEROS" class="sgfidm-finanzas-organism__panel">
+    <!-- Tabs -->
+    <sgfidm-tabs class="sgfidm-finanzas-organism__tabs" [tabs]="tabs" [activeTab]="tabActivo()" (tabClick)="onTab($event)" />
+
+    <!-- Lista -->
+    <div class="sgfidm-finanzas-organism__list">
+      @if (movimientosFiltro.length === 0) {
+        <div class="sgfidm-finanzas-organism__empty">Sin movimientos para esta categoría</div>
+      } @else {
+        @for (m of movimientosFiltro; track m.id) {
+          <div class="sgfidm-finanzas-organism__item" role="button" tabindex="0"
+            (click)="onAccion(m, 'detalle')" (keydown.enter)="onAccion(m, 'detalle')">
+            <div class="sgfidm-finanzas-organism__info">
+              <span class="sgfidm-finanzas-organism__name">{{ m.descripcion }}</span>
+              <span class="sgfidm-finanzas-organism__date">{{ m.fecha ?? 'Sin fecha' }}</span>
+            </div>
+            <span class="sgfidm-finanzas-organism__monto" [class.sgfidm-finanzas-organism__monto--gasto]="m.tipo === 'gasto'">
+              {{ m.tipo === 'gasto' ? '-' : '' }}{{ m.monto }}
+            </span>
+            <sgfidm-badge class="sgfidm-finanzas-organism__badge"
+              [variant]="m.estado === 'anulado' ? 'success' : m.tipo === 'gasto' ? 'warning' : 'neutral'"
+            >{{ m.estado ?? 'pendiente' }}</sgfidm-badge>
+          </div>
+        }
+      }
+    </div>
+  </sgfidm-panel-card>
+</div>

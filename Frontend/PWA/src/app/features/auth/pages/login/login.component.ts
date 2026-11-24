@@ -1,33 +1,26 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  FormBuilder,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { AuthRepository } from '../../../../../app/core/services/data/repositories/auth.repository';
+import { SgfidmLoginOrganismComponent } from '../../../../shared/components/organisms/login/sgfidm-login-organism.component';
 
+/**
+ * LoginPage — Plantilla de la pantalla de Login (Módulo 00 Auth) del Design System SGFIDM.
+ *
+ * Plantilla (template): compone el organismo LoginOrganism (AuthCard + FormField + Botones).
+ * El organismo emite `submit` con {email, password}; el page pide credenciales al repositorio.
+ *
+ * Uso:
+ *   <sgfidm-login-organism title="Iniciar sesión" (submit)="onSubmit($event)" />
+ */
 @Component({
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-  ],
+  imports: [CommonModule, SgfidmLoginOrganismComponent],
   selector: 'sgfidm-login',
   styleUrl: './login.component.scss',
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  private readonly fb = inject(FormBuilder);
   private readonly auth = inject(AuthRepository);
   private readonly router = inject(Router);
 
@@ -35,23 +28,11 @@ export class LoginComponent {
   isLoading = false;
   errorMessage = '';
 
-  form = this.fb.group({
-    correo: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(8)]],
-  });
-
-  onSubmit(): void {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
-
+  onSubmit(event: { email: string; password: string }): void {
     this.isLoading = true;
     this.errorMessage = '';
 
-    const { correo, password } = this.form.value;
-
-    this.auth.login(correo!, password!).subscribe({
+    this.auth.login(event.email, event.password).subscribe({
       next: () => {
         this.isLoading = false;
         this.router.navigate(['/dashboard']);
@@ -61,9 +42,5 @@ export class LoginComponent {
         this.errorMessage = 'Credenciales inválidas. Inténtalo de nuevo.';
       },
     });
-  }
-
-  onSoyEmpleado(): void {
-    this.router.navigate(['/auth/login-empleado']);
   }
 }

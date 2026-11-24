@@ -1,0 +1,43 @@
+<sgfidm-auth-card [title]="title()" [subtitle]="subtitle()">
+  <div class="login-organism-form">
+    <!-- Form field de correo -->
+    <sgfidm-form-field
+      [label]="emailLabel()"
+      type="email"
+      [placeholder]="emailPlaceholder()"
+      [(ngModel)]="form.email"
+      [required]="true"
+    />
+
+    <!-- Form field de contraseña (con botón de toggle) -->
+    <div class="login-organism-password-wrapper">
+      <sgfidm-form-field
+        [label]="passwordLabel()"
+        [type]="hidePassword() ? 'password' : 'text'"
+        [(ngModel)]="form.password"
+        [required]="true"
+      />
+      <sgfidm-icon-button
+        class="login-organism-password-toggle"
+        type="standard"
+        [attr.aria-label]="hidePassword() ? 'Mostrar contraseña' : 'Ocultar contraseña'"
+        (click)="togglePassword()"
+      >
+        {{ hidePassword() ? 'visibility' : 'visibility_off' }}
+      </sgfidm-icon-button>
+    </div>
+
+    <!-- Botón de acción -->
+    <div class="login-organism-actions">
+      <sgfidm-button
+        type="primary"
+        size="lg"
+        [disabled]="isLoading() || form.email === '' || form.password === ''"
+        [loading]="isLoading()"
+        (click)="onSubmit()"
+      >
+        <span class="login-organism-button-text">Iniciar sesión</span>
+      </sgfidm-button>
+    </div>
+  </div>
+</sgfidm-auth-card>

@@ -1,0 +1,12 @@
+<div class="sgfidm-indicator-card">
+  <!-- Eyebrow (label muy pequeño, caps) -->
+  <span class="sgfidm-indicator-card__eyebrow">{{ eyebrow() }}</span>
+
+  <!-- Dato principal -->
+  <span class="sgfidm-indicator-card__value" [attr.data-value]="value()">{{ value() }}</span>
+
+  <!-- Delta secundario -->
+  @if (delta()) {
+    <span class="sgfidm-indicator-card__delta">{{ delta() }}</span>
+  }
+</div>

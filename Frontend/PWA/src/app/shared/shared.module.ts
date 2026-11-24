@@ -57,6 +57,7 @@ import { SgfidmPasswordFieldComponent } from './components/molecules/password-fi
 import { SgfidmPinFieldComponent } from './components/molecules/pin-field/sgfidm-pin-field.component';
 import { SgfidmAuthCardComponent } from './components/molecules/auth-card/sgfidm-auth-card.component';
 import { SgfidmEmptyStateComponent } from './components/molecules/empty-state/sgfidm-empty-state.component';
+import { SgfidmIndicatorCardComponent } from './components/molecules/indicator-card/sgfidm-indicator-card.component';
 /**
  * SharedModule: centraliza imports/exports de Angular Material y componentes propios SGFIDM.
  * Las feature modules importan SharedModule en lugar de importar Material directamente.
@@ -119,6 +120,7 @@ import { SgfidmEmptyStateComponent } from './components/molecules/empty-state/sg
     SgfidmPinFieldComponent,
     SgfidmAuthCardComponent,
     SgfidmEmptyStateComponent,
+    SgfidmIndicatorCardComponent,
   ],
   exports: [
     CommonModule,
@@ -177,6 +179,7 @@ import { SgfidmEmptyStateComponent } from './components/molecules/empty-state/sg
     SgfidmPinFieldComponent,
     SgfidmAuthCardComponent,
     SgfidmEmptyStateComponent,
+    SgfidmIndicatorCardComponent,
   ],
 })
 export class SharedModule { }

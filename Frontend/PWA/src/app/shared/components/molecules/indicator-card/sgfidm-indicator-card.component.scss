@@ -1,0 +1,71 @@
+// ── Tokens SGFIDM (CSS custom properties de _tokens.scss) ────────────────────
+// surface       : var(--sgfidm-color-surface)       #FFFFFF
+// outline       : var(--sgfidm-color-outline)       #C6C6C6
+// text-muted    : var(--sgfidm-color-text-muted)    #8B8B8B
+// text-primary  : var(--sgfidm-color-text-primary)  #1C1C1C
+// text-secondary: var(--sgfidm-color-text-secondary) #575757
+// radius-lg     : var(--sgfidm-radius-lg)           10px
+
+// ── Dimensiones (Figma 195:2705: 268×120, radio 10) ──────────────────────────
+$card-width:  268px;
+$card-height: 120px;
+$eyebrow-font: 10px;
+$value-font:   31px;
+$delta-font:   12px;
+$gap:          8px;
+
+:host {
+  display: block;
+}
+
+.sgfidm-indicator-card {
+  width: $card-width;
+  height: $card-height;
+  padding: var(--sgfidm-space-3);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--sgfidm-space-2);
+  background: var(--sgfidm-color-surface, #fff);
+  border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+  border-radius: var(--sgfidm-radius-lg, 10px);
+
+  // En pantallas pequeñas: ocupar el ancho completo
+  @media (max-width: 320px) {
+    width: 100%;
+  }
+}
+
+// ── Eyebrow (label muy pequeño, caps) ────────────────────────────────────────
+.sgfidm-indicator-card__eyebrow {
+  font-family: var(--sgfidm-font-family);
+  font-size: $eyebrow-font;
+  font-weight: 500;
+  line-height: 13px;
+  letter-spacing: 0.1px;
+  text-transform: uppercase;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+  white-space: nowrap;
+}
+
+// ── Dato principal (número tabular) ──────────────────────────────────────────
+.sgfidm-indicator-card__value {
+  font-family: var(--sgfidm-font-family);
+  font-size: $value-font;
+  font-weight: 500;
+  line-height: 36px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  font-feature-settings: 'tnum' 1; // Números tabulares (números naturales)
+  white-space: nowrap;
+}
+
+// ── Delta secundario ────────────────────────────────────────────────────────
+.sgfidm-indicator-card__delta {
+  font-family: var(--sgfidm-font-family);
+  font-size: $delta-font;
+  font-weight: 400;
+  line-height: 17px;
+  color: var(--sgfidm-color-text-secondary, #575757);
+  white-space: nowrap;
+}

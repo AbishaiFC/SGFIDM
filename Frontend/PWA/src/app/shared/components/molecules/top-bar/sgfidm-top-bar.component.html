@@ -1,0 +1,18 @@
+<div class="sgfidm-top-bar">
+  <!-- Migas: breadcrumbs separadas por "/" -->
+  <div class="sgfidm-top-bar__breadcrumbs" aria-label="Migas de navegación">
+    @for (crumb of breadcrumbs(); track crumb; let i = $index) {
+      @if (i > 0) {
+        <span class="sgfidm-top-bar__crumb-sep" aria-hidden="true">/</span>
+      }
+      <span class="sgfidm-top-bar__crumb">{{ crumb }}</span>
+    }
+  </div>
+
+  <!-- Campo de búsqueda (sin sombra en el tope) -->
+  @if (showSearch()) {
+    <div class="sgfidm-top-bar__search">
+      <sgfidm-search-bar [placeholder]="searchPlaceholder()" />
+    </div>
+  }
+</div>

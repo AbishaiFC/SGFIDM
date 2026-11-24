@@ -1,0 +1,130 @@
+// ── Tokens SGFIDM (CSS custom properties de _tokens.scss) ────────────────────
+// surface        : var(--sgfidm-color-surface)       #FFFFFF
+// outline        : var(--sgfidm-color-outline)       #C6C6C6
+// text-primary   : var(--sgfidm-color-text-primary)  #1C1C1C
+// text-secondary : var(--sgfidm-color-text-secondary) #575757
+// primary        : var(--sgfidm-color-primary)       #2A2A2A
+// on-primary     : var(--sgfidm-on-primary)          #FFFFFF
+// error          : var(--sgfidm-color-error)         #A9442E
+// error-container: var(--sgfidm-color-error-container) #F3E2DB
+// radius-xl      : var(--sgfidm-radius-xl)           12px
+// off-f2f2f2     : var(--sgfidm-color-off-f2f2f2)    #F2F2F2 (icono confirm)
+
+// ── Dimensiones (Figma 195:2761: 440×261, radio 12) ──────────────────────────
+$width: 440px;
+$height: 261px;
+$icon-circle: 44px;
+
+:host {
+  display: block;
+}
+
+.sgfidm-dialog {
+  width: $width;
+  max-height: $height;
+  padding: var(--sgfidm-space-4) var(--sgfidm-space-6);
+  box-sizing: border-box;
+  background: var(--sgfidm-color-surface, #fff);
+  border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+  border-radius: var(--sgfidm-radius-xl, 12px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgfidm-space-3);
+
+  // En pantallas pequeñas: ocupar el ancho completo
+  @media (max-width: 480px) {
+    width: 100%;
+    padding: var(--sgfidm-space-3);
+  }
+}
+
+// ── Icono ───────────────────────────────────────────────────────────────────
+.sgfidm-dialog__icon {
+  width: $icon-circle;
+  height: $icon-circle;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+
+  // confirm (195:2749): círculo-icono 44×44 #F2F2F2
+  background: var(--sgfidm-color-off-f2f2f2, #f2f2f2);
+
+  .material-icons {
+    font-size: 24px;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+  }
+}
+
+// destructive (195:2760): círculo-icono error-container + glifo error
+.sgfidm-dialog--destructive .sgfidm-dialog__icon {
+  background: var(--sgfidm-color-error-container, #f3e2db);
+}
+
+// ── Título ──────────────────────────────────────────────────────────────────
+.sgfidm-dialog__title {
+  margin: 0;
+  font-family: var(--sgfidm-font-family);
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+}
+
+// ── Cuerpo ──────────────────────────────────────────────────────────────────
+.sgfidm-dialog__message {
+  margin: 0;
+  font-family: var(--sgfidm-font-family);
+  font-size: 16px;
+  color: var(--sgfidm-color-text-secondary, #575757);
+}
+
+// ── Acciones ────────────────────────────────────────────────────────────────
+.sgfidm-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sgfidm-space-2);
+  margin-top: auto;
+}
+
+.sgfidm-dialog__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 var(--sgfidm-space-4);
+  border: none;
+  border-radius: var(--sgfidm-radius-md, 6px);
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  cursor: pointer;
+
+  &--secondary {
+    // Cancelar: blanco + stroke #C6C6C6
+    background: var(--sgfidm-color-surface, #fff);
+    border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+
+    &:focus-visible {
+      outline: 1.5px solid var(--sgfidm-focus-ring, #2a2a2a);
+      outline-offset: -2px;
+    }
+  }
+
+  &--primary {
+    // Confirmar: primary fill + texto #FFFFFF
+    background: var(--sgfidm-color-primary, #2a2a2a);
+    color: var(--sgfidm-on-primary, #fff);
+
+    // destructive: Eliminar: error fill + texto #FFFFFF
+    &.sgfidm-dialog__btn--destructive {
+      background: var(--sgfidm-color-error, #a9442e);
+    }
+
+    &:focus-visible {
+      outline: 1.5px solid var(--sgfidm-focus-ring, #2a2a2a);
+      outline-offset: -2px;
+    }
+  }
+}

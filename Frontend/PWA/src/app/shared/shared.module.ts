@@ -65,6 +65,7 @@ import { SgfidmSearchBarComponent } from './components/molecules/search-bar/sgfi
 import { SgfidmPaginationComponent } from './components/molecules/pagination/sgfidm-pagination.component';
 import { SgfidmWidgetComponent } from './components/molecules/widget/sgfidm-widget.component';
 import { SgfidmTicketComponent } from './components/molecules/ticket/sgfidm-ticket.component';
+import { SgfidmDialogComponent } from './components/molecules/dialog/sgfidm-dialog.component';
 /**
  * SharedModule: centraliza imports/exports de Angular Material y componentes propios SGFIDM.
  * Las feature modules importan SharedModule en lugar de importar Material directamente.
@@ -135,6 +136,7 @@ import { SgfidmTicketComponent } from './components/molecules/ticket/sgfidm-tick
     SgfidmPaginationComponent,
     SgfidmWidgetComponent,
     SgfidmTicketComponent,
+    SgfidmDialogComponent,
   ],
   exports: [
     CommonModule,
@@ -201,6 +203,7 @@ import { SgfidmTicketComponent } from './components/molecules/ticket/sgfidm-tick
     SgfidmPaginationComponent,
     SgfidmWidgetComponent,
     SgfidmTicketComponent,
+    SgfidmDialogComponent,
   ],
 })
 export class SharedModule { }

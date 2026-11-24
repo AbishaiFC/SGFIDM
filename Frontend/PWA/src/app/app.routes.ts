@@ -17,5 +17,9 @@ export const routes: Routes = [
     path: 'pos',
     loadChildren: () => import('./features/pos/pos.routes').then((m) => m.posRoutes),
   },
+  {
+    path: 'caja',
+    loadChildren: () => import('./features/caja/caja.routes').then((m) => m.cajaRoutes),
+  },
   { path: '**', redirectTo: '/auth/login' },
 ];

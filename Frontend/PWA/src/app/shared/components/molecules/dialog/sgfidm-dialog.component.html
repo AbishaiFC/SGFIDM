@@ -1,0 +1,39 @@
+<div
+  class="sgfidm-dialog"
+  [class.sgfidm-dialog--destructive]="variant() === 'destructive'"
+  role="alertdialog"
+  aria-modal="true"
+  [attr.aria-label]="title()"
+>
+  <!-- Círculo-icono -->
+  <div class="sgfidm-dialog__icon" aria-hidden="true">
+    <span class="material-icons sgfidm-dialog__icon-glyph">
+      {{ variant() === 'destructive' ? 'error_outline' : 'help_outline' }}
+    </span>
+  </div>
+
+  <!-- Título -->
+  <h2 class="sgfidm-dialog__title">{{ title() }}</h2>
+
+  <!-- Cuerpo -->
+  @if (message()) {
+    <p class="sgfidm-dialog__message">{{ message() }}</p>
+  }
+
+  <!-- Acciones -->
+  <div class="sgfidm-dialog__actions">
+    <!-- Cancelar: siempre disponible (decisión impresa) -->
+    @if (showCancel()) {
+      <button type="button" class="sgfidm-dialog__btn sgfidm-dialog__btn--secondary"
+        [attr.aria-label]="cancelLabel() || 'Cancelar'" (click)="cancel.emit()">
+        {{ cancelLabel() || 'Cancelar' }}
+      </button>
+    }
+    <!-- Confirmar / Eliminar: acción primaria/destructiva -->
+    <button type="button" class="sgfidm-dialog__btn sgfidm-dialog__btn--primary"
+      [class.sgfidm-dialog__btn--destructive]="variant() === 'destructive'"
+      (click)="confirm.emit()">
+      {{ confirmLabel() || (variant() === 'destructive' ? 'Eliminar' : 'Confirmar') }}
+    </button>
+  </div>
+</div>

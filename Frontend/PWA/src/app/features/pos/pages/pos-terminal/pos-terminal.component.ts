@@ -1,48 +1,29 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
+import { SgfidmPosTerminalOrganismComponent, PosTotalsLineDto } from '../../../../shared/components/organisms/pos-terminal/sgfidm-pos-terminal-organism.component';
 
+const DEFAULT_TOTALS: PosTotalsLineDto[] = [
+  { label: 'Subtotal', value: '$0.00' },
+  { label: 'Descuento', value: '$0.00' },
+  { label: 'TOTAL', value: '$0.00', total: true, hasDivider: true },
+];
+
+/**
+ * PosTerminalPage — Plantilla de la Terminal de Punto de Venta (POS) del Design System SGFIDM.
+ *
+ * Plantilla (template): compone el organismo PosTerminalOrganism. Anatomía:
+ * columna de carrito + panel de totales. Datos por defecto del negocio (vacío al inicio).
+ *
+ * Uso:
+ *   <sgfidm-pos-terminal-organism [cartLines]="[]" [totals]="totals()" [pagarDisabled]="true" />
+ */
 @Component({
   standalone: true,
-  imports: [CommonModule, MatCardModule],
+  imports: [CommonModule, SgfidmPosTerminalOrganismComponent],
   selector: 'sgfidm-pos-terminal',
   styleUrl: './pos-terminal.component.scss',
-  template: `
-    <div class="pos-page">
-      <h1 class="pos-title">Punto de Venta</h1>
-      <p class="pos-subtitle">Terminal de venta — POS-01</p>
-
-      <div class="pos-layout">
-        <div class="pos-cart-column">
-          <mat-card class="sgfidm-surface">
-            <div class="cart-header">Carrito (0 productos)</div>
-            <div class="cart-empty">Escanea o busca productos para comenzar</div>
-          </mat-card>
-        </div>
-
-        <div class="pos-totals-column">
-          <mat-card class="sgfidm-surface">
-            <div class="totals-header">Resumen de venta</div>
-            <div class="totals-line">
-              <span>Subtotal</span>
-              <span class="totals-value">$0.00</span>
-            </div>
-            <div class="totals-line">
-              <span>Descuento</span>
-              <span class="totals-value">$0.00</span>
-            </div>
-            <div class="totals-divider"></div>
-            <div class="totals-line totals-total">
-              <span>TOTAL</span>
-              <span class="totals-value-total">$0.00</span>
-            </div>
-            <button mat-raised-button color="primary" class="pagar-btn" disabled>
-              Pagar (F9)
-            </button>
-          </mat-card>
-        </div>
-      </div>
-    </div>
-  `,
+  templateUrl: './pos-terminal.component.html',
 })
-export class PosTerminalComponent {}
+export class PosTerminalComponent {
+  readonly totals = DEFAULT_TOTALS;
+}

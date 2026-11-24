@@ -1,0 +1,40 @@
+<div class="sgfidm-seguridad-organism" role="region" aria-label="Seguridad">
+  <!-- Encabezado -->
+  <div class="sgfidm-seguridad-organism__header">
+    <h2 class="sgfidm-seguridad-organism__title">Seguridad</h2>
+    <p class="sgfidm-seguridad-organism__subtitle">Configuración de parámetros de seguridad (CONF-04)</p>
+  </div>
+
+  <!-- Indicadores -->
+  <div class="sgfidm-seguridad-organism__indicators">
+    <sgfidm-indicator-card eyebrow="PARÁMETROS ACTIVOS" [value]="totalParams" delta="por defecto" />
+    <sgfidm-indicator-card eyebrow="HABILITADOS" [value]="enabledCountStr"
+      [delta]="enabledCount === params().length ? 'Todos activos' : (params().length - enabledCount) + ' desactivados'" />
+  </div>
+
+  <!-- Lista de parámetros -->
+  <sgfidm-panel-card eyebrow="PARÁMETROS DE SEGURIDAD" class="sgfidm-seguridad-organism__panel">
+    <div class="sgfidm-seguridad-organism__list">
+      @if (params().length === 0) {
+        <div class="sgfidm-seguridad-organism__empty">Sin parámetros de seguridad</div>
+      } @else {
+        @for (p of params(); track p.id) {
+          <div class="sgfidm-seguridad-organism__item" role="button" tabindex="0"
+            (click)="onDetail(p)" (keydown.enter)="onDetail(p)">
+            <div class="sgfidm-seguridad-organism__info">
+              <span class="sgfidm-seguridad-organism__name">{{ p.nombre }}</span>
+              <span class="sgfidm-seguridad-organism__desc">{{ p.descripcion }}</span>
+            </div>
+            <div class="sgfidm-seguridad-organism__actions">
+              <sgfidm-switch [checked]="p.enabled" (change)="onToggle(p)"
+                [attr.aria-label]="'Alternar ' + p.nombre" />
+              <sgfidm-badge [variant]="p.enabled ? 'success' : 'warning'">
+                {{ p.enabled ? 'Activo' : 'Inactivo' }}
+              </sgfidm-badge>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </sgfidm-panel-card>
+</div>

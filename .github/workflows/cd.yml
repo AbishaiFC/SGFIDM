@@ -1,0 +1,36 @@
+name: CD - Deploy a Producción (main)
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: Frontend/PWA/package-lock.json
+
+      - name: Install dependencies
+        working-directory: Frontend/PWA
+        run: npm ci
+
+      - name: Build (production)
+        working-directory: Frontend/PWA
+        run: ng build --configuration=production
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: Frontend/PWA/dist/sgfidm-pwa/browser
+          cname: ''
+          force_orphan: false

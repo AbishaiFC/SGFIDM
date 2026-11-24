@@ -1,0 +1,13 @@
+.sgfidm-divider {
+  display: inline-block;
+  width: 240px;
+  height: 1px;
+  background-color: var(--sgfidm-color-outline-variant);
+  border: none;
+  margin: 0;
+
+  &--vertical {
+    width: 1px;
+    height: 24px;
+  }
+}

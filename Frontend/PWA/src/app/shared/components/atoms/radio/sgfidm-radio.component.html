@@ -1,0 +1,21 @@
+<label class="sgfidm-radio sgfidm-focus-ring"
+     [class.sgfidm-radio--selected]="isSelected()"
+     [class.sgfidm-radio--disabled]="isDisabled()">
+  <input type="radio"
+         class="sgfidm-radio__input"
+         [checked]="isSelected()"
+         [value]="value()"
+         [disabled]="isDisabled()"
+         [attr.aria-label]="label() || undefined"
+         (change)="onChange($event)" />
+
+  <span class="sgfidm-radio__outer">
+    @if (isSelected()) {
+      <span class="sgfidm-radio__inner"></span>
+    }
+  </span>
+
+  @if (label()) {
+    <span class="sgfidm-radio__label">{{ label() }}</span>
+  }
+</label>

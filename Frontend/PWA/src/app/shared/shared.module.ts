@@ -31,6 +31,8 @@ import { SgfidmIconButtonComponent } from './components/atoms/icon-button/sgfidm
 import { SgfidmTextFieldComponent } from './components/atoms/text-field/sgfidm-text-field.component';
 // Atomos SGFIDM - seleccion booleana
 import { SgfidmCheckboxComponent } from './components/atoms/checkbox/sgfidm-checkbox.component';
+// Atomos SGFIDM - seleccion de opcion
+import { SgfidmRadioComponent } from './components/atoms/radio/sgfidm-radio.component';
 /**
  * SharedModule: centraliza imports/exports de Angular Material y componentes propios SGFIDM.
  * Las feature modules importan SharedModule en lugar de importar Material directamente.
@@ -67,6 +69,8 @@ import { SgfidmCheckboxComponent } from './components/atoms/checkbox/sgfidm-chec
     SgfidmTextFieldComponent,
     // Atomos SGFIDM - seleccion booleana
     SgfidmCheckboxComponent,
+    // Atomos SGFIDM - seleccion de opcion
+    SgfidmRadioComponent,
   ],
   exports: [
     CommonModule,
@@ -99,6 +103,8 @@ import { SgfidmCheckboxComponent } from './components/atoms/checkbox/sgfidm-chec
     SgfidmTextFieldComponent,
     // Atomos SGFIDM - seleccion booleana
     SgfidmCheckboxComponent,
+    // Atomos SGFIDM - seleccion de opcion
+    SgfidmRadioComponent,
   ],
 })
 export class SharedModule { }

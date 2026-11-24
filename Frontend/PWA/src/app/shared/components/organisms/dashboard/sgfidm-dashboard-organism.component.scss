@@ -1,0 +1,40 @@
+// ── Tokens SGFIDM (via CSS custom properties de _tokens.scss — solo existentes) ──
+// headline-large : var(--sgfidm-headline-large)     28px/36px, 600, -0.25px
+// body-medium    : var(--sgfidm-body-medium)         12.5px/19px, 400, +0.05px
+// text-primary   : var(--sgfidm-color-text-primary)  #1C1C1C
+// text-muted     : var(--sgfidm-color-text-muted)    #8B8B8B
+// space-2,4,6    : var(--sgfidm-space-2|4|6)         8px | 16px | 24px
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.sgfidm-dashboard-organism {
+  padding: 0 var(--sgfidm-space-6);
+
+  // En pantallas pequeñas: reducir padding lateral
+  @media (max-width: 600px) {
+    padding: 0 var(--sgfidm-space-4);
+  }
+}
+
+.sgfidm-dashboard-organism__title {
+  font-size: var(--sgfidm-headline-large);
+  color: var(--sgfidm-color-text-primary);
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  margin: 0 0 var(--sgfidm-space-2);
+}
+
+.sgfidm-dashboard-organism__subtitle {
+  font-size: var(--sgfidm-body-medium);
+  color: var(--sgfidm-color-text-muted);
+  margin: 0 0 var(--sgfidm-space-4);
+}
+
+.sgfidm-dashboard-organism__indicators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+  gap: var(--sgfidm-space-6);
+}

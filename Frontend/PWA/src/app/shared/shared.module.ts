@@ -29,6 +29,8 @@ import { MatCardModule } from '@angular/material/card';
 import { SgfidmButtonComponent } from './components/atoms/button/sgfidm-button.component';
 import { SgfidmIconButtonComponent } from './components/atoms/icon-button/sgfidm-icon-button.component';
 import { SgfidmTextFieldComponent } from './components/atoms/text-field/sgfidm-text-field.component';
+// Atomos SGFIDM - seleccion booleana
+import { SgfidmCheckboxComponent } from './components/atoms/checkbox/sgfidm-checkbox.component';
 /**
  * SharedModule: centraliza imports/exports de Angular Material y componentes propios SGFIDM.
  * Las feature modules importan SharedModule en lugar de importar Material directamente.
@@ -63,6 +65,8 @@ import { SgfidmTextFieldComponent } from './components/atoms/text-field/sgfidm-t
     SgfidmButtonComponent,
     SgfidmIconButtonComponent,
     SgfidmTextFieldComponent,
+    // Atomos SGFIDM - seleccion booleana
+    SgfidmCheckboxComponent,
   ],
   exports: [
     CommonModule,
@@ -93,6 +97,8 @@ import { SgfidmTextFieldComponent } from './components/atoms/text-field/sgfidm-t
     SgfidmButtonComponent,
     SgfidmIconButtonComponent,
     SgfidmTextFieldComponent,
+    // Atomos SGFIDM - seleccion booleana
+    SgfidmCheckboxComponent,
   ],
 })
 export class SharedModule { }

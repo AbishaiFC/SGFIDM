@@ -1,0 +1,20 @@
+<label class="sgfidm-checkbox sgfidm-focus-ring"
+     [class.sgfidm-checkbox--checked]="isChecked()"
+     [class.sgfidm-checkbox--disabled]="isDisabled()">
+  <input type="checkbox"
+         class="sgfidm-checkbox__input"
+         [checked]="isChecked()"
+         [disabled]="isDisabled()"
+         [attr.aria-label]="label() || undefined"
+         (change)="onChange($event)" />
+
+  <span class="sgfidm-checkbox__box">
+    @if (isChecked()) {
+      <span class="sgfidm-checkbox__check">✓</span>
+    }
+  </span>
+
+  @if (label()) {
+    <span class="sgfidm-checkbox__label">{{ label() }}</span>
+  }
+</label>

@@ -1,0 +1,23 @@
+/* Styles for P2 Tabla Pagina component */
+.p2-tabla-paginada {
+  .sgfidm-table {
+    width: 100%;
+    border-collapse: collapse;
+    th, td {
+      padding: 8px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f5f5f5;
+    }
+    tbody tr:nth-child(even) {
+      background-color: #fafafa;
+    }
+  }
+  sgfidm-pagination {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,44 @@
+<div class="sgfidm-pos-terminal-organism">
+  <h1 class="sgfidm-pos-terminal-organism__title">Punto de Venta</h1>
+  <p class="sgfidm-pos-terminal-organism__subtitle">Terminal de venta — POS-01</p>
+
+  <div class="sgfidm-pos-terminal-organism__layout">
+    <!-- Columna de carrito -->
+    <div class="sgfidm-pos-terminal-organism__cart-column">
+      <sgfidm-panel-card eyebrow="CARRITO">
+        @if (hasCart) {
+          <div class="cart-header">
+            {{ cartLines().length }} producto(s) en el carrito
+          </div>
+        } @else {
+          <div class="cart-empty">Escanea o busca productos para comenzar</div>
+        }
+      </sgfidm-panel-card>
+    </div>
+
+    <!-- Columna de totales -->
+    <div class="sgfidm-pos-terminal-organism__totals-column">
+      <sgfidm-panel-card eyebrow="RESUMEN DE VENTA">
+        <div class="totals">
+          @for (line of totals(); track line) {
+            @if (line.hasDivider) {
+              <div class="totals-divider"></div>
+            }
+            <div class="totals-line" [class.totals-line--total]="line.total">
+              <span class="totals-label">{{ line.label }}</span>
+              <span class="totals-value">{{ line.value }}</span>
+            </div>
+          }
+        </div>
+        <sgfidm-button
+          type="primary"
+          size="lg"
+          class="pagar-btn"
+          [disabled]="pagarDisabled()"
+        >
+          Pagar (F9)
+        </sgfidm-button>
+      </sgfidm-panel-card>
+    </div>
+  </div>
+</div>

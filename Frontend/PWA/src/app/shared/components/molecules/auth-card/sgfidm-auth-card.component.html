@@ -1,0 +1,18 @@
+<div class="sgfidm-auth-card" role="main">
+  @if (showLogo()) {
+    <div class="sgfidm-auth-card__logo" aria-hidden="true">
+      <span class="sgfidm-auth-card__logo-text">{{ logoText() }}</span>
+    </div>
+  }
+
+  <header class="sgfidm-auth-card__header">
+    <h1 class="sgfidm-auth-card__title">{{ title() }}</h1>
+    @if (subtitle()) {
+      <p class="sgfidm-auth-card__subtitle">{{ subtitle() }}</p>
+    }
+  </header>
+
+  <div class="sgfidm-auth-card__content">
+    <ng-content />
+  </div>
+</div>

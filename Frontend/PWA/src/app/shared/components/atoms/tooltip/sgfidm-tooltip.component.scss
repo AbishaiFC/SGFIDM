@@ -1,0 +1,24 @@
+.sgfidm-tooltip {
+  display: inline-block;
+  width: 97px;
+  height: 30px;
+  padding: var(--sgfidm-space-2);
+  background-color: #1C1C1C;
+  color: #EBEBEB;
+  border-radius: var(--sgfidm-radius-md);
+  font-family: var(--sgfidm-font-family);
+  font-size: var(--sgfidm-body-small);
+  line-height: 1.4;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1000;
+  box-sizing: border-box;
+
+  &.sgfidm-tooltip--visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}

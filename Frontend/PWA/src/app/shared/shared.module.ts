@@ -45,6 +45,8 @@ import { SgfidmAvatarComponent } from './components/atoms/avatar/sgfidm-avatar.c
 import { SgfidmDividerComponent } from './components/atoms/divider/sgfidm-divider.component';
 // Atomos SGFIDM - navegacion por pestanas
 import { SgfidmTabsComponent } from './components/atoms/tabs/sgfidm-tabs.component';
+// Atomos SGFIDM - informacion contextual
+import { SgfidmTooltipComponent } from './components/atoms/tooltip/sgfidm-tooltip.component';
 /**
  * SharedModule: centraliza imports/exports de Angular Material y componentes propios SGFIDM.
  * Las feature modules importan SharedModule en lugar de importar Material directamente.
@@ -95,6 +97,8 @@ import { SgfidmTabsComponent } from './components/atoms/tabs/sgfidm-tabs.compone
     SgfidmDividerComponent,
     // Atomos SGFIDM - navegacion por pestanas
     SgfidmTabsComponent,
+    // Atomos SGFIDM - informacion contextual
+    SgfidmTooltipComponent,
   ],
   exports: [
     CommonModule,
@@ -141,6 +145,8 @@ import { SgfidmTabsComponent } from './components/atoms/tabs/sgfidm-tabs.compone
     SgfidmDividerComponent,
     // Atomos SGFIDM - navegacion por pestanas
     SgfidmTabsComponent,
+    // Atomos SGFIDM - informacion contextual
+    SgfidmTooltipComponent,
   ],
 })
 export class SharedModule { }

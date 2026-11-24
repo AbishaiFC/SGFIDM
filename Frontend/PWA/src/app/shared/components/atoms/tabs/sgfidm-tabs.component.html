@@ -1,0 +1,20 @@
+<div class="sgfidm-tabs">
+  <div class="sgfidm-tabs__list">
+    @for (tab of tabs(); track tab) {
+      <button
+        type="button"
+        class="sgfidm-tabs__tab"
+        [class.sgfidm-tabs__tab--active]="isActive(tab)"
+        (click)="selectTab(tab)">
+        {{ tab }}
+      </button>
+    }
+  </div>
+
+  @if (tabs().length > 0) {
+    <div class="sgfidm-tabs__indicator"
+     [style.width.px]="58"
+     [style.transform]="'translateX(' + (activeTabIndex() * 90) + 'px)'">
+    </div>
+  }
+</div>

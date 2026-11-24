@@ -41,6 +41,8 @@ import { SgfidmChipComponent } from './components/atoms/chip/sgfidm-chip.compone
 import { SgfidmBadgeComponent } from './components/atoms/badge/sgfidm-badge.component';
 // Atomos SGFIDM - identidad visual
 import { SgfidmAvatarComponent } from './components/atoms/avatar/sgfidm-avatar.component';
+// Atomos SGFIDM - separador visual
+import { SgfidmDividerComponent } from './components/atoms/divider/sgfidm-divider.component';
 /**
  * SharedModule: centraliza imports/exports de Angular Material y componentes propios SGFIDM.
  * Las feature modules importan SharedModule en lugar de importar Material directamente.
@@ -87,6 +89,8 @@ import { SgfidmAvatarComponent } from './components/atoms/avatar/sgfidm-avatar.c
     SgfidmBadgeComponent,
     // Atomos SGFIDM - identidad visual
     SgfidmAvatarComponent,
+    // Atomos SGFIDM - separador visual
+    SgfidmDividerComponent,
   ],
   exports: [
     CommonModule,
@@ -129,6 +133,8 @@ import { SgfidmAvatarComponent } from './components/atoms/avatar/sgfidm-avatar.c
     SgfidmBadgeComponent,
     // Atomos SGFIDM - identidad visual
     SgfidmAvatarComponent,
+    // Atomos SGFIDM - separador visual
+    SgfidmDividerComponent,
   ],
 })
 export class SharedModule { }

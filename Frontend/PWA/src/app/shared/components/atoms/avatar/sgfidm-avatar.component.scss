@@ -1,0 +1,10 @@
+.sgfidm-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--sgfidm-color-primary);
+  color: var(--sgfidm-color-on-primary);
+  font-family: var(--sgfidm-font-family);
+  font-weight: 600;
+  user-select: none;
+}

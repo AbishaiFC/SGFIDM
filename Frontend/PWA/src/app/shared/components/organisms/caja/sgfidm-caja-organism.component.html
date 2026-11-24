@@ -1,0 +1,34 @@
+<div class="sgfidm-caja-organism" role="region" aria-label="Estado de cajas">
+  <!-- Título -->
+  <div class="sgfidm-caja-organism__header">
+    <h2 class="sgfidm-caja-organism__title">Estado de cajas</h2>
+    <span class="sgfidm-caja-organism__branch">Sucursal: {{ branchName() }}</span>
+  </div>
+
+  <!-- Tabs de filtro -->
+  <sgfidm-tabs class="sgfidm-caja-organism__tabs" [tabs]="['activas', 'cerradas', 'huérfanas']"
+    [activeTab]="activeTab()" (tabClick)="onTabChange($event)" />
+
+  <!-- Panel de lista de sesiones -->
+  <sgfidm-panel-card eyebrow="SESIONES DE CAJA · {{ filteredSessions.length }}">
+    @if (filteredSessions.length === 0) {
+      <div class="sgfidm-caja-organism__empty">
+        Sin sesiones de caja para esta tab
+      </div>
+    } @else {
+      @for (s of filteredSessions; track s.id) {
+        <div class="sgfidm-caja-organism__session" role="button" tabindex="0"
+          [attr.aria-label]="'Abrir sesión ' + s.id" (click)="onSessionAction(s.id)">
+          <sgfidm-indicator-card
+            eyebrow="SESIÓN · {{ s.id }}"
+            [value]="s.totalVenta"
+            [delta]="s.status"
+          />
+          <sgfidm-badge class="sgfidm-caja-organism__badge">
+            {{ s.status }}
+          </sgfidm-badge>
+        </div>
+      }
+    }
+  </sgfidm-panel-card>
+</div>

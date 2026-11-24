@@ -1,0 +1,76 @@
+// ── Tokens SGFIDM (CSS custom properties de _tokens.scss) ────────────────────
+// surface        : var(--sgfidm-color-surface)       #FFFFFF
+// surface-variant: var(--sgfidm-color-surface-variant) #F5F5F5
+// text-primary   : var(--sgfidm-color-text-primary)  #1C1C1C
+// text-disabled  : var(--sgfidm-color-text-disabled) #A3A3A3
+// font-family    : var(--sgfidm-font-family)         'Inter'
+
+$item-height: 42px;       // Figma 195:2808: 232×42
+$item-gap: 12px;          // gap 12 px (Figma)
+$icon-font: 20px;         // icono 20 px (verdad System 02.8)
+$accent-width: 3px;       // acento de 3 px (Figma impreso)
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.sgfidm-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: $item-gap;
+  width: 100%;
+  height: $item-height;
+  padding: 0 var(--sgfidm-space-4);
+  box-sizing: border-box;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  // Base: filler + texto #1C1C1C
+  position: relative;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+
+  &:focus-visible {
+    outline: 1.5px solid var(--sgfidm-focus-ring, #2a2a2a);
+    outline-offset: -2px;
+  }
+
+  // ── Active: fill #F2F2F2 + acento de 3 px ─────────────────────────────────
+  // Nota impresa: "activo = superficie-container y acento de 3 px;
+  // no se usa color para navegar" (#F2F2F2 ∅, no surface-container #FAFAFA).
+  &--active {
+    background: var(--sgfidm-color-off-f2f2f2, #f2f2f2);
+  }
+
+  // ── Disabled: texto #A3A3A3 ───────────────────────────────────────────────
+  &--disabled {
+    color: var(--sgfidm-color-text-disabled, #a3a3a3);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// ── Acento de 3 px (solo estado active) ──────────────────────────────────────
+.sgfidm-sidebar-item--active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: $accent-width;
+  height: 20px;
+  border-radius: 0 var(--sgfidm-radius-sm, 4px) var(--sgfidm-radius-sm, 4px) 0;
+  background: var(--sgfidm-color-text-primary, #1c1c1c);
+}
+
+.sgfidm-sidebar-item__icon {
+  font-size: $icon-font;
+  flex-shrink: 0;
+}
+
+.sgfidm-sidebar-item__label {
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  font-weight: 500;
+}

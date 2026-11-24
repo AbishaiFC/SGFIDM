@@ -1,0 +1,60 @@
+// ── Tokens SGFIDM (CSS custom properties de _tokens.scss) ────────────────────
+// surface      : var(--sgfidm-color-surface)      #FFFFFF
+// outline      : var(--sgfidm-color-outline)      #C6C6C6
+// text-primary : var(--sgfidm-color-text-primary) #1C1C1C
+// text-secondary: var(--sgfidm-color-text-secondary) #575757
+// text-muted   : var(--sgfidm-color-text-muted)   #8B8B8B
+// radius-lg    : var(--sgfidm-radius-lg)          10px
+
+// ── Dimensiones (Figma 195:2710: 420×150, radio 10) ──────────────────────────
+$card-width:  420px;
+$card-height: 150px;
+$eyebrow-font: 10px;
+$gap: var(--sgfidm-space-2);
+
+:host {
+  display: block;
+}
+
+.sgfidm-panel-card {
+  width: $card-width;
+  height: $card-height;
+  padding: var(--sgfidm-space-4);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  background: var(--sgfidm-color-surface, #fff);
+  border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+  border-radius: var(--sgfidm-radius-lg, 10px);
+
+  // En pantallas pequeñas: ocupar el ancho completo
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+}
+
+// ── Encabezado fijo ─────────────────────────────────────────────────────────
+.sgfidm-panel-card__eyebrow {
+  font-family: var(--sgfidm-font-family);
+  font-size: $eyebrow-font;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+}
+
+// ── Cuerpo liberado (texto, listas, tablas o acciones) ─────────────────────
+.sgfidm-panel-card__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgfidm-space-2);
+
+  // El contenido se alinea a la izquierda y hereda tokens del sistema
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  font-family: var(--sgfidm-font-family);
+  font-size: var(--sgfidm-body-medium, 12.5px);
+  line-height: var(--sgfidm-body-medium, 19px);
+}

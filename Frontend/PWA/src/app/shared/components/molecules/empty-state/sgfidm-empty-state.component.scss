@@ -1,0 +1,91 @@
+// ── Tokens SGFIDM (CSS custom properties de _tokens.scss) ────────────────────
+// surface      : var(--sgfidm-color-surface)      #FFFFFF
+// outline      : var(--sgfidm-color-outline)      #C6C6C6
+// primary      : var(--sgfidm-color-primary)      #2A2A2A
+// on-primary   : var(--sgfidm-color-on-primary)   #FFFFFF
+// text-primary : var(--sgfidm-color-text-primary) #1C1C1C
+// text-secondary: var(--sgfidm-color-text-secondary) #575757
+// text-muted   : var(--sgfidm-color-text-muted)   #8B8B8B
+// radius-xl    : var(--sgfidm-radius-xl)          12px
+// off-f2f2f2   : var(--sgfidm-color-off-f2f2f2)   #F2F2F2 (icono círculo)
+
+// ── Dimensiones (Figma: 420×220, radio 12, icono 56×56) ──────────────────────
+$empty-width:   420px;
+$empty-height:  220px;
+$empty-radius:  var(--sgfidm-radius-xl);
+$icon-size:     56px;
+$icon-font:     32px;
+$gap-icon:      24px;
+$gap-action:    24px;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.sgfidm-empty-state {
+  width: $empty-width;
+  min-height: $empty-height;
+  background: var(--sgfidm-color-surface, #fff);
+  border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+  border-radius: $empty-radius;
+  padding: var(--sgfidm-space-8) var(--sgfidm-space-8);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $gap-icon;
+  text-align: center;
+
+  // En pantallas pequeñas: ocupar el ancho completo
+  @media (max-width: 480px) {
+    width: 100%;
+    min-height: auto;
+    padding: var(--sgfidm-space-4);
+    gap: var(--sgfidm-space-6);
+  }
+
+  // ── Icono ─────────────────────────────────────────────────────────────────
+  &__icon {
+    width: $icon-size;
+    height: $icon-size;
+    background: var(--sgfidm-color-off-f2f2f2, #f2f2f2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .material-icons {
+      font-size: $icon-font;
+      color: var(--sgfidm-color-text-muted, #8b8b8b);
+    }
+  }
+
+  // ── Título ────────────────────────────────────────────────────────────────
+  &__title {
+    margin: 0;
+    font-family: var(--sgfidm-font-family);
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 26px;
+    letter-spacing: -0.1px;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+  }
+
+  // ── Mensaje ───────────────────────────────────────────────────────────────
+  &__message {
+    margin: 0;
+    font-family: var(--sgfidm-font-family);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+
+  // ── Acción ────────────────────────────────────────────────────────────────
+  &__action {
+    margin-top: $gap-action;
+    width: fit-content;
+  }
+}

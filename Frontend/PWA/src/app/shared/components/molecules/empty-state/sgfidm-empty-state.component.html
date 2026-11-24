@@ -1,0 +1,26 @@
+<div class="sgfidm-empty-state" role="status" aria-live="polite">
+  <!-- Icono circular (56×56 px, fondo off-palette #F2F2F2 per Figma) -->
+  <div class="sgfidm-empty-state__icon" aria-hidden="true">
+    <span class="material-icons">{{ icon() }}</span>
+  </div>
+
+  <!-- Título -->
+  <h2 class="sgfidm-empty-state__title">{{ title() }}</h2>
+
+  <!-- Mensaje -->
+  @if (message()) {
+    <p class="sgfidm-empty-state__message">{{ message() }}</p>
+  }
+
+  <!-- Acción primaria (regla T18: nunca un vacío sin salida) -->
+  @if (actionLabel()) {
+    <sgfidm-button
+      class="sgfidm-empty-state__action"
+      type="primary"
+      size="md"
+      (click)="action.emit()"
+    >
+      {{ actionLabel() }}
+    </sgfidm-button>
+  }
+</div>

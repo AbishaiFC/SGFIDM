@@ -1,0 +1,14 @@
+.p1-formulario {
+    max-width: 480px;
+    margin: var(--sgfidm-space-4) auto;
+    padding: var(--sgfidm-space-4);
+    background: var(--sgfidm-color-surface);
+    border-radius: var(--sgfidm-radius-4);
+    box-shadow: var(--sgfidm-elevation-2);
+
+    .actions {
+        margin-top: var(--sgfidm-space-4);
+        display: flex;
+        justify-content: flex-end;
+    }
+}

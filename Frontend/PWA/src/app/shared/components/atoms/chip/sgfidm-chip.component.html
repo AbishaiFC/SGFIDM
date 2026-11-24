@@ -1,0 +1,10 @@
+<button type="button"
+        class="sgfidm-chip sgfidm-focus-ring"
+        [class.sgfidm-chip--selected]="isSelected()"
+        [class.sgfidm-chip--disabled]="isDisabled()"
+        [disabled]="isDisabled()"
+        (click)="onClick($event)">
+  <span class="sgfidm-chip__label">
+    <ng-content />
+  </span>
+</button>

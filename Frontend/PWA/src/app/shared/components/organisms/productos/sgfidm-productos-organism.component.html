@@ -1,0 +1,49 @@
+<div class="sgfidm-productos-organism" role="region" aria-label="Productos — Catálogo">
+  <!-- Encabezado -->
+  <div class="sgfidm-productos-organism__header">
+    <h2 class="sgfidm-productos-organism__title">Productos</h2>
+    <p class="sgfidm-productos-organism__subtitle">Catálogo global — identificados por PROD-XXX</p>
+  </div>
+
+  <!-- Indicadores -->
+  <div class="sgfidm-productos-organism__indicators">
+    <sgfidm-indicator-card eyebrow="PRODUCTOS ACTIVOS" [value]="countActivos" delta="Ver detalle" />
+    <sgfidm-indicator-card eyebrow="BÚSQUEDA" value="Búsqueda avanzada" delta="Por código y nombre" />
+  </div>
+
+  <!-- Listado -->
+  <sgfidm-panel-card eyebrow="CATÁLOGO" class="sgfidm-productos-organism__panel">
+    <!-- Tabs de estado -->
+    <sgfidm-tabs class="sgfidm-productos-organism__tabs" [tabs]="tabs" [activeTab]="tabActivo()" (tabClick)="onTab($event)" />
+
+    <!-- Lista de productos -->
+    <div class="sgfidm-productos-organism__list">
+      @if (mostrarEmpty) {
+        <sgfidm-empty-state
+          icon="widgets"
+          [title]="tabActivo() === 'activos' ? 'Sin productos activos' : 'Sin productos archivados'"
+          [message]="tabActivo() === 'activos' ? 'El catálogo está vacío' : 'No hay productos archivados aún'"
+          [actionLabel]="tabActivo() === 'activos' ? 'Registrar primer producto' : ''"
+          (action)="primerRegistrar.emit()"
+        />
+      } @else {
+        @for (p of productosFiltro; track p.id) {
+          <div class="sgfidm-productos-organism__item" role="button" tabindex="0"
+            (click)="onAccion(p, 'detalle')" (keydown.enter)="onAccion(p, 'detalle')">
+            <div class="sgfidm-productos-organism__info">
+              <span class="sgfidm-productos-organism__code">{{ p.codigo }}</span>
+              <span class="sgfidm-productos-organism__name">{{ p.nombre }}</span>
+              <span class="sgfidm-productos-organism__price">{{ p.precioVenta }}</span>
+              @if (p.costo) {
+                <span class="sgfidm-productos-organism__cost">{{ p.costo }}</span>
+              }
+            </div>
+            <sgfidm-badge class="sgfidm-productos-organism__status"
+              [variant]="p.status === 'activo' ? 'neutral' : 'success'"
+            >{{ p.status === 'activo' ? 'Activo' : 'Archivado' }}</sgfidm-badge>
+          </div>
+        }
+      }
+    </div>
+  </sgfidm-panel-card>
+</div>

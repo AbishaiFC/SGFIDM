@@ -1,0 +1,47 @@
+<div class="sgfidm-reportes-organism" role="region" aria-label="Reportes">
+  <!-- Encabezado -->
+  <div class="sgfidm-reportes-organism__header">
+    <h2 class="sgfidm-reportes-organism__title">Reportes</h2>
+    <p class="sgfidm-reportes-organism__subtitle">Consulta y exportación acotadas a la sucursal activa</p>
+  </div>
+
+  <!-- Indicadores -->
+  <div class="sgfidm-reportes-organism__indicators">
+    <sgfidm-indicator-card eyebrow="TOTAL DE REPORTES" [value]="totalReportes" delta="Consultar" />
+    <sgfidm-indicator-card eyebrow="EXPORTACIONES XLSX" [value]="xlsxCount" delta="Reportes con descarga" />
+  </div>
+
+  <!-- Lista de reportes -->
+  <sgfidm-panel-card eyebrow="REPORTES" class="sgfidm-reportes-organism__panel">
+    <div class="sgfidm-reportes-organism__list">
+      @if (reportes().length === 0) {
+        <div class="sgfidm-reportes-organism__empty">Sin reportes disponibles</div>
+      } @else {
+        @for (r of reportes(); track r.id) {
+          <div class="sgfidm-reportes-organism__item" role="button" tabindex="0"
+            (click)="accion.emit({reporte: r, tipo: 'consultar'})"
+            (keydown.enter)="accion.emit({reporte: r, tipo: 'consultar'})">
+            <div class="sgfidm-reportes-organism__info">
+              <span class="sgfidm-reportes-organism__name">{{ r.nombre }}</span>
+              @if (r.descripcion) {
+                <span class="sgfidm-reportes-organism__desc">{{ r.descripcion }}</span>
+              }
+            </div>
+            <div class="sgfidm-reportes-organism__actions">
+              @if ((r.exportadores ?? []).includes('xlsx')) {
+                <sgfidm-button type="tertiary" size="sm"
+                  (click)="accion.emit({reporte: r, tipo: 'exportar'})"
+                  [attr.aria-label]="'Exportar a XLSX: ' + r.nombre">XLSX</sgfidm-button>
+              }
+              @if ((r.exportadores ?? []).includes('csv')) {
+                <sgfidm-button type="tertiary" size="sm"
+                  (click)="accion.emit({reporte: r, tipo: 'exportar'})"
+                  [attr.aria-label]="'Exportar a CSV: ' + r.nombre">CSV</sgfidm-button>
+              }
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </sgfidm-panel-card>
+</div>

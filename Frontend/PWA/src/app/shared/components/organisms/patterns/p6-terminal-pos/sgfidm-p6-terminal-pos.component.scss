@@ -1,0 +1,36 @@
+/* P6 Terminal POS: Búsqueda unificada + carrito + cobro; =48 px/acción */
+.p6-terminal-pos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgfidm-space-4);
+}
+
+.p6-terminal-pos__cart {
+  border: 1px solid var(--sgfidm-color-outline, #d6d6d6);
+  border-radius: var(--sgfidm-radius-md, 8px);
+  padding: var(--sgfidm-space-3);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.p6-terminal-pos__title {
+  font-weight: 600;
+  margin-bottom: var(--sgfidm-space-2);
+}
+
+.p6-terminal-pos__row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--sgfidm-space-2) 0;
+}
+
+.p6-terminal-pos__total {
+  font-weight: 600;
+  margin-top: var(--sgfidm-space-3);
+  text-align: right;
+}
+
+.p6-terminal-pos__actions {
+  display: flex;
+  gap: var(--sgfidm-space-3);
+}

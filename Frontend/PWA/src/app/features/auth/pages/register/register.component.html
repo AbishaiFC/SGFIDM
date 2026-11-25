@@ -1,0 +1,28 @@
+<sgfidm-auth-card title="Registro de cuenta" subtitle="Crea tu cuenta asociada al negocio">
+  <div class="register-form">
+    @if (errorMessage) {
+      <div class="register-error">{{ errorMessage }}</div>
+    }
+
+    <sgfidm-form-field
+      label="Correo electrónico"
+      type="email"
+      placeholder="tú@negocio.com"
+      [(value)]="email"
+      [required]="true"
+    />
+
+    <sgfidm-password-field label="Contraseña" [(value)]="password" />
+    <sgfidm-password-field label="Confirmar contraseña" [(value)]="confirmPassword" />
+
+    <sgfidm-button
+      type="primary"
+      size="md"
+      [disabled]="isLoading"
+      [loading]="isLoading"
+      (click)="onRegister()"
+    >
+      Registrar
+    </sgfidm-button>
+  </div>
+</sgfidm-auth-card>

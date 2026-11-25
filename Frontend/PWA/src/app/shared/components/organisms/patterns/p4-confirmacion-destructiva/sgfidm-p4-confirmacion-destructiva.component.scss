@@ -1,0 +1,14 @@
+/* P4 Confirmación destructiva: Fondo ink-900 @40 % · primaria destructiva · una · Cancelar enfocado */
+.p4-confirmacion-destructiva {
+  display: block;
+  z-index: 1100;
+}
+
+.p4-confirmacion-destructiva__fondo {
+  position: fixed;
+  inset: 0;
+  background-color: var(--sgfidm-color-black, #212121);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: -1;
+}

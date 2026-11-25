@@ -1,0 +1,13 @@
+<div class="p5-vacio-bloqueado">
+  <sgfidm-empty-state
+    [title]="title()"
+    [message]="message()"
+    [actionLabel]="actionLabel()"
+    (action)="onAction()"
+  />
+  <div class="p5-vacio-bloqueado__contact">
+    <sgfidm-button type="secondary" size="sm" (click)="onContact()">
+      {{ contactLabel() || 'Contactar al Administrador' }}
+    </sgfidm-button>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="p3-tabla-administrativa">
+  <table class="sgfidm-table">
+    <thead>
+      <tr>
+        @for (column of columns; track column) {
+          <th class="p3-tabla-administrativa__th" (click)="onSort(column)">
+            {{ column | uppercase }}
+            <span class="p3-tabla-administrativa__sort">{{ column === sortedColumn ? '▼' : '⌃' }}</span>
+          </th>
+        }
+        <th class="p3-tabla-administrativa__th">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of pageRows; track row.id) {
+        <tr class="p3-tabla-administrativa__row">
+          @for (column of columns; track column) {
+            <td>{{ row[column] }}</td>
+          }
+          <td class="p3-tabla-administrativa__actions">
+            <sgfidm-button type="tertiary" size="sm" (click)="onAction(row)">Acción</sgfidm-button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <sgfidm-pagination
+    [totalPages]="totalPages"
+    [currentPage]="page"
+    (pageChange)="page = $event"
+  ></sgfidm-pagination>
+</div>

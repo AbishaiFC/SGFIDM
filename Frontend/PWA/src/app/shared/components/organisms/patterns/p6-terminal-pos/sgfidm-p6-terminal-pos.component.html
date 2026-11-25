@@ -1,0 +1,23 @@
+<div class="p6-terminal-pos">
+  <!-- Búsqueda unificada -->
+  <sgfidm-search-bar [(ngModel)]="query" placeholder="Buscar productos..." />
+
+  <!-- Carrito -->
+  <div class="p6-terminal-pos__cart">
+    <h2 class="p6-terminal-pos__title">Carrito</h2>
+    @for (row of rows; track row.id) {
+      <div class="p6-terminal-pos__row">
+        <span>{{ row.name }}</span>
+        <span class="p6-terminal-pos__qty">{{ row.quantity }}</span>
+        <span class="p6-terminal-pos__unit">{{ row.unitPrice }}</span>
+      </div>
+    }
+    <div class="p6-terminal-pos__total">Total: {{ total }}</div>
+  </div>
+
+  <!-- Acciones de 48 px -->
+  <div class="p6-terminal-pos__actions">
+    <sgfidm-button type="primary" size="md" (click)="pay.emit()">Cobrar</sgfidm-button>
+    <sgfidm-button type="secondary" size="md" (click)="addRow.emit()">Agregar</sgfidm-button>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+/* P8 Encabezado de reporte: Periodo · sucursal · filtros · fecha/hora · usuario · moneda — visible y exportado */
+.p8-encabezado-reporte {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgfidm-space-3);
+  padding: var(--sgfidm-space-4);
+  border: 1px solid var(--sgfidm-color-outline, #d6d6d6);
+  border-radius: var(--sgfidm-radius-md, 8px);
+}
+
+.p8-encabezado-reporte__title {
+  font-weight: 600;
+}
+
+.p8-encabezado-reporte__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sgfidm-space-4);
+  font-size: 11px;
+  color: var(--sgfidm-color-text-secondary, #666);
+}
+
+.p8-encabezado-reporte__actions {
+  display: flex;
+  justify-content: flex-end;
+}

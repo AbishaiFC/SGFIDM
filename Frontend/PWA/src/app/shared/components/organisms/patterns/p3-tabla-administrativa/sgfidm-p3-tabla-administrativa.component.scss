@@ -1,0 +1,42 @@
+/* P3 Tabla administrativa: Header CAPS · fila 44 px · acciones al final · orden visible */
+.p3-tabla-administrativa {
+  width: 100%;
+
+  .sgfidm-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .p3-tabla-administrativa__th {
+    padding: 0 var(--sgfidm-space-3);
+    height: 44px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--sgfidm-color-outline-variant, #e0e0e0);
+    user-select: none;
+  }
+
+  .p3-tabla-administrativa__sort {
+    margin-left: var(--sgfidm-space-2);
+  }
+
+  .p3-tabla-administrativa__row {
+    td {
+      padding: 0 var(--sgfidm-space-3);
+      height: 44px;
+      border-bottom: 1px solid var(--sgfidm-color-outline-variant, #f0f0f0);
+    }
+  }
+
+  .p3-tabla-administrativa__actions {
+    text-align: right;
+  }
+
+  sgfidm-pagination {
+    margin-top: var(--sgfidm-space-4);
+    display: flex;
+    justify-content: center;
+  }
+}

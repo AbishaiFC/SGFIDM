@@ -1,0 +1,28 @@
+<div class="p2-tabla-paginada">
+  <table class="sgfidm-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Stock</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of pageItems; track item.id) {
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.nombre }}</td>
+          <td>{{ item.precio }}</td>
+          <td>{{ item.stock }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <sgfidm-pagination
+    [totalPages]="totalPages"
+    [currentPage]="page"
+    (pageChange)="onPageChange($event)">
+  </sgfidm-pagination>
+</div>

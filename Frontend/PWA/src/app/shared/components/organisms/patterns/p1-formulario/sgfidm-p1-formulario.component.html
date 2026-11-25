@@ -1,0 +1,30 @@
+<div class="p1-formulario">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <!-- Nombre -->
+        <sgfidm-form-field label="Nombre">
+            <input matInput formControlName="nombre" placeholder="Ej.: Producto A" />
+        </sgfidm-form-field>
+
+        <!-- Costo -->
+        <sgfidm-form-field label="Costo">
+            <input matInput formControlName="costo" placeholder="$0.00" />
+        </sgfidm-form-field>
+
+        <!-- Precio -->
+        <sgfidm-form-field label="Precio">
+            <input matInput formControlName="precio" placeholder="$0.00" />
+        </sgfidm-form-field>
+
+        <!-- Stock -->
+        <sgfidm-form-field label="Stock">
+            <input matInput type="number" formControlName="stock" placeholder="0" />
+        </sgfidm-form-field>
+
+        <!-- Botón submit -->
+        <div class="actions">
+            <sgfidm-button type="primary" [disabled]="form.invalid">Guardar</sgfidm-button>
+        </div>
+
+    </form>
+</div>

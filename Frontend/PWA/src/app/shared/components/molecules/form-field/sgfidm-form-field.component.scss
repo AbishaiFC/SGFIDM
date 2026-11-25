@@ -1,4 +1,4 @@
-// ── Tokens SGFIDM (via CSS custom properties de _tokens.scss) ──────────────
+﻿// ── Tokens SGFIDM (via CSS custom properties de _tokens.scss) ──────────────
 // primary      : var(--sgfidm-primary)      #2A2A2A
 // error        : var(--sgfidm-error)        #A9442E
 // outline      : var(--sgfidm-outline)      #C6C6C6
@@ -167,7 +167,7 @@ $transition:          200ms ease;
   flex-shrink: 0;
   color: var(--sgfidm-text-muted, #8b8b8b);
 
-  .material-icons { font-size: $icon-size; }
+  .material-symbols-outlined { font-size: $icon-size; }
 }
 
 .sgfidm-form-field__leading-icon { padding-left: 4px; }
@@ -202,3 +202,4 @@ $transition:          200ms ease;
 }
 
 .sgfidm-form-field__message-icon { font-size: 14px !important; }
+

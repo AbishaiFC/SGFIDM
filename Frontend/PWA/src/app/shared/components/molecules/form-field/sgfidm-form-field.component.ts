@@ -9,6 +9,7 @@ import {
   ElementRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 
 export type FormFieldType = 'text' | 'email' | 'password' | 'number' | 'tel';
@@ -32,7 +33,7 @@ export type FormFieldState = 'default' | 'focus' | 'filled' | 'error' | 'disable
 @Component({
   selector: 'sgfidm-form-field',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatIconModule],
   templateUrl: './sgfidm-form-field.component.html',
   styleUrl: './sgfidm-form-field.component.scss',
 })

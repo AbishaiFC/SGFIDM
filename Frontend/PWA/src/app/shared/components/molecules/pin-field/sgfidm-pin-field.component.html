@@ -1,4 +1,4 @@
-<div class="sgfidm-pin-field" [class.sgfidm-pin-field--error]="state() === 'error' || !!errorMessage()"
+﻿<div class="sgfidm-pin-field" [class.sgfidm-pin-field--error]="state() === 'error' || !!errorMessage()"
   [class.sgfidm-pin-field--loading]="state() === 'loading'" [class.sgfidm-pin-field--success]="state() === 'success'"
   role="group" [attr.aria-label]="title()">
   <sgfidm-pin-input [label]="title()" [subtitle]="subtitle()" [error]="errorMessage() || null"
@@ -6,7 +6,7 @@
 
   @if (errorMessage()) {
   <p class="sgfidm-pin-field__error" role="alert">
-    <span class="material-icons sgfidm-pin-field__error-icon" aria-hidden="true">error_outline</span>
+    <span class="material-symbols-outlined sgfidm-pin-field__error-icon" aria-hidden="true">error_outline</span>
     {{ errorMessage() }}
   </p>
   }

@@ -1,4 +1,4 @@
-<button
+﻿<button
   type="button"
   class="sgfidm-sidebar-item"
   [class.sgfidm-sidebar-item--active]="variant() === 'active'"
@@ -7,8 +7,9 @@
   [attr.aria-current]="variant() === 'active' ? 'page' : null"
   (click)="onClick()"
 >
-  <span class="sgfidm-sidebar-item__icon material-icons" aria-hidden="true">
+  <span class="sgfidm-sidebar-item__icon material-symbols-outlined" aria-hidden="true">
     {{ icon() }}
   </span>
   <span class="sgfidm-sidebar-item__label">{{ label() }}</span>
 </button>
+

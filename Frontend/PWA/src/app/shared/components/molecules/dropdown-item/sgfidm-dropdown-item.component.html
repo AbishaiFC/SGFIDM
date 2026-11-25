@@ -1,4 +1,4 @@
-<button
+﻿<button
   type="button"
   class="sgfidm-dropdown-item"
   [class.sgfidm-dropdown-item--disabled]="variant() === 'disabled'"
@@ -6,9 +6,10 @@
   (click)="onClick()"
 >
   @if (icon()) {
-    <span class="sgfidm-dropdown-item__icon material-icons" aria-hidden="true">
+    <span class="sgfidm-dropdown-item__icon material-symbols-outlined" aria-hidden="true">
       {{ icon() }}
     </span>
   }
   <span class="sgfidm-dropdown-item__label">{{ label() }}</span>
 </button>
+

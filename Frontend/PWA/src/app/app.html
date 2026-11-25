@@ -1,8 +1,9 @@
 <div class="sgfidm-theme root-layout" style="display: flex; height: 100dvh; overflow: hidden;">
-  <!-- Sidebar (248px fijo, h 100%) -->
+  <!-- Sidebar oculta en Auth (ADM / Inicio de sesión): Login y pantallas de autenticación son sin sidebar -->
+  @if (!isAuthRoute()) {
   <aside class="sidebar" style="width: 248px; flex-shrink: 0; background: var(--sgfidm-color-surface); border-right: 1px solid var(--sgfidm-color-outline-variant); display: flex; flex-direction: column;">
     <div class="sidebar-brand" style="height: 64px; padding: 0 var(--sgfidm-space-4); display: flex; align-items: center; border-bottom: 1px solid var(--sgfidm-color-outline-variant);">
-      <span style="font-weight: 600; font-size: var(--sgfidm-title-small); color: var(--sgfidm-color-text-primary); letter-spacing: -0.25px;">SGFIDM</span>
+      <span style="font-weight: 600; font-size: var(--sgfidm-title-small); color: var(--sgfidm-color-text-primary); letter-spacing: -0.25px;">Inko</span>
     </div>
     <nav class="sidebar-nav" style="flex: 1; overflow-y: auto; padding: var(--sgfidm-space-2) 0;">
       <div class="nav-section" style="padding: 0 var(--sgfidm-space-4);">
@@ -22,6 +23,7 @@
       </div>
     </nav>
   </aside>
+  }
 
   <!-- Contenido principal -->
   <main class="contenido" style="flex: 1; overflow: auto; background: var(--sgfidm-color-background); padding: var(--sgfidm-space-8) var(--sgfidm-space-14) var(--sgfidm-space-10) var(--sgfidm-space-14);">

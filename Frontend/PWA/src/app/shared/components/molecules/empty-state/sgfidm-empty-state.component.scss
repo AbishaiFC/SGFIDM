@@ -1,4 +1,4 @@
-// ── Tokens SGFIDM (CSS custom properties de _tokens.scss) ────────────────────
+﻿// ── Tokens SGFIDM (CSS custom properties de _tokens.scss) ────────────────────
 // surface      : var(--sgfidm-color-surface)      #FFFFFF
 // outline      : var(--sgfidm-color-outline)      #C6C6C6
 // primary      : var(--sgfidm-color-primary)      #2A2A2A
@@ -56,7 +56,7 @@ $gap-action:    24px;
     align-items: center;
     justify-content: center;
 
-    .material-icons {
+    .material-symbols-outlined {
       font-size: $icon-font;
       color: var(--sgfidm-color-text-muted, #8b8b8b);
     }
@@ -89,3 +89,4 @@ $gap-action:    24px;
     width: fit-content;
   }
 }
+

@@ -1,0 +1,18 @@
+<div class="p7-tour" role="dialog" aria-label="Tour de primer uso">
+  @let current = currentStep;
+  @if (current) {
+    <div class="p7-tour__step">
+      <h2 class="p7-tour__title">{{ current.title }}</h2>
+      <p class="p7-tour__message">{{ current.message }}</p>
+      <div class="p7-tour__actions">
+        <sgfidm-button type="secondary" size="sm" [disabled]="step() === 0" (click)="onPrev()">Atrás</sgfidm-button>
+        <sgfidm-button type="primary" size="sm" (click)="onNext()">{{ isLastStep ? 'Completar' : 'Siguiente' }}</sgfidm-button>
+      </div>
+    </div>
+  }
+
+  <!-- "Saltar tour" siempre visible -->
+  <div class="p7-tour__skip">
+    <sgfidm-button type="tertiary" size="sm" (click)="onSkip()">Saltar tour</sgfidm-button>
+  </div>
+</div>

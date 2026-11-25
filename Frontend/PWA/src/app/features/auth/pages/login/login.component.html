@@ -6,20 +6,23 @@
     </header>
 
     <div class="login-form">
-      <sgfidm-form-field label="Correo electrónico" type="email" placeholder="nombre@empresa.com" [(ngModel)]="email" [required]="true" />
+      <sgfidm-form-field label="Correo electrónico" type="email" placeholder="nombre@empresa.com" [(ngModel)]="email"
+        [required]="true" />
       <sgfidm-password-field label="Contraseña" [(value)]="password" />
       @if (errorMessage()) {
-        <p class="login-error">{{ errorMessage() }}</p>
+      <p class="login-error">{{ errorMessage() }}</p>
       }
     </div>
 
-    <sgfidm-button type="primary" size="md" [disabled]="isLoading()" [loading]="isLoading()" (click)="onSubmit()">
-      Iniciar sesión
-    </sgfidm-button>
+    <div class="button-section">
+      <sgfidm-button type="primary" size="md" [disabled]="isLoading()" [loading]="isLoading()" (click)="onSubmit()">
+        Iniciar sesión
+      </sgfidm-button>
+    </div>
 
     <div class="login-links">
-      <a class="login-link">¿Olvidaste tu contraseña?</a>
-      <a class="login-link">Crear cuenta</a>
+      <a class="login-link" routerLink="/auth/recuperar-cuenta">¿Olvidaste tu contraseña?</a>
+      <a class="login-link" routerLink="/auth/register">Crear cuenta</a>
     </div>
     <div class="login-footer">
       <span class="login-footer-text">¿Eres empleado? </span>

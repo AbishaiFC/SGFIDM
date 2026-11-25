@@ -1,0 +1,23 @@
+<div class="p8-encabezado-reporte">
+  <h2 class="p8-encabezado-reporte__title">{{ title() }}</h2>
+  <div class="p8-encabezado-reporte__meta">
+    @if (periodo()) {
+      <span>Periodo: {{ periodo() }}</span>
+    }
+    @if (sucursal()) {
+      <span>Sucursal: {{ sucursal() }}</span>
+    }
+    @for (f of filters(); track f.key) {
+      <span>{{ f.label }}: {{ f.value }}</span>
+    }
+    @if (usuario()) {
+      <span>Usuario: {{ usuario() }}</span>
+    }
+    @if (moneda()) {
+      <span>Moneda: {{ moneda() }}</span>
+    }
+  </div>
+  <div class="p8-encabezado-reporte__actions">
+    <sgfidm-button type="secondary" size="sm" (click)="onExport()">Exportar</sgfidm-button>
+  </div>
+</div>

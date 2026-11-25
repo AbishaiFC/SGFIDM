@@ -1,21 +1,25 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { AuthRepository } from '../../../../../app/core/services/data/repositories/auth.repository';
-import { SgfidmLoginOrganismComponent } from '../../../../shared/components/organisms/login/sgfidm-login-organism.component';
+import { SgfidmFormFieldComponent } from '../../../../shared/components/molecules/form-field/sgfidm-form-field.component';
+import { SgfidmPasswordFieldComponent } from '../../../../shared/components/molecules/password-field/sgfidm-password-field.component';
+import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
 
 /**
- * LoginPage — Plantilla de la pantalla de Login (Módulo 00 Auth) del Design System SGFIDM.
- *
- * Plantilla (template): compone el organismo LoginOrganism (AuthCard + FormField + Botones).
- * El organismo emite `submit` con {email, password}; el page pide credenciales al repositorio.
- *
- * Uso:
- *   <sgfidm-login-organism title="Iniciar sesión" (submit)="onSubmit($event)" />
+ * LoginPage — Pantalla de Login (Módulo 00 Auth), diseño igual al Figma (ADM / Inicio de sesión).
+ * Card: "Inicia sesión" + subtítulo + Text Field correo + PasswordField contraseña + botón elevado.
  */
 @Component({
   standalone: true,
-  imports: [CommonModule, SgfidmLoginOrganismComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SgfidmFormFieldComponent,
+    SgfidmPasswordFieldComponent,
+    SgfidmButtonComponent,
+  ],
   selector: 'sgfidm-login',
   styleUrl: './login.component.scss',
   templateUrl: './login.component.html',
@@ -24,22 +28,23 @@ export class LoginComponent {
   private readonly auth = inject(AuthRepository);
   private readonly router = inject(Router);
 
-  hidePassword = true;
-  isLoading = false;
-  errorMessage = '';
+  readonly email = signal('');
+  readonly password = signal('');
+  readonly isLoading = signal(false);
+  readonly errorMessage = signal('');
 
-  onSubmit(event: { email: string; password: string }): void {
-    this.isLoading = true;
-    this.errorMessage = '';
+  onSubmit(): void {
+    this.isLoading.set(true);
+    this.errorMessage.set('');
 
-    this.auth.login(event.email, event.password).subscribe({
+    this.auth.login(this.email(), this.password()).subscribe({
       next: () => {
-        this.isLoading = false;
+        this.isLoading.set(false);
         this.router.navigate(['/dashboard']);
       },
       error: () => {
-        this.isLoading = false;
-        this.errorMessage = 'Credenciales inválidas. Inténtalo de nuevo.';
+        this.isLoading.set(false);
+        this.errorMessage.set('Credenciales inválidas. Inténtalo de nuevo.');
       },
     });
   }

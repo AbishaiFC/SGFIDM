@@ -1,0 +1,14 @@
+/* P5 Vacío/bloqueado: Nunca vacío sin salida (T18/T39) · contacto a Administrador */
+.p5-vacio-bloqueado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sgfidm-space-4);
+  width: 100%;
+
+  .p5-vacio-bloqueado__contact {
+    display: flex;
+    justify-content: center;
+  }
+}

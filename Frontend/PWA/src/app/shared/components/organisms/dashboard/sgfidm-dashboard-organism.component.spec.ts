@@ -3,6 +3,8 @@ import { By } from '@angular/platform-browser';
 import { SgfidmDashboardOrganismComponent } from './sgfidm-dashboard-organism.component';
 import { SgfidmIndicatorCardComponent } from '../../molecules/indicator-card/sgfidm-indicator-card.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
+import { vi } from 'vitest';
 
 describe('SgfidmDashboardOrganismComponent', () => {
   let fixture: ComponentFixture<SgfidmDashboardOrganismComponent>;
@@ -38,6 +40,27 @@ describe('SgfidmDashboardOrganismComponent', () => {
     expect(text).toContain('Actividad reciente');
     expect(text).toContain('Venta · $340');
     expect(text).toContain('ACCIONES RÁPIDAS');
+  });
+
+  it('should navigate from the quick actions to their views', () => {
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    const botones: HTMLButtonElement[] = Array.from(
+      fixture.debugElement.nativeElement.querySelectorAll(
+        '.sgfidm-dashboard-organism__acciones-lista button',
+      ),
+    );
+    const porTexto = (texto: string) =>
+      botones.find((b) => b.textContent?.includes(texto)) as HTMLButtonElement;
+
+    porTexto('Nueva venta').click();
+    expect(spy).toHaveBeenCalledWith(['/pos']);
+    porTexto('Agregar producto').click();
+    expect(spy).toHaveBeenCalledWith(['/productos/registrar']);
+    porTexto('Registrar gasto').click();
+    expect(spy).toHaveBeenCalledWith(['/finanzas/gastos/registrar']);
+    porTexto('Ver reportes').click();
+    expect(spy).toHaveBeenCalledWith(['/reportes']);
+    spy.mockRestore();
   });
 
   it('should render the indicators grid', () => {

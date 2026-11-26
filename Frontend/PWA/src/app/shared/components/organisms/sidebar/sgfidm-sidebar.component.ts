@@ -26,8 +26,8 @@ interface NavItem {
  * Visibilidad: la definen el ROL (cuatro roles de la ficha) y el MODO de operación
  * (solo | empleados | sucursales). En modo Solo se ocultan Sucursales y Empleados.
  *
- * ToDo: rutas de Inventario, Reportes, Finanzas y Empleados cuando se implementen
- * sus pantallas (INV-01, REP-01, FIN-01, EMP-01).
+ * ToDo: rutas de Inventario, Reportes y Empleados cuando se implementen sus
+ * pantallas (INV-01, REP-01, EMP-01). Finanzas ya apunta al drawer FIN-08.
  */
 @Component({
   selector: 'sgfidm-sidebar',
@@ -63,9 +63,9 @@ export class SgfidmSidebarComponent {
     { id: 'inventario', label: 'Inventario', icon: 'inventory_2', route: '', grupo: 1 },
     { id: 'pos', label: 'POS', icon: 'point_of_sale', route: '/pos', grupo: 1 },
     { id: 'caja', label: 'Caja', icon: 'payments', route: '/caja', grupo: 1 },
-    // ToDo REP-01 y FIN-01: pantallas de reportes y finanzas.
+    // ToDo REP-01: pantalla de reportes. FIN-08 ya está disponible para Finanzas.
     { id: 'reportes', label: 'Reportes', icon: 'bar_chart', route: '', grupo: 2 },
-    { id: 'finanzas', label: 'Finanzas', icon: 'attach_money', route: '', grupo: 2 },
+    { id: 'finanzas', label: 'Finanzas', icon: 'attach_money', route: '/finanzas/gastos/registrar', grupo: 2 },
     { id: 'sucursales', label: 'Sucursales', icon: 'storefront', route: '/dashboard/select-branch', grupo: 3 },
     // ToDo EMP-01: gestión de empleados.
     { id: 'empleados', label: 'Empleados', icon: 'groups', route: '', grupo: 3 },

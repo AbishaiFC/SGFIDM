@@ -28,31 +28,38 @@ describe('ConfiguracionComponent (CONF-01)', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render the hub title, subtitle and the nine configuration rows', () => {
+  it('should render the canonical eight configuration rows', () => {
     const text = fixture.debugElement.nativeElement.textContent;
     expect(text).toContain('Configuración');
     expect(text).toContain('Administra tu negocio, la seguridad y los métodos de pago.');
     expect(text).toContain('Negocio');
     expect(text).toContain('Seguridad');
+    expect(text).toContain('Métodos de pago');
+    expect(text).toContain('Categorías de productos');
+    expect(text).toContain('Categorías financieras');
+    expect(text).toContain('Preferencias de notificaciones');
     expect(text).toContain('Mi perfil');
     expect(text).toContain('Auditoría');
-    expect(fixture.debugElement.queryAll(By.css('.configuracion-row')).length).toBe(9);
+    expect(fixture.debugElement.queryAll(By.css('.configuracion-row')).length).toBe(8);
   });
 
-  it('should enable only the Mi perfil destination', () => {
+  it('should render all Abrir buttons enabled', () => {
     const botones = fixture.debugElement.queryAll(By.css('sgfidm-button button'));
-    const habilitados = botones.filter((b) => !b.nativeElement.disabled);
-    expect(habilitados.length).toBe(1);
-    expect(botones[7].nativeElement.disabled).toBe(false);
+    expect(botones).toHaveLength(8);
+    expect(botones.every((b) => !b.nativeElement.disabled)).toBe(true);
   });
 
-  it('should navigate to Mi perfil from its row', async () => {
-    const router = TestBed.inject(Router);
-    const spy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
-
-    component.abrir(component.opciones[7]);
+  it('should navigate to Mi perfil from its row', () => {
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigateByUrl').mockResolvedValue(true);
+    component.abrir(component.opciones[6]);
     expect(spy).toHaveBeenCalledWith('/dashboard/configuracion/mi-perfil');
-
     spy.mockRestore();
+  });
+
+  it('should show a ToDo notice for destinations not yet implemented', () => {
+    component.abrir(component.opciones[0]);
+    fixture.detectChanges();
+    expect(component.aviso()).toContain('CONF-02');
+    expect(fixture.debugElement.nativeElement.textContent).toContain('pendiente de implementar');
   });
 });

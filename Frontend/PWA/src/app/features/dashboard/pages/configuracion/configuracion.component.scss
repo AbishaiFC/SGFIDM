@@ -95,4 +95,8 @@
   font-size: 11px;
   color: var(--sgfidm-color-text-muted, #8b8b8b);
   margin: 0;
+
+  &--aviso {
+    color: var(--sgfidm-color-warning, #9a6b14);
+  }
 }

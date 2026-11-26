@@ -1,0 +1,202 @@
+/* AUTH-06 Mi perfil — diseño Figma ADM - Con Empleados / Mi perfil */
+.perfil-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.perfil-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sgfidm-space-4);
+}
+
+.perfil-header__textos {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.perfil-title {
+  font-family: var(--sgfidm-font-family);
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  margin: 0;
+}
+
+.perfil-subtitle {
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  color: var(--sgfidm-color-text-secondary, #575757);
+  margin: 0;
+}
+
+.perfil-columnas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.perfil-columna {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.perfil-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+  padding: 20px;
+  background: var(--sgfidm-color-surface, #ffffff);
+  border-radius: 24px;
+
+  &--datos {
+    gap: 14px;
+  }
+}
+
+.perfil-eyebrow {
+  font-family: var(--sgfidm-font-family);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+}
+
+.perfil-card__titulo {
+  font-family: var(--sgfidm-font-family);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  margin: 0;
+}
+
+.perfil-card__support,
+.perfil-card__nota {
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--sgfidm-color-text-secondary, #575757);
+  margin: 0;
+}
+
+.perfil-dato {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.perfil-dato__label {
+  font-family: var(--sgfidm-font-family);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+}
+
+.perfil-dato__value {
+  font-family: var(--sgfidm-font-family);
+  font-size: 14px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+}
+
+.perfil-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-family: var(--sgfidm-font-family);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+
+  &--success {
+    background: var(--sgfidm-color-success-container, #e1ede5);
+    color: var(--sgfidm-color-on-success-container, #24402f);
+  }
+
+  &--neutral {
+    background: var(--sgfidm-color-surface, #ffffff);
+    border: 1px solid var(--sgfidm-color-outline-variant, #dbdbdb);
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+}
+
+.perfil-chip__icono {
+  font-size: 14px;
+}
+
+.perfil-acciones {
+  display: flex;
+  gap: 10px;
+
+  ::ng-deep sgfidm-button {
+    flex: 1;
+  }
+
+  ::ng-deep .sgfidm-button {
+    width: 100%;
+    height: 56px;
+    border-radius: var(--sgfidm-radius-full, 999px);
+  }
+}
+
+.perfil-fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sgfidm-space-3);
+
+  &__texto {
+    font-family: var(--sgfidm-font-family);
+    font-size: 14px;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+  }
+
+  &--tour {
+    margin-top: auto;
+  }
+
+  ::ng-deep .sgfidm-button {
+    height: 44px;
+    border-radius: var(--sgfidm-radius-full, 999px);
+  }
+}
+
+.perfil-cerrar {
+  display: flex;
+
+  ::ng-deep .sgfidm-button {
+    width: 245px;
+    height: 56px;
+    border-radius: var(--sgfidm-radius-full, 999px);
+  }
+}
+
+.perfil-volver {
+  flex-shrink: 0;
+
+  ::ng-deep .sgfidm-button {
+    width: 245px;
+    height: 56px;
+    border-radius: var(--sgfidm-radius-full, 999px);
+  }
+}
+
+.perfil-icono {
+  font-size: 18px;
+}

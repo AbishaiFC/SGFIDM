@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 import { routes } from './app.routes';
 
 describe('App', () => {
@@ -22,5 +22,12 @@ describe('App', () => {
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('router-outlet')).toBeTruthy();
+  });
+
+  it('should hide the sidebar on the POS route', async () => {
+    const fixture = TestBed.createComponent(App);
+    await TestBed.inject(Router).navigateByUrl('/pos');
+    fixture.detectChanges();
+    expect((fixture.nativeElement as HTMLElement).querySelector('.sidebar-nav')).toBeNull();
   });
 });

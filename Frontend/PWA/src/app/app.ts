@@ -20,8 +20,13 @@ export class App {
     });
   }
 
-  /** Auth y la configuración inicial son flujos a pantalla completa, sin Sidebar. */
+  /**
+   * Auth, la configuración inicial y el POS son flujos a pantalla completa, sin Sidebar.
+   * En POS (Figma 1145:82203) la terminal ocupa todo el ancho y muestra su propia cabecera.
+   */
   private sinSidebar(url: string): boolean {
-    return url.startsWith('/auth') || url.startsWith('/inicio/configurar');
+    return (
+      url.startsWith('/auth') || url.startsWith('/inicio/configurar') || url.startsWith('/pos')
+    );
   }
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SgfidmFormFieldComponent } from '../../../../shared/components/molecules/form-field/sgfidm-form-field.component';
+import { SgfidmAuthCardComponent } from '../../../../shared/components/molecules/auth-card/sgfidm-auth-card.component';
 import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
 
 /**
@@ -12,7 +13,7 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
  */
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, SgfidmFormFieldComponent, SgfidmButtonComponent],
+  imports: [CommonModule, FormsModule, SgfidmFormFieldComponent, SgfidmAuthCardComponent, SgfidmButtonComponent],
   selector: 'sgfidm-verify-email',
   styleUrl: './verify-email.component.scss',
   templateUrl: './verify-email.component.html',

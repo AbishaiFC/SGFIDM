@@ -72,6 +72,13 @@ describe('SgfidmAuthCardComponent', () => {
     expect(logo).toBeNull();
   });
 
+  it('should apply the wide AUTH variant when requested', () => {
+    fixture.componentRef.setInput('wide', true);
+    fixture.detectChanges();
+    const card = fixture.debugElement.query(By.css('.sgfidm-auth-card'));
+    expect(card.nativeElement.classList.contains('sgfidm-auth-card--wide')).toBe(true);
+  });
+
   it('should have role main on the card wrapper', () => {
     const card = fixture.debugElement.query(By.css('.sgfidm-auth-card'));
     expect(card.nativeElement.getAttribute('role')).toBe('main');

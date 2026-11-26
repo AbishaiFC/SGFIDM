@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { AuthRepository } from '../../../../../app/core/services/data/repositories/auth.repository';
 import { SgfidmPinFieldComponent } from '../../../../shared/components/molecules/pin-field/sgfidm-pin-field.component';
 import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
+import { SgfidmAuthCardComponent } from '../../../../shared/components/molecules/auth-card/sgfidm-auth-card.component';
 
 /** AUTH-08 — Verificación por teléfono con código OTP de 6 dígitos (Figma EMP / Verificación por teléfono). */
 @Component({
   standalone: true,
-  imports: [SgfidmPinFieldComponent, SgfidmButtonComponent],
+  imports: [SgfidmAuthCardComponent, SgfidmPinFieldComponent, SgfidmButtonComponent],
   selector: 'sgfidm-employee-verify-phone',
   styleUrl: './employee-verify-phone.component.scss',
   templateUrl: './employee-verify-phone.component.html',

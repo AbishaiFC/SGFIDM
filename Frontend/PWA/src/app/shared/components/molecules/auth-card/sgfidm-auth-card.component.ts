@@ -26,4 +26,6 @@ export class SgfidmAuthCardComponent {
   subtitle  = input<string>('');
   showLogo  = input<boolean>(true);
   logoText  = input<string>('SGFIDM');
+  /** Variante ancha (560px) usada por las pantallas AUTH de Figma. */
+  wide      = input<boolean>(false);
 }

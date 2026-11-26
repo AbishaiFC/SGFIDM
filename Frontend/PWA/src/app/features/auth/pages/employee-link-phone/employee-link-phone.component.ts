@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SgfidmFormFieldComponent } from '../../../../shared/components/molecules/form-field/sgfidm-form-field.component';
 import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
+import { SgfidmAuthCardComponent } from '../../../../shared/components/molecules/auth-card/sgfidm-auth-card.component';
 
 /** AUTH-10 — Verificación OTP: alta del número de teléfono del empleado (Figma EMP / Vincular teléfono). */
 @Component({
   standalone: true,
-  imports: [FormsModule, SgfidmFormFieldComponent, SgfidmButtonComponent],
+  imports: [FormsModule, SgfidmAuthCardComponent, SgfidmFormFieldComponent, SgfidmButtonComponent],
   selector: 'sgfidm-employee-link-phone',
   styleUrl: './employee-link-phone.component.scss',
   templateUrl: './employee-link-phone.component.html',

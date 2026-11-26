@@ -25,22 +25,19 @@ describe('SgfidmLoginOrganismComponent', () => {
     expect(title.nativeElement.textContent).toContain('Iniciar sesión');
   });
 
-  it('should render form fields for email and password', () => {
-    const fields = fixture.debugElement.queryAll(By.css('sgfidm-form-field'));
-    expect(fields.length).toBe(2);
+  it('should render the form field and the password field molecule', () => {
+    expect(fixture.debugElement.query(By.css('sgfidm-form-field'))).toBeTruthy();
+    expect(fixture.debugElement.query(By.css('sgfidm-password-field'))).toBeTruthy();
+  });
+
+  it('should use the wide AUTH card variant', () => {
+    const card = fixture.debugElement.query(By.css('.sgfidm-auth-card'));
+    expect(card.nativeElement.classList.contains('sgfidm-auth-card--wide')).toBe(true);
   });
 
   it('should render the submit button', () => {
     const btn = fixture.debugElement.query(By.css('.login-organism-button-text'));
     expect(btn.nativeElement.textContent).toContain('Iniciar sesión');
-  });
-
-  it('should toggle password visibility', () => {
-    const toggle = fixture.debugElement.query(By.css('.login-organism-password-toggle'));
-    expect(toggle).toBeTruthy();
-    toggle.triggerEventHandler('click', null);
-    fixture.detectChanges();
-    expect(component.hidePassword()).toBe(false);
   });
 
   it('should emit submit with form data', () => {

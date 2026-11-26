@@ -1,17 +1,17 @@
 <div class="verify-email-page">
-  <div class="verify-email-card">
-    <header class="verify-email-header">
-      <h1 class="verify-email-title">Confirma tu correo electrónico</h1>
-      <p class="verify-email-subtitle">Enviamos un enlace de verificación a la siguiente dirección:</p>
-    </header>
-
+  <sgfidm-auth-card
+    title="Confirma tu correo electrónico"
+    subtitle="Enviamos un enlace de verificación a la siguiente dirección:"
+    [showLogo]="false"
+    [wide]="true"
+  >
     <div class="verify-email-body">
       <div class="verify-email-field-row">
         <span class="material-symbols-outlined verify-email-info-icon" aria-hidden="true">info</span>
         <sgfidm-form-field label="Correo electrónico" type="email" placeholder="nombre@empresa.com" [(value)]="email" [disabled]="true" />
       </div>
 
-      <sgfidm-button type="primary" size="md" (click)="onAbrirCorreo()">Abrir mi correo</sgfidm-button>
+      <sgfidm-button type="primary" size="md" [fullWidth]="true" [height]="'56px'" (click)="onAbrirCorreo()">Abrir mi correo</sgfidm-button>
       <p class="verify-email-helper">Podrás solicitar otro enlace en 60 segundos.</p>
 
       <div class="verify-email-footer">
@@ -19,5 +19,5 @@
         <a class="verify-email-link" (click)="onIniciarSesion()">Iniciar sesión</a>
       </div>
     </div>
-  </div>
+  </sgfidm-auth-card>
 </div>

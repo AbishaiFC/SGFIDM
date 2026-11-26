@@ -1,12 +1,10 @@
 <div class="emp-page">
-  <div class="emp-card">
-    <header class="emp-header">
-      <h1 class="emp-title">Código de verificación</h1>
-      <p class="emp-subtitle">
-        Enviamos un código de 6 dígitos al teléfono terminado en ******6677
-      </p>
-    </header>
-
+  <sgfidm-auth-card
+    title="Código de verificación"
+    subtitle="Enviamos un código de 6 dígitos al teléfono terminado en ******6677"
+    [showLogo]="false"
+    [wide]="true"
+  >
     <div class="emp-otp">
       <sgfidm-pin-field title="" subtitle="" (pinComplete)="onVerificar($event)" />
     </div>
@@ -33,5 +31,5 @@
     <p class="emp-helper">
       Si no recibes el código, verifica que el teléfono sea correcto o contacta a tu administrador.
     </p>
-  </div>
+  </sgfidm-auth-card>
 </div>

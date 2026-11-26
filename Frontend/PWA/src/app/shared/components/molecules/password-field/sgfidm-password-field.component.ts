@@ -22,6 +22,7 @@ import { SgfidmFormFieldComponent } from '../form-field/sgfidm-form-field.compon
   template: `
     <sgfidm-form-field
       [label]="label()"
+      [placeholder]="placeholder()"
       [type]="visible ? 'text' : 'password'"
       [value]="value()"
       (valueChange)="value.set($event)"
@@ -41,6 +42,7 @@ import { SgfidmFormFieldComponent } from '../form-field/sgfidm-form-field.compon
 })
 export class SgfidmPasswordFieldComponent {
   label        = input.required<string>();
+  placeholder  = input<string>('');
   value        = model<string>('');
   errorMessage = input<string>('');
   helperText   = input<string>('');

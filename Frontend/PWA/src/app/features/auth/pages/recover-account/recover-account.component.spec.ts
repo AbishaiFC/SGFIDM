@@ -25,7 +25,7 @@ describe('RecoverAccountComponent', () => {
   });
 
   it('should render title and email field', () => {
-    const title = fixture.debugElement.query(By.css('.recover-account-title'));
+    const title = fixture.debugElement.query(By.css('.sgfidm-auth-card__title'));
     expect(title.nativeElement.textContent).toContain('Recupera tu cuenta');
     expect(fixture.debugElement.query(By.css('sgfidm-form-field'))).toBeTruthy();
   });

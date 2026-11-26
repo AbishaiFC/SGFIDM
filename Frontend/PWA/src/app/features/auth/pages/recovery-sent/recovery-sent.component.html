@@ -1,0 +1,37 @@
+<div class="recovery-sent-page">
+  <div class="recovery-sent-card">
+    <header class="recovery-sent-header">
+      <h1 class="recovery-sent-title">Instrucciones enviadas</h1>
+      <p class="recovery-sent-subtitle">
+        Si el correo está registrado, enviamos un enlace para restablecer la contraseña a:
+      </p>
+    </header>
+
+    <div class="recovery-sent-email">
+      <span class="recovery-sent-email__label">Correo ingresado</span>
+      <div class="recovery-sent-email__value">{{ maskedEmail }}</div>
+      <p class="recovery-sent-email__helper">
+        Si no lo encuentras, revisa la carpeta de correo no deseado.
+      </p>
+    </div>
+
+    <div class="recovery-sent-actions">
+      <sgfidm-button
+        type="secondary"
+        size="lg"
+        [loading]="isSending"
+        (click)="onEnviarDeNuevo()"
+      >
+        <span class="material-symbols-outlined recovery-sent-send-icon" aria-hidden="true">send</span>
+        Enviar de nuevo
+      </sgfidm-button>
+    </div>
+
+    <div class="recovery-sent-footer">
+      <a class="recovery-sent-link" routerLink="/auth/login">
+        <span class="material-symbols-outlined recovery-sent-back-icon" aria-hidden="true">arrow_back</span>
+        Volver al inicio de sesión
+      </a>
+    </div>
+  </div>
+</div>

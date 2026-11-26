@@ -1,0 +1,126 @@
+/* AUTH-03 Recuperación enviada — diseño Figma ADM / Recuperación enviada */
+.recovery-sent-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  background-color: var(--sgfidm-color-background, #ededed);
+  padding: var(--sgfidm-space-8);
+}
+
+.recovery-sent-card {
+  width: 560px;
+  max-width: 100%;
+  background-color: var(--sgfidm-color-surface, #ffffff);
+  border: 1px solid var(--sgfidm-color-outline-variant, #dbdbdb);
+  border-radius: var(--sgfidm-radius-lg, 10px);
+  padding: 24px 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgfidm-space-8);
+}
+
+.recovery-sent-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recovery-sent-title {
+  font-family: var(--sgfidm-font-family);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: -0.25px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  margin: 0;
+}
+
+.recovery-sent-subtitle {
+  font-family: var(--sgfidm-font-family);
+  font-size: 13.5px;
+  line-height: 21px;
+  color: var(--sgfidm-color-text-secondary, #575757);
+  margin: 0;
+}
+
+.recovery-sent-email {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.recovery-sent-email__label {
+  font-family: var(--sgfidm-font-family);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0.4px;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+}
+
+.recovery-sent-email__value {
+  height: 56px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  background-color: var(--sgfidm-color-surface-container, #fafafa);
+  border: 1px solid var(--sgfidm-color-outline-variant, #dbdbdb);
+  border-radius: var(--sgfidm-radius-md, 6px);
+  font-family: var(--sgfidm-font-family);
+  font-size: 13.5px;
+  line-height: 21px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  word-break: break-all;
+}
+
+.recovery-sent-email__helper {
+  font-family: var(--sgfidm-font-family);
+  font-size: 11px;
+  line-height: 17px;
+  letter-spacing: 0.1px;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+  text-align: right;
+  margin: 0;
+}
+
+.recovery-sent-actions {
+  width: 100%;
+
+  /* El botón atom usa radio md y 48px en size lg; Figma pide píldora de 56px. */
+  ::ng-deep .sgfidm-button {
+    width: 100%;
+    height: 56px;
+    border-radius: var(--sgfidm-radius-full, 999px);
+  }
+}
+
+.recovery-sent-send-icon {
+  font-size: 18px;
+}
+
+.recovery-sent-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recovery-sent-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sgfidm-space-1);
+  font-family: var(--sgfidm-font-family);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0.15px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.recovery-sent-back-icon {
+  font-size: 18px;
+}

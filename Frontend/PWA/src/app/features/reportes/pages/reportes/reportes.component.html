@@ -1,0 +1,50 @@
+<!--
+  REP-01 en modo Solo: centro de reportes, sin selector de sucursal ni filtros por EMP-XXX.
+  ToDo (REP-02..06): las tarjetas abren cada reporte y el botón abre el historial.
+-->
+<div class="reportes-page">
+  <header class="reportes-header">
+    <div class="reportes-header__textos">
+      <span class="reportes-eyebrow">PANTALLA REP-01 · CENTRO DE REPORTES</span>
+      <h1 class="reportes-titulo">Reportes</h1>
+      <p class="reportes-subtitulo">Consulta y exporta la información de tu negocio.</p>
+    </div>
+    <sgfidm-button type="secondary" size="md" [width]="'210px'" [height]="'44px'" (click)="historial()">
+      Historial de exportaciones →
+    </sgfidm-button>
+  </header>
+
+  <div class="reportes-grid">
+    @for (reporte of reportes; track reporte.id) {
+      <sgfidm-panel-card class="reportes-card">
+        <span class="reportes-card__id">{{ reporte.id }}</span>
+        <h2 class="reportes-card__titulo">{{ reporte.titulo }}</h2>
+        <p class="reportes-card__descripcion">{{ reporte.descripcion }}</p>
+        <div class="reportes-card__divisor"></div>
+        <span class="reportes-card__destino">Destino: {{ reporte.id }}</span>
+        <button type="button" class="reportes-card__link" (click)="abrir(reporte.id)">
+          Abrir reporte →
+        </button>
+      </sgfidm-panel-card>
+    }
+  </div>
+
+  <div class="reportes-aviso" role="status">
+    <span class="material-symbols-outlined" aria-hidden="true">info</span>
+    <div>
+      <p>
+        Todos los reportes incluyen periodo, filtros y fecha de generación. Puedes exportarlos a CSV
+        o Excel.
+      </p>
+      <p>
+        Los reportes son interfaces de consulta: no registran, editan ni anulan operaciones. Para
+        operar, navega al módulo de origen.
+      </p>
+      <span class="reportes-aviso__permisos">
+        Permisos: reports.view para consultar · reports.export para exportar.
+      </span>
+    </div>
+  </div>
+
+  <button type="button" class="reportes-volver" (click)="irAlInicio()">Volver al Inicio</button>
+</div>

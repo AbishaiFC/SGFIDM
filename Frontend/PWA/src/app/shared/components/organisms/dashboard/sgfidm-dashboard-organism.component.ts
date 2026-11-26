@@ -35,6 +35,9 @@ export class SgfidmDashboardOrganismComponent {
 
   readonly modo = SgfidmDashboardOrganismComponent.leerModo();
 
+  /** La tarjeta principal reacciona a la sesión de caja (CAJ-02 / CAJ-03). */
+  readonly cajaAbierta = SgfidmDashboardOrganismComponent.leerCajaAbierta();
+
   readonly alertas = [
     {
       titulo: 'Productos con bajo stock',
@@ -107,6 +110,14 @@ export class SgfidmDashboardOrganismComponent {
       return negocio.modo === 'solo' ? 'Modo Solo' : 'Modo Con Empleados';
     } catch {
       return 'Modo Con Empleados';
+    }
+  }
+
+  private static leerCajaAbierta(): boolean {
+    try {
+      return !!localStorage.getItem('sgfidm-caja-abierta');
+    } catch {
+      return false;
     }
   }
 }

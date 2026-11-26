@@ -1,43 +1,139 @@
+<!--
+  POS-01 en modo Solo: sucursal implícita SUC-001, sin empleados.
+  OTROS MODOS (anotación, no implementado):
+    - Con Empleados: filtro fijo por EMP-XXX en el historial (B3).
+    - Con Sucursales: selector de sucursal activa en la cabecera.
+    - Los atajos de teclado (F2/F4/F9/Esc) se enlazarán con el lock de terminal (AUTH-16).
+-->
 <div class="sgfidm-pos-terminal-organism">
-  <h1 class="sgfidm-pos-terminal-organism__title">Punto de Venta</h1>
-  <p class="sgfidm-pos-terminal-organism__subtitle">Terminal de venta — POS-01</p>
+  <header class="sgfidm-pos-terminal-organism__topbar">
+    <div class="sgfidm-pos-terminal-organism__marca">
+      <span class="sgfidm-pos-terminal-organism__logo">INKO</span>
+      <span class="sgfidm-pos-terminal-organism__divisor"></span>
+      <span class="sgfidm-pos-terminal-organism__usuario">
+        Ana Martínez
+        <small>Propietaria</small>
+      </span>
+      <span class="sgfidm-pos-terminal-organism__caja-chip">
+        <span class="sgfidm-pos-terminal-organism__punto" aria-hidden="true"></span>
+        Caja abierta · CAJ-002
+        <small>Apertura 08:12 · Caja 1</small>
+      </span>
+    </div>
+    <div class="sgfidm-pos-terminal-organism__top-actions">
+      <sgfidm-button type="secondary" size="sm" [width]="'110px'" [height]="'44px'" (click)="ir('/caja')">Historial</sgfidm-button>
+      <sgfidm-button type="secondary" size="sm" [width]="'120px'" [height]="'44px'" (click)="ir('/caja')">Cerrar caja</sgfidm-button>
+      <sgfidm-button type="primary" size="sm" [width]="'120px'" [height]="'44px'" (click)="ir('/dashboard')">Salir del POS</sgfidm-button>
+    </div>
+  </header>
 
   <div class="sgfidm-pos-terminal-organism__layout">
-    <!-- Columna de carrito -->
-    <div class="sgfidm-pos-terminal-organism__cart-column">
-      <sgfidm-panel-card eyebrow="CARRITO">
-        @if (hasCart) {
-          <div class="cart-header">
-            {{ cartLines().length }} producto(s) en el carrito
+    <div class="sgfidm-pos-terminal-organism__main-column">
+      <div class="sgfidm-pos-terminal-organism__busqueda">
+        <sgfidm-search-bar
+          [(ngModel)]="query"
+          placeholder="Escanea un código de barras o busca por nombre, PROD-XXX"
+        />
+        <sgfidm-button type="primary" size="md" [width]="'120px'" [height]="'44px'" (click)="ir('/pos')">
+          <span class="material-symbols-outlined" aria-hidden="true">barcode_scanner</span>
+          Escanear
+        </sgfidm-button>
+      </div>
+
+      <sgfidm-panel-card class="sgfidm-pos-terminal-organism__sugerencias">
+        <div class="sgfidm-pos-terminal-organism__sugerencias-header">
+          <span>SUGERENCIAS · 4 DE 10 RESULTADOS</span>
+          <span>↑ ↓ navegar · Enter agrega al carrito</span>
+        </div>
+        @for (producto of sugerencias; track producto.codigo) {
+          <div class="sgfidm-pos-terminal-organism__sugerencia" [class.sgfidm-pos-terminal-organism__sugerencia--sin-stock]="producto.stock === 0">
+            <div class="sgfidm-pos-terminal-organism__sugerencia-info">
+              <span class="sgfidm-pos-terminal-organism__sugerencia-nombre">{{ producto.nombre }}</span>
+              <span class="sgfidm-pos-terminal-organism__sugerencia-codigo">{{ producto.codigo }}</span>
+            </div>
+            <span class="sgfidm-pos-terminal-organism__sugerencia-precio">{{ monto(producto.precio) }}</span>
+            <span class="sgfidm-pos-terminal-organism__sugerencia-stock">
+              @if (producto.stock === 0) {
+                Sin existencias disponibles.
+              } @else {
+                {{ producto.stock }} disponibles
+              }
+            </span>
+            @if (producto.stock === 0) {
+              <sgfidm-button type="secondary" size="sm" [width]="'110px'" [height]="'32px'" [disabled]="true">No vendible</sgfidm-button>
+            } @else {
+              <sgfidm-button type="secondary" size="sm" [width]="'110px'" [height]="'32px'" (click)="agregar(producto)">Agregar</sgfidm-button>
+            }
           </div>
-        } @else {
-          <div class="cart-empty">Escanea o busca productos para comenzar</div>
+        }
+      </sgfidm-panel-card>
+
+      <sgfidm-panel-card class="sgfidm-pos-terminal-organism__cart-column">
+        <div class="sgfidm-pos-terminal-organism__cart-header">
+          <span>CARRITO</span>
+          <span>{{ carrito().length }} productos · {{ productos() }} unidades</span>
+        </div>
+        <div class="sgfidm-pos-terminal-organism__cart-thead">
+          <span>PRODUCTO</span>
+          <span>CANTIDAD</span>
+          <span>PRECIO UNIT.</span>
+          <span>SUBTOTAL</span>
+          <span></span>
+        </div>
+        @for (linea of carrito(); track linea.producto.codigo) {
+          <div class="sgfidm-pos-terminal-organism__cart-fila">
+            <div class="sgfidm-pos-terminal-organism__cart-producto">
+              <span class="sgfidm-pos-terminal-organism__cart-nombre">{{ linea.producto.nombre }}</span>
+              <span class="sgfidm-pos-terminal-organism__cart-codigo">{{ linea.producto.codigo }}</span>
+              <span class="sgfidm-pos-terminal-organism__cart-stock">Stock disponible: {{ linea.producto.stock }}</span>
+            </div>
+            <div class="sgfidm-pos-terminal-organism__cantidad">
+              <button type="button" aria-label="Restar" (click)="cambiarCantidad(linea.producto, -1)">−</button>
+              <span>{{ linea.cantidad }}</span>
+              <button type="button" aria-label="Sumar" (click)="cambiarCantidad(linea.producto, 1)">+</button>
+            </div>
+            <span>{{ monto(linea.producto.precio) }}</span>
+            <span class="sgfidm-pos-terminal-organism__cart-subtotal">{{ subtotalLinea(linea) }}</span>
+            <a class="sgfidm-pos-terminal-organism__quitar" (click)="quitar(linea.producto)">Quitar</a>
+          </div>
+        } @empty {
+          <p class="sgfidm-pos-terminal-organism__cart-vacio">Escanea o busca productos para comenzar</p>
         }
       </sgfidm-panel-card>
     </div>
 
-    <!-- Columna de totales -->
     <div class="sgfidm-pos-terminal-organism__totals-column">
-      <sgfidm-panel-card eyebrow="RESUMEN DE VENTA">
-        <div class="totals">
-          @for (line of totals(); track line) {
-            @if (line.hasDivider) {
-              <div class="totals-divider"></div>
-            }
-            <div class="totals-line" [class.totals-line--total]="line.total">
-              <span class="totals-label">{{ line.label }}</span>
-              <span class="totals-value">{{ line.value }}</span>
-            </div>
-          }
+      <sgfidm-panel-card class="sgfidm-pos-terminal-organism__resumen">
+        <div class="sgfidm-pos-terminal-organism__resumen-header">
+          <span>RESUMEN DE VENTA</span>
+          <span>{{ carrito().length }} productos · {{ productos() }} unidades</span>
         </div>
-        <sgfidm-button
-          type="primary"
-          size="lg"
-          class="pagar-btn"
-          [disabled]="pagarDisabled()"
-        >
-          Pagar (F9)
+        <div class="sgfidm-pos-terminal-organism__totals-line">
+          <span>Subtotal</span>
+          <span>{{ monto(subtotal()) }}</span>
+        </div>
+        @if (tieneDescuento) {
+          <div class="sgfidm-pos-terminal-organism__totals-line">
+            <span>Descuento · {{ descuento() }}%</span>
+            <span>−{{ monto(descuentoMonto()) }}</span>
+          </div>
+          <a class="sgfidm-pos-terminal-organism__quitar" (click)="quitarDescuento()">Quitar descuento</a>
+        }
+        <div class="sgfidm-pos-terminal-organism__totals-line sgfidm-pos-terminal-organism__totals-line--total">
+          <span>TOTAL</span>
+          <span>{{ monto(total()) }}</span>
+        </div>
+        <p class="sgfidm-pos-terminal-organism__moneda">Moneda MXN · descuento global aplicado</p>
+
+        <sgfidm-button type="primary" size="lg" class="pagar-btn" [fullWidth]="true" [height]="'56px'" [disabled]="pagarDisabled() || carrito().length === 0" (click)="pagar()">
+          <span>PAGAR</span>
+          <span class="sgfidm-pos-terminal-organism__f9">F9</span>
         </sgfidm-button>
+        <sgfidm-button type="secondary" size="md" [fullWidth]="true" [height]="'50px'" (click)="aplicarDescuento()">Aplicar descuento</sgfidm-button>
+        <sgfidm-button type="secondary" size="md" [fullWidth]="true" [height]="'50px'" (click)="vaciar()">Vaciar carrito</sgfidm-button>
+
+        <p class="sgfidm-pos-terminal-organism__atajos">F2 buscar · F4 escanear · F9 pagar · Esc cerrar sugerencias</p>
+        <p class="sgfidm-pos-terminal-organism__ultima">Última venta: VTA-1042 · 10:42 · $520.00 · Mi negocio</p>
       </sgfidm-panel-card>
     </div>
   </div>

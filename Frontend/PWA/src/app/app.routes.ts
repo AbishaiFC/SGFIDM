@@ -3,6 +3,7 @@ import { LoginComponent } from './features/auth/pages/login/login.component';
 import { RegisterComponent } from './features/auth/pages/register/register.component';
 import { VerifyEmailComponent } from './features/auth/pages/verify-email/verify-email.component';
 import { RecoverAccountComponent } from './features/auth/pages/recover-account/recover-account.component';
+import { RecoverySentComponent } from './features/auth/pages/recovery-sent/recovery-sent.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
@@ -13,6 +14,7 @@ export const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'verify-email', component: VerifyEmailComponent },
       { path: 'recover-account', component: RecoverAccountComponent },
+      { path: 'recovery-sent', component: RecoverySentComponent },
     ],
   },
   {

@@ -23,7 +23,13 @@ export class RecoverAccountComponent {
   isLoading = false;
 
   onEnviarInstrucciones(): void {
+    if (this.isLoading) {
+      return;
+    }
+
     this.isLoading = true;
+    // AUTH-03: el correo viaja en navigation state, nunca en la URL.
+    this.router.navigate(['/auth/recovery-sent'], { state: { email: this.email } });
   }
 
   onVolverAlLogin(): void {

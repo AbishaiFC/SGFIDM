@@ -1,0 +1,44 @@
+@use '../employee-auth' as *;
+
+.emp-opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.emp-opcion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sgfidm-space-3);
+  padding: 16px;
+  border: 1px solid var(--sgfidm-color-outline-variant, #dbdbdb);
+  border-radius: var(--sgfidm-radius-md, 8px);
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__titulo {
+    font-family: var(--sgfidm-font-family);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+    margin: 0;
+  }
+
+  &__detalle {
+    font-family: var(--sgfidm-font-family);
+    font-size: 12px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+    margin: 0;
+  }
+
+  ::ng-deep .sgfidm-button {
+    min-width: 110px;
+    height: 44px;
+    border-radius: var(--sgfidm-radius-full, 999px);
+  }
+}

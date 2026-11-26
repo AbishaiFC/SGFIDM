@@ -1,0 +1,47 @@
+<div class="emp-page">
+  <div class="emp-card">
+    <header class="emp-header">
+      <h1 class="emp-title">Únete a INKO</h1>
+    </header>
+
+    <div class="emp-aviso" role="status">
+      <span class="material-symbols-outlined emp-aviso__icon" aria-hidden="true">info</span>
+      <div>
+        <div>Invitación para: {{ nombre }}</div>
+        <div>Código de empleado asignado: {{ codigo }}</div>
+      </div>
+    </div>
+
+    <p class="emp-subtitle">Crea tu contraseña para activar tu cuenta.</p>
+
+    @if (errorMessage) {
+      <div class="emp-error-aviso" role="alert">
+        <span class="material-symbols-outlined" aria-hidden="true">error_outline</span>
+        <span>{{ errorMessage }}</span>
+      </div>
+    }
+
+    <div class="emp-form">
+      <sgfidm-password-field
+        label="Contraseña"
+        placeholder="Contraseña"
+        helperText="Al menos 8 caracteres, una mayúscula y un número."
+        [(value)]="password"
+      />
+      <sgfidm-password-field
+        label="Confirmar contraseña"
+        placeholder="Confirmar contraseña"
+        helperText="Las contraseñas deben coincidir."
+        [errorMessage]="confirmError"
+        [(value)]="confirmarPassword"
+      />
+    </div>
+
+    <div class="emp-actions">
+      <sgfidm-button type="primary" size="md" (click)="onAceptar()">
+        <span class="material-symbols-outlined emp-icon" aria-hidden="true">person</span>
+        Aceptar invitación y crear cuenta
+      </sgfidm-button>
+    </div>
+  </div>
+</div>

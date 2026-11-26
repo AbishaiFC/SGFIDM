@@ -1,0 +1,15 @@
+@use '../employee-auth' as *;
+
+.emp-otp-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: calc(-1 * var(--sgfidm-space-6));
+}
+
+.emp-link--reenviar {
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}

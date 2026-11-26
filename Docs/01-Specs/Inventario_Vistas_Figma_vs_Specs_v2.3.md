@@ -108,7 +108,8 @@ Métodos de pago, Configuración de seguridad.
 - `Configuración` (CONF-01): existe ruta/pantalla, pero sin validación de canon Figma.
 
 ### 5.2. Documentado y prototipado (Con Empleados) pero no implementado — candidatos a adaptación Solo
-- FIN-01 Resumen financiero, FIN-02 Ingresos, FIN-03 Gastos (listado), FIN-04 Categorías
+- ~~FIN-01 Resumen financiero~~ ✅ (implementado en esta iteración), FIN-02 Ingresos, FIN-03 Gastos
+  (listado), FIN-04 Categorías
   financieras, FIN-05 Movimientos, FIN-06 Análisis de rentabilidad, FIN-07 Registrar ingreso,
   FIN-09 Detalle, FIN-10 Anular.
 - PROD-01 Catálogo, PROD-03 Detalle (5 pestañas), PROD-04 Editar, PROD-05 Categorías, PROD-06 Archivar.

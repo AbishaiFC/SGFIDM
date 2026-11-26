@@ -1,43 +1,104 @@
-<div class="sgfidm-finanzas-organism" role="region" aria-label="Finanzas">
-  <!-- Encabezado -->
-  <div class="sgfidm-finanzas-organism__header">
-    <h2 class="sgfidm-finanzas-organism__title">Finanzas</h2>
-    <p class="sgfidm-finanzas-organism__subtitle">Resumen financiero — FIN-01</p>
-  </div>
-
-  <!-- Indicadores financieros -->
-  <div class="sgfidm-finanzas-organism__indicators">
-    <sgfidm-indicator-card eyebrow="INGRESOS DEL MES" [value]="ingresosTotal" delta="Por confirmar" />
-    <sgfidm-indicator-card eyebrow="GASTOS DEL MES" [value]="gastosTotal" delta="A favor del mes en curso" />
-    <sgfidm-indicator-card eyebrow="MOVIMIENTOS" [value]="totalMovimientos" />
-  </div>
-
-  <!-- Listado de movimientos -->
-  <sgfidm-panel-card eyebrow="MOVIMIENTOS FINANCIEROS" class="sgfidm-finanzas-organism__panel">
-    <!-- Tabs -->
-    <sgfidm-tabs class="sgfidm-finanzas-organism__tabs" [tabs]="tabs" [activeTab]="tabActivo()" (tabClick)="onTab($event)" />
-
-    <!-- Lista -->
-    <div class="sgfidm-finanzas-organism__list">
-      @if (movimientosFiltro.length === 0) {
-        <div class="sgfidm-finanzas-organism__empty">Sin movimientos para esta categoría</div>
-      } @else {
-        @for (m of movimientosFiltro; track m.id) {
-          <div class="sgfidm-finanzas-organism__item" role="button" tabindex="0"
-            (click)="onAccion(m, 'detalle')" (keydown.enter)="onAccion(m, 'detalle')">
-            <div class="sgfidm-finanzas-organism__info">
-              <span class="sgfidm-finanzas-organism__name">{{ m.descripcion }}</span>
-              <span class="sgfidm-finanzas-organism__date">{{ m.fecha ?? 'Sin fecha' }}</span>
-            </div>
-            <span class="sgfidm-finanzas-organism__monto" [class.sgfidm-finanzas-organism__monto--gasto]="m.tipo === 'gasto'">
-              {{ m.tipo === 'gasto' ? '-' : '' }}{{ m.monto }}
-            </span>
-            <sgfidm-badge class="sgfidm-finanzas-organism__badge"
-              [variant]="m.estado === 'anulado' ? 'success' : m.tipo === 'gasto' ? 'warning' : 'neutral'"
-            >{{ m.estado ?? 'pendiente' }}</sgfidm-badge>
-          </div>
-        }
-      }
+<div class="sgfidm-finanzas-organism">
+  <header class="sgfidm-finanzas-organism__header">
+    <div>
+      <h1 class="sgfidm-finanzas-organism__titulo">Resumen financiero</h1>
+      <p class="sgfidm-finanzas-organism__subtitulo">
+        Mi negocio · Periodo: Este mes (01 Nov – 10 Nov) · Actualizado hoy 11:25 AM
+      </p>
     </div>
-  </sgfidm-panel-card>
+    <div class="sgfidm-finanzas-organism__header-acciones">
+      <div class="sgfidm-finanzas-organism__periodos" role="group" aria-label="Periodo">
+        @for (opcion of periodos; track opcion) {
+          <button
+            type="button"
+            [class.sgfidm-finanzas-organism__periodo--activo]="periodo() === opcion"
+            (click)="seleccionar(opcion)"
+          >{{ opcion }}</button>
+        }
+      </div>
+      <sgfidm-button type="secondary" size="sm" [width]="'140px'" [height]="'44px'" (click)="verMovimientos.emit()">
+        Ver movimientos →
+      </sgfidm-button>
+    </div>
+  </header>
+
+  <div class="sgfidm-finanzas-organism__indicadores">
+    @for (ind of indicadores; track ind.eyebrow) {
+      <sgfidm-indicator-card [eyebrow]="ind.eyebrow" [value]="ind.value" [delta]="ind.delta" />
+    }
+  </div>
+
+  <div class="sgfidm-finanzas-organism__paneles">
+    <sgfidm-panel-card class="sgfidm-finanzas-organism__panel">
+      <h2 class="sgfidm-finanzas-organism__eyebrow">DESGLOSE COMERCIAL (RESULTADO DEL NEGOCIO)</h2>
+      @for (f of comercial; track f.titulo) {
+        <div class="sgfidm-finanzas-organism__fila" [class.--total]="f.total">
+          <div>
+            <span class="sgfidm-finanzas-organism__fila-titulo">{{ f.titulo }}</span>
+            <span class="sgfidm-finanzas-organism__fila-detalle">{{ f.detalle }}</span>
+          </div>
+          <span [class.--negativo]="f.negativo">{{ f.valor }}</span>
+        </div>
+      }
+      <p class="sgfidm-finanzas-organism__nota">
+        Este valor describe el rendimiento del negocio, independiente del dinero físico en caja.
+      </p>
+    </sgfidm-panel-card>
+
+    <sgfidm-panel-card class="sgfidm-finanzas-organism__panel">
+      <h2 class="sgfidm-finanzas-organism__eyebrow">DESGLOSE DE FLUJO DE EFECTIVO (MOVIMIENTOS DE CAJA)</h2>
+      <span class="sgfidm-finanzas-organism__ayudas">Dinero físico en gaveta</span>
+      @for (f of efectivo; track f.titulo) {
+        <div class="sgfidm-finanzas-organism__fila" [class.--total]="f.total">
+          <div>
+            <span class="sgfidm-finanzas-organism__fila-titulo">{{ f.titulo }}</span>
+            <span class="sgfidm-finanzas-organism__fila-detalle">{{ f.detalle }}</span>
+          </div>
+          <span [class.--negativo]="f.negativo">{{ f.valor }}</span>
+        </div>
+      }
+      <div class="sgfidm-finanzas-organism__aviso" role="status">
+        <span class="material-symbols-outlined" aria-hidden="true">warning</span>
+        <span>
+          <strong>2 gastos en efectivo ($1,450.00) no están vinculados a una sesión de caja.</strong>
+          Fueron registrados sin sesión de caja abierta. No generaron salida física de caja.
+        </span>
+      </div>
+    </sgfidm-panel-card>
+  </div>
+
+  <div class="sgfidm-finanzas-organism__paneles">
+    <sgfidm-panel-card class="sgfidm-finanzas-organism__panel">
+      <div class="sgfidm-finanzas-organism__cabecera">
+        <h2 class="sgfidm-finanzas-organism__eyebrow">DESGLOSE DE GASTOS POR CATEGORÍA</h2>
+        <button type="button" class="sgfidm-finanzas-organism__link" (click)="gestionarCategorias.emit()">
+          Gestionar categorías →
+        </button>
+      </div>
+      @for (cat of categorias; track cat.nombre) {
+        <div class="sgfidm-finanzas-organism__categoria">
+          <span>{{ cat.nombre }}</span>
+          <span class="sgfidm-finanzas-organism__barra"><i [style.width.%]="cat.ancho"></i></span>
+          <span>{{ cat.monto }}</span>
+          <span>{{ cat.porcentaje }}</span>
+        </div>
+      }
+    </sgfidm-panel-card>
+
+    <sgfidm-panel-card class="sgfidm-finanzas-organism__panel">
+      <h2 class="sgfidm-finanzas-organism__eyebrow">ACCIONES RÁPIDAS</h2>
+      <div class="sgfidm-finanzas-organism__acciones">
+        <sgfidm-button type="primary" size="md" [fullWidth]="true" [height]="'44px'" (click)="registrarGasto.emit()">
+          Registrar gasto
+        </sgfidm-button>
+        <sgfidm-button type="secondary" size="md" [fullWidth]="true" [height]="'44px'" (click)="registrarIngreso.emit()">
+          Registrar ingreso manual
+        </sgfidm-button>
+        <div class="sgfidm-finanzas-organism__acciones-duo">
+          <sgfidm-button type="secondary" size="md" [fullWidth]="true" [height]="'44px'" (click)="analisis.emit()">Análisis</sgfidm-button>
+          <sgfidm-button type="secondary" size="md" [fullWidth]="true" [height]="'44px'" (click)="categoriasFinancieras.emit()">Categorías</sgfidm-button>
+        </div>
+      </div>
+    </sgfidm-panel-card>
+  </div>
 </div>

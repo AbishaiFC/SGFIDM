@@ -1,0 +1,38 @@
+<div class="emp-page">
+  <div class="emp-card">
+    <header class="emp-header">
+      <h1 class="emp-title">Acceso de empleado</h1>
+      <p class="emp-subtitle">Ingresa tu código de empleado y contraseña para acceder.</p>
+    </header>
+
+    <div class="emp-form">
+      <sgfidm-form-field
+        label="Código de empleado"
+        placeholder="EMP-001"
+        helperText="Formato: EMP-XXX"
+        [(value)]="codigo"
+        [required]="true"
+      />
+      <sgfidm-password-field
+        label="Contraseña"
+        placeholder="••••••••"
+        [(value)]="password"
+      />
+      @if (errorMessage) {
+        <p class="emp-error" role="alert">{{ errorMessage }}</p>
+      }
+    </div>
+
+    <div class="emp-actions">
+      <sgfidm-button type="primary" size="md" [loading]="isLoading" [disabled]="isLoading" (click)="onLogin()">
+        <span class="material-symbols-outlined emp-icon" aria-hidden="true">arrow_forward</span>
+        Iniciar sesión
+      </sgfidm-button>
+    </div>
+
+    <div class="emp-links">
+      <a class="emp-link" routerLink="/auth/recover-account">Recuperar contraseña</a>
+      <a class="emp-link" routerLink="/auth/employee/verify-phone">Verificación por OTP</a>
+    </div>
+  </div>
+</div>

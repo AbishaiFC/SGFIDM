@@ -1,0 +1,37 @@
+<div class="emp-page">
+  <div class="emp-card">
+    <header class="emp-header">
+      <h1 class="emp-title">Código de verificación</h1>
+      <p class="emp-subtitle">
+        Enviamos un código de 6 dígitos al teléfono terminado en ******6677
+      </p>
+    </header>
+
+    <div class="emp-otp">
+      <sgfidm-pin-input label="" subtitle="" (pinComplete)="onVerificar($event)" />
+    </div>
+
+    <div class="emp-otp-footer">
+      <p class="emp-warning">El código expira en 05:00</p>
+      @if (errorMessage) {
+        <p class="emp-error" role="alert">{{ errorMessage }}</p>
+      }
+    </div>
+
+    <div class="emp-actions">
+      <sgfidm-button type="primary" size="md" [loading]="isLoading" [disabled]="isLoading" (click)="onVerificar(otp)">
+        <span class="material-symbols-outlined emp-icon" aria-hidden="true">check</span>
+        Verificar
+      </sgfidm-button>
+    </div>
+
+    <a class="emp-link emp-link--reenviar" (click)="onReenviar()">
+      <span class="material-symbols-outlined emp-icon" aria-hidden="true">send</span>
+      Reenviar código
+    </a>
+
+    <p class="emp-helper">
+      Si no recibes el código, verifica que el teléfono sea correcto o contacta a tu administrador.
+    </p>
+  </div>
+</div>

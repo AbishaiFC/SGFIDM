@@ -1,0 +1,30 @@
+<div class="emp-page">
+  <div class="emp-card">
+    <header class="emp-header">
+      <h1 class="emp-title">Verificación OTP</h1>
+      <p class="emp-subtitle">
+        Ingresa tu número de teléfono para recibir un código de verificación.
+      </p>
+    </header>
+
+    <div class="emp-form">
+      <sgfidm-form-field
+        label="Número de teléfono"
+        type="tel"
+        placeholder="+52"
+        [(value)]="telefono"
+        [required]="true"
+      />
+      @if (errorMessage) {
+        <p class="emp-error" role="alert">{{ errorMessage }}</p>
+      }
+    </div>
+
+    <div class="emp-actions">
+      <sgfidm-button type="primary" size="md" (click)="onEnviarCodigo()">
+        <span class="material-symbols-outlined emp-icon" aria-hidden="true">send</span>
+        Enviar código
+      </sgfidm-button>
+    </div>
+  </div>
+</div>

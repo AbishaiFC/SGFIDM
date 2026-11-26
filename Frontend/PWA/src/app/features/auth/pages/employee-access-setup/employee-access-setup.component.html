@@ -1,0 +1,28 @@
+<div class="emp-page">
+  <div class="emp-card">
+    <header class="emp-header">
+      <h1 class="emp-title">Configuración de acceso</h1>
+      <p class="emp-subtitle">
+        Primer acceso: vincula tu teléfono o crea tu contraseña para activar tu cuenta.
+      </p>
+    </header>
+
+    <div class="emp-opciones">
+      <div class="emp-opcion">
+        <div class="emp-opcion__info">
+          <h2 class="emp-opcion__titulo">Vincular teléfono</h2>
+          <p class="emp-opcion__detalle">Recibe un código de verificación por SMS.</p>
+        </div>
+        <sgfidm-button type="secondary" size="md" (click)="onVincularTelefono()">Vincular</sgfidm-button>
+      </div>
+
+      <div class="emp-opcion">
+        <div class="emp-opcion__info">
+          <h2 class="emp-opcion__titulo">Establecer contraseña</h2>
+          <p class="emp-opcion__detalle">Crea tu contraseña personal de acceso.</p>
+        </div>
+        <sgfidm-button type="primary" size="md" (click)="onEstablecerContrasena()">Crear</sgfidm-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,12 @@ import { VerifyEmailComponent } from './features/auth/pages/verify-email/verify-
 import { RecoverAccountComponent } from './features/auth/pages/recover-account/recover-account.component';
 import { RecoverySentComponent } from './features/auth/pages/recovery-sent/recovery-sent.component';
 import { ResetPasswordComponent } from './features/auth/pages/reset-password/reset-password.component';
+import { EmployeeLoginComponent } from './features/auth/pages/employee-login/employee-login.component';
+import { EmployeeVerifyPhoneComponent } from './features/auth/pages/employee-verify-phone/employee-verify-phone.component';
+import { EmployeeAccessSetupComponent } from './features/auth/pages/employee-access-setup/employee-access-setup.component';
+import { EmployeeLinkPhoneComponent } from './features/auth/pages/employee-link-phone/employee-link-phone.component';
+import { EmployeeSetPasswordComponent } from './features/auth/pages/employee-set-password/employee-set-password.component';
+import { EmployeeAcceptInvitationComponent } from './features/auth/pages/employee-accept-invitation/employee-accept-invitation.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
@@ -17,6 +23,12 @@ export const routes: Routes = [
       { path: 'recover-account', component: RecoverAccountComponent },
       { path: 'recovery-sent', component: RecoverySentComponent },
       { path: 'reset-password', component: ResetPasswordComponent },
+      { path: 'employee/login', component: EmployeeLoginComponent },
+      { path: 'employee/verify-phone', component: EmployeeVerifyPhoneComponent },
+      { path: 'employee/access-setup', component: EmployeeAccessSetupComponent },
+      { path: 'employee/link-phone', component: EmployeeLinkPhoneComponent },
+      { path: 'employee/set-password', component: EmployeeSetPasswordComponent },
+      { path: 'employee/accept-invitation', component: EmployeeAcceptInvitationComponent },
     ],
   },
   {

@@ -8,13 +8,13 @@
 // radius-2     : var(--sgfidm-radius-2)     4px
 // radius-4     : var(--sgfidm-radius-4)     8px
 
-$field-height:        44px;
-$border-width:        1px;
+$field-height: 44px;
+$border-width: 1px;
 $border-width-active: 2px;
-$label-font:          11px;
-$input-font:          14px;
-$icon-size:           20px;
-$transition:          200ms ease;
+$label-font: 11px;
+$input-font: 14px;
+$icon-size: 20px;
+$transition: 200ms ease;
 
 :host {
   display: block;
@@ -42,20 +42,36 @@ $transition:          200ms ease;
   }
 
   &--error {
-    .sgfidm-form-field__outline      { border-color: var(--sgfidm-error, #a9442e); }
-    .sgfidm-form-field__label        { color: var(--sgfidm-error, #a9442e); }
-    .sgfidm-form-field__leading-icon { color: var(--sgfidm-error, #a9442e); }
+    .sgfidm-form-field__outline {
+      border-color: var(--sgfidm-error, #a9442e);
+    }
+
+    .sgfidm-form-field__label {
+      color: var(--sgfidm-error, #a9442e);
+    }
+
+    .sgfidm-form-field__leading-icon {
+      color: var(--sgfidm-error, #a9442e);
+    }
   }
 
   &--disabled {
     opacity: 0.4;
     pointer-events: none;
-    .sgfidm-form-field__outline { border-style: dashed; }
+
+    .sgfidm-form-field__outline {
+      border-style: dashed;
+    }
   }
 
   // ── Icon spacing ─────────────────────────────────────────────────────────
-  &--has-leading .sgfidm-form-field__input-wrap { padding-left: 0; }
-  &--has-trailing .sgfidm-form-field__input-wrap { padding-right: 0; }
+  &--has-leading .sgfidm-form-field__input-wrap {
+    padding-left: 0;
+  }
+
+  &--has-trailing .sgfidm-form-field__input-wrap {
+    padding-right: 0;
+  }
 }
 
 // ── Outline (fieldset trick para hueco en el borde bajo la label) ──────────
@@ -81,13 +97,17 @@ $transition:          200ms ease;
   max-width: 0;
   transition: max-width $transition;
 
-  span { padding: 0 2px; }
+  span {
+    padding: 0 2px;
+  }
 }
 
 // Cuando la label está flotada abrimos el hueco
-.sgfidm-form-field__label--floated ~ .sgfidm-form-field__outline,
+.sgfidm-form-field__label--floated~.sgfidm-form-field__outline,
 .sgfidm-form-field--focus .sgfidm-form-field__outline {
-  .sgfidm-form-field__outline-legend { max-width: 100%; }
+  .sgfidm-form-field__outline-legend {
+    max-width: 100%;
+  }
 }
 
 // ── Input wrap ───────────────────────────────────────────────────────────────
@@ -131,7 +151,9 @@ $transition:          200ms ease;
   color: var(--sgfidm-error, #a9442e);
 }
 
-.sgfidm-form-field__required { color: var(--sgfidm-error, #a9442e); }
+.sgfidm-form-field__required {
+  color: var(--sgfidm-error, #a9442e);
+}
 
 // ── Input ─────────────────────────────────────────────────────────────────────
 .sgfidm-form-field__input {
@@ -146,8 +168,13 @@ $transition:          200ms ease;
   color: var(--sgfidm-text-primary, #1c1c1c);
   line-height: 1.4;
 
-  &::placeholder { color: var(--sgfidm-text-muted, #8b8b8b); }
-  &:disabled      { cursor: not-allowed; }
+  &::placeholder {
+    color: var(--sgfidm-text-muted, #8b8b8b);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 
   // Remove browser autofill styling
   &:-webkit-autofill {
@@ -167,10 +194,14 @@ $transition:          200ms ease;
   flex-shrink: 0;
   color: var(--sgfidm-text-muted, #8b8b8b);
 
-  .material-symbols-outlined { font-size: $icon-size; }
+  .material-symbols-outlined {
+    font-size: $icon-size;
+  }
 }
 
-.sgfidm-form-field__leading-icon { padding-left: 4px; }
+.sgfidm-form-field__leading-icon {
+  padding-left: 4px;
+}
 
 .sgfidm-form-field__trailing-icon {
   padding-right: 4px;
@@ -180,7 +211,10 @@ $transition:          200ms ease;
   border-radius: 50%;
   transition: background $transition;
 
-  &:hover { background: var(--sgfidm-surface-variant, #f5f5f5); }
+  &:hover {
+    background: var(--sgfidm-surface-variant, #f5f5f5);
+  }
+
   &:focus-visible {
     outline: 1.5px solid var(--sgfidm-primary, #2a2a2a);
     outline-offset: -2px;
@@ -198,8 +232,11 @@ $transition:          200ms ease;
   color: var(--sgfidm-text-muted, #8b8b8b);
   line-height: 1.4;
 
-  &--error { color: var(--sgfidm-error, #a9442e); }
+  &--error {
+    color: var(--sgfidm-error, #a9442e);
+  }
 }
 
-.sgfidm-form-field__message-icon { font-size: 14px !important; }
-
+.sgfidm-form-field__message-icon {
+  font-size: 14px !important;
+}

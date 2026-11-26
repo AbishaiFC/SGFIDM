@@ -11,6 +11,7 @@ import { EmployeeAccessSetupComponent } from './features/auth/pages/employee-acc
 import { EmployeeLinkPhoneComponent } from './features/auth/pages/employee-link-phone/employee-link-phone.component';
 import { EmployeeSetPasswordComponent } from './features/auth/pages/employee-set-password/employee-set-password.component';
 import { EmployeeAcceptInvitationComponent } from './features/auth/pages/employee-accept-invitation/employee-accept-invitation.component';
+import { CajaPendienteComponent } from './features/auth/pages/caja-pendiente/caja-pendiente.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
@@ -29,6 +30,7 @@ export const routes: Routes = [
       { path: 'employee/link-phone', component: EmployeeLinkPhoneComponent },
       { path: 'employee/set-password', component: EmployeeSetPasswordComponent },
       { path: 'employee/accept-invitation', component: EmployeeAcceptInvitationComponent },
+      { path: 'caja-pendiente', component: CajaPendienteComponent },
     ],
   },
   {

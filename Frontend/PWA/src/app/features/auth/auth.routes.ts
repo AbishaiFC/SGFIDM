@@ -11,6 +11,7 @@ import { EmployeeAccessSetupComponent } from './pages/employee-access-setup/empl
 import { EmployeeLinkPhoneComponent } from './pages/employee-link-phone/employee-link-phone.component';
 import { EmployeeSetPasswordComponent } from './pages/employee-set-password/employee-set-password.component';
 import { EmployeeAcceptInvitationComponent } from './pages/employee-accept-invitation/employee-accept-invitation.component';
+import { CajaPendienteComponent } from './pages/caja-pendiente/caja-pendiente.component';
 
 export const authRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -25,4 +26,5 @@ export const authRoutes: Routes = [
   { path: 'employee/link-phone', component: EmployeeLinkPhoneComponent },
   { path: 'employee/set-password', component: EmployeeSetPasswordComponent },
   { path: 'employee/accept-invitation', component: EmployeeAcceptInvitationComponent },
+  { path: 'caja-pendiente', component: CajaPendienteComponent },
 ];

@@ -2,15 +2,11 @@ import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 /**
- * SgfidmSidebarItem — Molécula de item de sidebar/navegación del Design System SGFIDM.
+ * SgfidmSidebarItem — Molécula de item de navegación lateral del DS SGFIDM.
  *
- * Combina icono + label de texto. Varias tres variantes por el COMPONENT_SET 195:2808:
- * default | active | disabled.
- * Anatomía: icono + gap 12 px + label. Active: superficie-container + acento de 3 px
- * (no se usa color para navegar — decisión impresa).
- *
- * Uso:
- *   <sgfidm-sidebar-item variant="active" icon="dashboard" label="Dashboard" (nav)="navigate()" />
+ * Canon actualizado (Ficha Sidebar 366:15636 / SGFIDM/SidebarItem 621:xxxx):
+ * 38 px de alto, icono 18 px, gap 10 px, radio 6 px. Estado selected =
+ * píldora oscura (#2a2a2a) con texto/icono claros. Layout Expanded | Icon-only.
  */
 @Component({
   selector: 'sgfidm-sidebar-item',
@@ -20,13 +16,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './sgfidm-sidebar-item.component.scss',
 })
 export class SgfidmSidebarItemComponent {
-  // ── Inputs ─────────────────────────────────────────────────────────────────
   variant = input<'default' | 'active' | 'disabled'>('default');
+  layout = input<'expanded' | 'icon-only'>('expanded');
   icon = input.required<string>();
   label = input.required<string>();
   route = input<string>('');
 
-  // ── Outputs ────────────────────────────────────────────────────────────────
   nav = output<string | undefined>();
 
   onClick(): void {

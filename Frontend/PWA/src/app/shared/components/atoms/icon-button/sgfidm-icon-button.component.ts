@@ -25,8 +25,10 @@ export class SgfidmIconButtonComponent {
   readonly radius = computed(() => 'var(--sgfidm-radius-full)');
 
   onClick(event: Event): void {
+    // Evita el doble disparo: output `click` + burbujeo del clic nativo al host.
+    event?.stopPropagation();
     if (this.disabled()) {
-      event.preventDefault();
+      event?.preventDefault();
       return;
     }
     this.click.emit();

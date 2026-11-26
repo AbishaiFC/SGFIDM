@@ -1,0 +1,57 @@
+<!-- Sidebar canónico SGFIDM (Ficha 366:15636): Expanded | Icon-only -->
+<aside class="sgfidm-sidebar" [attr.aria-label]="'Navegación principal'">
+  <header class="sgfidm-sidebar__marca">
+    <span class="sgfidm-sidebar__simbolo" aria-hidden="true">I</span>
+    @if (layout() === 'expanded') {
+      <span class="sgfidm-sidebar__textos">
+        <strong class="sgfidm-sidebar__nombre-marca">INKO</strong>
+        <span class="sgfidm-sidebar__negocio">{{ nombreNegocio() }}</span>
+      </span>
+    }
+  </header>
+
+  <nav class="sidebar-nav" aria-label="Secciones">
+    @for (grupo of grupos(); track grupo.numero) {
+      @if (grupo.divisor) {
+        <div class="sgfidm-sidebar__divisor" role="separator"></div>
+      }
+      <div class="sgfidm-sidebar__grupo">
+        @for (item of grupo.items; track item.id) {
+          <sgfidm-sidebar-item
+            [icon]="item.icon"
+            [label]="item.label"
+            [route]="item.route"
+            [layout]="layout()"
+            [variant]="activo(item) ? 'active' : 'default'"
+            (nav)="navegar($event)"
+          />
+        }
+      </div>
+    }
+  </nav>
+
+  <footer class="sgfidm-sidebar__pie">
+    <div class="sgfidm-sidebar__usuario">
+      <span class="sgfidm-sidebar__avatar">{{ iniciales() }}</span>
+      @if (layout() === 'expanded') {
+        <span class="sgfidm-sidebar__usuario-textos">
+          <strong>{{ nombreUsuario() }}</strong>
+          <span>{{ rolMostrado() }} · {{ codigoEmpleado() }}</span>
+        </span>
+      }
+    </div>
+    <div class="sgfidm-sidebar__acciones">
+      <sgfidm-icon-button (click)="alternar.emit()" [attr.aria-label]="'Contraer navegación'">
+        <span class="material-symbols-outlined" aria-hidden="true">
+          {{ layout() === 'expanded' ? 'visibility_off' : 'visibility' }}
+        </span>
+      </sgfidm-icon-button>
+      <sgfidm-icon-button [attr.aria-label]="'Notificaciones'">
+        <span class="material-symbols-outlined" aria-hidden="true">notifications</span>
+        @if (notificaciones() > 0) {
+          <span class="sgfidm-sidebar__badge">{{ notificaciones() }}</span>
+        }
+      </sgfidm-icon-button>
+    </div>
+  </footer>
+</aside>

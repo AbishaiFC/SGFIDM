@@ -1,35 +1,15 @@
 <div class="sgfidm-theme root-layout" style="display: flex; height: 100dvh; overflow: hidden;">
-  <!-- Sidebar oculta en Auth (ADM / Inicio de sesión): Login y pantallas de autenticación son sin sidebar -->
+  <!-- Auth, configuración inicial y POS son pantallas a todo ancho, sin Sidebar -->
   @if (!isAuthRoute()) {
-  <aside class="sidebar" style="width: 248px; flex-shrink: 0; background: var(--sgfidm-color-surface); border-right: 1px solid var(--sgfidm-color-outline-variant); display: flex; flex-direction: column;">
-    <div class="sidebar-brand" style="height: 64px; padding: 0 var(--sgfidm-space-4); display: flex; align-items: center; border-bottom: 1px solid var(--sgfidm-color-outline-variant);">
-      <span style="font-weight: 600; font-size: var(--sgfidm-title-small); color: var(--sgfidm-color-text-primary); letter-spacing: -0.25px;">Inko</span>
-    </div>
-    <nav class="sidebar-nav" style="flex: 1; overflow-y: auto; padding: var(--sgfidm-space-2) 0;">
-      <div class="nav-section" style="padding: 0 var(--sgfidm-space-4);">
-        <span class="nav-section-label" style="font-size: var(--sgfidm-table-header); text-transform: uppercase; letter-spacing: 0.8px; color: var(--sgfidm-color-text-muted); margin-bottom: var(--sgfidm-space-2);">Navegación</span>
-        <a routerLink="/auth/login" routerLinkActive="active" style="display: flex; align-items: center; gap: var(--sgfidm-space-2); padding: var(--sgfidm-space-2) var(--sgfidm-space-4); color: var(--sgfidm-color-text-secondary); text-decoration: none; border-radius: var(--sgfidm-radius-md);">
-          <mat-icon style="font-size: 20px; width: 20px; height: 20px;">login</mat-icon>
-          <span>Iniciar sesión</span>
-        </a>
-        <a routerLink="/dashboard" routerLinkActive="active" style="display: flex; align-items: center; gap: var(--sgfidm-space-2); padding: var(--sgfidm-space-2) var(--sgfidm-space-4); color: var(--sgfidm-color-text-secondary); text-decoration: none; border-radius: var(--sgfidm-radius-md);">
-          <mat-icon style="font-size: 20px; width: 20px; height: 20px;">dashboard</mat-icon>
-          <span>Dashboard</span>
-        </a>
-        <a routerLink="/pos" routerLinkActive="active" style="display: flex; align-items: center; gap: var(--sgfidm-space-2); padding: var(--sgfidm-space-2) var(--sgfidm-space-4); color: var(--sgfidm-color-text-secondary); text-decoration: none; border-radius: var(--sgfidm-radius-md);">
-          <mat-icon style="font-size: 20px; width: 20px; height: 20px;">point_of_sale</mat-icon>
-          <span>Punto de venta</span>
-        </a>
-      </div>
-      <div class="nav-section" style="padding: 0 var(--sgfidm-space-4);">
-        <span class="nav-section-label" style="font-size: var(--sgfidm-table-header); text-transform: uppercase; letter-spacing: 0.8px; color: var(--sgfidm-color-text-muted); margin-bottom: var(--sgfidm-space-2);">Administración</span>
-        <a routerLink="/dashboard/configuracion" routerLinkActive="active" style="display: flex; align-items: center; gap: var(--sgfidm-space-2); padding: var(--sgfidm-space-2) var(--sgfidm-space-4); color: var(--sgfidm-color-text-secondary); text-decoration: none; border-radius: var(--sgfidm-radius-md);">
-          <mat-icon style="font-size: 20px; width: 20px; height: 20px;">settings</mat-icon>
-          <span>Configuración</span>
-        </a>
-      </div>
-    </nav>
-  </aside>
+    <sgfidm-sidebar
+      [rol]="contexto().rol"
+      [modo]="contexto().modo"
+      [nombreNegocio]="contexto().nombreNegocio"
+      [nombreUsuario]="contexto().nombreUsuario"
+      [codigoEmpleado]="contexto().codigoEmpleado"
+      [estado]="estadoSidebar()"
+      (alternar)="alternarSidebar()"
+    />
   }
 
   <!-- Contenido principal -->

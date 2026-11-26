@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { SgfidmDashboardOrganismComponent, IndicatorDto } from '../../../../shared/components/organisms/dashboard/sgfidm-dashboard-organism.component';
 
 const DEFAULT_INDICATORS: IndicatorDto[] = [
@@ -21,7 +22,7 @@ const DEFAULT_INDICATORS: IndicatorDto[] = [
  */
 @Component({
   standalone: true,
-  imports: [CommonModule, SgfidmDashboardOrganismComponent],
+  imports: [CommonModule, RouterLink, SgfidmDashboardOrganismComponent],
   selector: 'sgfidm-dashboard',
   styleUrl: './dashboard.component.scss',
   templateUrl: './dashboard.component.html',

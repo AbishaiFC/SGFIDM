@@ -1,16 +1,95 @@
 <div class="sgfidm-dashboard-organism">
-  <h1 class="sgfidm-dashboard-organism__title">Dashboard Operativo</h1>
-  <p class="sgfidm-dashboard-organism__subtitle">Resumen de indicadores del negocio</p>
-
-  @if (indicators().length > 0) {
-    <div class="sgfidm-dashboard-organism__indicators-grid">
-      @for (ind of indicators(); track $index) {
-        <sgfidm-indicator-card
-          [eyebrow]="ind.eyebrow"
-          [value]="ind.value"
-          [delta]="ind.delta"
-        />
-      }
+  <header class="sgfidm-dashboard-organism__header">
+    <div class="sgfidm-dashboard-organism__textos">
+      <h1 class="sgfidm-dashboard-organism__title">Buenos días, Ana</h1>
+      <p class="sgfidm-dashboard-organism__subtitle">Este es el estado de Mi negocio hoy.</p>
     </div>
-  }
+    <div class="sgfidm-dashboard-organism__meta">
+      <span class="sgfidm-dashboard-organism__fecha">Lunes, 9 de noviembre</span>
+      <span class="sgfidm-dashboard-organism__modo">{{ modo }}</span>
+    </div>
+  </header>
+
+  <section class="sgfidm-dashboard-organism__caja">
+    <div class="sgfidm-dashboard-organism__caja-info">
+      <span class="sgfidm-dashboard-organism__eyebrow">CAJA · MI NEGOCIO</span>
+      <h2 class="sgfidm-dashboard-organism__caja-titulo">Caja abierta</h2>
+      <p class="sgfidm-dashboard-organism__caja-detalle">
+        Desde las 9:00 AM · 18 transacciones · Saldo en caja $1,240
+      </p>
+      <span class="sgfidm-dashboard-organism__chip">Puedes vender ahora</span>
+    </div>
+    <div class="sgfidm-dashboard-organism__caja-acciones">
+      <sgfidm-button type="primary" size="md" [width]="'220px'" [height]="'56px'" (click)="ir('/pos')">
+        <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+        Ir al POS
+      </sgfidm-button>
+      <sgfidm-button type="secondary" size="md" [width]="'220px'" [height]="'56px'" (click)="ir('/caja')">
+        <span class="material-symbols-outlined" aria-hidden="true">close</span>
+        Cerrar caja
+      </sgfidm-button>
+    </div>
+  </section>
+
+  <div class="sgfidm-dashboard-organism__indicators-grid">
+    @for (ind of indicators(); track $index) {
+      <sgfidm-indicator-card [eyebrow]="ind.eyebrow" [value]="ind.value" [delta]="ind.delta" />
+    }
+  </div>
+
+  <div class="sgfidm-dashboard-organism__paneles">
+    <sgfidm-panel-card class="sgfidm-dashboard-organism__panel">
+      <h2 class="sgfidm-dashboard-organism__panel-titulo">Requiere tu atención</h2>
+      <p class="sgfidm-dashboard-organism__panel-subtitulo">3 alertas · ordenadas por criticidad</p>
+      @for (alerta of alertas; track alerta.titulo) {
+        <div class="sgfidm-dashboard-organism__fila">
+          <span class="sgfidm-dashboard-organism__punto" aria-hidden="true"></span>
+          <div class="sgfidm-dashboard-organism__fila-info">
+            <span class="sgfidm-dashboard-organism__fila-titulo">{{ alerta.titulo }}</span>
+            <span class="sgfidm-dashboard-organism__fila-detalle">{{ alerta.detalle }}</span>
+          </div>
+          <a class="sgfidm-dashboard-organism__fila-link" (click)="ir(alerta.ruta)">{{ alerta.accion }}</a>
+        </div>
+      }
+      <a class="sgfidm-dashboard-organism__panel-link" (click)="ir('/dashboard')">Ver todas (4)</a>
+    </sgfidm-panel-card>
+
+    <sgfidm-panel-card class="sgfidm-dashboard-organism__panel">
+      <div class="sgfidm-dashboard-organism__panel-header">
+        <h2 class="sgfidm-dashboard-organism__panel-titulo">Actividad reciente</h2>
+        <a class="sgfidm-dashboard-organism__panel-link" (click)="ir('/dashboard')">Abrir panel</a>
+      </div>
+      @for (item of actividad; track item.titulo) {
+        <div class="sgfidm-dashboard-organism__fila">
+          <div class="sgfidm-dashboard-organism__fila-info">
+            <span class="sgfidm-dashboard-organism__fila-titulo">{{ item.titulo }}</span>
+            <span class="sgfidm-dashboard-organism__fila-detalle">{{ item.detalle }}</span>
+          </div>
+        </div>
+      }
+      <a class="sgfidm-dashboard-organism__panel-link" (click)="ir('/dashboard')">Ver historial completo</a>
+    </sgfidm-panel-card>
+  </div>
+
+  <div class="sgfidm-dashboard-organism__acciones">
+    <span class="sgfidm-dashboard-organism__eyebrow">ACCIONES RÁPIDAS</span>
+    <div class="sgfidm-dashboard-organism__acciones-lista">
+      <sgfidm-button type="primary" size="md" [width]="'240px'" [height]="'56px'" (click)="ir('/pos')">
+        <span class="material-symbols-outlined" aria-hidden="true">add</span>
+        Nueva venta
+      </sgfidm-button>
+      <sgfidm-button type="secondary" size="md" [width]="'240px'" [height]="'56px'" (click)="ir('/dashboard')">
+        <span class="material-symbols-outlined" aria-hidden="true">add</span>
+        Agregar producto
+      </sgfidm-button>
+      <sgfidm-button type="secondary" size="md" [width]="'240px'" [height]="'56px'" (click)="ir('/dashboard')">
+        <span class="material-symbols-outlined" aria-hidden="true">receipt_long</span>
+        Registrar gasto
+      </sgfidm-button>
+      <sgfidm-button type="secondary" size="md" [width]="'240px'" [height]="'56px'" (click)="ir('/dashboard')">
+        <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+        Ver reportes
+      </sgfidm-button>
+    </div>
+  </div>
 </div>

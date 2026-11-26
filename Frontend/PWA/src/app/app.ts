@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
-import { RouterOutlet, Router } from '@angular/router';
+import { RouterOutlet, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 
 @Component({
-  imports: [RouterOutlet, SharedModule],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, SharedModule],
   selector: 'sgfidm-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',

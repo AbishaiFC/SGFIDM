@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthRepository } from '../../../../../app/core/services/data/repositories/auth.repository';
 import { SgfidmFormFieldComponent } from '../../../../shared/components/molecules/form-field/sgfidm-form-field.component';
@@ -16,6 +16,7 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
   imports: [
     CommonModule,
     FormsModule,
+    RouterLink,
     SgfidmFormFieldComponent,
     SgfidmPasswordFieldComponent,
     SgfidmButtonComponent,

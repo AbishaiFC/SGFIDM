@@ -1,41 +1,122 @@
 <div class="sgfidm-inventario-organism" role="region" aria-label="Inventario">
-  <!-- Encabezado -->
-  <div class="sgfidm-inventario-organism__header">
-    <h2 class="sgfidm-inventario-organism__title">Inventario</h2>
-    <p class="sgfidm-inventario-organism__subtitle">Productos con cotización según stock</p>
+  <header class="sgfidm-inventario-organism__header">
+    <div class="sgfidm-inventario-organism__textos">
+      <h1 class="sgfidm-inventario-organism__title">Inventario</h1>
+      <p class="sgfidm-inventario-organism__subtitle">
+        {{ totalProductos }} productos · {{ totalStockCritico }} con bajo stock ·
+        {{ totalAgotados() }} agotados
+      </p>
+    </div>
+    <div class="sgfidm-inventario-organism__acciones-header">
+      <sgfidm-button type="secondary" size="md" [width]="'94px'" [height]="'44px'" (click)="ajustar.emit()">
+        Ajustar
+      </sgfidm-button>
+      <sgfidm-button type="secondary" size="md" [width]="'94px'" [height]="'44px'" (click)="alertas.emit()">
+        Alertas
+      </sgfidm-button>
+      <sgfidm-button
+        type="primary"
+        size="md"
+        [width]="'180px'"
+        [height]="'44px'"
+        (click)="registrarMovimiento.emit()"
+      >
+        Registrar movimiento
+      </sgfidm-button>
+    </div>
+  </header>
+
+  <div class="sgfidm-inventario-organism__toolbar">
+    <sgfidm-search-bar
+      class="sgfidm-inventario-organism__buscar"
+      placeholder="Código o nombre del producto"
+      [(ngModel)]="busqueda"
+    />
+    <!-- ToDo INV-01: cargar las categorías activas desde el catálogo. -->
+    <select class="sgfidm-inventario-organism__categoria" aria-label="Categoría">
+      <option>Todas las categorías</option>
+      <option>Café y té</option>
+      <option>Panadería</option>
+      <option>Accesorios</option>
+    </select>
+    <div class="sgfidm-inventario-organism__filtros" role="group" aria-label="Filtrar por estado">
+      @for (filtro of filtros; track filtro) {
+        <sgfidm-chip
+          variant="filter"
+          [selected]="estadoFiltro() === filtro"
+          (click)="seleccionarFiltro(filtro)"
+        >
+          {{ filtro }}
+        </sgfidm-chip>
+      }
+    </div>
   </div>
 
-  <!-- Indicadores rápidos -->
-  <div class="sgfidm-inventario-organism__indicators">
-    <sgfidm-indicator-card eyebrow="PRODUCTOS TOTALES" [value]="totalProductos"
-      delta="Stock útil" />
-    <sgfidm-indicator-card eyebrow="STOCK CRÍTICO" [value]="totalStockCritico"
-      [delta]="deltaStockCritico" />
-  </div>
-
-  <!-- Listado de productos -->
   @if (mostrarEmptyState()) {
-    <!-- EmptyState estándar y bloqueante (decisión B12) -->
     <sgfidm-empty-state
       icon="folder_off"
       title="Sin productos"
       message="Agrega el primer producto para comenzar a operar"
       actionLabel="Nuevo producto"
-      (action)="onAccion({id: '', nombre: '', costo: '$0.00', precio: '$0.00', stock: 0, stockCritico: 0})"
+      (action)="accion.emit({ id: '', codigo: '', nombre: '', categoria: '', costo: '$0.00', precio: '$0.00', stock: 0, stockCritico: 0, estado: 'Sin alerta' })"
     />
   } @else {
-    <sgfidm-panel-card eyebrow="PRODUCTOS" class="sgfidm-inventario-organism__panel">
-      <div class="sgfidm-inventario-organism__products">
-        @for (p of productos(); track p.id) {
-          <div class="sgfidm-inventario-organism__product" role="row"
-            (click)="onAccion(p)">
-            <span class="sgfidm-inventario-organism__name">{{ p.nombre }}</span>
-            <span class="sgfidm-inventario-organism__cost">{{ p.costo }}</span>
-            <span class="sgfidm-inventario-organism__price">{{ p.precio }}</span>
-            <span class="sgfidm-inventario-organism__stock">Stock: {{ p.stock }}</span>
-          </div>
-        }
-      </div>
+    <sgfidm-panel-card class="sgfidm-inventario-organism__panel">
+      <table class="sgfidm-inventario-organism__tabla">
+        <thead>
+          <tr>
+            <th>PRODUCTO</th>
+            <th>CATEGORÍA</th>
+            <th>EXISTENCIAS</th>
+            <th>MÍNIMO</th>
+            <th>ESTADO</th>
+            <th>PRECIO</th>
+            <th><span class="sr-only">Acciones</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of paginados(); track p.id) {
+            <tr class="sgfidm-inventario-organism__fila" (click)="onAccion(p)">
+              <td>
+                <span class="sgfidm-inventario-organism__nombre">{{ p.nombre }}</span>
+                <span class="sgfidm-inventario-organism__codigo">
+                  {{ p.codigo }} · {{ p.codigoBarras || '—' }}
+                </span>
+              </td>
+              <td>{{ p.categoria }}</td>
+              <td>{{ p.stock }}</td>
+              <td>{{ p.stockCritico }}</td>
+              <td>
+                <span class="sgfidm-inventario-organism__estado" [attr.data-estado]="p.estado">
+                  {{ p.estado }}
+                </span>
+              </td>
+              <td>{{ p.precio }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="sgfidm-inventario-organism__menu"
+                  aria-label="Acciones del producto"
+                  (click)="$event.stopPropagation(); onAccion(p)"
+                >
+                  <span class="material-symbols-outlined" aria-hidden="true">more_horiz</span>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
     </sgfidm-panel-card>
+
+    <div class="sgfidm-inventario-organism__paginacion">
+      <span>{{ porPagina }} por página · {{ rango() }} de {{ totalProductos }}</span>
+      <sgfidm-pagination
+        [totalPages]="totalPaginas()"
+        [currentPage]="pagina()"
+        (pageChange)="cambiarPagina($event)"
+      />
+    </div>
   }
+
+  <p class="sgfidm-inventario-organism__nota">Los productos archivados no aparecen en este listado.</p>
 </div>

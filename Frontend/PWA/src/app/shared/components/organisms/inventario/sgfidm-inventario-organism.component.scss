@@ -1,101 +1,206 @@
-// ── Tokens SGFIDM (via CSS custom properties de _tokens.scss) ──────────────
-// surface       : var(--sgfidm-color-surface)       #FFFFFF
-// text-primary  : var(--sgfidm-color-text-primary)  #1C1C1C
-// text-secondary: var(--sgfidm-color-text-secondary) #575757
-// text-muted    : var(--sgfidm-color-text-muted)    #8B8B8B
-// space-2,4,6   : var(--sgfidm-space-2|4|6)         8px | 16px | 24px
-
-:host {
-  display: block;
-  width: 100%;
-}
-
+/* INV-01 Existencias generales — Figma 1145:82832 */
 .sgfidm-inventario-organism {
   width: 100%;
-}
-
-.sgfidm-inventario-organism__header {
-  margin-bottom: var(--sgfidm-space-4);
-}
-
-.sgfidm-inventario-organism__title {
-  font-family: var(--sgfidm-font-family);
-  font-size: 19px;
-  font-weight: 600;
-  color: var(--sgfidm-color-text-primary);
-  margin: 0;
-}
-
-.sgfidm-inventario-organism__subtitle {
-  font-family: var(--sgfidm-font-family);
-  font-size: 12.5px;
-  color: var(--sgfidm-color-text-muted);
-  margin: var(--sgfidm-space-2) 0 0;
-}
-
-.sgfidm-inventario-organism__indicators {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sgfidm-space-4);
-  margin-bottom: var(--sgfidm-space-4);
-}
-
-.sgfidm-inventario-organism__panel {
-  max-height: 480px;
-  overflow-y: auto;
-}
-
-.sgfidm-inventario-organism__products {
   display: flex;
   flex-direction: column;
-}
-
-.sgfidm-inventario-organism__product {
-  display: flex;
-  align-items: center;
-  gap: var(--sgfidm-space-4);
-  padding: var(--sgfidm-space-3) var(--sgfidm-space-2);
-  cursor: pointer;
-  border-bottom: 1px solid var(--sgfidm-color-outline, #c6c6c6);
-
-  &:hover {
-    background: var(--sgfidm-color-surface-variant, #f5f5f5);
-  }
-
-  &:focus-visible {
-    outline: 1.5px solid var(--sgfidm-focus-ring, #2a2a2a);
-    outline-offset: -2px;
-  }
-}
-
-.sgfidm-inventario-organism__name {
-  flex: 1;
-  min-width: 0;
+  gap: 16px;
   font-family: var(--sgfidm-font-family);
-  font-size: 12px;
-  color: var(--sgfidm-color-text-primary);
-  white-space: nowrap;
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__textos {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__title {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.25px;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+    margin: 0;
+  }
+
+  &__subtitle {
+    font-size: 12px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+    margin: 0;
+  }
+
+  &__acciones-header {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  &__buscar {
+    width: 280px;
+  }
+
+  &__categoria {
+    height: 44px;
+    padding: 0 32px 0 12px;
+    border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+    border-radius: var(--sgfidm-radius-md, 6px);
+    background: var(--sgfidm-color-surface, #fff);
+    font-family: var(--sgfidm-font-family);
+    font-size: 12px;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23575757' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+  }
+
+  &__filtros {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  &__panel {
+    width: 100%;
+
+    ::ng-deep .sgfidm-panel-card {
+      width: 100%;
+      height: auto;
+      padding: 0;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+  }
+
+  &__tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+
+    th {
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      color: var(--sgfidm-color-text-muted, #8b8b8b);
+      background: var(--sgfidm-color-surface, #fff);
+      border-bottom: 1px solid var(--sgfidm-color-outline-variant, #e0e0e0);
+    }
+
+    td {
+      padding: 12px 16px;
+      color: var(--sgfidm-color-text-primary, #1c1c1c);
+      border-bottom: 1px solid var(--sgfidm-color-outline-variant, #e0e0e0);
+    }
+  }
+
+  &__fila {
+    cursor: pointer;
+
+    &:nth-child(even) {
+      background: var(--sgfidm-color-surface-container, #fafafa);
+    }
+
+    &:hover {
+      background: var(--sgfidm-color-surface-variant, #f5f5f5);
+    }
+
+    &:last-child td {
+      border-bottom: 0;
+    }
+  }
+
+  &__nombre {
+    display: block;
+    font-weight: 600;
+  }
+
+  &__codigo {
+    display: block;
+    margin-top: 2px;
+    font-size: 9px;
+    color: var(--sgfidm-color-text-muted, #8b8b8b);
+  }
+
+  &__estado {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 9px;
+    font-weight: 600;
+    background: var(--sgfidm-color-success-container, #e1ede5);
+    color: var(--sgfidm-color-on-success-container, #24402f);
+
+    &[data-estado='Bajo stock'] {
+      background: var(--sgfidm-color-warning-container, #f5e8c8);
+      color: var(--sgfidm-color-on-warning-container, #5c4413);
+    }
+
+    &[data-estado='Agotado'] {
+      background: var(--sgfidm-color-error-container, #f6ded9);
+      color: var(--sgfidm-color-on-error-container, #7a2d20);
+    }
+
+    &[data-estado='Sin alerta'] {
+      background: var(--sgfidm-color-surface-variant, #f0f0f0);
+      color: var(--sgfidm-color-text-secondary, #575757);
+    }
+  }
+
+  &__menu {
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: var(--sgfidm-radius-sm, 4px);
+    background: transparent;
+    color: var(--sgfidm-color-text-secondary, #575757);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--sgfidm-color-surface-variant, #f0f0f0);
+    }
+  }
+
+  &__paginacion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 16px;
+    border: 1px solid var(--sgfidm-color-outline-variant, #e0e0e0);
+    border-radius: 12px;
+    background: var(--sgfidm-color-surface, #fff);
+    font-size: 10px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+
+  &__nota {
+    font-size: 10px;
+    color: var(--sgfidm-color-text-muted, #8b8b8b);
+    margin: 0;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
   overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.sgfidm-inventario-organism__cost {
-  font-family: var(--sgfidm-font-family);
-  font-size: 11px;
-  color: var(--sgfidm-color-text-secondary);
-  flex-shrink: 0;
-}
-
-.sgfidm-inventario-organism__price {
-  font-family: var(--sgfidm-font-family);
-  font-size: 11px;
-  color: var(--sgfidm-color-text-primary);
-  flex-shrink: 0;
-}
-
-.sgfidm-inventario-organism__stock {
-  font-family: var(--sgfidm-font-family);
-  font-size: 11px;
-  color: var(--sgfidm-color-text-secondary);
-  flex-shrink: 0;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+﻿import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SgfidmEmptyStateComponent } from './sgfidm-empty-state.component';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
@@ -41,7 +41,7 @@ describe('SgfidmEmptyStateComponent', () => {
   });
 
   it('should render default icon', () => {
-    const icon = fixture.debugElement.query(By.css('.sgfidm-empty-state__icon .material-icons'));
+    const icon = fixture.debugElement.query(By.css('.sgfidm-empty-state__icon .material-symbols-outlined'));
     expect(icon.nativeElement.textContent).toContain('folder_off');
   });
 
@@ -89,3 +89,4 @@ describe('SgfidmEmptyStateComponent', () => {
     expect(wrapper.nativeElement.getAttribute('role')).toBe('status');
   });
 });
+

@@ -1,4 +1,4 @@
-// ── Tokens SGFIDM (CSS custom properties de _tokens.scss) ────────────────────
+﻿// ── Tokens SGFIDM (CSS custom properties de _tokens.scss) ────────────────────
 // surface-variant: var(--sgfidm-color-surface-variant) #F5F5F5
 // off-f2f2f2     : var(--sgfidm-color-off-f2f2f2)      #F2F2F2
 // text-muted     : var(--sgfidm-color-text-muted)      #8B8B8B
@@ -76,7 +76,7 @@ $bar-height: 44px;
   border-radius: 50%;
   color: var(--sgfidm-color-text-muted, #8b8b8b);
 
-  .material-icons {
+  .material-symbols-outlined {
     font-size: 16px;
   }
 
@@ -85,3 +85,4 @@ $bar-height: 44px;
     outline-offset: -2px;
   }
 }
+

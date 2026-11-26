@@ -6,6 +6,7 @@ import { AuthRepository } from '../../../../../app/core/services/data/repositori
 import { SgfidmFormFieldComponent } from '../../../../shared/components/molecules/form-field/sgfidm-form-field.component';
 import { SgfidmPasswordFieldComponent } from '../../../../shared/components/molecules/password-field/sgfidm-password-field.component';
 import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
+import { SgfidmAuthCardComponent } from '../../../../shared/components/molecules/auth-card/sgfidm-auth-card.component';
 
 /** AUTH-07 — Acceso de empleado con código EMP-XXX y contraseña (Figma EMP / Inicio de sesión). */
 @Component({
@@ -14,6 +15,7 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
     CommonModule,
     FormsModule,
     RouterLink,
+    SgfidmAuthCardComponent,
     SgfidmFormFieldComponent,
     SgfidmPasswordFieldComponent,
     SgfidmButtonComponent,

@@ -23,7 +23,7 @@ describe('VerifyEmailComponent', () => {
   });
 
   it('should render the verify email title', () => {
-    const title = fixture.debugElement.query(By.css('.verify-email-title'));
+    const title = fixture.debugElement.query(By.css('.sgfidm-auth-card__title'));
     expect(title.nativeElement.textContent).toContain('Confirma tu correo electrónico');
   });
 

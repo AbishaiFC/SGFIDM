@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
+import { SgfidmAuthCardComponent } from '../../../../shared/components/molecules/auth-card/sgfidm-auth-card.component';
 
 /**
  * AUTH-09 — Configuración de acceso (primer acceso del empleado).
@@ -9,7 +10,7 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
  */
 @Component({
   standalone: true,
-  imports: [SgfidmButtonComponent],
+  imports: [SgfidmAuthCardComponent, SgfidmButtonComponent],
   selector: 'sgfidm-employee-access-setup',
   styleUrl: './employee-access-setup.component.scss',
   templateUrl: './employee-access-setup.component.html',

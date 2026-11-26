@@ -1,4 +1,4 @@
-<div class="sgfidm-auth-card" role="main">
+<div class="sgfidm-auth-card" [class.sgfidm-auth-card--wide]="wide()" role="main">
   @if (showLogo()) {
     <div class="sgfidm-auth-card__logo" aria-hidden="true">
       <span class="sgfidm-auth-card__logo-text">{{ logoText() }}</span>

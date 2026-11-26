@@ -72,4 +72,32 @@
     flex-direction: column;
     gap: 16px;
   }
+
+  // Variante Figma AUTH: tarjeta de 560px con borde y tipografía de pantalla.
+  &--wide {
+    box-sizing: border-box;
+    max-width: 560px;
+    padding: 24px 32px;
+    border: 1px solid var(--sgfidm-color-outline-variant, #dbdbdb);
+    border-radius: var(--sgfidm-radius-lg, 10px);
+    box-shadow: none;
+    gap: var(--sgfidm-space-8);
+
+    .sgfidm-auth-card__title {
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 36px;
+      letter-spacing: -0.25px;
+    }
+
+    .sgfidm-auth-card__subtitle {
+      font-size: 13.5px;
+      line-height: 21px;
+      color: var(--sgfidm-color-text-secondary, #575757);
+    }
+
+    .sgfidm-auth-card__content {
+      gap: 24px;
+    }
+  }
 }

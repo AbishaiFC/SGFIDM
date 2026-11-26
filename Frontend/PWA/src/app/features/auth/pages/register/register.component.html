@@ -1,10 +1,8 @@
-<sgfidm-auth-card
-  title="Crea tu cuenta"
-  subtitle="Registra la cuenta del administrador principal del negocio."
-  [showLogo]="false"
->
-  <div class="register-form">
-    @if (errorMessage) {
+<div class="register-page">
+  <sgfidm-auth-card title="Crea tu cuenta" subtitle="Registra la cuenta del administrador principal del negocio."
+    [showLogo]="false" [wide]="true">
+    <div class="register-form">
+      @if (errorMessage) {
       <div class="register-error-aviso" role="alert">
         <span class="material-symbols-outlined register-error-aviso__icon" aria-hidden="true">error</span>
         <div>
@@ -12,47 +10,27 @@
           <span class="register-error-aviso__text">{{ errorMessage }}</span>
         </div>
       </div>
-    }
+      }
 
-    <sgfidm-form-field
-      label="Nombre del administrador"
-      placeholder="Ej. Ana Martínez"
-      [(value)]="nombre"
-      [required]="true"
-    />
-    <sgfidm-form-field
-      label="Correo electrónico"
-      type="email"
-      placeholder="nombre@empresa.com"
-      [(value)]="email"
-      [required]="true"
-    />
-    <sgfidm-password-field
-      label="Contraseña"
-      placeholder="Mínimo 8 caracteres"
-      helperText="La contraseña debe incluir al menos 8 caracteres, 1 letra mayúscula y 1 número."
-      [(value)]="password"
-    />
-    <sgfidm-password-field
-      label="Confirmar contraseña"
-      placeholder="Vuelve a escribir tu contraseña"
-      helperText="Las contraseñas deben coincidir."
-      [(value)]="confirmPassword"
-    />
+      <sgfidm-form-field label="Nombre del administrador" placeholder="Ej. Ana Martínez" [(value)]="nombre"
+        [required]="true" />
+      <sgfidm-form-field label="Correo electrónico" type="email" placeholder="nombre@empresa.com" [(value)]="email"
+        [required]="true" />
+      <sgfidm-password-field label="Contraseña" placeholder="Mínimo 8 caracteres"
+        helperText="La contraseña debe incluir al menos 8 caracteres, 1 letra mayúscula y 1 número."
+        [(value)]="password" />
+      <sgfidm-password-field label="Confirmar contraseña" placeholder="Vuelve a escribir tu contraseña"
+        helperText="Las contraseñas deben coincidir." [(value)]="confirmPassword" />
 
-    <sgfidm-button
-      type="primary"
-      size="md"
-      [disabled]="isLoading"
-      [loading]="isLoading"
-      (click)="onRegister()"
-    >
-      Crear cuenta
-    </sgfidm-button>
+      <sgfidm-button type="primary" size="md" [disabled]="isLoading" [loading]="isLoading" (click)="onRegister()"
+        [fullWidth]="true">
+        Crear cuenta
+      </sgfidm-button>
 
-    <div class="register-footer">
-      <span class="register-footer-text">¿Ya tienes una cuenta? </span>
-      <a class="register-link" routerLink="/auth/login">Iniciar sesión</a>
+      <div class="register-footer">
+        <span class="register-footer-text">¿Ya tienes una cuenta? </span>
+        <a class="register-link" routerLink="/auth/login">Iniciar sesión</a>
+      </div>
     </div>
-  </div>
-</sgfidm-auth-card>
+  </sgfidm-auth-card>
+</div>

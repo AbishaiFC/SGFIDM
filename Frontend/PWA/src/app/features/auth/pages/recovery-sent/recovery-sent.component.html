@@ -1,12 +1,10 @@
 <div class="recovery-sent-page">
-  <div class="recovery-sent-card">
-    <header class="recovery-sent-header">
-      <h1 class="recovery-sent-title">Instrucciones enviadas</h1>
-      <p class="recovery-sent-subtitle">
-        Si el correo está registrado, enviamos un enlace para restablecer la contraseña a:
-      </p>
-    </header>
-
+  <sgfidm-auth-card
+    title="Instrucciones enviadas"
+    subtitle="Si el correo está registrado, enviamos un enlace para restablecer la contraseña a:"
+    [showLogo]="false"
+    [wide]="true"
+  >
     <div class="recovery-sent-email">
       <span class="recovery-sent-email__label">Correo ingresado</span>
       <div class="recovery-sent-email__value">{{ maskedEmail }}</div>
@@ -35,5 +33,5 @@
         Volver al inicio de sesión
       </a>
     </div>
-  </div>
+  </sgfidm-auth-card>
 </div>

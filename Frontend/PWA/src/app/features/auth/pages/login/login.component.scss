@@ -1,58 +1,11 @@
-/* DesignSystem tokens: --sgfidm-color-background (#EDEDED), surface (#FFFFFF),
-   outline (#C6C6C6), text-primary (#1C1C1C), text-secondary (#575757),
-   headline-large (28px SemiBold), body-large (13.5px), label-large (12.5px) */
+/* La tarjeta y el formulario viven en SgfidmLoginOrganism; aquí solo los enlaces AUTH-01. */
 .login-page {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100dvh;
-  background-color: var(--sgfidm-color-background, #EDEDED);
+  background-color: var(--sgfidm-color-background, #ededed);
   padding: var(--sgfidm-space-8);
-}
-
-.login-card {
-  width: 560px;
-  background-color: var(--sgfidm-color-surface, #FFFFFF);
-  border: 1px solid var(--sgfidm-color-outline, #DBDBDB);
-  border-radius: var(--sgfidm-radius-lg, 10px);
-  padding: 24px 32px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sgfidm-space-6);
-}
-
-.login-header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.login-title {
-  font-family: var(--sgfidm-font-family);
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 36px;
-  letter-spacing: -0.25px;
-  color: var(--sgfidm-color-text-primary, #1C1C1C);
-}
-
-.login-subtitle {
-  font-family: var(--sgfidm-font-family);
-  font-size: 13.5px;
-  color: var(--sgfidm-color-text-secondary, #575757);
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sgfidm-space-4);
-}
-
-.login-error {
-  font-family: var(--sgfidm-font-family);
-  font-size: 12px;
-  color: var(--sgfidm-color-error, #C62828);
 }
 
 .login-links {
@@ -64,7 +17,7 @@
 .login-link {
   font-family: var(--sgfidm-font-family);
   font-size: 12.5px;
-  color: var(--sgfidm-color-text-primary, #1C1C1C);
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
   text-decoration: underline;
   cursor: pointer;
 }
@@ -81,8 +34,4 @@
   font-family: var(--sgfidm-font-family);
   font-size: 12.5px;
   color: var(--sgfidm-color-text-secondary, #575757);
-}
-
-.button-section {
-  width: 100%;
 }

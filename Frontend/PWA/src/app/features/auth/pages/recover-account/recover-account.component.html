@@ -1,9 +1,10 @@
 <div class="recover-account-page">
-  <div class="recover-account-card">
-    <h1 class="recover-account-title">Recupera tu cuenta</h1>
-    <p class="recover-account-subtitle">Escribe el correo con el que te registraste. Te enviaremos instrucciones para
-      restablecer tu contraseña.</p>
-
+  <sgfidm-auth-card
+    title="Recupera tu cuenta"
+    subtitle="Escribe el correo con el que te registraste. Te enviaremos instrucciones para restablecer tu contraseña."
+    [showLogo]="false"
+    [wide]="true"
+  >
     <div class="recover-account-body">
       <sgfidm-form-field label="Correo electrónico" type="email" placeholder="nombre@empresa.com" [(value)]="email" />
       <sgfidm-button type="primary" size="md" [fullWidth]="true" [height]="'56px'" [disabled]="isLoading" [loading]="isLoading"
@@ -13,5 +14,5 @@
     <div class="recover-account-footer">
       <a class="recover-account-link" (click)="onVolverAlLogin()">Volver al inicio de sesión</a>
     </div>
-  </div>
+  </sgfidm-auth-card>
 </div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
+import { SgfidmAuthCardComponent } from '../../../../shared/components/molecules/auth-card/sgfidm-auth-card.component';
 
 /**
  * RecoverySentPage — Pantalla AUTH-03 "Recuperación enviada" (ADM / Recuperación enviada).
@@ -11,7 +12,7 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
  */
 @Component({
   standalone: true,
-  imports: [RouterLink, SgfidmButtonComponent],
+  imports: [RouterLink, SgfidmAuthCardComponent, SgfidmButtonComponent],
   selector: 'sgfidm-recovery-sent',
   styleUrl: './recovery-sent.component.scss',
   templateUrl: './recovery-sent.component.html',

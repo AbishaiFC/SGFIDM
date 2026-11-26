@@ -1,10 +1,10 @@
 <div class="emp-page">
-  <div class="emp-card">
-    <header class="emp-header">
-      <h1 class="emp-title">Acceso de empleado</h1>
-      <p class="emp-subtitle">Ingresa tu código de empleado y contraseña para acceder.</p>
-    </header>
-
+  <sgfidm-auth-card
+    title="Acceso de empleado"
+    subtitle="Ingresa tu código de empleado y contraseña para acceder."
+    [showLogo]="false"
+    [wide]="true"
+  >
     <div class="emp-form">
       <sgfidm-form-field
         label="Código de empleado"
@@ -34,5 +34,5 @@
       <a class="emp-link" routerLink="/auth/recover-account">Recuperar contraseña</a>
       <a class="emp-link" routerLink="/auth/employee/verify-phone">Verificación por OTP</a>
     </div>
-  </div>
+  </sgfidm-auth-card>
 </div>

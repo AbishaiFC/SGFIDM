@@ -1,3 +1,12 @@
+.register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  background-color: var(--sgfidm-color-background, #ededed);
+  padding: var(--sgfidm-space-8);
+}
+
 .register-form {
   width: 100%;
   display: flex;

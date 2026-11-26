@@ -1,43 +1,44 @@
-<sgfidm-auth-card [title]="title()" [subtitle]="subtitle()">
+<sgfidm-auth-card
+  [title]="title()"
+  [subtitle]="subtitle()"
+  [showLogo]="false"
+  [wide]="true"
+>
   <div class="login-organism-form">
-    <!-- Form field de correo -->
     <sgfidm-form-field
       [label]="emailLabel()"
       type="email"
       [placeholder]="emailPlaceholder()"
       [(ngModel)]="form.email"
       [required]="true"
+      [errorMessage]="showEmailError() ? 'Correo electrónico no válido.' : ''"
     />
 
-    <!-- Form field de contraseña (con botón de toggle) -->
-    <div class="login-organism-password-wrapper">
-      <sgfidm-form-field
-        [label]="passwordLabel()"
-        [type]="hidePassword() ? 'password' : 'text'"
-        [(ngModel)]="form.password"
-        [required]="true"
-      />
-      <sgfidm-icon-button
-        class="login-organism-password-toggle"
-        type="standard"
-        [attr.aria-label]="hidePassword() ? 'Mostrar contraseña' : 'Ocultar contraseña'"
-        (click)="togglePassword()"
-      >
-        {{ hidePassword() ? 'visibility' : 'visibility_off' }}
-      </sgfidm-icon-button>
-    </div>
+    <sgfidm-password-field
+      [label]="passwordLabel()"
+      [placeholder]="passwordPlaceholder()"
+      [(value)]="form.password"
+      [errorMessage]="showPasswordError() ? 'Contraseña no válida.' : ''"
+    />
 
-    <!-- Botón de acción -->
+    @if (errorMessage()) {
+      <p class="login-organism-error" role="alert">{{ errorMessage() }}</p>
+    }
+
     <div class="login-organism-actions">
       <sgfidm-button
         type="primary"
-        size="lg"
-        [disabled]="isLoading() || form.email === '' || form.password === ''"
-        [loading]="isLoading()"
+        size="md"
+        [fullWidth]="true"
+        [height]="'56px'"
+        [disabled]="busy() || !form.email || !form.password"
+        [loading]="busy()"
         (click)="onSubmit()"
       >
         <span class="login-organism-button-text">Iniciar sesión</span>
       </sgfidm-button>
     </div>
+
+    <ng-content />
   </div>
 </sgfidm-auth-card>

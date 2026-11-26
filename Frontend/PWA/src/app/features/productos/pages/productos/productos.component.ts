@@ -61,7 +61,6 @@ export class ProductosComponent {
   }
 
   onAccion(producto: ProductoCatalogDto): void {
-    // ToDo PROD-03: abrir detalle del producto.
-    void producto;
+    this.router.navigate(['/productos', producto.codigo]);
   }
 }

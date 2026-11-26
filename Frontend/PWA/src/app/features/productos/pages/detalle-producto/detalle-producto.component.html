@@ -1,0 +1,121 @@
+<!--
+  PROD-03 en modo Solo: sin precios ni existencias por sucursal, sin EMP-XXX.
+  ToDo: PROD-04 Editar, PROD-06 Archivar, INV-02 detalle de existencias.
+-->
+<div class="detalle-producto-page">
+  <header class="detalle-producto-header">
+    <div>
+      <span class="detalle-producto-eyebrow">{{ codigo }}</span>
+      <h1 class="detalle-producto-titulo">{{ nombre }}</h1>
+      <p class="detalle-producto-subtitulo">Código de barras {{ barras }} · {{ categoria }}</p>
+      <div class="detalle-producto-chips">
+        <span class="sgfidm-chip-estado">Activo</span>
+        <span class="sgfidm-chip-estado sgfidm-chip-estado--alerta">Bajo stock</span>
+      </div>
+    </div>
+    <div class="detalle-producto-acciones">
+      <sgfidm-button type="secondary" size="md" [width]="'140px'" [height]="'44px'" (click)="volver()">
+        Volver al catálogo
+      </sgfidm-button>
+      <sgfidm-button type="secondary" size="md" [width]="'94px'" [height]="'44px'" (click)="pendiente('PROD-06', 'Archivar')">
+        Archivar
+      </sgfidm-button>
+      <sgfidm-button type="primary" size="md" [width]="'94px'" [height]="'44px'" (click)="pendiente('PROD-04', 'Editar')">
+        Editar
+      </sgfidm-button>
+    </div>
+  </header>
+
+  <div class="detalle-producto-indicadores">
+    @for (ind of indicadores; track ind.eyebrow) {
+      <sgfidm-indicator-card [eyebrow]="ind.eyebrow" [value]="ind.value" />
+    }
+  </div>
+
+  <div class="detalle-producto-pestanas">
+    <sgfidm-tabs [tabs]="tabs" [activeTab]="tab()" (tabClick)="tab.set($event)" />
+  </div>
+
+  <sgfidm-panel-card class="detalle-producto-panel">
+    @switch (tab()) {
+      @case ('Información general') {
+        <h2 class="detalle-producto-panel__titulo">Información general</h2>
+        <p class="detalle-producto-panel__subtitulo">Datos de identificación y presentación del producto.</p>
+        <div class="detalle-producto-columnas">
+          <div>
+            @for (d of datos; track d.etiqueta) {
+              <div class="detalle-producto-dato"><span>{{ d.etiqueta }}</span><strong>{{ d.valor }}</strong></div>
+            }
+            <div class="detalle-producto-dato"><span>DESCRIPCIÓN</span><strong>Granos de café de altura · tueste medio.</strong></div>
+          </div>
+          <div>
+            @for (d of datosDerecha; track d.etiqueta) {
+              <div class="detalle-producto-dato"><span>{{ d.etiqueta }}</span><strong>{{ d.valor }}</strong></div>
+            }
+          </div>
+        </div>
+        <div class="detalle-producto-aviso" role="status">
+          <span class="material-symbols-outlined" aria-hidden="true">info</span>
+          <span><strong>ARCHIVADO</strong> · Al archivar, el producto queda inactivo; puedes reactivarlo cuando lo necesites.</span>
+        </div>
+      }
+      @case ('Existencias') {
+        <h2 class="detalle-producto-panel__titulo">Existencias · Mi negocio</h2>
+        <p class="detalle-producto-panel__subtitulo">Las existencias se modifican solo mediante movimientos.</p>
+        <div class="detalle-producto-tabla">
+          <div class="detalle-producto-thead"><span>NEGOCIO</span><span>EXISTENCIAS</span><span>STOCK MÍNIMO</span><span>INDICADOR</span></div>
+          <div class="detalle-producto-fila"><span>Mi negocio</span><span>18</span><span>5</span><span class="sgfidm-chip-estado">Normal</span></div>
+        </div>
+        <sgfidm-button type="secondary" size="md" [width]="'200px'" [height]="'44px'" (click)="verInventario()">
+          Ver en Inventario
+        </sgfidm-button>
+        <div class="detalle-producto-aviso" role="status">
+          <span class="material-symbols-outlined" aria-hidden="true">info</span>
+          <span><strong>MOVIMIENTOS</strong> · Las existencias nunca se editan directamente; se modifican solo mediante movimientos inmutables.</span>
+        </div>
+      }
+      @case ('Historial de precios y costos') {
+        <h2 class="detalle-producto-panel__titulo">Historial de precios y costos</h2>
+        <p class="detalle-producto-panel__subtitulo">Registro inmutable de cada cambio — fecha, usuario, campo, valor anterior y valor nuevo.</p>
+        <div class="detalle-producto-tabla">
+          <div class="detalle-producto-thead"><span>FECHA</span><span>CAMPO</span><span>VALOR ANTERIOR</span><span>VALOR NUEVO</span><span>USUARIO</span></div>
+          @for (f of historial; track f.fecha + f.campo) {
+            <div class="detalle-producto-fila">
+              <span>{{ f.fecha }}</span><span>{{ f.campo }}</span><span>{{ f.anterior }}</span><span>{{ f.nuevo }}</span><span>{{ f.usuario }}</span>
+            </div>
+          }
+        </div>
+      }
+      @case ('Márgenes') {
+        <h2 class="detalle-producto-panel__titulo">Márgenes del producto</h2>
+        <p class="detalle-producto-panel__subtitulo">Rentabilidad calculada con el precio base ($185.00) y el costo ($92.00) actuales.</p>
+        <div class="detalle-producto-margenes-cabecera">
+          <div><span>UTILIDAD POR UNIDAD</span><strong>$93.00</strong></div>
+          <div><span>MARGEN BRUTO</span><strong>50.3%</strong></div>
+          <div><span>MARKUP SOBRE COSTO</span><strong>101.1%</strong></div>
+        </div>
+        <div class="detalle-producto-tabla">
+          @for (m of margenes; track m.etiqueta) {
+            <div class="detalle-producto-fila"><span>{{ m.etiqueta }}</span><span>{{ m.valor }}</span></div>
+          }
+        </div>
+      }
+      @case ('Movimientos') {
+        <h2 class="detalle-producto-panel__titulo">Movimientos de existencias</h2>
+        <p class="detalle-producto-panel__subtitulo">Entradas y salidas de este producto. Las salidas por venta son automáticas; los ajustes registran solo la diferencia.</p>
+        <div class="detalle-producto-tabla">
+          <div class="detalle-producto-thead"><span>FECHA</span><span>TIPO</span><span>DETALLE</span><span>CANTIDAD</span><span>SALDO</span></div>
+          @for (m of movimientos; track m.fecha + m.detalle) {
+            <div class="detalle-producto-fila">
+              <span>{{ m.fecha }}</span><span>{{ m.tipo }}</span><span>{{ m.detalle }}</span><span>{{ m.cantidad }}</span><span>{{ m.saldo }}</span>
+            </div>
+          }
+        </div>
+      }
+    }
+  </sgfidm-panel-card>
+
+  @if (aviso()) {
+    <p class="detalle-producto-aviso-texto" role="status">{{ aviso() }}</p>
+  }
+</div>

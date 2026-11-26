@@ -24,6 +24,14 @@ describe('ProductosComponent (PROD-01 Solo)', () => {
     expect(fixture.componentInstance.productos).toHaveLength(6);
   });
 
+  it('should open the product detail from a row', () => {
+    const fixture = TestBed.createComponent(ProductosComponent);
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    fixture.componentInstance.onAccion(fixture.componentInstance.productos[0]);
+    expect(spy).toHaveBeenCalledWith(['/productos', 'PROD-018']);
+    spy.mockRestore();
+  });
+
   it('should open the registrar producto view', () => {
     const fixture = TestBed.createComponent(ProductosComponent);
     const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);

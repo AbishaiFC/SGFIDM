@@ -44,6 +44,7 @@ export class PrimerosPasosComponent {
       numero: 4,
       titulo: 'Registra tu primer gasto',
       descripcion: 'Recomendado; no es obligatorio para operar.',
+      ruta: '/finanzas/gastos/registrar',
     },
   ];
 
@@ -94,10 +95,13 @@ export class PrimerosPasosComponent {
     this.router.navigate(['/dashboard/configuracion']);
   }
 
-  /** INICIO-02: el alta del primer producto (PROD-02) marca el paso 1. */
+  /** INICIO-02: el alta del primer producto/gasto (PROD-02 / FIN-08) marca los pasos 1 y 4. */
   private static leerCompletados(): number[] {
     try {
-      return localStorage.getItem('sgfidm-primer-producto') === 'true' ? [1] : [];
+      const completados: number[] = [];
+      if (localStorage.getItem('sgfidm-primer-producto') === 'true') completados.push(1);
+      if (localStorage.getItem('sgfidm-primer-gasto') === 'true') completados.push(4);
+      return completados;
     } catch {
       return [];
     }

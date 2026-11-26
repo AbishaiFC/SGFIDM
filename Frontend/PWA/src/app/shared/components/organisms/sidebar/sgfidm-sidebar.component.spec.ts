@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router, provideRouter } from '@angular/router';
+import { vi } from 'vitest';
 import { SgfidmSidebarComponent } from './sgfidm-sidebar.component';
 
 describe('SgfidmSidebarComponent (Ficha 366:15636)', () => {
@@ -13,6 +14,7 @@ describe('SgfidmSidebarComponent (Ficha 366:15636)', () => {
         provideRouter([
           { path: 'dashboard', component: SgfidmSidebarComponent },
           { path: 'caja', component: SgfidmSidebarComponent },
+          { path: 'finanzas/gastos/registrar', component: SgfidmSidebarComponent },
         ]),
       ],
     }).compileComponents();
@@ -140,6 +142,18 @@ describe('SgfidmSidebarComponent (Ficha 366:15636)', () => {
     fixture.detectChanges();
     expect(fixture.debugElement.nativeElement.querySelector('.sgfidm-sidebar-item__label')).toBeNull();
     expect(fixture.nativeElement.classList.contains('sgfidm-sidebar--icono')).toBe(true);
+  });
+
+  it('should navigate to the FIN-08 drawer from Finanzas', () => {
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    const boton = Array.from(
+      (fixture.debugElement.nativeElement as HTMLElement).querySelectorAll(
+        'sgfidm-sidebar-item button',
+      ),
+    ).find((b) => b.textContent?.includes('Finanzas')) as HTMLButtonElement;
+    boton.click();
+    expect(spy).toHaveBeenCalledWith(['/finanzas/gastos/registrar']);
+    spy.mockRestore();
   });
 
   it('should mark Inicio as current on /dashboard', async () => {

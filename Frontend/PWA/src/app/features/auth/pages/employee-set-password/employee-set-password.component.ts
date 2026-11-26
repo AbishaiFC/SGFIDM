@@ -37,8 +37,8 @@ export class EmployeeSetPasswordComponent {
     }
 
     // No hay método específico en AuthRepository para alta de contraseña de empleado.
-    // AUTH-13: empleado con 2+ sucursales elige la activa antes de operar.
-    this.router.navigate(['/dashboard/select-branch']);
+    // AUTH-14: al iniciar sesión se comprueba si hay caja huérfana antes de seguir.
+    this.router.navigate(['/auth/caja-pendiente']);
   }
 
   private esValida(password: string): boolean {

@@ -1,0 +1,72 @@
+/* AUTH-14 Recuperación de caja pendiente — pantalla bloqueante (§2.5) */
+.caja-pendiente-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  background-color: var(--sgfidm-color-background, #ededed);
+  padding: var(--sgfidm-space-8);
+}
+
+.caja-aviso {
+  display: flex;
+  align-items: center;
+  gap: var(--sgfidm-space-3);
+  padding: var(--sgfidm-space-3);
+  border-radius: var(--sgfidm-radius-md, 8px);
+  background: var(--sgfidm-color-info-container, #e8f0f7);
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+
+  &__icono {
+    font-size: 22px;
+    color: var(--sgfidm-color-info, #3a6a8a);
+  }
+}
+
+.caja-datos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sgfidm-space-4);
+}
+
+.caja-dato {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  &--ancho {
+    grid-column: 1 / -1;
+  }
+
+  &__label {
+    font-family: var(--sgfidm-font-family);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    color: var(--sgfidm-color-text-muted, #8b8b8b);
+  }
+
+  &__value {
+    font-family: var(--sgfidm-font-family);
+    font-size: 14px;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+  }
+}
+
+.caja-acciones {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--sgfidm-space-2);
+}
+
+.caja-confirmacion {
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--sgfidm-color-text-secondary, #575757);
+  margin: 0;
+}

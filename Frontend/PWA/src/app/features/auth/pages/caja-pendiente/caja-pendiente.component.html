@@ -1,0 +1,57 @@
+<div class="caja-pendiente-page">
+  <sgfidm-auth-card
+    title="Recupera tu caja pendiente"
+    subtitle="Tu sesión terminó, pero tu caja sigue abierta. Elige cómo continuar."
+    [showLogo]="false"
+    [wide]="true"
+  >
+    <div class="caja-aviso" role="status">
+      <span class="material-symbols-outlined caja-aviso__icono" aria-hidden="true">info</span>
+      <span>
+        No se permiten operaciones hasta recuperar o cerrar la caja. El vencimiento del plazo
+        no cierra la caja ni altera su saldo.
+      </span>
+    </div>
+
+    <div class="caja-datos">
+      <div class="caja-dato">
+        <span class="caja-dato__label">CÓDIGO</span>
+        <span class="caja-dato__value">{{ caja.codigo }}</span>
+      </div>
+      <div class="caja-dato">
+        <span class="caja-dato__label">ESTADO</span>
+        <span class="caja-dato__value">{{ caja.estado }}</span>
+      </div>
+      <div class="caja-dato">
+        <span class="caja-dato__label">SUCURSAL</span>
+        <span class="caja-dato__value">{{ caja.sucursal }}</span>
+      </div>
+      <div class="caja-dato">
+        <span class="caja-dato__label">FECHA DE APERTURA</span>
+        <span class="caja-dato__value">{{ caja.apertura }}</span>
+      </div>
+      <div class="caja-dato caja-dato--ancho">
+        <span class="caja-dato__label">ÚLTIMA ACTIVIDAD REGISTRADA</span>
+        <span class="caja-dato__value">{{ caja.ultimaActividad }}</span>
+      </div>
+    </div>
+
+    <div class="caja-acciones">
+      <sgfidm-button type="primary" size="md" [fullWidth]="true" [height]="'56px'" (click)="onRecuperar()">
+        Recuperar mi caja
+      </sgfidm-button>
+      <sgfidm-button type="secondary" size="md" [fullWidth]="true" [height]="'56px'" (click)="onArqueoYCierre()">
+        Realizar arqueo y cierre
+      </sgfidm-button>
+      <sgfidm-button type="secondary" size="md" [fullWidth]="true" [height]="'56px'" (click)="onSolicitarIntervencion()">
+        Solicitar intervención del propietario
+      </sgfidm-button>
+    </div>
+
+    @if (solicitudEnviada()) {
+      <p class="caja-confirmacion" role="status">
+        Solicitud enviada al propietario. La caja permanece abierta y sin cambios en su saldo.
+      </p>
+    }
+  </sgfidm-auth-card>
+</div>

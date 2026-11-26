@@ -4,7 +4,7 @@
       <h1 class="perfil-title">Mi perfil</h1>
       <p class="perfil-subtitle">Tu cuenta personal en modo Solo.</p>
     </div>
-    <sgfidm-button type="secondary" size="lg" class="perfil-volver" (click)="onVolver()">
+    <sgfidm-button type="secondary" size="lg" class="perfil-volver" [width]="'245px'" [height]="'56px'" (click)="onVolver()">
       <span class="material-symbols-outlined perfil-icono" aria-hidden="true">arrow_back</span>
       Volver a Configuración
     </sgfidm-button>
@@ -50,8 +50,8 @@
         </span>
 
         <div class="perfil-acciones">
-          <sgfidm-button type="primary" size="md">Cambiar PIN</sgfidm-button>
-          <sgfidm-button type="secondary" size="md">Eliminar PIN</sgfidm-button>
+          <sgfidm-button type="primary" size="md" [fullWidth]="true" [height]="'56px'">Cambiar PIN</sgfidm-button>
+          <sgfidm-button type="secondary" size="md" [fullWidth]="true" [height]="'56px'">Eliminar PIN</sgfidm-button>
         </div>
 
         <p class="perfil-card__nota">
@@ -74,7 +74,7 @@
 
         <div class="perfil-fila perfil-fila--tour">
           <span class="perfil-fila__texto">Tour de bienvenida</span>
-          <sgfidm-button type="secondary" size="md">Reiniciar tour</sgfidm-button>
+          <sgfidm-button type="secondary" size="md" [width]="'245px'" [height]="'44px'">Reiniciar tour</sgfidm-button>
         </div>
       </section>
     </div>
@@ -98,7 +98,7 @@
         </div>
 
         <div class="perfil-cerrar">
-          <sgfidm-button type="primary" size="md" (click)="onCerrarSesion()">
+          <sgfidm-button type="primary" size="md" [width]="'245px'" [height]="'56px'" (click)="onCerrarSesion()">
             Cerrar sesión
           </sgfidm-button>
         </div>

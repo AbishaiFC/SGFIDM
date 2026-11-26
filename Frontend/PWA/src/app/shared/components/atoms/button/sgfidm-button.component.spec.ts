@@ -28,13 +28,26 @@ describe('SgfidmButtonComponent', () => {
     const component = fixture.componentInstance;
 
     fixture.componentRef.setInput('size', 'sm');
-    expect(component.height()).toBe('var(--sgfidm-btn-height-sm)');
+    expect(component.buttonHeight()).toBe('var(--sgfidm-btn-height-sm)');
 
     fixture.componentRef.setInput('size', 'md');
-    expect(component.height()).toBe('var(--sgfidm-btn-height-md)');
+    expect(component.buttonHeight()).toBe('var(--sgfidm-btn-height-md)');
 
     fixture.componentRef.setInput('size', 'lg');
-    expect(component.height()).toBe('var(--sgfidm-btn-height-lg)');
+    expect(component.buttonHeight()).toBe('var(--sgfidm-btn-height-lg)');
+  });
+
+  it('debe permitir ancho y alto explícitos sin ::ng-deep en las vistas', () => {
+    const fixture = TestBed.createComponent(SgfidmButtonComponent);
+    const component = fixture.componentInstance;
+
+    fixture.componentRef.setInput('width', '94px');
+    fixture.componentRef.setInput('height', '44px');
+    expect(component.buttonWidth()).toBe('94px');
+    expect(component.buttonHeight()).toBe('44px');
+
+    fixture.componentRef.setInput('fullWidth', true);
+    expect(component.buttonWidth()).toBe('100%');
   });
 
   it('debe calcular el padding X según el size', () => {

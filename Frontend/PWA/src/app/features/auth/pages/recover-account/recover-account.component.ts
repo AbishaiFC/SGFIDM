@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { SgfidmTextFieldComponent } from '../../../../shared/components/atoms/text-field/sgfidm-text-field.component';
 import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
+import { SgfidmFormFieldComponent } from '../../../../shared/components/molecules/form-field/sgfidm-form-field.component';
 
 /**
  * RecoverAccountPage — Pantalla AUTH-02 "Recuperar cuenta" (ADM / Recuperar cuenta).
@@ -11,7 +11,7 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
  */
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, SgfidmTextFieldComponent, SgfidmButtonComponent],
+  imports: [CommonModule, FormsModule, SgfidmFormFieldComponent, SgfidmButtonComponent],
   selector: 'sgfidm-recover-account',
   styleUrl: './recover-account.component.scss',
   templateUrl: './recover-account.component.html',

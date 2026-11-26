@@ -45,6 +45,29 @@ describe('SgfidmDashboardOrganismComponent', () => {
     expect(grid).toBeTruthy();
   });
 
+  it('should open the recent activity drawer with filters (INICIO-06)', () => {
+    component.abrirActividad();
+    fixture.detectChanges();
+
+    const drawer = fixture.debugElement.query(By.css('.sgfidm-dashboard-organism__drawer'));
+    expect(drawer).toBeTruthy();
+    const text = drawer.nativeElement.textContent;
+    expect(text).toContain('Actividad reciente');
+    expect(text).toContain('Últimas operaciones de Mi negocio.');
+    expect(text).toContain('Venta de mostrador · 3 artículos');
+    expect(text).toContain('Últimas 15 operaciones · Solo lectura');
+  });
+
+  it('should filter the activity drawer by operation type', () => {
+    component.abrirActividad();
+    component.seleccionarFiltro('Gastos');
+    fixture.detectChanges();
+
+    expect(component.operacionesFiltradas().length).toBe(1);
+    expect(fixture.debugElement.nativeElement.textContent).toContain('Compra de bolsas y empaque');
+    expect(fixture.debugElement.nativeElement.textContent).not.toContain('Venta de mostrador · 3 artículos');
+  });
+
   it('should render an IndicatorCard per indicator', () => {
     const cards = fixture.debugElement.queryAll(By.css('sgfidm-indicator-card'));
     expect(cards.length).toBe(2);

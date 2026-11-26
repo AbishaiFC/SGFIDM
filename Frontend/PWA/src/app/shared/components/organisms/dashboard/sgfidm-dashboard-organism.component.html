@@ -57,7 +57,7 @@
     <sgfidm-panel-card class="sgfidm-dashboard-organism__panel">
       <div class="sgfidm-dashboard-organism__panel-header">
         <h2 class="sgfidm-dashboard-organism__panel-titulo">Actividad reciente</h2>
-        <a class="sgfidm-dashboard-organism__panel-link" (click)="ir('/dashboard')">Abrir panel</a>
+        <a class="sgfidm-dashboard-organism__panel-link" (click)="abrirActividad()">Abrir panel</a>
       </div>
       @for (item of actividad; track item.titulo) {
         <div class="sgfidm-dashboard-organism__fila">
@@ -67,7 +67,7 @@
           </div>
         </div>
       }
-      <a class="sgfidm-dashboard-organism__panel-link" (click)="ir('/dashboard')">Ver historial completo</a>
+      <a class="sgfidm-dashboard-organism__panel-link" (click)="abrirActividad()">Ver historial completo</a>
     </sgfidm-panel-card>
   </div>
 
@@ -92,4 +92,69 @@
       </sgfidm-button>
     </div>
   </div>
+
+  <!--
+    INICIO-06 (Solo): drawer de actividad reciente.
+    OTROS MODOS (anotación, no implementado):
+      - Con Empleados: filtro adicional por EMP-XXX (B3) y nombre del operador.
+      - Con Sucursales: selector de sucursal activa y comparativa entre sucursales.
+      - Las operaciones pendientes de recuperación se muestran aquí solo en modo Solo.
+  -->
+  @if (actividadAbierta()) {
+    <div class="sgfidm-dashboard-organism__drawer-overlay" (click)="cerrarActividad()">
+      <aside
+        class="sgfidm-dashboard-organism__drawer"
+        role="dialog"
+        aria-label="Actividad reciente"
+        (click)="$event.stopPropagation()"
+      >
+        <header class="sgfidm-dashboard-organism__drawer-header">
+          <div>
+            <h2 class="sgfidm-dashboard-organism__drawer-titulo">Actividad reciente</h2>
+            <p class="sgfidm-dashboard-organism__drawer-subtitulo">Últimas operaciones de Mi negocio.</p>
+          </div>
+          <button type="button" class="sgfidm-dashboard-organism__drawer-cerrar" aria-label="Cerrar panel" (click)="cerrarActividad()">
+            <span class="material-symbols-outlined" aria-hidden="true">close</span>
+          </button>
+        </header>
+
+        <div class="sgfidm-dashboard-organism__filtros" role="tablist" aria-label="Filtrar actividad">
+          @for (opcion of filtros; track opcion) {
+            <button
+              type="button"
+              role="tab"
+              class="sgfidm-dashboard-organism__filtro"
+              [class.sgfidm-dashboard-organism__filtro--activo]="filtro() === opcion"
+              [attr.aria-selected]="filtro() === opcion"
+              (click)="seleccionarFiltro(opcion)"
+            >
+              {{ opcion }}
+            </button>
+          }
+        </div>
+
+        <div class="sgfidm-dashboard-organism__drawer-tabla">
+          <div class="sgfidm-dashboard-organism__drawer-thead">
+            <span>OPERACIÓN</span>
+            <span>IMPORTE</span>
+          </div>
+          @for (op of operacionesFiltradas(); track $index) {
+            <div class="sgfidm-dashboard-organism__drawer-fila">
+              <div class="sgfidm-dashboard-organism__drawer-op">
+                <span class="sgfidm-dashboard-organism__drawer-chip" [attr.data-tipo]="op.tipo">{{ op.tipo }}</span>
+                <span class="sgfidm-dashboard-organism__drawer-titulo-op">{{ op.titulo }}</span>
+                <span class="sgfidm-dashboard-organism__drawer-detalle">{{ op.detalle }}</span>
+              </div>
+              <span class="sgfidm-dashboard-organism__drawer-importe">{{ op.importe }}</span>
+            </div>
+          }
+        </div>
+
+        <footer class="sgfidm-dashboard-organism__drawer-footer">
+          <a class="sgfidm-dashboard-organism__panel-link" (click)="cerrarActividad()">Ver historial completo</a>
+          <span>Últimas 15 operaciones · Solo lectura</span>
+        </footer>
+      </aside>
+    </div>
+  }
 </div>

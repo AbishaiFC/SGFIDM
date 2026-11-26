@@ -60,6 +60,41 @@ describe('MiPerfilComponent (AUTH-06)', () => {
     spy.mockRestore();
   });
 
+  it('should open the PIN editor and save a valid 6-digit PIN', () => {
+    component.onEditarPin();
+    fixture.detectChanges();
+    expect(component.editandoPin()).toBe(true);
+    expect(fixture.debugElement.queryAll(By.css('sgfidm-pin-field')).length).toBe(2);
+
+    component.nuevoPin.set('123456');
+    component.confirmarPin.set('123456');
+    component.onGuardarPin();
+    fixture.detectChanges();
+
+    expect(component.pinConfigurado()).toBe(true);
+    expect(component.editandoPin()).toBe(false);
+  });
+
+  it('should reject mismatched PINs', () => {
+    component.onEditarPin();
+    component.nuevoPin.set('123456');
+    component.confirmarPin.set('654321');
+    component.onGuardarPin();
+    expect(component.errorPin()).toBe('Los PIN no coinciden.');
+  });
+
+  it('should require a destructive confirmation before deleting the PIN', () => {
+    component.onEliminarPin();
+    fixture.detectChanges();
+    expect(component.confirmandoEliminacion()).toBe(true);
+    expect(fixture.debugElement.query(By.css('sgfidm-dialog'))).toBeTruthy();
+
+    component.onConfirmarEliminacion();
+    fixture.detectChanges();
+    expect(component.pinConfigurado()).toBe(false);
+    expect(fixture.debugElement.nativeElement.textContent).toContain('Sin PIN configurado');
+  });
+
   it('should close the session and navigate to login', () => {
     vi.spyOn(auth, 'cerrarSesion').mockReturnValue(of(undefined));
     const spy = vi.spyOn(router, 'navigate').mockResolvedValue(true);

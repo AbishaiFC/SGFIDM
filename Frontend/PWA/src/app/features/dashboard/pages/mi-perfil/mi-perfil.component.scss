@@ -123,6 +123,9 @@
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.6px;
+  background: var(--sgfidm-color-surface, #ffffff);
+  border: 1px solid var(--sgfidm-color-outline-variant, #dbdbdb);
+  color: var(--sgfidm-color-text-secondary, #575757);
 
   &--success {
     background: var(--sgfidm-color-success-container, #e1ede5);
@@ -164,6 +167,30 @@
   &--tour {
     margin-top: auto;
   }
+}
+
+.perfil-pin-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgfidm-space-4);
+}
+
+.perfil-pin-error {
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  color: var(--sgfidm-color-error, #a9442e);
+  margin: 0;
+}
+
+.perfil-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  padding: var(--sgfidm-space-4);
 }
 
 .perfil-cerrar {

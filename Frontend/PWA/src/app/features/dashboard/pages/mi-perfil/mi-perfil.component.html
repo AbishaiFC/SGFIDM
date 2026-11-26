@@ -44,20 +44,59 @@
           6 dígitos · hash seguro · solo desbloquea una sesión vigente en una terminal registrada.
         </p>
 
-        <span class="perfil-chip perfil-chip--success">
-          <span class="material-symbols-outlined perfil-chip__icono" aria-hidden="true">check_circle</span>
-          PIN configurado
+        <span class="perfil-chip" [class.perfil-chip--success]="pinConfigurado()">
+          <span class="material-symbols-outlined perfil-chip__icono" aria-hidden="true">
+            {{ pinConfigurado() ? 'check_circle' : 'info' }}
+          </span>
+          {{ pinConfigurado() ? 'PIN configurado' : 'Sin PIN configurado' }}
         </span>
 
-        <div class="perfil-acciones">
-          <sgfidm-button type="primary" size="md" [fullWidth]="true" [height]="'56px'">Cambiar PIN</sgfidm-button>
-          <sgfidm-button type="secondary" size="md" [fullWidth]="true" [height]="'56px'">Eliminar PIN</sgfidm-button>
-        </div>
+        @if (!editandoPin()) {
+          <div class="perfil-acciones">
+            <sgfidm-button type="primary" size="md" [fullWidth]="true" [height]="'56px'" (click)="onEditarPin()">
+              {{ pinConfigurado() ? 'Cambiar PIN' : 'Configurar PIN' }}
+            </sgfidm-button>
+            @if (pinConfigurado()) {
+              <sgfidm-button type="secondary" size="md" [fullWidth]="true" [height]="'56px'" (click)="onEliminarPin()">
+                Eliminar PIN
+              </sgfidm-button>
+            }
+          </div>
+        } @else {
+          <div class="perfil-pin-form">
+            <sgfidm-pin-field title="Nuevo PIN" subtitle="6 dígitos" (pinComplete)="nuevoPin.set($event)" />
+            <sgfidm-pin-field title="Confirmar PIN" subtitle="Repite los 6 dígitos" (pinComplete)="confirmarPin.set($event)" />
+            @if (errorPin()) {
+              <p class="perfil-pin-error" role="alert">{{ errorPin() }}</p>
+            }
+            <div class="perfil-acciones">
+              <sgfidm-button type="primary" size="md" [fullWidth]="true" [height]="'56px'" (click)="onGuardarPin()">
+                Guardar PIN
+              </sgfidm-button>
+              <sgfidm-button type="secondary" size="md" [fullWidth]="true" [height]="'56px'" (click)="onCancelarEdicion()">
+                Cancelar
+              </sgfidm-button>
+            </div>
+          </div>
+        }
 
         <p class="perfil-card__nota">
           5 intentos máximos. Al quinto, la cuenta se bloquea administrativamente; no hay
           desbloqueo automático.
         </p>
+
+        @if (confirmandoEliminacion()) {
+          <div class="perfil-dialog-overlay">
+            <sgfidm-dialog
+              variant="destructive"
+              title="¿Eliminar PIN de acceso rápido?"
+              message="La terminal POS dejará de desbloquearse con PIN. Podrás configurarlo de nuevo desde aquí."
+              confirmLabel="Eliminar PIN"
+              (confirm)="onConfirmarEliminacion()"
+              (cancel)="onCancelarEliminacion()"
+            />
+          </div>
+        }
       </section>
 
       <section class="perfil-card">

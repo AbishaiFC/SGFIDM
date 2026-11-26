@@ -1,18 +1,19 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthRepository } from '../../../../core/services/data/repositories/auth.repository';
 import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
+import { SgfidmPinFieldComponent } from '../../../../shared/components/molecules/pin-field/sgfidm-pin-field.component';
+import { SgfidmDialogComponent } from '../../../../shared/components/molecules/dialog/sgfidm-dialog.component';
 
 /**
- * MiPerfilPage — Pantalla AUTH-06 "Mi perfil" (ADM - Con Empleados / Mi perfil).
+ * MiPerfilPage — AUTH-06, con la sección AUTH-15 (PIN de acceso rápido) operativa.
  *
- * Vista de solo lectura del propietario: datos de la cuenta, sesión actual,
- * PIN de acceso rápido (AUTH-15) y preferencias de accesibilidad.
- * Se alcanza desde Dashboard → Configuración → Mi perfil.
+ * El PIN tiene 6 dígitos, se guarda con hash (simulado en mock), nunca se usa
+ * para iniciar sesión y solo desbloquea una sesión vigente en terminal registrada.
  */
 @Component({
   standalone: true,
-  imports: [SgfidmButtonComponent],
+  imports: [SgfidmButtonComponent, SgfidmPinFieldComponent, SgfidmDialogComponent],
   selector: 'sgfidm-mi-perfil',
   styleUrl: './mi-perfil.component.scss',
   templateUrl: './mi-perfil.component.html',
@@ -20,6 +21,13 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
 export class MiPerfilComponent {
   private readonly auth = inject(AuthRepository);
   private readonly router = inject(Router);
+
+  readonly pinConfigurado = signal(true);
+  readonly editandoPin = signal(false);
+  readonly confirmandoEliminacion = signal(false);
+  readonly errorPin = signal('');
+  readonly nuevoPin = signal('');
+  readonly confirmarPin = signal('');
 
   onVolver(): void {
     this.router.navigate(['/dashboard/configuracion']);
@@ -29,5 +37,50 @@ export class MiPerfilComponent {
     this.auth.cerrarSesion().subscribe({
       next: () => this.router.navigate(['/auth/login']),
     });
+  }
+
+  onEditarPin(): void {
+    this.errorPin.set('');
+    this.nuevoPin.set('');
+    this.confirmarPin.set('');
+    this.editandoPin.set(true);
+  }
+
+  onGuardarPin(): void {
+    const nuevo = this.nuevoPin();
+    const confirmar = this.confirmarPin();
+
+    if (nuevo.length !== 6 || confirmar.length !== 6) {
+      this.errorPin.set('El PIN debe tener 6 dígitos.');
+      return;
+    }
+    if (nuevo !== confirmar) {
+      this.errorPin.set('Los PIN no coinciden.');
+      return;
+    }
+
+    // Sin backend: se simula el almacenamiento con hash seguro.
+    this.pinConfigurado.set(true);
+    this.editandoPin.set(false);
+    this.errorPin.set('');
+  }
+
+  onCancelarEdicion(): void {
+    this.editandoPin.set(false);
+    this.errorPin.set('');
+  }
+
+  onEliminarPin(): void {
+    this.confirmandoEliminacion.set(true);
+  }
+
+  onConfirmarEliminacion(): void {
+    this.pinConfigurado.set(false);
+    this.confirmandoEliminacion.set(false);
+    this.editandoPin.set(false);
+  }
+
+  onCancelarEliminacion(): void {
+    this.confirmandoEliminacion.set(false);
   }
 }

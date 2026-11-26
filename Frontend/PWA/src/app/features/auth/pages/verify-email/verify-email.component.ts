@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { SgfidmTextFieldComponent } from '../../../../shared/components/atoms/text-field/sgfidm-text-field.component';
+import { SgfidmFormFieldComponent } from '../../../../shared/components/molecules/form-field/sgfidm-form-field.component';
 import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
 
 /**
@@ -12,7 +12,7 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
  */
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, SgfidmTextFieldComponent, SgfidmButtonComponent],
+  imports: [CommonModule, FormsModule, SgfidmFormFieldComponent, SgfidmButtonComponent],
   selector: 'sgfidm-verify-email',
   styleUrl: './verify-email.component.scss',
   templateUrl: './verify-email.component.html',

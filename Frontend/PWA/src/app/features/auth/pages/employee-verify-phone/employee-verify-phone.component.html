@@ -8,7 +8,7 @@
     </header>
 
     <div class="emp-otp">
-      <sgfidm-pin-input label="" subtitle="" (pinComplete)="onVerificar($event)" />
+      <sgfidm-pin-field title="" subtitle="" (pinComplete)="onVerificar($event)" />
     </div>
 
     <div class="emp-otp-footer">
@@ -19,7 +19,7 @@
     </div>
 
     <div class="emp-actions">
-      <sgfidm-button type="primary" size="md" [loading]="isLoading" [disabled]="isLoading" (click)="onVerificar(otp)">
+      <sgfidm-button type="primary" size="md" [fullWidth]="true" [height]="'56px'" [loading]="isLoading" [disabled]="isLoading" (click)="onVerificar(otp)">
         <span class="material-symbols-outlined emp-icon" aria-hidden="true">check</span>
         Verificar
       </sgfidm-button>

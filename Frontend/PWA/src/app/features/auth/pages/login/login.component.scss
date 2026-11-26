@@ -70,7 +70,9 @@
 }
 
 .login-footer {
+  width: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: var(--sgfidm-space-1);
 }
@@ -82,10 +84,5 @@
 }
 
 .button-section {
-  display: flex;
-  justify-content: center;
-
-  .button-section.element.style {
-    width: 100%;
-  }
+  width: 100%;
 }

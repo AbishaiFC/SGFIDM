@@ -89,12 +89,6 @@
 .recovery-sent-actions {
   width: 100%;
 
-  /* El botón atom usa radio md y 48px en size lg; Figma pide píldora de 56px. */
-  ::ng-deep .sgfidm-button {
-    width: 100%;
-    height: 56px;
-    border-radius: var(--sgfidm-radius-full, 999px);
-  }
 }
 
 .recovery-sent-send-icon {

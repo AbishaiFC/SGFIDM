@@ -4,7 +4,7 @@
   justify-content: center;
   gap: var(--sgfidm-space-2);
   border: none;
-  border-radius: var(--sgfidm-radius-md);
+  border-radius: var(--sgfidm-radius-full, 999px);
   cursor: pointer;
   font-family: var(--sgfidm-font-family);
   font-weight: 500;

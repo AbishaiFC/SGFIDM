@@ -118,22 +118,10 @@
 .sucursal-continuar {
   display: flex;
   justify-content: flex-end;
-
-  ::ng-deep .sgfidm-button {
-    min-width: 180px;
-    height: 56px;
-    border-radius: var(--sgfidm-radius-full, 999px);
-  }
 }
 
 .sucursal-volver {
   flex-shrink: 0;
-
-  ::ng-deep .sgfidm-button {
-    width: 245px;
-    height: 56px;
-    border-radius: var(--sgfidm-radius-full, 999px);
-  }
 }
 
 .sucursal-icono {

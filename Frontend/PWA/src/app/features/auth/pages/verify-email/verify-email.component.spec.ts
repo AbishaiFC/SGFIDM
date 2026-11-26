@@ -29,7 +29,7 @@ describe('VerifyEmailComponent', () => {
 
   it('should render the info icon and disabled text field', () => {
     expect(fixture.debugElement.query(By.css('.verify-email-info-icon'))).toBeTruthy();
-    expect(fixture.debugElement.query(By.css('sgfidm-text-field'))).toBeTruthy();
+    expect(fixture.debugElement.query(By.css('sgfidm-form-field'))).toBeTruthy();
   });
 
   it('should render the reenviar button and footer link', () => {

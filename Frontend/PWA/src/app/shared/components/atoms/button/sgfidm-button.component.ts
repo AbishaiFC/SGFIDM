@@ -26,7 +26,17 @@ export class SgfidmButtonComponent {
   readonly loading = input(false);
   readonly click = output<void>();
 
-  readonly height = computed(() => {
+  /** Ancho/alto explícitos para las vistas (evita ::ng-deep repetido). */
+  readonly fullWidth = input(false);
+  readonly width = input<string>('');
+  readonly height = input<string>('');
+
+  readonly buttonWidth = computed(() => (this.fullWidth() ? '100%' : this.width() || null));
+
+  readonly buttonHeight = computed(() => {
+    if (this.height()) {
+      return this.height();
+    }
     const map = {
       sm: 'var(--sgfidm-btn-height-sm)',
       md: 'var(--sgfidm-btn-height-md)',

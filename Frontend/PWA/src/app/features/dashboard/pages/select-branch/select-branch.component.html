@@ -4,7 +4,7 @@
       <h1 class="sucursal-title">Seleccionar sucursal</h1>
       <p class="sucursal-subtitle">{{ subtitulo }}</p>
     </div>
-    <sgfidm-button type="secondary" size="lg" class="sucursal-volver" (click)="onVolver()">
+    <sgfidm-button type="secondary" size="lg" class="sucursal-volver" [width]="'245px'" [height]="'56px'" (click)="onVolver()">
       <span class="material-symbols-outlined sucursal-icono" aria-hidden="true">arrow_back</span>
       Volver a Configuración
     </sgfidm-button>
@@ -41,7 +41,7 @@
   </div>
 
   <div class="sucursal-continuar">
-    <sgfidm-button type="primary" size="md" [disabled]="!seleccionada" (click)="onContinuar()">
+    <sgfidm-button type="primary" size="md" [width]="'180px'" [height]="'56px'" [disabled]="!seleccionada" (click)="onContinuar()">
       Continuar
     </sgfidm-button>
   </div>

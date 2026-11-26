@@ -147,12 +147,6 @@
   ::ng-deep sgfidm-button {
     flex: 1;
   }
-
-  ::ng-deep .sgfidm-button {
-    width: 100%;
-    height: 56px;
-    border-radius: var(--sgfidm-radius-full, 999px);
-  }
 }
 
 .perfil-fila {
@@ -170,31 +164,14 @@
   &--tour {
     margin-top: auto;
   }
-
-  ::ng-deep .sgfidm-button {
-    height: 44px;
-    border-radius: var(--sgfidm-radius-full, 999px);
-  }
 }
 
 .perfil-cerrar {
   display: flex;
-
-  ::ng-deep .sgfidm-button {
-    width: 245px;
-    height: 56px;
-    border-radius: var(--sgfidm-radius-full, 999px);
-  }
 }
 
 .perfil-volver {
   flex-shrink: 0;
-
-  ::ng-deep .sgfidm-button {
-    width: 245px;
-    height: 56px;
-    border-radius: var(--sgfidm-radius-full, 999px);
-  }
 }
 
 .perfil-icono {

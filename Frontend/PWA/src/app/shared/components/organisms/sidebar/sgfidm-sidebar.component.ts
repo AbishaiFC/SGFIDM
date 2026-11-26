@@ -57,8 +57,7 @@ export class SgfidmSidebarComponent {
 
   private readonly items: NavItem[] = [
     { id: 'inicio', label: 'Inicio', icon: 'home', route: '/dashboard', grupo: 1 },
-    // ToDo PROD-01: apuntar al catálogo cuando esté implementado.
-    { id: 'productos', label: 'Productos', icon: 'shopping_bag', route: '/productos/registrar', grupo: 1 },
+    { id: 'productos', label: 'Productos', icon: 'shopping_bag', route: '/productos', grupo: 1 },
     { id: 'inventario', label: 'Inventario', icon: 'inventory_2', route: '/inventario', grupo: 1 },
     { id: 'pos', label: 'POS', icon: 'point_of_sale', route: '/pos', grupo: 1 },
     { id: 'caja', label: 'Caja', icon: 'payments', route: '/caja', grupo: 1 },

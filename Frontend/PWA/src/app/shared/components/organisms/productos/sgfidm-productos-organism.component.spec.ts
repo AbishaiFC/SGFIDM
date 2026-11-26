@@ -1,65 +1,67 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { SgfidmProductosOrganismComponent, ProductoCatalogDto } from './sgfidm-productos-organism.component';
 
-describe('SgfidmProductosOrganismComponent', () => {
+describe('SgfidmProductosOrganismComponent (PROD-01 Solo)', () => {
   let fixture: ComponentFixture<SgfidmProductosOrganismComponent>;
   let component: SgfidmProductosOrganismComponent;
 
-  const sample: ProductoCatalogDto[] = [
-    { id: 'P-001', codigo: 'PROD-001', nombre: 'Cañas de acero', precioVenta: '$90.00', costo: '$40.00', status: 'activo' },
-    { id: 'P-002', codigo: 'PROD-002', nombre: 'Martillos', precioVenta: '$75.00', status: 'activo' },
-    { id: 'P-003', codigo: 'PROD-003', nombre: 'Antiguo', precioVenta: '$5.00', status: 'archivado' },
+  const productos: ProductoCatalogDto[] = [
+    { id: 'P-018', codigo: 'PROD-018', codigoBarras: '7501031310012', nombre: 'Café de altura', categoria: 'Café y té', precioVenta: '$185.00', costo: '$92.00', existencias: 12, status: 'activo' },
+    { id: 'P-019', codigo: 'PROD-019', nombre: 'Grano de café', categoria: 'Café y té', precioVenta: '$220.00', costo: '$118.00', existencias: 3, bajoStock: true, status: 'activo' },
+    { id: 'P-031', codigo: 'PROD-031', nombre: 'Pan artesanal', categoria: 'Panadería', precioVenta: '$48.00', existencias: 2, bajoStock: true, status: 'activo' },
   ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SgfidmProductosOrganismComponent],
+      imports: [SgfidmProductosOrganismComponent, FormsModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SgfidmProductosOrganismComponent);
     component = fixture.componentInstance;
-    fixture.componentRef.setInput('productos', sample);
+    fixture.componentRef.setInput('productos', productos);
+    fixture.componentRef.setInput('totalGeneral', 128);
+    fixture.componentRef.setInput('totalActivos', 114);
+    fixture.componentRef.setInput('totalBajoStock', 3);
     fixture.detectChanges();
   });
 
-  it('should render the title', () => {
-    const title = fixture.debugElement.query(By.css('.sgfidm-productos-organism__title'));
-    expect(title.nativeElement.textContent).toContain('Productos');
+  it('should render the canonical catalog header, toolbar and table', () => {
+    const text = fixture.debugElement.nativeElement.textContent;
+    expect(component).toBeTruthy();
+    expect(text).toContain('Productos');
+    expect(text).toContain('128 productos · 114 activos · 3 con bajo stock');
+    expect(text).toContain('Agregar producto');
+    expect(
+      fixture.debugElement.nativeElement
+        .querySelector('sgfidm-search-bar input')
+        ?.getAttribute('placeholder'),
+    ).toBe('Buscar producto o código');
+    expect(text).toContain('PRODUCTO');
+    expect(text).toContain('Café de altura');
+    expect(text).toContain('PROD-018');
+    expect(text).toContain('Bajo stock');
   });
 
-  it('should render indicator cards', () => {
-    const cards = fixture.debugElement.queryAll(By.css('sgfidm-indicator-card'));
-    expect(cards.length).toBe(2);
-    expect(cards[0].nativeElement.textContent).toContain('PRODUCTOS ACTIVOS');
+  it('should filter by search and status', () => {
+    component.busqueda.set('pan');
+    expect(component.filtrados().map((p) => p.nombre)).toEqual(['Pan artesanal']);
+    component.busqueda.set('');
+    component.seleccionar('Solo bajo stock');
+    expect(component.filtrados().map((p) => p.nombre)).toEqual(['Grano de café', 'Pan artesanal']);
   });
 
-  it('should show activos count (2)', () => {
-    expect(component.productosActivos.length).toBe(2);
-    expect(component.countActivos).toBe('2');
+  it('should emit accion on row click', () => {
+    let emitido: ProductoCatalogDto | undefined;
+    component.accion.subscribe((p) => (emitido = p));
+    const fila = fixture.debugElement.nativeElement.querySelector('tbody tr') as HTMLElement;
+    fila.click();
+    expect(emitido?.codigo).toBe('PROD-018');
   });
 
-  it('should filter by tab and show empty state when switching to empty tab', () => {
-    fixture.componentRef.setInput('productos', [sample[0], sample[2]]);
-    component.onTab('archivados');
+  it('should show EmptyState when nothing matches', () => {
+    component.busqueda.set('inexistente');
     fixture.detectChanges();
-    // P-003 archivado → debe mostrarse en pestaña archivados
-    const items = fixture.debugElement.queryAll(By.css('.sgfidm-productos-organism__item'));
-    expect(items.length).toBe(1);
-    expect(items[0].nativeElement.textContent).toContain('Antiguo');
-  });
-
-  it('should emit accion detalle on item click', () => {
-    let emitted: { producto: ProductoCatalogDto; tipo: string } | undefined;
-    component.accion.subscribe((e) => (emitted = e));
-    const items = fixture.debugElement.queryAll(By.css('.sgfidm-productos-organism__item'));
-    items[0].triggerEventHandler('click', null);
-    expect(emitted?.tipo).toBe('detalle');
-    expect(emitted?.producto.codigo).toBe('PROD-001');
-  });
-
-  it('should render first product code and name', () => {
-    const first = fixture.debugElement.query(By.css('.sgfidm-productos-organism__code'));
-    expect(first.nativeElement.textContent).toContain('PROD-001');
+    expect(fixture.debugElement.nativeElement.querySelector('sgfidm-empty-state')).toBeTruthy();
   });
 });

@@ -70,34 +70,59 @@
   <div class="sgfidm-dashboard-organism__paneles">
     <sgfidm-panel-card class="sgfidm-dashboard-organism__panel">
       <h2 class="sgfidm-dashboard-organism__panel-titulo">Requiere tu atención</h2>
-      <p class="sgfidm-dashboard-organism__panel-subtitulo">3 alertas · ordenadas por criticidad</p>
-      @for (alerta of alertas; track alerta.titulo) {
-        <div class="sgfidm-dashboard-organism__fila">
-          <span class="sgfidm-dashboard-organism__punto" aria-hidden="true"></span>
-          <div class="sgfidm-dashboard-organism__fila-info">
-            <span class="sgfidm-dashboard-organism__fila-titulo">{{ alerta.titulo }}</span>
-            <span class="sgfidm-dashboard-organism__fila-detalle">{{ alerta.detalle }}</span>
+      @if (estadoVacio()) {
+        <p class="sgfidm-dashboard-organism__panel-subtitulo">Sin alertas por ahora</p>
+        <sgfidm-empty-state
+          class="sgfidm-dashboard-organism__empty"
+          icon="check_circle"
+          title="Todo en orden por ahora."
+          message="Si algo lo requiere, aparecerá aquí."
+          actionLabel="Agregar producto"
+          (action)="ir('/productos/registrar')"
+        />
+      } @else {
+        <p class="sgfidm-dashboard-organism__panel-subtitulo">3 alertas · ordenadas por criticidad</p>
+        @for (alerta of alertas; track alerta.titulo) {
+          <div class="sgfidm-dashboard-organism__fila">
+            <span class="sgfidm-dashboard-organism__punto" aria-hidden="true"></span>
+            <div class="sgfidm-dashboard-organism__fila-info">
+              <span class="sgfidm-dashboard-organism__fila-titulo">{{ alerta.titulo }}</span>
+              <span class="sgfidm-dashboard-organism__fila-detalle">{{ alerta.detalle }}</span>
+            </div>
+            <a class="sgfidm-dashboard-organism__fila-link" (click)="ir(alerta.ruta)">{{ alerta.accion }}</a>
           </div>
-          <a class="sgfidm-dashboard-organism__fila-link" (click)="ir(alerta.ruta)">{{ alerta.accion }}</a>
-        </div>
+        }
+        <a class="sgfidm-dashboard-organism__panel-link" (click)="ir('/inventario')">Ver todas (4)</a>
       }
-      <a class="sgfidm-dashboard-organism__panel-link" (click)="ir('/dashboard')">Ver todas (4)</a>
     </sgfidm-panel-card>
 
     <sgfidm-panel-card class="sgfidm-dashboard-organism__panel">
       <div class="sgfidm-dashboard-organism__panel-header">
         <h2 class="sgfidm-dashboard-organism__panel-titulo">Actividad reciente</h2>
-        <a class="sgfidm-dashboard-organism__panel-link" (click)="abrirActividad()">Abrir panel</a>
+        @if (!estadoVacio()) {
+          <a class="sgfidm-dashboard-organism__panel-link" (click)="abrirActividad()">Abrir panel</a>
+        }
       </div>
-      @for (item of actividad; track item.titulo) {
-        <div class="sgfidm-dashboard-organism__fila">
-          <div class="sgfidm-dashboard-organism__fila-info">
-            <span class="sgfidm-dashboard-organism__fila-titulo">{{ item.titulo }}</span>
-            <span class="sgfidm-dashboard-organism__fila-detalle">{{ item.detalle }}</span>
+      @if (estadoVacio()) {
+        <sgfidm-empty-state
+          class="sgfidm-dashboard-organism__empty"
+          icon="inventory_2"
+          title="Aún no hay actividad registrada."
+          message="Las ventas, gastos y movimientos aparecerán aquí."
+          actionLabel="Nueva venta"
+          (action)="ir('/pos')"
+        />
+      } @else {
+        @for (item of actividad; track item.titulo) {
+          <div class="sgfidm-dashboard-organism__fila">
+            <div class="sgfidm-dashboard-organism__fila-info">
+              <span class="sgfidm-dashboard-organism__fila-titulo">{{ item.titulo }}</span>
+              <span class="sgfidm-dashboard-organism__fila-detalle">{{ item.detalle }}</span>
+            </div>
           </div>
-        </div>
+        }
+        <a class="sgfidm-dashboard-organism__panel-link" (click)="abrirActividad()">Ver historial completo</a>
       }
-      <a class="sgfidm-dashboard-organism__panel-link" (click)="abrirActividad()">Ver historial completo</a>
     </sgfidm-panel-card>
   </div>
 

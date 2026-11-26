@@ -95,6 +95,33 @@ describe('SgfidmDashboardOrganismComponent', () => {
     expect(texto).toContain('Cerrar caja');
   });
 
+  it('should render the INICIO-03 empty-state variant', () => {
+    fixture.componentRef.setInput('estadoVacio', true);
+    fixture.detectChanges();
+    const texto = fixture.debugElement.nativeElement.textContent;
+    expect(texto).toContain('Sin alertas por ahora');
+    expect(texto).toContain('Todo en orden por ahora.');
+    expect(texto).toContain('Si algo lo requiere, aparecerá aquí.');
+    expect(texto).toContain('Aún no hay actividad registrada.');
+    expect(texto).toContain('Las ventas, gastos y movimientos aparecerán aquí.');
+    expect(texto).not.toContain('Productos con bajo stock');
+    expect(fixture.debugElement.queryAll(By.css('sgfidm-empty-state'))).toHaveLength(2);
+  });
+
+  it('should offer a way out of the empty states', () => {
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    fixture.componentRef.setInput('estadoVacio', true);
+    fixture.detectChanges();
+    const botones: HTMLButtonElement[] = Array.from(
+      fixture.debugElement.nativeElement.querySelectorAll('sgfidm-empty-state button'),
+    );
+    botones[0].click();
+    expect(spy).toHaveBeenCalledWith(['/productos/registrar']);
+    botones[1].click();
+    expect(spy).toHaveBeenCalledWith(['/pos']);
+    spy.mockRestore();
+  });
+
   it('should render the indicators grid', () => {
     const grid = fixture.debugElement.query(By.css('.sgfidm-dashboard-organism__indicators-grid'));
     expect(grid).toBeTruthy();

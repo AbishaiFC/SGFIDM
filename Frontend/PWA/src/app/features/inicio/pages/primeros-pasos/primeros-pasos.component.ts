@@ -26,6 +26,7 @@ export class PrimerosPasosComponent {
       numero: 1,
       titulo: 'Agrega tu primer producto',
       descripcion: 'Crea el catálogo mínimo para poder vender.',
+      ruta: '/productos/registrar',
     },
     {
       numero: 2,
@@ -46,7 +47,7 @@ export class PrimerosPasosComponent {
     },
   ];
 
-  readonly completados = signal<number[]>([]);
+  readonly completados = signal<number[]>(PrimerosPasosComponent.leerCompletados());
   readonly modo = PrimerosPasosComponent.leerModo();
 
   get total(): number {
@@ -91,6 +92,15 @@ export class PrimerosPasosComponent {
 
   onConfiguracion(): void {
     this.router.navigate(['/dashboard/configuracion']);
+  }
+
+  /** INICIO-02: el alta del primer producto (PROD-02) marca el paso 1. */
+  private static leerCompletados(): number[] {
+    try {
+      return localStorage.getItem('sgfidm-primer-producto') === 'true' ? [1] : [];
+    } catch {
+      return [];
+    }
   }
 
   private static leerModo(): string {

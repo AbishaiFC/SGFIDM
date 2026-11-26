@@ -55,5 +55,9 @@ export const routes: Routes = [
     path: 'caja',
     loadChildren: () => import('./features/caja/caja.routes').then((m) => m.cajaRoutes),
   },
+  {
+    path: 'productos',
+    loadChildren: () => import('./features/productos/productos.routes').then((m) => m.productosRoutes),
+  },
   { path: '**', redirectTo: '/auth/login' },
 ];

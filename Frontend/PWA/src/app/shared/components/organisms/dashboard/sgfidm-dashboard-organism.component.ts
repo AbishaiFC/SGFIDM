@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SgfidmIndicatorCardComponent } from '../../molecules/indicator-card/sgfidm-indicator-card.component';
 import { SgfidmPanelCardComponent } from '../../molecules/panel-card/sgfidm-panel-card.component';
 import { SgfidmButtonComponent } from '../../atoms/button/sgfidm-button.component';
+import { SgfidmEmptyStateComponent } from '../../molecules/empty-state/sgfidm-empty-state.component';
 
 /** DTO para indicadores del dashboard (unifica la interfaz de datos). */
 export interface IndicatorDto {
@@ -24,6 +25,7 @@ export interface IndicatorDto {
     SgfidmIndicatorCardComponent,
     SgfidmPanelCardComponent,
     SgfidmButtonComponent,
+    SgfidmEmptyStateComponent,
   ],
   templateUrl: './sgfidm-dashboard-organism.component.html',
   styleUrl: './sgfidm-dashboard-organism.component.scss',
@@ -32,6 +34,9 @@ export class SgfidmDashboardOrganismComponent {
   private readonly router = inject(Router);
 
   indicators = input<IndicatorDto[]>([]);
+
+  /** Variante INICIO-03 «estado vacío» (Figma 1145:81907): sin alertas ni actividad. */
+  estadoVacio = input(false);
 
   readonly modo = SgfidmDashboardOrganismComponent.leerModo();
 

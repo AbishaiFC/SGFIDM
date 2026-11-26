@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SgfidmDashboardOrganismComponent, IndicatorDto } from '../../../../shared/components/organisms/dashboard/sgfidm-dashboard-organism.component';
 
 const DEFAULT_INDICATORS: IndicatorDto[] = [
@@ -28,5 +28,9 @@ const DEFAULT_INDICATORS: IndicatorDto[] = [
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent {
+  private readonly route = inject(ActivatedRoute);
+
   readonly indicators = DEFAULT_INDICATORS;
+  /** Variante INICIO-03 «estado vacío»: `/dashboard?estado=vacio`. */
+  readonly estadoVacio = this.route.snapshot.queryParamMap.get('estado') === 'vacio';
 }

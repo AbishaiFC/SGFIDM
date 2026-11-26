@@ -4,6 +4,41 @@
   width: 100%;
 }
 
+/* Variante «estado vacío» (INICIO-03): EmptyState compacto dentro de los paneles. */
+.sgfidm-dashboard-organism__empty {
+  ::ng-deep .sgfidm-empty-state {
+    width: 100%;
+    min-height: 220px;
+    padding: 16px;
+    gap: 12px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  ::ng-deep .sgfidm-empty-state__icon {
+    width: 40px;
+    height: 40px;
+
+    .material-symbols-outlined {
+      font-size: 22px;
+    }
+  }
+
+  ::ng-deep .sgfidm-empty-state__title {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  ::ng-deep .sgfidm-empty-state__message {
+    font-size: 11px;
+  }
+
+  ::ng-deep .sgfidm-empty-state__action {
+    margin-top: 8px;
+  }
+}
+
 .sgfidm-dashboard-organism {
   display: flex;
   flex-direction: column;

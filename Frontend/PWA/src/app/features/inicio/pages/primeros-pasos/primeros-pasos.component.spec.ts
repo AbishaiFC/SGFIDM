@@ -13,7 +13,7 @@ describe('PrimerosPasosComponent (INICIO-02)', () => {
       imports: [
         PrimerosPasosComponent,
         RouterTestingModule.withRoutes([
-          { path: 'caja', component: PrimerosPasosComponent },
+          { path: 'caja/abrir', component: PrimerosPasosComponent },
           { path: 'pos', component: PrimerosPasosComponent },
           { path: 'dashboard', component: PrimerosPasosComponent },
           { path: 'dashboard/configuracion', component: PrimerosPasosComponent },
@@ -54,7 +54,7 @@ describe('PrimerosPasosComponent (INICIO-02)', () => {
   it('should open Caja and POS from their steps', () => {
     const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
     component.abrirPaso(component.pasos[1]);
-    expect(spy).toHaveBeenCalledWith(['/caja']);
+    expect(spy).toHaveBeenCalledWith(['/caja/abrir']);
     component.abrirPaso(component.pasos[2]);
     expect(spy).toHaveBeenCalledWith(['/pos']);
     spy.mockRestore();

@@ -10,24 +10,54 @@
     </div>
   </header>
 
-  <section class="sgfidm-dashboard-organism__caja">
+  <!--
+    INICIO-03: la tarjeta principal refleja la sesión de caja.
+    Abierta (canon 1045:123202): "Puedes vender ahora" + Ir al POS / Cerrar caja.
+    Cerrada (canon CAJ-01/CAJ-02): "Requiere apertura" + Abrir caja / Ver caja.
+    OTROS MODOS (ToDo): caja huérfana y cierre por tercero con EMP-XXX.
+  -->
+  <section
+    class="sgfidm-dashboard-organism__caja"
+    [class.sgfidm-dashboard-organism__caja--cerrada]="!cajaAbierta"
+  >
     <div class="sgfidm-dashboard-organism__caja-info">
       <span class="sgfidm-dashboard-organism__eyebrow">CAJA · MI NEGOCIO</span>
-      <h2 class="sgfidm-dashboard-organism__caja-titulo">Caja abierta</h2>
-      <p class="sgfidm-dashboard-organism__caja-detalle">
-        Desde las 9:00 AM · 18 transacciones · Saldo en caja $1,240
-      </p>
-      <span class="sgfidm-dashboard-organism__chip">Puedes vender ahora</span>
+      @if (cajaAbierta) {
+        <h2 class="sgfidm-dashboard-organism__caja-titulo">Caja abierta</h2>
+        <p class="sgfidm-dashboard-organism__caja-detalle">
+          Desde las 9:00 AM · 18 transacciones · Saldo en caja $1,240
+        </p>
+        <span class="sgfidm-dashboard-organism__chip">Puedes vender ahora</span>
+      } @else {
+        <h2 class="sgfidm-dashboard-organism__caja-titulo">Caja cerrada</h2>
+        <p class="sgfidm-dashboard-organism__caja-detalle">
+          No hay una sesión activa. Abre tu caja para vender en efectivo en el POS.
+        </p>
+        <span class="sgfidm-dashboard-organism__chip sgfidm-dashboard-organism__chip--cerrada">
+          Requiere apertura
+        </span>
+      }
     </div>
     <div class="sgfidm-dashboard-organism__caja-acciones">
-      <sgfidm-button type="primary" size="md" [width]="'220px'" [height]="'56px'" (click)="ir('/pos')">
-        <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
-        Ir al POS
-      </sgfidm-button>
-      <sgfidm-button type="secondary" size="md" [width]="'220px'" [height]="'56px'" (click)="ir('/caja')">
-        <span class="material-symbols-outlined" aria-hidden="true">close</span>
-        Cerrar caja
-      </sgfidm-button>
+      @if (cajaAbierta) {
+        <sgfidm-button type="primary" size="md" [width]="'220px'" [height]="'56px'" (click)="ir('/pos')">
+          <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          Ir al POS
+        </sgfidm-button>
+        <sgfidm-button type="secondary" size="md" [width]="'220px'" [height]="'56px'" (click)="ir('/caja')">
+          <span class="material-symbols-outlined" aria-hidden="true">close</span>
+          Cerrar caja
+        </sgfidm-button>
+      } @else {
+        <sgfidm-button type="primary" size="md" [width]="'220px'" [height]="'56px'" (click)="ir('/caja/abrir')">
+          <span class="material-symbols-outlined" aria-hidden="true">payments</span>
+          Abrir caja
+        </sgfidm-button>
+        <sgfidm-button type="secondary" size="md" [width]="'220px'" [height]="'56px'" (click)="ir('/caja')">
+          <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          Ver caja
+        </sgfidm-button>
+      }
     </div>
   </section>
 

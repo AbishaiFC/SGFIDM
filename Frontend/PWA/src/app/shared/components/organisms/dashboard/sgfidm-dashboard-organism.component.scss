@@ -93,6 +93,11 @@
     color: var(--sgfidm-color-on-success-container, #24402f);
     font-size: 10px;
     font-weight: 600;
+
+    &--cerrada {
+      background: var(--sgfidm-color-warning-container, #f5e8c8);
+      color: var(--sgfidm-color-on-warning-container, #5c4413);
+    }
   }
 
   &__caja-acciones {

@@ -11,6 +11,7 @@ describe('SgfidmDashboardOrganismComponent', () => {
   let component: SgfidmDashboardOrganismComponent;
 
   beforeEach(async () => {
+    localStorage.setItem('sgfidm-caja-abierta', '{}');
     await TestBed.configureTestingModule({
       imports: [SgfidmDashboardOrganismComponent, RouterTestingModule],
     }).compileComponents();
@@ -61,6 +62,37 @@ describe('SgfidmDashboardOrganismComponent', () => {
     porTexto('Ver reportes').click();
     expect(spy).toHaveBeenCalledWith(['/reportes']);
     spy.mockRestore();
+  });
+
+  it('should show the closed-caja card and open the ABRIR CAJA flow', () => {
+    localStorage.removeItem('sgfidm-caja-abierta');
+    const sinCaja = TestBed.createComponent(SgfidmDashboardOrganismComponent);
+    sinCaja.componentRef.setInput('indicators', []);
+    sinCaja.detectChanges();
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    const texto = sinCaja.nativeElement.textContent;
+    expect(texto).toContain('Caja cerrada');
+    expect(texto).toContain('Requiere apertura');
+    expect(texto).toContain('Abrir caja');
+    expect(texto).not.toContain('Cerrar caja');
+
+    const abrir = Array.from(
+      sinCaja.nativeElement.querySelectorAll(
+        '.sgfidm-dashboard-organism__caja-acciones button',
+      ),
+    ).find((b) => (b as HTMLElement).textContent?.includes('Abrir caja')) as HTMLButtonElement;
+    abrir.click();
+    expect(spy).toHaveBeenCalledWith(['/caja/abrir']);
+    spy.mockRestore();
+    localStorage.setItem('sgfidm-caja-abierta', '{}');
+  });
+
+  it('should show the open-caja card with POS and close actions', () => {
+    const texto = fixture.debugElement.nativeElement.textContent;
+    expect(texto).toContain('Caja abierta');
+    expect(texto).toContain('Puedes vender ahora');
+    expect(texto).toContain('Ir al POS');
+    expect(texto).toContain('Cerrar caja');
   });
 
   it('should render the indicators grid', () => {

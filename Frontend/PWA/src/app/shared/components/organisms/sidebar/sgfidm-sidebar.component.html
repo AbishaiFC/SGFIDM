@@ -1,0 +1,82 @@
+<!-- Sidebar canónico SGFIDM (Ficha 366:15636): Expanded | Icon-only -->
+<aside class="sgfidm-sidebar" [attr.aria-label]="'Navegación principal'">
+  <header class="sgfidm-sidebar__marca">
+    @if (layout() === 'expanded') {
+      <img class="sgfidm-sidebar__logo" src="Inko(Light).svg" alt="Inko" />
+      <span class="sgfidm-sidebar__textos">
+        <strong class="sgfidm-sidebar__nombre-marca">INKO</strong>
+        <span class="sgfidm-sidebar__negocio">{{ nombreNegocio() }}</span>
+      </span>
+      <!-- Expandida: Right Panel Close cierra el panel. -->
+      <sgfidm-icon-button
+        class="sgfidm-sidebar__colapsar"
+        (click)="alternar.emit()"
+        aria-label="Cerrar panel de navegación"
+        title="Cerrar panel"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">right_panel_close</span>
+      </sgfidm-icon-button>
+    } @else {
+      <!-- Cerrada: el propio logo es el control para abrir el panel. -->
+      <button
+        type="button"
+        class="sgfidm-sidebar__logo-toggle"
+        (click)="alternar.emit()"
+        aria-label="Abrir panel de navegación"
+        title="Abrir panel"
+      >
+        <img class="sgfidm-sidebar__logo" src="Inko(Light).svg" alt="Inko" />
+      </button>
+    }
+  </header>
+
+  <nav class="sidebar-nav" aria-label="Secciones">
+    @for (grupo of grupos(); track grupo.numero) {
+      @if (grupo.divisor) {
+        <div class="sgfidm-sidebar__divisor" role="separator"></div>
+      }
+      <div class="sgfidm-sidebar__grupo">
+        @for (item of grupo.items; track item.id) {
+          <sgfidm-sidebar-item
+            [icon]="item.icon"
+            [label]="item.label"
+            [route]="item.route"
+            [layout]="layout()"
+            [variant]="activo(item) ? 'active' : 'default'"
+            (nav)="navegar($event)"
+          />
+        }
+      </div>
+    }
+  </nav>
+
+  <!-- Expandida: usuario, cierre de sesión y notificaciones en una sola fila.
+       Cerrada (icon-only): mismo contenido apilado en columna. -->
+  <footer class="sgfidm-sidebar__pie" [class.sgfidm-sidebar__pie--icono]="layout() === 'icon-only'">
+    <div class="sgfidm-sidebar__usuario">
+      <span class="sgfidm-sidebar__avatar">{{ iniciales() }}</span>
+      @if (layout() === 'expanded') {
+        <span class="sgfidm-sidebar__usuario-textos">
+          <strong>{{ nombreUsuario() }}</strong>
+          <span>{{ rolMostrado() }} · {{ codigoEmpleado() }}</span>
+        </span>
+      }
+    </div>
+    <div class="sgfidm-sidebar__acciones">
+      <sgfidm-icon-button
+        class="sgfidm-sidebar__salir"
+        [attr.aria-label]="'Cerrar sesión'"
+        [attr.title]="'Cerrar sesión'"
+        (click)="cerrarSesion.emit()"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+      </sgfidm-icon-button>
+      <sgfidm-icon-button [attr.aria-label]="'Notificaciones'" [attr.title]="'Notificaciones'">
+        <span class="material-symbols-outlined" aria-hidden="true">notifications</span>
+        @if (notificaciones() > 0) {
+          <span class="sgfidm-sidebar__badge">{{ notificaciones() }}</span>
+        }
+      </sgfidm-icon-button>
+    </div>
+  </footer>
+</aside>

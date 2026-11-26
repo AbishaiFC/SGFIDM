@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
 import { provideRouter, Router } from '@angular/router';
+import { vi } from 'vitest';
 import { routes } from './app.routes';
 
 describe('App', () => {
@@ -29,5 +30,17 @@ describe('App', () => {
     await TestBed.inject(Router).navigateByUrl('/pos');
     fixture.detectChanges();
     expect((fixture.nativeElement as HTMLElement).querySelector('.sidebar-nav')).toBeNull();
+  });
+
+  it('should clear the session and go to login on logout', async () => {
+    localStorage.setItem('sgfidm-sesion', '{"rol":"Administrador"}');
+    localStorage.setItem('sgfidm-usuario', '{"nombre":"Ana López"}');
+    const fixture = TestBed.createComponent(App);
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    fixture.componentInstance.cerrarSesion();
+    expect(localStorage.getItem('sgfidm-sesion')).toBeNull();
+    expect(localStorage.getItem('sgfidm-usuario')).toBeNull();
+    expect(spy).toHaveBeenCalledWith(['/auth/login']);
+    spy.mockRestore();
   });
 });

@@ -28,6 +28,15 @@ describe('SgfidmSidebarItemComponent', () => {
     expect(label.nativeElement.textContent).toContain('Dashboard');
   });
 
+  it('should hide the label in icon-only layout', () => {
+    fixture.componentRef.setInput('layout', 'icon-only');
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css('.sgfidm-sidebar-item__label'))).toBeNull();
+    const item = fixture.debugElement.query(By.css('button.sgfidm-sidebar-item'));
+    expect(item.nativeElement.classList.contains('sgfidm-sidebar-item--icono')).toBe(true);
+    expect(item.nativeElement.getAttribute('aria-label')).toBe('Dashboard');
+  });
+
   it('should be default variant when not specified', () => {
     const item = fixture.debugElement.query(By.css('button.sgfidm-sidebar-item'));
     expect(item.nativeElement.classList.contains('sgfidm-sidebar-item--active')).toBe(false);

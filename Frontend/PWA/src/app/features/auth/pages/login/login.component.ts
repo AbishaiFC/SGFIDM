@@ -27,7 +27,20 @@ export class LoginComponent {
     this.errorMessage.set('');
 
     this.auth.login(datos.email, datos.password).subscribe({
-      next: () => {
+      next: (sesion) => {
+        // Persistimos la sesión para que la Sidebar resuelva rol y empleado (Ficha 366:15636).
+        try {
+          localStorage.setItem('sgfidm-sesion', JSON.stringify(sesion));
+        } catch {
+          // Sin almacenamiento: la navegación continúa con el estado en memoria.
+        }
+        this.auth.obtenerUsuarioActual().subscribe((usuario) => {
+          try {
+            localStorage.setItem('sgfidm-usuario', JSON.stringify(usuario ?? {}));
+          } catch {
+            // Sin almacenamiento: se mantiene el usuario en memoria.
+          }
+        });
         this.isLoading.set(false);
         this.router.navigate(['/dashboard']);
       },

@@ -1,86 +1,78 @@
-import { Component, input, output, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, output, signal } from '@angular/core';
 import { SgfidmPanelCardComponent } from '../../molecules/panel-card/sgfidm-panel-card.component';
 import { SgfidmIndicatorCardComponent } from '../../molecules/indicator-card/sgfidm-indicator-card.component';
-import { SgfidmBadgeComponent } from '../../molecules/../atoms/badge/sgfidm-badge.component';
-import { SgfidmButtonComponent } from '../../molecules/../atoms/button/sgfidm-button.component';
-import { SgfidmTabsComponent } from '../../molecules/../atoms/tabs/sgfidm-tabs.component';
+import { SgfidmButtonComponent } from '../../atoms/button/sgfidm-button.component';
 
-/**
- * DTO para un movimiento financiero (ingreso/gasto).
- */
-export interface MovimientoFincieroDto {
-  id: string;
-  descripcion: string;
-  tipo: 'ingreso' | 'gasto';
+interface Fila {
+  titulo: string;
+  detalle: string;
+  valor: string;
+  negativo?: boolean;
+  total?: boolean;
+}
+
+interface Categoria {
+  nombre: string;
   monto: string;
-  fecha?: string;
-  estado?: 'pendiente' | 'confirmado' | 'anulado';
+  porcentaje: string;
+  ancho: number;
 }
 
 /**
- * SgfidmFinanzasOrganism — Organismo de Finanzas (Módulo 08) del Design System SGFIDM.
+ * SgfidmFinanzasOrganism — Resumen financiero (FIN-01, Módulo 08) en modo Solo.
+ * Canon adaptado del prototipo Figma 1045:120710 (Con Empleados): sin sucursal
+ * ni filtros por EMP-XXX. Compone PanelCard, IndicatorCard y Button del DS.
  *
- * Organismo de resumen financiero (FIN-01): PanelCard + IndicatorCard + Tabs.
- * Anatomía: Indicadores financieros (Ingresos, Gastos, Balance) + lista de movimientos.
- * Compone PanelCard, IndicatorCard, SgfidmBadge, SgfidmButton, SgfidmTabs.
- *
- * Uso:
- *   <sgfidm-finanzas-organism [movimientos]="movimientos()" (accion)="onAccion($event)" />
+ * ToDo: FIN-02..10 (ingresos, gastos, movimientos, análisis, categorías),
+ * vinculación retroactiva de gastos no vinculados a caja.
  */
 @Component({
   selector: 'sgfidm-finanzas-organism',
   standalone: true,
-  imports: [CommonModule, SgfidmPanelCardComponent, SgfidmIndicatorCardComponent, SgfidmBadgeComponent, SgfidmTabsComponent],
+  imports: [SgfidmPanelCardComponent, SgfidmIndicatorCardComponent, SgfidmButtonComponent],
   templateUrl: './sgfidm-finanzas-organism.component.html',
   styleUrl: './sgfidm-finanzas-organism.component.scss',
 })
 export class SgfidmFinanzasOrganismComponent {
-  // ── Inputs ─────────────────────────────────────────────────────────────────
-  movimientos = input<MovimientoFincieroDto[]>([]);
+  readonly periodos = ['Hoy', 'Semana', 'Este mes', 'Mes anterior'];
+  readonly periodo = signal('Este mes');
 
-  // ── Outputs ────────────────────────────────────────────────────────────────
-  /** Emite el movimiento seleccionado con la acción (detalle, anular). */
-  accion = output<{ movimiento: MovimientoFincieroDto; tipo: 'detalle' | 'anular' }>();
+  readonly indicadores = [
+    { eyebrow: 'INGRESOS TOTALES (VENTAS + EXTRAORD.)', value: '$128,450.00', delta: '↑ +12.4% vs mes anterior' },
+    { eyebrow: 'GASTOS TOTALES DEL NEGOCIO', value: '$34,200.00', delta: '↓ -3.1% vs mes anterior' },
+    { eyebrow: 'UTILIDAD NETA COMERCIAL', value: '$42,150.00', delta: 'Estimada · ↑ +8.5% (Margen: 32.8%)' },
+    { eyebrow: 'FLUJO DE EFECTIVO NETO (CAJA)', value: '+$18,650.00', delta: 'Dinero físico neto en caja' },
+  ];
 
-  // ── State ──────────────────────────────────────────────────────────────────
-  readonly tabs = ['ingresos', 'gastos', 'movimientos'];
-  readonly tabActivo = signal<string>('movimientos');
+  readonly comercial: Fila[] = [
+    { titulo: 'Ingresos por ventas (POS)', detalle: 'Neto de cancelaciones y devoluciones', valor: '$118,450.00' },
+    { titulo: 'Ingresos manuales extraordinarios (ING)', detalle: 'Venta de activos, préstamos recibidos', valor: '+$10,000.00' },
+    { titulo: 'Costo de mercancía vendida (CMV)', detalle: 'Costo congelado de productos vendidos', valor: '-$52,100.00', negativo: true },
+    { titulo: 'Utilidad bruta comercial', detalle: 'Margen bruto: 59.4% (Ingresos − CMV)', valor: '$76,350.00', total: true },
+    { titulo: 'Gastos operativos del periodo (GAS)', detalle: 'Salidas operativas del negocio', valor: '-$34,200.00', negativo: true },
+  ];
 
-  // ── Computed ──────────────────────────────────────────────────────────────
-  /** Total de movimientos (string para IndicatorCard). */
-  get totalMovimientos(): string {
-    return String(this.movimientos().length);
-  }
+  readonly efectivo: Fila[] = [
+    { titulo: 'Entradas totales de efectivo en caja', detalle: 'Ventas efvo ($58.2k) + Ingresos efvo ($4k) + Manuales caja ($2k)', valor: '+$64,200.00' },
+    { titulo: 'Salidas totales de efectivo en caja', detalle: 'Gastos efvo ($38.3k) + Devoluc. ($1.3k) + Salidas caja ($8k)', valor: '-$45,550.00', negativo: true },
+    { titulo: 'Flujo de efectivo neto en el periodo', detalle: 'Diferencia neta física que ingresó a cajas activas', valor: '+$18,650.00', total: true },
+  ];
 
-  /** Parser de montos tipo "$1,200.50" → number. */
-  private static parseMonto(monto: string): number {
-    return Number(monto.replaceAll('$', '').replaceAll(',', ''));
-  }
+  readonly categorias: Categoria[] = [
+    { nombre: 'Insumos y materia prima', monto: '$14,800.00', porcentaje: '43.3%', ancho: 92 },
+    { nombre: 'Servicios básicos', monto: '$8,200.00', porcentaje: '24.0%', ancho: 51 },
+    { nombre: 'Mantenimiento y reparaciones', monto: '$5,600.00', porcentaje: '16.4%', ancho: 35 },
+    { nombre: 'Sin categoría (Gastos libres)', monto: '$5,600.00', porcentaje: '16.3%', ancho: 34 },
+  ];
 
-  /** Totales por tipo. */
-  get ingresosTotal(): string {
-    const total = this.movimientos().filter((m) => m.tipo === 'ingreso').reduce((a, b) => a + SgfidmFinanzasOrganismComponent.parseMonto(b.monto), 0);
-    return total.toFixed(2);
-  }
-  get gastosTotal(): string {
-    const total = this.movimientos().filter((m) => m.tipo === 'gasto').reduce((a, b) => a + SgfidmFinanzasOrganismComponent.parseMonto(b.monto), 0);
-    return total.toFixed(2);
-  }
+  readonly verMovimientos = output<void>();
+  readonly registrarGasto = output<void>();
+  readonly registrarIngreso = output<void>();
+  readonly analisis = output<void>();
+  readonly categoriasFinancieras = output<void>();
+  readonly gestionarCategorias = output<void>();
 
-  /** Movimientos filtrados por tab. */
-  get movimientosFiltro(): MovimientoFincieroDto[] {
-    const tab = this.tabActivo();
-    if (tab === 'ingresos') return this.movimientos().filter((m) => m.tipo === 'ingreso');
-    if (tab === 'gastos') return this.movimientos().filter((m) => m.tipo === 'gasto');
-    return this.movimientos();
-  }
-
-  onTab(tab: string): void {
-    this.tabActivo.set(tab);
-  }
-
-  onAccion(m: MovimientoFincieroDto, tipo: 'detalle' | 'anular'): void {
-    this.accion.emit({ movimiento: m, tipo });
+  seleccionar(periodo: string): void {
+    this.periodo.set(periodo);
   }
 }

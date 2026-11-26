@@ -144,7 +144,7 @@ describe('SgfidmSidebarComponent (Ficha 366:15636)', () => {
     expect(fixture.nativeElement.classList.contains('sgfidm-sidebar--icono')).toBe(true);
   });
 
-  it('should navigate to the FIN-08 drawer from Finanzas', () => {
+  it('should navigate to the FIN-01 summary from Finanzas', () => {
     const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
     const boton = Array.from(
       (fixture.debugElement.nativeElement as HTMLElement).querySelectorAll(
@@ -152,7 +152,7 @@ describe('SgfidmSidebarComponent (Ficha 366:15636)', () => {
       ),
     ).find((b) => b.textContent?.includes('Finanzas')) as HTMLButtonElement;
     boton.click();
-    expect(spy).toHaveBeenCalledWith(['/finanzas/gastos/registrar']);
+    expect(spy).toHaveBeenCalledWith(['/finanzas']);
     spy.mockRestore();
   });
 

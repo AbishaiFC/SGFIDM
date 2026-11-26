@@ -1,0 +1,193 @@
+/* INICIO-01 Bienvenida y configuración — Figma ADM / Bienvenida y configuración */
+.bienvenida-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  background-color: var(--sgfidm-color-background, #ededed);
+  padding: var(--sgfidm-space-8);
+}
+
+.bienvenida-card {
+  width: 680px;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: var(--sgfidm-color-surface, #ffffff);
+  border: 1px solid var(--sgfidm-color-outline-variant, #dbdbdb);
+  border-radius: var(--sgfidm-radius-lg, 10px);
+}
+
+.bienvenida-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bienvenida-title {
+  font-family: var(--sgfidm-font-family);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: -0.25px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  margin: 0;
+}
+
+.bienvenida-subtitle {
+  font-family: var(--sgfidm-font-family);
+  font-size: 13.5px;
+  line-height: 21px;
+  color: var(--sgfidm-color-text-secondary, #575757);
+  margin: 0;
+}
+
+.bienvenida-aviso {
+  display: flex;
+  align-items: center;
+  gap: var(--sgfidm-space-3);
+  padding: var(--sgfidm-space-3);
+  border-radius: var(--sgfidm-radius-md, 8px);
+  background: var(--sgfidm-color-error-container, #f6e4e1);
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+
+  &__icono {
+    font-size: 22px;
+    color: var(--sgfidm-color-error, #a9442e);
+  }
+
+  &__eyebrow {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    color: var(--sgfidm-color-text-muted, #8b8b8b);
+  }
+}
+
+.bienvenida-campos {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.bienvenida-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  &__label {
+    font-family: var(--sgfidm-font-family);
+    font-size: 11px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+
+  &__helper {
+    font-family: var(--sgfidm-font-family);
+    font-size: 11px;
+    color: var(--sgfidm-color-text-muted, #8b8b8b);
+    margin: 0;
+  }
+}
+
+.bienvenida-moneda {
+  display: flex;
+  align-items: center;
+  gap: var(--sgfidm-space-2);
+  height: 48px;
+  box-sizing: border-box;
+  padding: 0 var(--sgfidm-space-4);
+  border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+  border-radius: var(--sgfidm-radius-sm, 4px);
+  font-family: var(--sgfidm-font-family);
+  font-size: 13.5px;
+
+  &__valor {
+    flex: 1;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+  }
+
+  &__editar {
+    font-size: 18px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+}
+
+.bienvenida-modos {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  &__titulo {
+    font-family: var(--sgfidm-font-family);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+  }
+
+  &__lista {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  &__nota {
+    font-family: var(--sgfidm-font-family);
+    font-size: 11px;
+    color: var(--sgfidm-color-text-muted, #8b8b8b);
+    margin: 0;
+  }
+}
+
+.bienvenida-modo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  box-sizing: border-box;
+  padding: 16px;
+  text-align: left;
+  background: var(--sgfidm-color-surface, #ffffff);
+  border: 1px solid var(--sgfidm-color-outline-variant, #dbdbdb);
+  border-radius: var(--sgfidm-radius-md, 8px);
+  cursor: pointer;
+  font-family: var(--sgfidm-font-family);
+
+  &--activo {
+    background: var(--sgfidm-color-surface-variant, #f5f5f5);
+    border-color: var(--sgfidm-color-primary, #2a2a2a);
+  }
+
+  &__icono {
+    font-size: 28px;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+  }
+
+  &__titulo {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+  }
+
+  &__descripcion {
+    font-size: 11px;
+    line-height: 16px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+}
+
+.bienvenida-acciones {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sgfidm-space-3);
+}
+
+.bienvenida-flecha {
+  font-size: 18px;
+}

@@ -1,0 +1,83 @@
+<div class="bienvenida-page">
+  <div class="bienvenida-card">
+    <header class="bienvenida-header">
+      <h1 class="bienvenida-title">Configura tu negocio</h1>
+      <p class="bienvenida-subtitle">
+        Define lo mínimo para operar. Podrás ampliar estos datos después desde Configuración.
+      </p>
+    </header>
+
+    @if (errorNombre()) {
+      <div class="bienvenida-aviso" role="alert">
+        <span class="material-symbols-outlined bienvenida-aviso__icono" aria-hidden="true">error_outline</span>
+        <div>
+          <span class="bienvenida-aviso__eyebrow">REVISE EL NOMBRE</span>
+          <span>{{ errorNombre() }}</span>
+        </div>
+      </div>
+    }
+
+    <div class="bienvenida-campos">
+      <div class="bienvenida-campo">
+        <sgfidm-form-field
+          label="Nombre del negocio"
+          placeholder="Ej. Mi negocio"
+          helperText="Obligatorio · máximo 60 caracteres."
+          [errorMessage]="errorNombre() ? 'Este campo es obligatorio.' : ''"
+          [(value)]="nombre"
+        />
+      </div>
+
+      <div class="bienvenida-campo">
+        <div class="bienvenida-moneda">
+          <span class="material-symbols-outlined bienvenida-moneda__icono" aria-hidden="true">attach_money</span>
+          <span class="bienvenida-moneda__valor">{{ moneda }}</span>
+          <span class="material-symbols-outlined bienvenida-moneda__editar" aria-hidden="true">edit</span>
+        </div>
+        <span class="bienvenida-campo__label">Moneda</span>
+        <p class="bienvenida-campo__helper">Detectada por tu región. Una sola moneda en esta fase.</p>
+      </div>
+    </div>
+
+    <div class="bienvenida-modos">
+      <span class="bienvenida-modos__titulo">Modo de operación</span>
+      <div class="bienvenida-modos__lista">
+        @for (opcion of modos; track opcion.id) {
+          <button
+            type="button"
+            class="bienvenida-modo"
+            [class.bienvenida-modo--activo]="modo() === opcion.id"
+            [attr.aria-pressed]="modo() === opcion.id"
+            (click)="seleccionarModo(opcion.id)"
+          >
+            <span class="material-symbols-outlined bienvenida-modo__icono" aria-hidden="true">{{ opcion.icono }}</span>
+            <span class="bienvenida-modo__titulo">{{ opcion.titulo }}</span>
+            <span class="bienvenida-modo__descripcion">{{ opcion.descripcion }}</span>
+          </button>
+        }
+      </div>
+      <p class="bienvenida-modos__nota">
+        Puedes cambiarlo después desde Configuración. El modo solo habilita módulos; no crea
+        empleados ni sucursales.
+      </p>
+    </div>
+
+    <div class="bienvenida-acciones">
+      <sgfidm-button type="secondary" size="md" [width]="'320px'" [height]="'56px'" (click)="onOmitir()">
+        <span class="material-symbols-outlined bienvenida-flecha" aria-hidden="true">skip_next</span>
+        Omitir por ahora
+      </sgfidm-button>
+      <sgfidm-button
+        type="primary"
+        size="md"
+        [width]="'320px'"
+        [height]="'56px'"
+        [disabled]="!nombreValido"
+        (click)="onGuardar()"
+      >
+        <span class="material-symbols-outlined bienvenida-flecha" aria-hidden="true">arrow_forward</span>
+        Guardar y continuar
+      </sgfidm-button>
+    </div>
+  </div>
+</div>

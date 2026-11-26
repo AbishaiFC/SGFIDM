@@ -80,6 +80,6 @@ export class BienvenidaConfiguracionComponent {
     } catch {
       // Sin almacenamiento: la navegación continúa con el estado en memoria.
     }
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/inicio/primeros-pasos']);
   }
 }

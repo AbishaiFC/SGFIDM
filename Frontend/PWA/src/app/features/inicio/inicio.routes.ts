@@ -9,4 +9,9 @@ export const inicioRoutes: Routes = [
         (m) => m.BienvenidaConfiguracionComponent,
       ),
   },
+  {
+    path: 'primeros-pasos',
+    loadComponent: () =>
+      import('./pages/primeros-pasos/primeros-pasos.component').then((m) => m.PrimerosPasosComponent),
+  },
 ];

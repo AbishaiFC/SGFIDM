@@ -1,0 +1,78 @@
+<div class="pasos-page">
+  <header class="pasos-header">
+    <div class="pasos-header__textos">
+      <h1 class="pasos-title">Bienvenido, Ana</h1>
+      <p class="pasos-subtitle">Mi negocio está listo para empezar.</p>
+    </div>
+    <div class="pasos-header__meta">
+      <span class="pasos-fecha">Lunes, 9 de noviembre</span>
+      <span class="pasos-modo">{{ modo }}</span>
+    </div>
+  </header>
+
+  <sgfidm-panel-card class="pasos-panel">
+    <div class="pasos-panel__header">
+      <h2 class="pasos-panel__titulo">Tus primeros pasos</h2>
+      <button type="button" class="pasos-ocultar" (click)="onOcultarGuia()">
+        <span class="material-symbols-outlined" aria-hidden="true">close</span>
+        Ocultar guía
+      </button>
+    </div>
+
+    <div class="pasos-progreso">
+      <span class="pasos-progreso__texto">{{ total }} de 4 pasos obligatorios completados</span>
+      <div class="pasos-progreso__barra" role="progressbar" [attr.aria-valuenow]="total" aria-valuemin="0" aria-valuemax="4">
+        <span [style.width.%]="total * 25"></span>
+      </div>
+      <span class="pasos-progreso__ayuda">{{ avance }}</span>
+    </div>
+
+    <div class="pasos-lista">
+      @for (paso of pasos; track paso.numero) {
+        <div class="paso-fila">
+          <span class="paso-fila__numero" [class.paso-fila__numero--hecho]="completados().includes(paso.numero)">
+            @if (completados().includes(paso.numero)) {
+              <span class="material-symbols-outlined" aria-hidden="true">check</span>
+            } @else {
+              {{ paso.numero }}
+            }
+          </span>
+          <div class="paso-fila__info">
+            <span class="paso-fila__titulo">{{ paso.titulo }}</span>
+            <span class="paso-fila__descripcion">{{ paso.descripcion }}</span>
+          </div>
+          <span class="paso-badge" [class.paso-badge--hecho]="estadoPaso(paso.numero) === 'Completado'">
+            {{ estadoPaso(paso.numero) }}
+          </span>
+          <a class="paso-abrir" (click)="abrirPaso(paso)">
+            <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+            Abrir
+          </a>
+        </div>
+      }
+    </div>
+  </sgfidm-panel-card>
+
+  <div class="pasos-acciones">
+    <sgfidm-button type="primary" size="md" [width]="'320px'" [height]="'56px'" (click)="abrirPaso(pasos[2])">
+      <span class="material-symbols-outlined" aria-hidden="true">add</span>
+      Nueva venta
+    </sgfidm-button>
+    <sgfidm-button type="secondary" size="md" [width]="'320px'" [height]="'56px'" (click)="completar(1)">
+      <span class="material-symbols-outlined" aria-hidden="true">add</span>
+      Agregar producto
+    </sgfidm-button>
+    <sgfidm-button type="secondary" size="md" [width]="'320px'" [height]="'56px'" (click)="completar(4)">
+      <span class="material-symbols-outlined" aria-hidden="true">receipt_long</span>
+      Registrar gasto
+    </sgfidm-button>
+  </div>
+
+  <div class="pasos-footer">
+    <span>¿Necesitas más? Configura empleados, sucursales o métodos de pago cuando quieras.</span>
+    <a class="pasos-footer__link" (click)="onConfiguracion()">
+      <span class="material-symbols-outlined" aria-hidden="true">settings</span>
+      Ir a Configuración
+    </a>
+  </div>
+</div>

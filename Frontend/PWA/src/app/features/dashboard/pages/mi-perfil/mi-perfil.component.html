@@ -1,0 +1,108 @@
+<div class="perfil-page">
+  <header class="perfil-header">
+    <div class="perfil-header__textos">
+      <h1 class="perfil-title">Mi perfil</h1>
+      <p class="perfil-subtitle">Tu cuenta personal en modo Solo.</p>
+    </div>
+    <sgfidm-button type="secondary" size="lg" class="perfil-volver" (click)="onVolver()">
+      <span class="material-symbols-outlined perfil-icono" aria-hidden="true">arrow_back</span>
+      Volver a Configuración
+    </sgfidm-button>
+  </header>
+
+  <div class="perfil-columnas">
+    <div class="perfil-columna">
+      <section class="perfil-card perfil-card--datos">
+        <span class="perfil-eyebrow">DATOS DEL PROPIETARIO · SOLO LECTURA</span>
+        <h2 class="perfil-card__titulo">Cuenta del Propietario</h2>
+        <p class="perfil-card__support">
+          El negocio se configura en Configuración → Negocio.
+        </p>
+
+        <div class="perfil-dato">
+          <span class="perfil-dato__label">NOMBRE COMPLETO</span>
+          <span class="perfil-dato__value">Ana Martínez</span>
+        </div>
+        <div class="perfil-dato">
+          <span class="perfil-dato__label">CORREO DE ACCESO</span>
+          <span class="perfil-dato__value">ana@minegocio.com</span>
+        </div>
+        <div class="perfil-dato">
+          <span class="perfil-dato__label">NEGOCIO</span>
+          <span class="perfil-dato__value">Mi negocio · Independiente</span>
+        </div>
+        <div class="perfil-dato">
+          <span class="perfil-dato__label">MONEDA</span>
+          <span class="perfil-dato__value">MXN · Fija tras el primer movimiento</span>
+        </div>
+      </section>
+
+      <section class="perfil-card">
+        <span class="perfil-eyebrow">SEGURIDAD · AUTH-15</span>
+        <h2 class="perfil-card__titulo">PIN de acceso rápido</h2>
+        <p class="perfil-card__support">
+          6 dígitos · hash seguro · solo desbloquea una sesión vigente en una terminal registrada.
+        </p>
+
+        <span class="perfil-chip perfil-chip--success">
+          <span class="material-symbols-outlined perfil-chip__icono" aria-hidden="true">check_circle</span>
+          PIN configurado
+        </span>
+
+        <div class="perfil-acciones">
+          <sgfidm-button type="primary" size="md">Cambiar PIN</sgfidm-button>
+          <sgfidm-button type="secondary" size="md">Eliminar PIN</sgfidm-button>
+        </div>
+
+        <p class="perfil-card__nota">
+          5 intentos máximos. Al quinto, la cuenta se bloquea administrativamente; no hay
+          desbloqueo automático.
+        </p>
+      </section>
+
+      <section class="perfil-card">
+        <span class="perfil-eyebrow">PREFERENCIAS</span>
+        <h2 class="perfil-card__titulo">Accesibilidad y ayuda</h2>
+
+        <div class="perfil-fila">
+          <span class="perfil-fila__texto">Reducir movimiento (prefers-reduced-motion)</span>
+          <span class="perfil-chip perfil-chip--neutral">Desactivado</span>
+        </div>
+        <p class="perfil-card__support">
+          Al activarlo, las transiciones entre vistas se simplifican.
+        </p>
+
+        <div class="perfil-fila perfil-fila--tour">
+          <span class="perfil-fila__texto">Tour de bienvenida</span>
+          <sgfidm-button type="secondary" size="md">Reiniciar tour</sgfidm-button>
+        </div>
+      </section>
+    </div>
+
+    <div class="perfil-columna">
+      <section class="perfil-card">
+        <span class="perfil-eyebrow">SESIÓN</span>
+        <h2 class="perfil-card__titulo">Sesión actual</h2>
+
+        <div class="perfil-dato">
+          <span class="perfil-dato__label">DISPOSITIVO</span>
+          <span class="perfil-dato__value">Terminal POS · Caja 1 (registrada)</span>
+        </div>
+        <div class="perfil-dato">
+          <span class="perfil-dato__label">IP / ÚLTIMA ACTIVIDAD</span>
+          <span class="perfil-dato__value">192.168.1.24 · hoy 09:41</span>
+        </div>
+        <div class="perfil-dato">
+          <span class="perfil-dato__label">INICIO DE SESIÓN</span>
+          <span class="perfil-dato__value">Hoy 08:02 · esta terminal</span>
+        </div>
+
+        <div class="perfil-cerrar">
+          <sgfidm-button type="primary" size="md" (click)="onCerrarSesion()">
+            Cerrar sesión
+          </sgfidm-button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

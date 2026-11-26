@@ -1,0 +1,104 @@
+/* CONF-01 Configuración — hub dentro de Dashboard (prototipo Figma) */
+.configuracion-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.configuracion-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.configuracion-title {
+  font-family: var(--sgfidm-font-family);
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  margin: 0;
+}
+
+.configuracion-subtitle {
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  color: var(--sgfidm-color-text-secondary, #575757);
+  margin: 0;
+}
+
+.configuracion-panel {
+  width: 100%;
+
+  ::ng-deep .sgfidm-panel-card {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    border-radius: 24px;
+  }
+
+  ::ng-deep .sgfidm-panel-card__body {
+    gap: 0;
+  }
+}
+
+.configuracion-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sgfidm-space-4);
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--sgfidm-color-outline-variant, #dbdbdb);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.configuracion-row__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.configuracion-row__title {
+  font-family: var(--sgfidm-font-family);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  margin: 0;
+}
+
+.configuracion-row__description {
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  color: var(--sgfidm-color-text-secondary, #575757);
+  margin: 0;
+}
+
+.configuracion-row__action {
+  display: flex;
+  align-items: center;
+  gap: var(--sgfidm-space-3);
+  flex-shrink: 0;
+
+  ::ng-deep .sgfidm-button {
+    width: 94px;
+    height: 44px;
+    border-radius: var(--sgfidm-radius-full, 999px);
+  }
+}
+
+.configuracion-row__meta {
+  font-family: var(--sgfidm-font-family);
+  font-size: 11px;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+}
+
+.configuracion-footer {
+  font-family: var(--sgfidm-font-family);
+  font-size: 11px;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+  margin: 0;
+}

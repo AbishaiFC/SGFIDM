@@ -1,0 +1,36 @@
+<div class="configuracion-page">
+  <header class="configuracion-header">
+    <h1 class="configuracion-title">Configuración</h1>
+    <p class="configuracion-subtitle">
+      Administra tu negocio, la seguridad y los métodos de pago.
+    </p>
+  </header>
+
+  <sgfidm-panel-card class="configuracion-panel">
+    @for (opcion of opciones; track opcion.titulo) {
+      <div class="configuracion-row">
+        <div class="configuracion-row__info">
+          <h2 class="configuracion-row__title">{{ opcion.titulo }}</h2>
+          <p class="configuracion-row__description">{{ opcion.descripcion }}</p>
+        </div>
+        <div class="configuracion-row__action">
+          @if (opcion.meta) {
+            <span class="configuracion-row__meta">{{ opcion.meta }}</span>
+          }
+          <sgfidm-button
+            type="secondary"
+            size="sm"
+            [disabled]="!opcion.ruta"
+            (click)="abrir(opcion)"
+          >
+            Abrir
+          </sgfidm-button>
+        </div>
+      </div>
+    }
+  </sgfidm-panel-card>
+
+  <p class="configuracion-footer">
+    Solo Propietario · Configuración enlaza a los módulos existentes y conserva sus datos.
+  </p>
+</div>

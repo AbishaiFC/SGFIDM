@@ -61,8 +61,7 @@ export class ResetPasswordComponent {
     this.auth.restablecerContrasena(this.token, this.nuevaPassword).subscribe({
       next: () => {
         this.isLoading = false;
-        // AUTH-05 (Contraseña restablecida) se integrará en su propia vista.
-        this.router.navigate(['/auth/login']);
+        this.router.navigate(['/auth/password-reset-success']);
       },
       error: () => {
         this.isLoading = false;

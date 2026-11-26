@@ -14,6 +14,7 @@ import { EmployeeAcceptInvitationComponent } from './pages/employee-accept-invit
 import { CajaPendienteComponent } from './pages/caja-pendiente/caja-pendiente.component';
 import { TerminalBloqueadaComponent } from './pages/terminal-bloqueada/terminal-bloqueada.component';
 import { SesionRevocadaComponent } from './pages/sesion-revocada/sesion-revocada.component';
+import { PasswordResetSuccessComponent } from './pages/password-reset-success/password-reset-success.component';
 
 export const authRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -31,4 +32,5 @@ export const authRoutes: Routes = [
   { path: 'caja-pendiente', component: CajaPendienteComponent },
   { path: 'terminal-bloqueada', component: TerminalBloqueadaComponent },
   { path: 'sesion-revocada', component: SesionRevocadaComponent },
+  { path: 'password-reset-success', component: PasswordResetSuccessComponent },
 ];

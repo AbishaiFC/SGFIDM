@@ -83,7 +83,7 @@ describe('ResetPasswordComponent (AUTH-04)', () => {
     component.onGuardar();
 
     expect(saveSpy).toHaveBeenCalledWith('token-demo', 'Abc12345');
-    expect(navSpy).toHaveBeenCalledWith(['/auth/login']);
+    expect(navSpy).toHaveBeenCalledWith(['/auth/password-reset-success']);
     saveSpy.mockRestore();
     navSpy.mockRestore();
   });

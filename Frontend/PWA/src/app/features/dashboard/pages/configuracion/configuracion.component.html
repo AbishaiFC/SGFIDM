@@ -22,7 +22,6 @@
             size="sm"
             [width]="'94px'"
             [height]="'44px'"
-            [disabled]="!opcion.ruta"
             (click)="abrir(opcion)"
           >
             Abrir
@@ -32,7 +31,11 @@
     }
   </sgfidm-panel-card>
 
-  <p class="configuracion-footer">
-    Solo Propietario · Configuración enlaza a los módulos existentes y conserva sus datos.
-  </p>
+  @if (aviso()) {
+    <p class="configuracion-footer configuracion-footer--aviso" role="status">{{ aviso() }}</p>
+  } @else {
+    <p class="configuracion-footer">
+      Solo Propietario · Configuración enlaza a los módulos existentes y conserva sus datos.
+    </p>
+  }
 </div>

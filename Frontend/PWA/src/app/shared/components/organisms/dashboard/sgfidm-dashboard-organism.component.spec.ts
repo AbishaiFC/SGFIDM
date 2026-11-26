@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SgfidmDashboardOrganismComponent } from './sgfidm-dashboard-organism.component';
 import { SgfidmIndicatorCardComponent } from '../../molecules/indicator-card/sgfidm-indicator-card.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SgfidmDashboardOrganismComponent', () => {
   let fixture: ComponentFixture<SgfidmDashboardOrganismComponent>;
@@ -9,7 +10,7 @@ describe('SgfidmDashboardOrganismComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SgfidmDashboardOrganismComponent],
+      imports: [SgfidmDashboardOrganismComponent, RouterTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SgfidmDashboardOrganismComponent);
@@ -21,14 +22,22 @@ describe('SgfidmDashboardOrganismComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should render the title', () => {
+  it('should render the Figma operational header', () => {
     const title = fixture.debugElement.query(By.css('.sgfidm-dashboard-organism__title'));
-    expect(title.nativeElement.textContent).toContain('Dashboard Operativo');
+    expect(title.nativeElement.textContent).toContain('Buenos días, Ana');
+    const subtitle = fixture.debugElement.query(By.css('.sgfidm-dashboard-organism__subtitle'));
+    expect(subtitle.nativeElement.textContent).toContain('Este es el estado de Mi negocio hoy.');
   });
 
-  it('should render the subtitle', () => {
-    const subtitle = fixture.debugElement.query(By.css('.sgfidm-dashboard-organism__subtitle'));
-    expect(subtitle.nativeElement.textContent).toContain('Resumen de indicadores del negocio');
+  it('should render the cash status, alerts and recent activity', () => {
+    const text = fixture.debugElement.nativeElement.textContent;
+    expect(text).toContain('Caja abierta');
+    expect(text).toContain('Puedes vender ahora');
+    expect(text).toContain('Requiere tu atención');
+    expect(text).toContain('Productos con bajo stock');
+    expect(text).toContain('Actividad reciente');
+    expect(text).toContain('Venta · $340');
+    expect(text).toContain('ACCIONES RÁPIDAS');
   });
 
   it('should render the indicators grid', () => {

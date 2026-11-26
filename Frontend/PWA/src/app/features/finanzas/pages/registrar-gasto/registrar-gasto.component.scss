@@ -1,0 +1,287 @@
+/* FIN-08 Registrar gasto (drawer) — Figma 1145:85135 */
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+}
+
+.registrar-gasto-fondo {
+  position: absolute;
+  inset: 0;
+  padding: 24px 32px;
+  background: var(--sgfidm-color-background, #f7f7f7);
+  overflow: hidden;
+
+  &__titulo {
+    font-family: var(--sgfidm-font-family);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+    margin: 0 0 6px;
+  }
+
+  &__subtitulo {
+    font-family: var(--sgfidm-font-family);
+    font-size: 12px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+    margin: 0 0 20px;
+  }
+
+  &__panel {
+    max-width: 640px;
+
+    ::ng-deep .sgfidm-panel-card {
+      padding: 16px 20px;
+      border-radius: 12px;
+    }
+  }
+
+  &__filtros {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-family: var(--sgfidm-font-family);
+    font-size: 11px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+
+  &__fila {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    border-top: 1px solid var(--sgfidm-color-outline-variant, #e0e0e0);
+    font-family: var(--sgfidm-font-family);
+    font-size: 11px;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+  }
+}
+
+.registrar-gasto-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+}
+
+.registrar-gasto-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(560px, 100%);
+  display: flex;
+  flex-direction: column;
+  background: var(--sgfidm-color-surface, #ffffff);
+  border-left: 1px solid var(--sgfidm-color-outline-variant, #e0e0e0);
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.08);
+  font-family: var(--sgfidm-font-family);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 28px 12px;
+    flex-shrink: 0;
+  }
+
+  &__titulo {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.25px;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+    margin: 0;
+  }
+
+  &__cuerpo {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 8px 28px 24px;
+  }
+
+  &__acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--sgfidm-space-2);
+    padding: 16px 28px 24px;
+    border-top: 1px solid var(--sgfidm-color-outline-variant, #e0e0e0);
+    flex-shrink: 0;
+  }
+}
+
+.registrar-gasto-cerrar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--sgfidm-color-text-secondary, #575757);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--sgfidm-color-surface-container, #f5f5f5);
+  }
+}
+
+.registrar-gasto-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+
+  &--lectura {
+    padding-top: 8px;
+    border-top: 1px solid var(--sgfidm-color-outline-variant, #e0e0e0);
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.registrar-gasto-campo,
+.registrar-gasto-categoria {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.registrar-gasto-control {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 7px 12px 9px;
+  border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+  border-radius: var(--sgfidm-radius-sm, 4px);
+
+  label {
+    font-size: 10px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+
+  select,
+  textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-family: var(--sgfidm-font-family);
+    font-size: 13px;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+  }
+
+  select {
+    appearance: none;
+    cursor: pointer;
+    padding-right: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23575757' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right center;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 60px;
+    padding-bottom: 14px;
+  }
+
+  &--textarea {
+    padding-bottom: 20px;
+  }
+}
+
+.registrar-gasto-contador {
+  position: absolute;
+  right: 12px;
+  bottom: 6px;
+  font-size: 10px;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+}
+
+.registrar-gasto-categoria__etiquetas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  label {
+    font-size: 11px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+}
+
+.registrar-gasto-link {
+  font-size: 10px;
+  color: var(--sgfidm-color-primary, #2c5d71);
+  cursor: help;
+}
+
+.registrar-gasto-metodo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__label {
+    font-size: 11px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+}
+
+.registrar-gasto-segmentado {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 4px;
+  border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+  border-radius: 999px;
+
+  button {
+    padding: 8px 4px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    font-family: var(--sgfidm-font-family);
+    font-size: 11px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+    cursor: pointer;
+
+    &.registrar-gasto-segmentado__activo,
+    &[aria-checked='true'] {
+      background: var(--sgfidm-color-surface-container, #f0f0f0);
+      color: var(--sgfidm-color-text-primary, #1c1c1c);
+      font-weight: 600;
+    }
+  }
+}
+
+.registrar-gasto-aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--sgfidm-color-warning-container, #f5e8c8);
+  font-size: 11px;
+  line-height: 17px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+
+  .material-symbols-outlined {
+    font-size: 20px;
+    color: var(--sgfidm-color-warning, #9a6b14);
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+.registrar-gasto-error {
+  font-size: 12px;
+  color: var(--sgfidm-color-error, #a9442e);
+  margin: 0;
+}

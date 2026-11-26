@@ -14,6 +14,7 @@ describe('PrimerosPasosComponent (INICIO-02)', () => {
         PrimerosPasosComponent,
         RouterTestingModule.withRoutes([
           { path: 'productos/registrar', component: PrimerosPasosComponent },
+          { path: 'finanzas/gastos/registrar', component: PrimerosPasosComponent },
           { path: 'caja/abrir', component: PrimerosPasosComponent },
           { path: 'pos', component: PrimerosPasosComponent },
           { path: 'dashboard', component: PrimerosPasosComponent },
@@ -25,6 +26,11 @@ describe('PrimerosPasosComponent (INICIO-02)', () => {
     fixture = TestBed.createComponent(PrimerosPasosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    localStorage.removeItem('sgfidm-primer-producto');
+    localStorage.removeItem('sgfidm-primer-gasto');
   });
 
   it('should create and render the Figma first-steps panel', () => {
@@ -61,13 +67,22 @@ describe('PrimerosPasosComponent (INICIO-02)', () => {
     spy.mockRestore();
   });
 
-  it('should open Productos from the first step and complete the expense step', () => {
+  it('should open Productos and Finanzas from their steps', () => {
     const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
     component.abrirPaso(component.pasos[0]);
     expect(spy).toHaveBeenCalledWith(['/productos/registrar']);
     component.abrirPaso(component.pasos[3]);
-    expect(component.completados()).toEqual([4]);
+    expect(spy).toHaveBeenCalledWith(['/finanzas/gastos/registrar']);
     spy.mockRestore();
+  });
+
+  it('should mark product and expense steps from localStorage', () => {
+    localStorage.setItem('sgfidm-primer-producto', 'true');
+    localStorage.setItem('sgfidm-primer-gasto', 'true');
+    const conDatos = TestBed.createComponent(PrimerosPasosComponent).componentInstance;
+    expect(conDatos.completados()).toEqual([1, 4]);
+    localStorage.removeItem('sgfidm-primer-producto');
+    localStorage.removeItem('sgfidm-primer-gasto');
   });
 
   it('should hide the guide and go to Configuración', () => {

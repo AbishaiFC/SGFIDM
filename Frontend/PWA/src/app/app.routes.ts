@@ -59,5 +59,9 @@ export const routes: Routes = [
     path: 'productos',
     loadChildren: () => import('./features/productos/productos.routes').then((m) => m.productosRoutes),
   },
+  {
+    path: 'finanzas',
+    loadChildren: () => import('./features/finanzas/finanzas.routes').then((m) => m.finanzasRoutes),
+  },
   { path: '**', redirectTo: '/auth/login' },
 ];

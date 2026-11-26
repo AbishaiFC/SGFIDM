@@ -1,0 +1,143 @@
+<!--
+  FIN-08 en modo Solo: gasto manual de "Mi negocio", registrado por la propietaria.
+  El listado de Gastos (FIN-03) detrás del drawer es solo contexto visual:
+    ToDo FIN-03: sustituir por la pantalla completa con filtros, búsqueda y paginación.
+  OTROS MODOS (ToDo, no implementado):
+    - Con Sucursales: el gasto exige la sucursal activa (selector).
+    - Con Empleados: "quién registra" se resuelve por EMP-XXX y se audita.
+  FIN-04 Categorías (ToDo): enlace "Gestionar categorías".
+  ToDo: gasto en efectivo CON caja abierta debe generar movimiento de caja automático.
+-->
+<div class="registrar-gasto-fondo" aria-hidden="true">
+  <h1 class="registrar-gasto-fondo__titulo">Gastos</h1>
+  <p class="registrar-gasto-fondo__subtitulo">
+    48 registros en el periodo · Total: $34,200.00 (Activos: $31,800.00 · Anulados: $2,400.00 ·
+    1 no vinculado)
+  </p>
+  <sgfidm-panel-card class="registrar-gasto-fondo__panel">
+    <div class="registrar-gasto-fondo__filtros">
+      <span>Este mes</span><span>Método: Todos</span><span>Categorías: Todas</span>
+    </div>
+    <div class="registrar-gasto-fondo__fila">
+      <span>Compra leche entera y deslactosada (12L)</span><span>Efectivo</span><span>-$384.00</span>
+    </div>
+    <div class="registrar-gasto-fondo__fila">
+      <span>Pago de internet fibra óptica mensual</span><span>Tarjeta</span><span>-$899.00</span>
+    </div>
+  </sgfidm-panel-card>
+</div>
+
+<div class="registrar-gasto-overlay" (click)="cerrar()"></div>
+
+<aside class="registrar-gasto-drawer" role="dialog" aria-modal="true" aria-label="Registrar gasto">
+  <header class="registrar-gasto-drawer__header">
+    <h2 class="registrar-gasto-drawer__titulo">Registrar gasto</h2>
+    <button type="button" class="registrar-gasto-cerrar" aria-label="Cerrar" (click)="cerrar()">
+      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+    </button>
+  </header>
+
+  <div class="registrar-gasto-drawer__cuerpo">
+    <div class="registrar-gasto-grid">
+      <sgfidm-form-field label="Código de gasto (autogenerado)" [value]="codigo()" [disabled]="true" />
+      <sgfidm-form-field
+        label="Monto ($) * (mayor a cero)"
+        [(value)]="monto"
+        leadingIcon="attach_money"
+        placeholder="650.00"
+      />
+    </div>
+
+    <sgfidm-form-field
+      label="Concepto * (obligatorio, máx. 120 caracteres)"
+      [(value)]="concepto"
+      placeholder="Compra urgente de leche entera y café de grano para barra"
+    />
+
+    <div class="registrar-gasto-campo">
+      <div class="registrar-gasto-control registrar-gasto-control--textarea">
+        <label for="descripcion-gasto">Descripción (opcional, máx. 500 caracteres)</label>
+        <textarea
+          id="descripcion-gasto"
+          [(ngModel)]="descripcion"
+          rows="3"
+          [attr.maxlength]="maxDescripcion"
+        ></textarea>
+        <span class="registrar-gasto-contador">{{ descripcionLength }} / {{ maxDescripcion }}</span>
+      </div>
+    </div>
+
+    <div class="registrar-gasto-categoria">
+      <div class="registrar-gasto-categoria__etiquetas">
+        <label for="categoria-gasto">Categoría de gasto (opcional)</label>
+        <span class="registrar-gasto-link" title="ToDo FIN-04">Gestionar categorías</span>
+      </div>
+      <!-- ToDo FIN-04: cargar aquí las categorías de gasto activas (CATF-XXX). -->
+      <div class="registrar-gasto-control">
+        <select id="categoria-gasto" [(ngModel)]="categoria">
+          <option>Sin categoría</option>
+          <option>Insumos y materia prima (CATF-001)</option>
+          <option>Servicios básicos (CATF-002)</option>
+          <option>Mantenimiento (CATF-003)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="registrar-gasto-metodo">
+      <span class="registrar-gasto-metodo__label">Método de pago *</span>
+      <div class="registrar-gasto-segmentado" role="radiogroup" aria-label="Método de pago">
+        @for (opcion of metodos; track opcion) {
+          <button
+            type="button"
+            role="radio"
+            [attr.aria-checked]="metodo() === opcion"
+            [class.registrar-gasto-segmentado__activo]="metodo() === opcion"
+            (click)="metodo.set(opcion)"
+          >
+            {{ opcion }}
+          </button>
+        }
+      </div>
+    </div>
+
+    @if (sinCaja()) {
+      <div class="registrar-gasto-aviso" role="status">
+        <span class="material-symbols-outlined" aria-hidden="true">warning</span>
+        <span>
+          <strong>Efectivo sin sesión:</strong> No hay caja abierta en este negocio. El gasto se
+          registrará como efectivo no vinculado a caja. No se bloquea la operación ni genera una
+          salida automática de caja física.
+        </span>
+      </div>
+    }
+
+    <sgfidm-form-field
+      label="Referencia / ticket de comprobante (opcional)"
+      [(value)]="referencia"
+      placeholder="Ticket OXXO #44921 / Don Pedro Café"
+    />
+
+    <div class="registrar-gasto-grid registrar-gasto-grid--lectura">
+      <sgfidm-form-field label="Mi negocio (solo lectura)" [value]="negocio" [disabled]="true" leadingIcon="lock" />
+      <sgfidm-form-field
+        label="Quién registra (solo lectura)"
+        [value]="registrador"
+        [disabled]="true"
+        leadingIcon="lock"
+      />
+    </div>
+
+    @if (error()) {
+      <p class="registrar-gasto-error" role="alert">{{ error() }}</p>
+    }
+  </div>
+
+  <footer class="registrar-gasto-drawer__acciones">
+    <sgfidm-button type="secondary" size="md" [width]="'140px'" [height]="'44px'" (click)="cerrar()">
+      Cancelar
+    </sgfidm-button>
+    <sgfidm-button type="primary" size="md" [width]="'180px'" [height]="'44px'" (click)="onRegistrar()">
+      Registrar gasto
+    </sgfidm-button>
+  </footer>
+</aside>

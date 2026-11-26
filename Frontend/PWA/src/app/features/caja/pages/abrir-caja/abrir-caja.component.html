@@ -1,0 +1,55 @@
+<!--
+  CAJ-02 en modo Solo: negocio y cajero vienen del contexto operativo (SUC-001).
+  OTROS MODOS (anotación, no implementado):
+    - Con Sucursales: selector de sucursal en "Datos de la sesión".
+    - Con Empleados: el cajero autenticado se resuelve por EMP-XXX.
+-->
+<div class="abrir-caja-page">
+  <header class="abrir-caja-header">
+    <h1 class="abrir-caja-title">Abrir caja</h1>
+    <p class="abrir-caja-subtitle">
+      Inicia una nueva sesión de caja para habilitar ventas en efectivo en el POS
+    </p>
+  </header>
+
+  <sgfidm-panel-card class="abrir-caja-panel">
+    <span class="abrir-caja-eyebrow">DATOS DE LA SESIÓN</span>
+
+    <div class="abrir-caja-contexto">
+      <sgfidm-form-field label="Negocio" [value]="negocio" [disabled]="true" leadingIcon="lock" helperText="Definido por el contexto operativo." />
+      <sgfidm-form-field label="Cajero autenticado" [value]="cajero" [disabled]="true" leadingIcon="lock" helperText="Solo puedes tener una sesión abierta a la vez." />
+    </div>
+
+    <div class="abrir-caja-fondo">
+      <sgfidm-form-field label="Fondo inicial en efectivo ($)" [(value)]="fondo" leadingIcon="attach_money" [required]="true" />
+    </div>
+
+    <div class="abrir-caja-sugerencia" role="status">
+      <span class="material-symbols-outlined" aria-hidden="true">info</span>
+      <div>
+        <strong>Sugerencia</strong>
+        <span>Sugerido según tu último cierre: $1,500.00. Puedes cambiarlo.</span>
+      </div>
+    </div>
+
+    @if (error()) {
+      <p class="abrir-caja-error" role="alert">{{ error() }}</p>
+    }
+
+    <div class="abrir-caja-notas">
+      <label for="notas-apertura">Notas de apertura</label>
+      <textarea
+        id="notas-apertura"
+        [(ngModel)]="notas"
+        rows="3"
+        [attr.maxlength]="maxNotas"
+      ></textarea>
+      <span class="abrir-caja-contador">{{ notasLength }} / {{ maxNotas }}</span>
+    </div>
+
+    <div class="abrir-caja-acciones">
+      <sgfidm-button type="secondary" size="md" [width]="'140px'" [height]="'44px'" (click)="onCancelar()">Cancelar</sgfidm-button>
+      <sgfidm-button type="primary" size="md" [width]="'140px'" [height]="'44px'" (click)="onAbrir()">Abrir caja</sgfidm-button>
+    </div>
+  </sgfidm-panel-card>
+</div>

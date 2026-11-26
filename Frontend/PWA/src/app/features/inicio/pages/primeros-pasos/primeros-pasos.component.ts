@@ -31,7 +31,7 @@ export class PrimerosPasosComponent {
       numero: 2,
       titulo: 'Abre tu caja',
       descripcion: 'Registra el fondo inicial y empieza la jornada.',
-      ruta: '/caja',
+      ruta: '/caja/abrir',
     },
     {
       numero: 3,

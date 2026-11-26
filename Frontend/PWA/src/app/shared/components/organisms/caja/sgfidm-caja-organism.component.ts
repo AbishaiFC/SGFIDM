@@ -1,64 +1,41 @@
-import { Component, input, output, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { SgfidmPanelCardComponent } from '../../molecules/panel-card/sgfidm-panel-card.component';
-import { SgfidmIndicatorCardComponent } from '../../molecules/indicator-card/sgfidm-indicator-card.component';
-import { SgfidmBadgeComponent } from '../../molecules/../atoms/badge/sgfidm-badge.component';
-import { SgfidmTabsComponent } from '../../molecules/../atoms/tabs/sgfidm-tabs.component';
+import { SgfidmButtonComponent } from '../../atoms/button/sgfidm-button.component';
 
-/**
- * DTO para una sesión de caja en el hub de cajas.
- */
+/** DTO de cierre conservado por compatibilidad con usos previos. */
 export interface CajaSessionDto {
   id: string;
   sucursal: string;
   totalVenta: string;
-  status: 'activa' | 'cerrada' | 'huérfana' | 'intervenida';
+  status: string;
 }
 
 /**
- * SgfidmCajaOrganism — Organismo del Hub de Cajas (CAJ-01) del Design System SGFIDM.
+ * SgfidmCajaOrganism — Vista CAJ-01 de Caja en modo Solo (Figma 1145:83635).
  *
- * Organismo de la pantalla de Estado de cajas: lista de sesiones de caja activas/huérfanas
- * + acciones rápidas por organismo. Compone PanelCard + IndicatorCard + Badge + Tabs.
- *
- * Uso:
- *   <sgfidm-caja-organism [sessions]="sessions()" (action)="onSessionAction($event)" />
+ * Sucursal implícita SUC-001, una sola sesión activa del propietario y
+ * historial de cierres. Sin selector de sucursal ni filtro por empleado.
  */
 @Component({
   selector: 'sgfidm-caja-organism',
   standalone: true,
-  imports: [CommonModule, SgfidmPanelCardComponent, SgfidmIndicatorCardComponent, SgfidmBadgeComponent, SgfidmTabsComponent],
+  imports: [SgfidmPanelCardComponent, SgfidmButtonComponent],
   templateUrl: './sgfidm-caja-organism.component.html',
   styleUrl: './sgfidm-caja-organism.component.scss',
 })
 export class SgfidmCajaOrganismComponent {
-  // ── Inputs ─────────────────────────────────────────────────────────────────
-  sessions = input<CajaSessionDto[]>([]);
-  branchName = input<string>('Principal');
+  private readonly router = inject(Router);
 
-  // ── Outputs ────────────────────────────────────────────────────────────────
-  sessionAction = output<{ id: string; action: 'open' | 'close' }>();
+  readonly cierres = [
+    { id: 'CAJ-001', empleado: 'Ana Martínez', fecha: 'Ayer · 06:30 PM', esperado: '$6,200.00', contado: '$6,200.00', resultado: 'Cuadrada', diferencia: '$0.00' },
+    { id: 'CAJ-098', empleado: 'Ana Martínez', fecha: '08/11 · 07:15 PM', esperado: '$4,100.00', contado: '$4,150.00', resultado: 'Sobrante', diferencia: '+$50.00' },
+    { id: 'CAJ-095', empleado: 'Ana Martínez', fecha: '07/11 · 06:45 PM', esperado: '$5,800.00', contado: '$5,780.00', resultado: 'Faltante', diferencia: '−$20.00' },
+    { id: 'CAJ-091', empleado: 'Ana Martínez', fecha: '06/11 · 07:00 PM', esperado: '$3,950.00', contado: '$3,950.00', resultado: 'Cuadrada', diferencia: '$0.00' },
+    { id: 'CAJ-087', empleado: 'Ana Martínez', fecha: '05/11 · 06:30 PM', esperado: '$5,120.00', contado: '$5,120.00', resultado: 'Cuadrada', diferencia: '$0.00' },
+  ];
 
-  // ── State ──────────────────────────────────────────────────────────────────
-  activeTab = signal<'activas' | 'cerradas' | 'huérfanas'>('activas');
-
-  /** Sesiones filtradas por tab activo (lógica ligera de selector). */
-  get filteredSessions(): CajaSessionDto[] {
-    const tab = this.activeTab();
-    const statusMap: Record<string, CajaSessionDto['status']> = {
-      activas: 'activa',
-      cerradas: 'cerrada',
-      huérfanas: 'huérfana',
-    };
-    return this.sessions().filter((s) => s.status === statusMap[tab]);
-  }
-
-  onTabChange(tab: string): void {
-    this.activeTab.set(tab as 'activas' | 'cerradas' | 'huérfanas');
-  }
-
-  onSessionAction(id: string): void {
-    const session = this.sessions().find((s) => s.id === id);
-    this.sessionAction.emit({ id, action: session?.status === 'activa' ? 'close' : 'open' });
+  ir(ruta: string): void {
+    this.router.navigate([ruta]);
   }
 }

@@ -1,34 +1,79 @@
-<div class="sgfidm-caja-organism" role="region" aria-label="Estado de cajas">
-  <!-- Título -->
-  <div class="sgfidm-caja-organism__header">
-    <h2 class="sgfidm-caja-organism__title">Estado de cajas</h2>
-    <span class="sgfidm-caja-organism__branch">Sucursal: {{ branchName() }}</span>
-  </div>
+<!--
+  CAJ-01 en modo Solo: sucursal implícita SUC-001, sin empleados.
+  OTROS MODOS (anotación, no implementado):
+    - Con Empleados: cajas por EMP-XXX y cierre por tercero con arqueo (CAJ-10).
+    - Con Sucursales: selector de sucursal activa y panel de cajas huérfanas (CAJ-09).
+-->
+<div class="sgfidm-caja-organism">
+  <header class="sgfidm-caja-organism__header">
+    <div class="sgfidm-caja-organism__textos">
+      <h1 class="sgfidm-caja-organism__title">Caja</h1>
+      <p class="sgfidm-caja-organism__subtitle">Mi negocio · 1 sesión activa · Actualizado hoy 10:42 AM</p>
+    </div>
+    <div class="sgfidm-caja-organism__acciones">
+      <sgfidm-button type="secondary" size="md" [width]="'120px'" [height]="'44px'" (click)="ir('/dashboard')">Historial</sgfidm-button>
+      <sgfidm-button type="primary" size="md" [width]="'120px'" [height]="'44px'" (click)="ir('/pos')">Ir al POS</sgfidm-button>
+    </div>
+  </header>
 
-  <!-- Tabs de filtro -->
-  <sgfidm-tabs class="sgfidm-caja-organism__tabs" [tabs]="['activas', 'cerradas', 'huérfanas']"
-    [activeTab]="activeTab()" (tabClick)="onTabChange($event)" />
-
-  <!-- Panel de lista de sesiones -->
-  <sgfidm-panel-card eyebrow="SESIONES DE CAJA · {{ filteredSessions.length }}">
-    @if (filteredSessions.length === 0) {
-      <div class="sgfidm-caja-organism__empty">
-        Sin sesiones de caja para esta tab
+  <sgfidm-panel-card class="sgfidm-caja-organism__sesion">
+    <div class="sgfidm-caja-organism__sesion-header">
+      <span class="sgfidm-caja-organism__eyebrow">MI SESIÓN DE CAJA</span>
+      <span class="sgfidm-caja-organism__estado">Abierta</span>
+      <span class="sgfidm-caja-organism__codigo">Código: CAJ-002</span>
+    </div>
+    <div class="sgfidm-caja-organism__metricas">
+      <div class="sgfidm-caja-organism__metrica">
+        <span class="sgfidm-caja-organism__eyebrow">HORA DE APERTURA</span>
+        <span class="sgfidm-caja-organism__metrica-valor">Hoy, 08:30 AM</span>
+        <span class="sgfidm-caja-organism__metrica-detalle">Transcurrido: 2h 12m</span>
       </div>
-    } @else {
-      @for (s of filteredSessions; track s.id) {
-        <div class="sgfidm-caja-organism__session" role="button" tabindex="0"
-          [attr.aria-label]="'Abrir sesión ' + s.id" (click)="onSessionAction(s.id)">
-          <sgfidm-indicator-card
-            eyebrow="SESIÓN · {{ s.id }}"
-            [value]="s.totalVenta"
-            [delta]="s.status"
-          />
-          <sgfidm-badge class="sgfidm-caja-organism__badge">
-            {{ s.status }}
-          </sgfidm-badge>
-        </div>
-      }
+      <div class="sgfidm-caja-organism__metrica">
+        <span class="sgfidm-caja-organism__eyebrow">FONDO INICIAL</span>
+        <span class="sgfidm-caja-organism__metrica-valor">$1,500.00</span>
+        <span class="sgfidm-caja-organism__metrica-detalle">Efectivo base apertura</span>
+      </div>
+      <div class="sgfidm-caja-organism__metrica">
+        <span class="sgfidm-caja-organism__eyebrow">MOVIMIENTOS</span>
+        <span class="sgfidm-caja-organism__metrica-valor">14 operaciones</span>
+        <span class="sgfidm-caja-organism__metrica-detalle">11 POS · 3 manuales</span>
+      </div>
+      <div class="sgfidm-caja-organism__metrica">
+        <span class="sgfidm-caja-organism__eyebrow">EFECTIVO ESPERADO ACTUAL</span>
+        <span class="sgfidm-caja-organism__metrica-valor">$4,820.00</span>
+        <span class="sgfidm-caja-organism__metrica-detalle">Fondo + Ventas EF − Salidas</span>
+      </div>
+    </div>
+    <div class="sgfidm-caja-organism__sesion-acciones">
+      <sgfidm-button type="primary" size="md" [width]="'180px'" [height]="'56px'" (click)="ir('/dashboard')">Ver sesión</sgfidm-button>
+      <sgfidm-button type="secondary" size="md" [width]="'180px'" [height]="'56px'" (click)="ir('/pos')">Cerrar caja</sgfidm-button>
+    </div>
+  </sgfidm-panel-card>
+
+  <sgfidm-panel-card class="sgfidm-caja-organism__historial">
+    <div class="sgfidm-caja-organism__historial-header">
+      <h2 class="sgfidm-caja-organism__historial-titulo">ÚLTIMOS 5 CIERRES</h2>
+      <a class="sgfidm-caja-organism__link" (click)="ir('/dashboard')">Ver historial completo →</a>
+    </div>
+    <div class="sgfidm-caja-organism__tabla-head">
+      <span>SESIÓN</span>
+      <span>FECHA Y HORA CIERRE</span>
+      <span>ESPERADO</span>
+      <span>CONTADO</span>
+      <span>RESULTADO</span>
+      <span>DIFERENCIA</span>
+      <span></span>
+    </div>
+    @for (cierre of cierres; track cierre.id) {
+      <div class="sgfidm-caja-organism__fila">
+        <span class="sgfidm-caja-organism__id">{{ cierre.id }}<small>{{ cierre.empleado }}</small></span>
+        <span>{{ cierre.fecha }}</span>
+        <span>{{ cierre.esperado }}</span>
+        <span>{{ cierre.contado }}</span>
+        <span class="sgfidm-caja-organism__resultado" [attr.data-resultado]="cierre.resultado">{{ cierre.resultado }}</span>
+        <span>{{ cierre.diferencia }}</span>
+        <span class="sgfidm-caja-organism__menu">•••</span>
+      </div>
     }
   </sgfidm-panel-card>
 </div>

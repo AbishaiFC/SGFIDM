@@ -40,6 +40,10 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'inicio',
+    loadChildren: () => import('./features/inicio/inicio.routes').then((m) => m.inicioRoutes),
+  },
+  {
     path: 'dashboard',
     loadChildren: () => import('./features/dashboard/dashboard.routes').then((m) => m.dashboardRoutes),
   },

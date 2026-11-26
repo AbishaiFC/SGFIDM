@@ -12,7 +12,7 @@ describe('BienvenidaConfiguracionComponent (INICIO-01)', () => {
     await TestBed.configureTestingModule({
       imports: [
         BienvenidaConfiguracionComponent,
-        RouterTestingModule.withRoutes([{ path: 'dashboard', component: BienvenidaConfiguracionComponent }]),
+        RouterTestingModule.withRoutes([{ path: 'inicio/primeros-pasos', component: BienvenidaConfiguracionComponent }]),
       ],
     }).compileComponents();
 
@@ -51,7 +51,7 @@ describe('BienvenidaConfiguracionComponent (INICIO-01)', () => {
     component.seleccionarModo('empleados');
     component.onGuardar();
 
-    expect(spy).toHaveBeenCalledWith(['/dashboard']);
+    expect(spy).toHaveBeenCalledWith(['/inicio/primeros-pasos']);
     const guardado = JSON.parse(localStorage.getItem('sgfidm-negocio') || '{}');
     expect(guardado.nombre).toBe('Café Aurora');
     expect(guardado.modo).toBe('empleados');
@@ -66,7 +66,7 @@ describe('BienvenidaConfiguracionComponent (INICIO-01)', () => {
     const guardado = JSON.parse(localStorage.getItem('sgfidm-negocio') || '{}');
     expect(guardado.nombre).toBe('Mi negocio');
     expect(guardado.modo).toBe('solo');
-    expect(spy).toHaveBeenCalledWith(['/dashboard']);
+    expect(spy).toHaveBeenCalledWith(['/inicio/primeros-pasos']);
     spy.mockRestore();
   });
 });

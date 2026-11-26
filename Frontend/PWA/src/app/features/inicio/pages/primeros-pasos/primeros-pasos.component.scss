@@ -1,0 +1,251 @@
+/* INICIO-02 Dashboard de primeros pasos — Figma ADM / Dashboard - primeros pasos */
+.pasos-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pasos-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sgfidm-space-4);
+
+  &__textos {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+}
+
+.pasos-title {
+  font-family: var(--sgfidm-font-family);
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  margin: 0;
+}
+
+.pasos-subtitle,
+.pasos-fecha {
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  color: var(--sgfidm-color-text-secondary, #575757);
+  margin: 0;
+}
+
+.pasos-modo {
+  padding: 6px 12px;
+  border: 1px solid var(--sgfidm-color-outline-variant, #dbdbdb);
+  border-radius: 999px;
+  font-family: var(--sgfidm-font-family);
+  font-size: 11px;
+  color: var(--sgfidm-color-text-secondary, #575757);
+}
+
+.pasos-panel {
+  width: 100%;
+
+  ::ng-deep .sgfidm-panel-card {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    border-radius: 24px;
+  }
+
+  ::ng-deep .sgfidm-panel-card__body {
+    gap: 0;
+    padding: 20px 24px;
+  }
+}
+
+.pasos-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pasos-panel__titulo {
+  font-family: var(--sgfidm-font-family);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  margin: 0;
+}
+
+.pasos-ocultar {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  color: var(--sgfidm-color-text-secondary, #575757);
+
+  .material-symbols-outlined {
+    font-size: 18px;
+  }
+}
+
+.pasos-progreso {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 16px 0 8px;
+
+  &__texto {
+    font-family: var(--sgfidm-font-family);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+  }
+
+  &__barra {
+    height: 4px;
+    border-radius: 999px;
+    background: var(--sgfidm-color-outline-variant, #dbdbdb);
+    overflow: hidden;
+
+    span {
+      display: block;
+      height: 100%;
+      background: var(--sgfidm-color-primary, #2a2a2a);
+      transition: width 0.2s ease;
+    }
+  }
+
+  &__ayuda {
+    font-family: var(--sgfidm-font-family);
+    font-size: 11px;
+    color: var(--sgfidm-color-text-muted, #8b8b8b);
+  }
+}
+
+.paso-fila {
+  display: flex;
+  align-items: center;
+  gap: var(--sgfidm-space-3);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--sgfidm-color-outline-variant, #dbdbdb);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &__numero {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+    border-radius: 999px;
+    font-family: var(--sgfidm-font-family);
+    font-size: 11px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+
+    &--hecho {
+      background: var(--sgfidm-color-success, #3e6b4f);
+      border-color: var(--sgfidm-color-success, #3e6b4f);
+      color: #fff;
+
+      .material-symbols-outlined {
+        font-size: 16px;
+      }
+    }
+  }
+
+  &__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__titulo {
+    font-family: var(--sgfidm-font-family);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+  }
+
+  &__descripcion {
+    font-family: var(--sgfidm-font-family);
+    font-size: 11px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+}
+
+.paso-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--sgfidm-color-warning-container, #f5e8c8);
+  font-family: var(--sgfidm-font-family);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--sgfidm-color-text-secondary, #575757);
+  white-space: nowrap;
+
+  &--hecho {
+    background: var(--sgfidm-color-success-container, #e1ede5);
+    color: var(--sgfidm-color-on-success-container, #24402f);
+  }
+}
+
+.paso-abrir {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  text-decoration: underline;
+
+  .material-symbols-outlined {
+    font-size: 16px;
+    text-decoration: none;
+  }
+}
+
+.pasos-acciones {
+  display: flex;
+  gap: var(--sgfidm-space-3);
+  padding-top: var(--sgfidm-space-2);
+  border-top: 1px solid var(--sgfidm-color-outline-variant, #dbdbdb);
+}
+
+.pasos-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sgfidm-space-3);
+  font-family: var(--sgfidm-font-family);
+  font-size: 11px;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+    text-decoration: underline;
+    cursor: pointer;
+
+    .material-symbols-outlined {
+      font-size: 16px;
+    }
+  }
+}

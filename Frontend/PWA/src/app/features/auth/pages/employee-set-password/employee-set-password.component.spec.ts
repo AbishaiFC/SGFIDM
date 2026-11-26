@@ -41,7 +41,7 @@ describe('EmployeeSetPasswordComponent (AUTH-11)', () => {
     component.nuevaPassword = 'Abc12345';
     component.confirmarPassword = 'Abc12345';
     component.onGuardar();
-    expect(spy).toHaveBeenCalledWith(['/dashboard']);
+    expect(spy).toHaveBeenCalledWith(['/dashboard/select-branch']);
     spy.mockRestore();
   });
 });

@@ -1,0 +1,48 @@
+<div class="sucursal-page">
+  <header class="sucursal-header">
+    <div class="sucursal-header__textos">
+      <h1 class="sucursal-title">Seleccionar sucursal</h1>
+      <p class="sucursal-subtitle">{{ subtitulo }}</p>
+    </div>
+    <sgfidm-button type="secondary" size="lg" class="sucursal-volver" (click)="onVolver()">
+      <span class="material-symbols-outlined sucursal-icono" aria-hidden="true">arrow_back</span>
+      Volver a Configuración
+    </sgfidm-button>
+  </header>
+
+  <div class="sucursal-aviso" role="status">
+    <span class="material-symbols-outlined sucursal-aviso__icono" aria-hidden="true">info</span>
+    <span>
+      @if (esFiltro) {
+        El selector filtra las consultas; no cambia tu contexto operativo.
+      } @else {
+        Solo puedes cambiar de sucursal si no tienes una caja abierta ni operaciones en curso.
+      }
+    </span>
+  </div>
+
+  <div class="sucursal-lista" role="radiogroup" aria-label="Sucursales disponibles">
+    @for (sucursal of sucursales; track sucursal.id) {
+      <button
+        type="button"
+        class="sucursal-opcion"
+        [class.sucursal-opcion--seleccionada]="seleccionada === sucursal.id"
+        [attr.aria-checked]="seleccionada === sucursal.id"
+        role="radio"
+        (click)="seleccionar(sucursal.id)"
+      >
+        <span class="sucursal-opcion__radio" aria-hidden="true"></span>
+        <span class="sucursal-opcion__info">
+          <span class="sucursal-opcion__nombre">{{ sucursal.nombre }}</span>
+          <span class="sucursal-opcion__detalle">{{ sucursal.id }} · {{ sucursal.detalle }}</span>
+        </span>
+      </button>
+    }
+  </div>
+
+  <div class="sucursal-continuar">
+    <sgfidm-button type="primary" size="md" [disabled]="!seleccionada" (click)="onContinuar()">
+      Continuar
+    </sgfidm-button>
+  </div>
+</div>

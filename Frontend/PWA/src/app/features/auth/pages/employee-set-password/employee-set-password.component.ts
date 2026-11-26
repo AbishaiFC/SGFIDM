@@ -36,7 +36,8 @@ export class EmployeeSetPasswordComponent {
     }
 
     // No hay método específico en AuthRepository para alta de contraseña de empleado.
-    this.router.navigate(['/dashboard']);
+    // AUTH-13: empleado con 2+ sucursales elige la activa antes de operar.
+    this.router.navigate(['/dashboard/select-branch']);
   }
 
   private esValida(password: string): boolean {

@@ -1,0 +1,82 @@
+<!--
+  CAJ-03 Cierre con arqueo en modo Solo: caja propia, diferencia y confirmación.
+  OTROS MODOS (anotación, no implementado):
+    - Con Empleados: cierre por tercero exige responsable, motivo y auditoría (CAJ-10).
+    - Con Sucursales: la sucursal emisora se toma del selector activo.
+-->
+<div class="cerrar-caja-page">
+  <header class="cerrar-caja-header">
+    <h1 class="cerrar-caja-title">Cerrar caja — CAJ-002</h1>
+    <p class="cerrar-caja-subtitle">
+      Mi negocio · Ana Martínez · Apertura: Hoy 08:30 AM · Arqueo definitivo
+    </p>
+  </header>
+
+  <div class="cerrar-caja-columnas">
+    <sgfidm-panel-card class="cerrar-caja-panel">
+      <span class="cerrar-caja-eyebrow">RESUMEN CALCULADO POR EL SISTEMA (SOLO LECTURA)</span>
+      @for (linea of resumen; track linea.label) {
+        <div class="cerrar-caja-linea" [class.cerrar-caja-linea--info]="linea.info">
+          <span>{{ linea.label }}</span>
+          <span>{{ linea.value }}</span>
+        </div>
+      }
+      <div class="cerrar-caja-total">
+        <span>TOTAL EFECTIVO ESPERADO EN CAJA</span>
+        <strong>{{ numero(esperado) }}</strong>
+      </div>
+      <p class="cerrar-caja-nota-sistema">
+        Nota: Las ventas con tarjeta o transferencia bancaria se muestran únicamente como
+        referencia informativa y no forman parte del efectivo físico esperado.
+      </p>
+    </sgfidm-panel-card>
+
+    <sgfidm-panel-card class="cerrar-caja-panel">
+      <span class="cerrar-caja-eyebrow">CONTEO DEL EFECTIVO FÍSICO (ARQUEO)</span>
+
+      <sgfidm-form-field label="Efectivo físico contado ($) *" [(value)]="contado" leadingIcon="attach_money" />
+
+      <div class="cerrar-caja-diferencia">
+        <span class="cerrar-caja-eyebrow">DIFERENCIA (CONTADO − ESPERADO)</span>
+        <div class="cerrar-caja-diferencia__valor">
+          <strong>{{ numero(diferencia()) }}</strong>
+          <span>
+            <span class="material-symbols-outlined" aria-hidden="true">check_circle</span>
+            {{ esCuadrada ? 'Caja cuadrada' : 'Con diferencia' }}
+          </span>
+        </div>
+      </div>
+
+      <sgfidm-form-field
+        label="Motivo de diferencia (requerido si diferencia ≠ 0)"
+        [(value)]="motivo"
+        [disabled]="esCuadrada"
+      />
+
+      <div class="cerrar-caja-notas">
+        <label for="notas-cierre">Notas de cierre</label>
+        <textarea id="notas-cierre" [(ngModel)]="notas" rows="3" maxlength="200"></textarea>
+        <span class="cerrar-caja-contador">{{ notasLength }} / 200</span>
+      </div>
+
+      <label class="cerrar-caja-confirmacion">
+        <input type="checkbox" [(ngModel)]="confirmado" />
+        <span>
+          Confirmo que he contado el efectivo físico y que los valores ingresados son correctos
+          y definitivos.
+        </span>
+      </label>
+
+      @if (error()) {
+        <p class="cerrar-caja-error" role="alert">{{ error() }}</p>
+      }
+
+      <div class="cerrar-caja-acciones">
+        <sgfidm-button type="secondary" size="md" [width]="'140px'" [height]="'44px'" (click)="onCancelar()">Cancelar</sgfidm-button>
+        <sgfidm-button type="primary" size="md" [width]="'220px'" [height]="'44px'" (click)="onCerrar()">
+          Cerrar caja definitivamente
+        </sgfidm-button>
+      </div>
+    </sgfidm-panel-card>
+  </div>
+</div>

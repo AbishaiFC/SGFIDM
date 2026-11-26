@@ -1,0 +1,200 @@
+/* CAJ-03 Cerrar caja con arqueo — Figma 1145:82530 */
+.cerrar-caja-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cerrar-caja-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cerrar-caja-title {
+  font-family: var(--sgfidm-font-family);
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  margin: 0;
+}
+
+.cerrar-caja-subtitle {
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  color: var(--sgfidm-color-text-secondary, #575757);
+  margin: 0;
+}
+
+.cerrar-caja-columnas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cerrar-caja-panel {
+  width: 100%;
+
+  ::ng-deep .sgfidm-panel-card {
+    width: 100%;
+    height: auto;
+    padding: 20px 24px;
+    border-radius: 16px;
+  }
+
+  ::ng-deep .sgfidm-panel-card__body {
+    gap: 12px;
+  }
+}
+
+.cerrar-caja-eyebrow {
+  font-family: var(--sgfidm-font-family);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+}
+
+.cerrar-caja-linea {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sgfidm-space-3);
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+
+  &--info {
+    background: var(--sgfidm-color-surface-container, #fafafa);
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+}
+
+.cerrar-caja-total {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  border-radius: 10px;
+  background: var(--sgfidm-color-success-container, #e1ede5);
+  font-family: var(--sgfidm-font-family);
+  color: var(--sgfidm-color-on-success-container, #24402f);
+
+  span {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+  }
+
+  strong {
+    font-size: 28px;
+    font-weight: 600;
+  }
+}
+
+.cerrar-caja-nota-sistema {
+  font-family: var(--sgfidm-font-family);
+  font-size: 10px;
+  line-height: 16px;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+  margin: 0;
+}
+
+.cerrar-caja-diferencia {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--sgfidm-color-success-container, #e1ede5);
+
+  &__valor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--sgfidm-color-on-success-container, #24402f);
+
+    strong {
+      font-size: 24px;
+    }
+
+    span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+    }
+  }
+}
+
+.cerrar-caja-notas {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  font-family: var(--sgfidm-font-family);
+
+  label {
+    font-size: 11px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+
+  textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px 22px;
+    border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+    border-radius: 4px;
+    font-family: var(--sgfidm-font-family);
+    font-size: 13px;
+    resize: vertical;
+  }
+}
+
+.cerrar-caja-contador {
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+  font-size: 10px;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+}
+
+.cerrar-caja-confirmacion {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--sgfidm-color-warning-container, #f5e8c8);
+  font-family: var(--sgfidm-font-family);
+  font-size: 11px;
+  line-height: 17px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+
+  input {
+    margin-top: 2px;
+  }
+}
+
+.cerrar-caja-error {
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  color: var(--sgfidm-color-error, #a9442e);
+  margin: 0;
+}
+
+.cerrar-caja-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sgfidm-space-2);
+  padding-top: 12px;
+}

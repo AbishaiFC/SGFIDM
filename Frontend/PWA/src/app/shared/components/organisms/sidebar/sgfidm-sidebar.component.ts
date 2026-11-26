@@ -26,8 +26,8 @@ interface NavItem {
  * Visibilidad: la definen el ROL (cuatro roles de la ficha) y el MODO de operación
  * (solo | empleados | sucursales). En modo Solo se ocultan Sucursales y Empleados.
  *
- * ToDo: rutas de Inventario y Empleados cuando se implementen sus pantallas
- * (INV-01, EMP-01). Finanzas apunta a FIN-08 y Reportes a REP-01.
+ * ToDo: ruta de Empleados cuando se implemente (EMP-01). Finanzas apunta a
+ * FIN-08, Reportes a REP-01 e Inventario a INV-01.
  */
 @Component({
   selector: 'sgfidm-sidebar',
@@ -59,8 +59,7 @@ export class SgfidmSidebarComponent {
     { id: 'inicio', label: 'Inicio', icon: 'home', route: '/dashboard', grupo: 1 },
     // ToDo PROD-01: apuntar al catálogo cuando esté implementado.
     { id: 'productos', label: 'Productos', icon: 'shopping_bag', route: '/productos/registrar', grupo: 1 },
-    // ToDo INV-01: inventario general.
-    { id: 'inventario', label: 'Inventario', icon: 'inventory_2', route: '', grupo: 1 },
+    { id: 'inventario', label: 'Inventario', icon: 'inventory_2', route: '/inventario', grupo: 1 },
     { id: 'pos', label: 'POS', icon: 'point_of_sale', route: '/pos', grupo: 1 },
     { id: 'caja', label: 'Caja', icon: 'payments', route: '/caja', grupo: 1 },
     { id: 'reportes', label: 'Reportes', icon: 'bar_chart', route: '/reportes', grupo: 2 },

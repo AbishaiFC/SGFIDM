@@ -13,6 +13,7 @@ import { EmployeeSetPasswordComponent } from './features/auth/pages/employee-set
 import { EmployeeAcceptInvitationComponent } from './features/auth/pages/employee-accept-invitation/employee-accept-invitation.component';
 import { CajaPendienteComponent } from './features/auth/pages/caja-pendiente/caja-pendiente.component';
 import { TerminalBloqueadaComponent } from './features/auth/pages/terminal-bloqueada/terminal-bloqueada.component';
+import { SesionRevocadaComponent } from './features/auth/pages/sesion-revocada/sesion-revocada.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
@@ -33,6 +34,7 @@ export const routes: Routes = [
       { path: 'employee/accept-invitation', component: EmployeeAcceptInvitationComponent },
       { path: 'caja-pendiente', component: CajaPendienteComponent },
       { path: 'terminal-bloqueada', component: TerminalBloqueadaComponent },
+      { path: 'sesion-revocada', component: SesionRevocadaComponent },
     ],
   },
   {

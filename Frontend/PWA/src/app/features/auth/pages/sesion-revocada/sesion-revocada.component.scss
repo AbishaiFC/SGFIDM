@@ -1,0 +1,83 @@
+/* AUTH-17 Bloqueo contextual por sesión revocada (§2.6) */
+.revocada-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  background-color: var(--sgfidm-color-background, #ededed);
+  padding: var(--sgfidm-space-8);
+}
+
+.revocada-aviso {
+  display: flex;
+  align-items: center;
+  gap: var(--sgfidm-space-3);
+  padding: var(--sgfidm-space-3);
+  border-radius: var(--sgfidm-radius-md, 8px);
+  background: var(--sgfidm-color-error-container, #f6e4e1);
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+
+  &__icono {
+    font-size: 22px;
+    color: var(--sgfidm-color-error, #a9442e);
+  }
+}
+
+.revocada-puntos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgfidm-space-3);
+}
+
+.revocada-punto {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sgfidm-space-2);
+  font-family: var(--sgfidm-font-family);
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+
+  .material-symbols-outlined {
+    font-size: 20px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+}
+
+.revocada-operacion {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--sgfidm-space-3);
+  border: 1px solid var(--sgfidm-color-outline-variant, #dbdbdb);
+  border-radius: var(--sgfidm-radius-md, 8px);
+  font-family: var(--sgfidm-font-family);
+
+  &__label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    color: var(--sgfidm-color-text-muted, #8b8b8b);
+  }
+
+  &__value {
+    font-size: 14px;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+  }
+
+  &__estado {
+    font-size: 12px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+}
+
+.revocada-nota {
+  font-family: var(--sgfidm-font-family);
+  font-size: 11px;
+  line-height: 17px;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+  margin: 0;
+}

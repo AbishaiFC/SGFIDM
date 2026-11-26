@@ -13,6 +13,7 @@ import { EmployeeSetPasswordComponent } from './pages/employee-set-password/empl
 import { EmployeeAcceptInvitationComponent } from './pages/employee-accept-invitation/employee-accept-invitation.component';
 import { CajaPendienteComponent } from './pages/caja-pendiente/caja-pendiente.component';
 import { TerminalBloqueadaComponent } from './pages/terminal-bloqueada/terminal-bloqueada.component';
+import { SesionRevocadaComponent } from './pages/sesion-revocada/sesion-revocada.component';
 
 export const authRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -29,4 +30,5 @@ export const authRoutes: Routes = [
   { path: 'employee/accept-invitation', component: EmployeeAcceptInvitationComponent },
   { path: 'caja-pendiente', component: CajaPendienteComponent },
   { path: 'terminal-bloqueada', component: TerminalBloqueadaComponent },
+  { path: 'sesion-revocada', component: SesionRevocadaComponent },
 ];

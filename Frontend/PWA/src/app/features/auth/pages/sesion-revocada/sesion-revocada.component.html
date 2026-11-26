@@ -1,0 +1,52 @@
+<div class="revocada-page">
+  <sgfidm-auth-card
+    title="Sesión revocada"
+    subtitle="Tu sesión dejó de ser válida, pero la venta en curso está protegida."
+    [showLogo]="false"
+    [wide]="true"
+  >
+    <div class="revocada-aviso" role="status">
+      <span class="material-symbols-outlined revocada-aviso__icono" aria-hidden="true">lock</span>
+      <span>
+        La terminal permanece bloqueada hasta completar una autenticación válida. El PIN de acceso
+        rápido no puede recuperar una sesión revocada.
+      </span>
+    </div>
+
+    <div class="revocada-puntos">
+      <div class="revocada-punto">
+        <span class="material-symbols-outlined" aria-hidden="true">cancel</span>
+        <span>La sesión dejó de ser válida.</span>
+      </div>
+      <div class="revocada-punto">
+        <span class="material-symbols-outlined" aria-hidden="true">shield</span>
+        <span>La venta está protegida: conservamos la operación sin registrarla como completada.</span>
+      </div>
+      <div class="revocada-punto">
+        <span class="material-symbols-outlined" aria-hidden="true">login</span>
+        <span>Vuelve a autenticarte para recuperarla, si sigues autorizado.</span>
+      </div>
+    </div>
+
+    <div class="revocada-operacion">
+      <span class="revocada-operacion__label">OPERACIÓN PENDIENTE</span>
+      <span class="revocada-operacion__value">{{ operacion }}</span>
+      <span class="revocada-operacion__estado">{{ estado }}</span>
+    </div>
+
+    <sgfidm-button
+      type="primary"
+      size="md"
+      [fullWidth]="true"
+      [height]="'56px'"
+      (click)="onReautenticar()"
+    >
+      Autenticarme de nuevo
+    </sgfidm-button>
+
+    <p class="revocada-nota">
+      Si el pago estaba en procesamiento, no se asume su resultado: se consultará antes de
+      permitir una nueva ejecución.
+    </p>
+  </sgfidm-auth-card>
+</div>

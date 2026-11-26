@@ -52,6 +52,7 @@ export class SgfidmSidebarComponent {
   notificaciones = input(7);
 
   readonly alternar = output<void>();
+  readonly cerrarSesion = output<void>();
   readonly url = signal(this.router.url);
 
   private readonly items: NavItem[] = [

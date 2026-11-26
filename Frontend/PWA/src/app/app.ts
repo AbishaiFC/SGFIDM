@@ -33,6 +33,17 @@ export class App {
     this.estadoSidebar.update((estado) => (estado === 'expanded' ? 'icon-only' : 'expanded'));
   }
 
+  cerrarSesion(): void {
+    try {
+      localStorage.removeItem('sgfidm-sesion');
+      localStorage.removeItem('sgfidm-usuario');
+    } catch {
+      // Sin almacenamiento: se limpia el contexto en memoria al recargar.
+    }
+    this.contexto.set(App.leerContexto());
+    this.router.navigate(['/auth/login']);
+  }
+
   private actualizar(): void {
     this.isAuthRoute.set(this.sinSidebar(this.router.url));
     this.contexto.set(App.leerContexto());

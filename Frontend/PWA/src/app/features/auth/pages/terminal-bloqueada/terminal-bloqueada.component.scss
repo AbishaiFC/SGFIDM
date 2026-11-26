@@ -1,0 +1,57 @@
+/* AUTH-16 Terminal POS bloqueada — bloqueo full-screen sin mostrar información sensible */
+.lock-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  background-color: var(--sgfidm-color-background, #ededed);
+  padding: var(--sgfidm-space-8);
+}
+
+.lock-aviso {
+  display: flex;
+  align-items: center;
+  gap: var(--sgfidm-space-3);
+  padding: var(--sgfidm-space-3);
+  border-radius: var(--sgfidm-radius-md, 8px);
+  background: var(--sgfidm-color-info-container, #e8f0f7);
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+
+  &__icono {
+    font-size: 22px;
+    color: var(--sgfidm-color-info, #3a6a8a);
+  }
+}
+
+.lock-pin {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sgfidm-space-3);
+}
+
+.lock-intentos {
+  font-family: var(--sgfidm-font-family);
+  font-size: 11px;
+  color: var(--sgfidm-color-text-muted, #8b8b8b);
+  margin: 0;
+}
+
+.lock-error {
+  font-family: var(--sgfidm-font-family);
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--sgfidm-color-error, #a9442e);
+  margin: 0;
+}
+
+.lock-link {
+  align-self: center;
+  font-family: var(--sgfidm-font-family);
+  font-size: 12.5px;
+  color: var(--sgfidm-color-text-primary, #1c1c1c);
+  text-decoration: underline;
+  cursor: pointer;
+}

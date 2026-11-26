@@ -12,6 +12,7 @@ import { EmployeeLinkPhoneComponent } from './features/auth/pages/employee-link-
 import { EmployeeSetPasswordComponent } from './features/auth/pages/employee-set-password/employee-set-password.component';
 import { EmployeeAcceptInvitationComponent } from './features/auth/pages/employee-accept-invitation/employee-accept-invitation.component';
 import { CajaPendienteComponent } from './features/auth/pages/caja-pendiente/caja-pendiente.component';
+import { TerminalBloqueadaComponent } from './features/auth/pages/terminal-bloqueada/terminal-bloqueada.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
@@ -31,6 +32,7 @@ export const routes: Routes = [
       { path: 'employee/set-password', component: EmployeeSetPasswordComponent },
       { path: 'employee/accept-invitation', component: EmployeeAcceptInvitationComponent },
       { path: 'caja-pendiente', component: CajaPendienteComponent },
+      { path: 'terminal-bloqueada', component: TerminalBloqueadaComponent },
     ],
   },
   {

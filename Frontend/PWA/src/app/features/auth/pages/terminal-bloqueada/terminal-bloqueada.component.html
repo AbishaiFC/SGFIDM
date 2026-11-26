@@ -1,0 +1,43 @@
+<div class="lock-page">
+  <sgfidm-auth-card
+    title="Terminal bloqueada"
+    subtitle="La terminal se bloqueó por inactividad. Tu sesión, tu caja y tu carrito siguen protegidos."
+    [showLogo]="false"
+    [wide]="true"
+  >
+    <div class="lock-aviso" role="status">
+      <span class="material-symbols-outlined lock-aviso__icono" aria-hidden="true">lock</span>
+      <span>
+        El PIN solo desbloquea una sesión vigente en una terminal registrada. Nunca permite
+        iniciar sesión ni recupera una sesión revocada.
+      </span>
+    </div>
+
+    @if (pinConfigurado && !bloqueada()) {
+      <div class="lock-pin">
+        <sgfidm-pin-field
+          title="PIN de acceso rápido"
+          subtitle="6 dígitos"
+          (pinComplete)="pinActual.set($event)"
+        />
+        <p class="lock-intentos">Intentos fallidos: {{ intentos() }} de 5</p>
+        @if (error()) {
+          <p class="lock-error" role="alert">{{ error() }}</p>
+        }
+        <sgfidm-button
+          type="primary"
+          size="md"
+          [fullWidth]="true"
+          [height]="'56px'"
+          (click)="onDesbloquear()"
+        >
+          Desbloquear terminal
+        </sgfidm-button>
+      </div>
+    } @else {
+      <p class="lock-error" role="alert">{{ error() || 'La terminal requiere una nueva autenticación.' }}</p>
+    }
+
+    <a class="lock-link" (click)="onReautenticar()">Usar contraseña completa</a>
+  </sgfidm-auth-card>
+</div>

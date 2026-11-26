@@ -22,7 +22,7 @@ export class MiPerfilComponent {
   private readonly auth = inject(AuthRepository);
   private readonly router = inject(Router);
 
-  readonly pinConfigurado = signal(true);
+  readonly pinConfigurado = signal(MiPerfilComponent.leerPinGuardado() !== null);
   readonly editandoPin = signal(false);
   readonly confirmandoEliminacion = signal(false);
   readonly errorPin = signal('');
@@ -60,6 +60,11 @@ export class MiPerfilComponent {
     }
 
     // Sin backend: se simula el almacenamiento con hash seguro.
+    try {
+      localStorage.setItem('sgfidm-pin', nuevo);
+    } catch {
+      // Almacenamiento no disponible: el estado en memoria sigue siendo válido.
+    }
     this.pinConfigurado.set(true);
     this.editandoPin.set(false);
     this.errorPin.set('');
@@ -75,6 +80,11 @@ export class MiPerfilComponent {
   }
 
   onConfirmarEliminacion(): void {
+    try {
+      localStorage.removeItem('sgfidm-pin');
+    } catch {
+      // Almacenamiento no disponible.
+    }
     this.pinConfigurado.set(false);
     this.confirmandoEliminacion.set(false);
     this.editandoPin.set(false);
@@ -82,5 +92,13 @@ export class MiPerfilComponent {
 
   onCancelarEliminacion(): void {
     this.confirmandoEliminacion.set(false);
+  }
+
+  private static leerPinGuardado(): string | null {
+    try {
+      return localStorage.getItem('sgfidm-pin');
+    } catch {
+      return null;
+    }
   }
 }

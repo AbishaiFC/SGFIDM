@@ -14,6 +14,7 @@ describe('MiPerfilComponent (AUTH-06)', () => {
   let router: Router;
 
   beforeEach(async () => {
+    localStorage.setItem('sgfidm-pin', '123456');
     await TestBed.configureTestingModule({
       imports: [
         MiPerfilComponent,
@@ -30,6 +31,10 @@ describe('MiPerfilComponent (AUTH-06)', () => {
     auth = TestBed.inject(AuthRepository);
     router = TestBed.inject(Router);
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    localStorage.removeItem('sgfidm-pin');
   });
 
   it('should create', () => {

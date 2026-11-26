@@ -13,6 +13,7 @@ describe('PrimerosPasosComponent (INICIO-02)', () => {
       imports: [
         PrimerosPasosComponent,
         RouterTestingModule.withRoutes([
+          { path: 'productos/registrar', component: PrimerosPasosComponent },
           { path: 'caja/abrir', component: PrimerosPasosComponent },
           { path: 'pos', component: PrimerosPasosComponent },
           { path: 'dashboard', component: PrimerosPasosComponent },
@@ -60,10 +61,13 @@ describe('PrimerosPasosComponent (INICIO-02)', () => {
     spy.mockRestore();
   });
 
-  it('should mark product and expense steps as completed when opened', () => {
+  it('should open Productos from the first step and complete the expense step', () => {
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
     component.abrirPaso(component.pasos[0]);
+    expect(spy).toHaveBeenCalledWith(['/productos/registrar']);
     component.abrirPaso(component.pasos[3]);
-    expect(component.completados()).toEqual([1, 4]);
+    expect(component.completados()).toEqual([4]);
+    spy.mockRestore();
   });
 
   it('should hide the guide and go to Configuración', () => {

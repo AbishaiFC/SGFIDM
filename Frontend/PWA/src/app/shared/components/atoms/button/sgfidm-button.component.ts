@@ -51,8 +51,12 @@ export class SgfidmButtonComponent {
   });
 
   onClick(event: Event): void {
+    // Evita que el clic nativo del <button> burbujee al host <sgfidm-button>:
+    // de lo contrario, un solo clic dispara dos veces el (click) del consumidor
+    // (una vez por el output y otra por el evento DOM nativo).
+    event?.stopPropagation();
     if (this.disabled() || this.loading()) {
-      event.preventDefault();
+      event?.preventDefault();
       return;
     }
     this.click.emit();

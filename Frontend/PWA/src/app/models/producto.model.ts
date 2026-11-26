@@ -3,6 +3,7 @@ export interface Producto {
   nombre: string;
   codigoBarras?: string;
   categoria?: string; // CAT-XXX
+  descripcion?: string; // Descripción opcional (PROD-02)
   precioVenta: number;
   costoAdquisicion?: number;
   stockMinimo?: number;

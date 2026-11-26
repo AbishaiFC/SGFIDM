@@ -1,0 +1,128 @@
+<!--
+  PROD-02 en modo Solo: catálogo global, sin sucursal ni empleados.
+  OTROS MODOS (ToDo, no implementado):
+    - Con Sucursales: el producto nace con stock 0 en cada sucursal (SUC-05).
+    - Con Empleados: auditoría de creación por EMP-XXX.
+  PROD-05 Categorías (ToDo): enlace "Gestionar categorías" y opción "Crear categoría…"
+    dentro del selector; ambas pantallas se implementarán en su propia vista.
+-->
+<div class="registrar-producto-page">
+  <header class="registrar-producto-header">
+    <h1 class="registrar-producto-title">Registrar producto</h1>
+  </header>
+
+  <sgfidm-panel-card class="registrar-producto-panel">
+    <!-- Identificación -->
+    <section class="registrar-producto-seccion">
+      <h2 class="registrar-producto-seccion__titulo">Identificación</h2>
+      <div class="registrar-producto-grid">
+        <sgfidm-form-field label="Código de producto" [(value)]="codigo" />
+        <sgfidm-form-field
+          label="Nombre"
+          [required]="true"
+          [(value)]="nombre"
+          placeholder="Nombre del producto · máx. 120 caracteres"
+        />
+        <sgfidm-form-field
+          label="Código de barras"
+          [(value)]="codigoBarras"
+          placeholder="Opcional · máximo 50 caracteres"
+        />
+        <div class="registrar-producto-campo">
+          <div class="registrar-producto-control">
+            <label for="categoria">Categoría</label>
+            <!-- ToDo PROD-05: cargar aquí las categorías activas y "Crear categoría…". -->
+            <select id="categoria" [(ngModel)]="categoria">
+              <option>Sin categoría</option>
+            </select>
+          </div>
+          <p class="registrar-producto-ayuda">
+            Opcional · solo categorías activas ·
+            <span class="registrar-producto-link" title="ToDo PROD-05">Gestionar categorías →</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="registrar-producto-divider"></div>
+
+    <!-- Precio y costo -->
+    <section class="registrar-producto-seccion">
+      <h2 class="registrar-producto-seccion__titulo">Precio y costo</h2>
+      <div class="registrar-producto-grid">
+        <div class="registrar-producto-grupo">
+          <sgfidm-form-field
+            label="Precio de venta base"
+            [required]="true"
+            [(value)]="precio"
+            placeholder="$ 0.00 · moneda del negocio"
+          />
+          <p class="registrar-producto-ayuda">Precio que se usa en el POS. Puedes sobrescribirlo más adelante.</p>
+        </div>
+        <div class="registrar-producto-grupo">
+          <sgfidm-form-field
+            label="Costo de adquisición"
+            [(value)]="costo"
+            placeholder="$ 0.00 · opcional"
+          />
+          <p class="registrar-producto-ayuda">Sin costo, el análisis de rentabilidad quedará incompleto.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="registrar-producto-divider"></div>
+
+    <!-- Detalles -->
+    <section class="registrar-producto-seccion">
+      <h2 class="registrar-producto-seccion__titulo">Detalles</h2>
+      <div class="registrar-producto-campo registrar-producto-campo--ancho">
+        <div class="registrar-producto-control registrar-producto-control--textarea">
+          <label for="descripcion">Descripción</label>
+          <textarea
+            id="descripcion"
+            [(ngModel)]="descripcion"
+            rows="3"
+            [attr.maxlength]="maxDescripcion"
+            placeholder="Descripción del producto · máximo 500 caracteres"
+          ></textarea>
+          <span class="registrar-producto-contador">{{ descripcionLength }} / {{ maxDescripcion }}</span>
+        </div>
+      </div>
+      <div class="registrar-producto-grid registrar-producto-grid--detalles">
+        <div class="registrar-producto-control">
+          <label for="unidad-medida">Unidad de medida</label>
+          <select id="unidad-medida" [(ngModel)]="unidadMedida">
+            @for (unidad of unidades; track unidad) {
+              <option [value]="unidad">{{ unidad }}</option>
+            }
+          </select>
+        </div>
+        <sgfidm-form-field label="Stock mínimo" type="number" [(value)]="stockMinimo" />
+      </div>
+
+      <div class="registrar-producto-info" role="status">
+        <span class="material-symbols-outlined" aria-hidden="true">info</span>
+        <div>
+          <strong>STOCK MÍNIMO</strong>
+          <span>
+            Si defines un mínimo, el sistema avisará cuando tus existencias caigan por debajo de ese
+            mínimo. Déjalo en 0 si no quieres alertas.
+          </span>
+        </div>
+      </div>
+
+      @if (error()) {
+        <p class="registrar-producto-error" role="alert">{{ error() }}</p>
+      }
+    </section>
+
+    <footer class="registrar-producto-acciones">
+      <sgfidm-button type="secondary" size="md" [width]="'140px'" [height]="'44px'" (click)="onCancelar()">
+        Cancelar
+      </sgfidm-button>
+      <sgfidm-button type="primary" size="md" [width]="'190px'" [height]="'44px'" (click)="onRegistrar()">
+        Registrar producto
+      </sgfidm-button>
+    </footer>
+  </sgfidm-panel-card>
+</div>

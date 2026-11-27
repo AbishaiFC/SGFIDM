@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, signal } from '@angular/core';
+import { Component, computed, inject, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -51,7 +51,10 @@ export class SgfidmPosTerminalOrganismComponent {
   // Entradas conservadas por compatibilidad; la vista Solo usa el estado local.
   cartLines = input<{ label: string; empty?: boolean }[]>([]);
   totals = input<PosTotalsLineDto[]>([]);
-  pagarDisabled = input(true);
+  pagarDisabled = input(false);
+
+  /** Abre el modal POS-02 con el total actual del carrito. */
+  readonly pagar = output<number>();
 
   readonly sugerencias: Producto[] = [
     { nombre: 'Café de altura', codigo: 'PROD-018 · 7501031310012', precio: 180, stock: 12 },
@@ -134,11 +137,11 @@ export class SgfidmPosTerminalOrganismComponent {
     this.descuento.set(0);
   }
 
-  pagar(): void {
+  onPagar(): void {
     if (this.carrito().length === 0) {
       return;
     }
-    this.router.navigate(['/dashboard']);
+    this.pagar.emit(this.total());
   }
 
   ir(ruta: string): void {

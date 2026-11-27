@@ -58,6 +58,13 @@ describe('SgfidmPosTerminalOrganismComponent (POS-01 Solo)', () => {
     expect(component.total()).toBe(774);
   });
 
+  it('should emit the total when paying to open the POS-02 modal', () => {
+    let total: number | undefined;
+    component.pagar.subscribe((t) => (total = t));
+    component.onPagar();
+    expect(total).toBe(774);
+  });
+
   it('should empty the cart and keep the pay button disabled', () => {
     component.vaciar();
     fixture.detectChanges();

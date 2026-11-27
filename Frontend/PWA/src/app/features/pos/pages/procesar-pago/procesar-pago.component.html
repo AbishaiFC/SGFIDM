@@ -1,0 +1,104 @@
+<!-- POS-02 en modo Solo: modal sobre la terminal, sin sucursal ni EMP-XXX. -->
+<div class="pago-overlay" (click)="cancelar.emit()"></div>
+
+<section class="pago-modal" role="dialog" aria-modal="true" aria-label="Procesar pago">
+  <header class="pago-modal__header">
+    <h2 class="pago-modal__titulo">Procesar pago</h2>
+    <button type="button" class="pago-modal__cerrar" aria-label="Cerrar" (click)="cancelar.emit()">
+      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+    </button>
+    <p class="pago-modal__subtitulo">Venta en curso · Mi negocio · CAJ-002</p>
+  </header>
+
+  <div class="pago-modal__cuerpo">
+    @if (avisoVisible()) {
+      <div class="pago-modal__aviso" role="status">
+        <span>
+          <strong>Tu negocio no tiene dirección registrada.</strong> Los comprobantes se emitirán sin
+          dirección. Aviso descartable · no bloquea la emisión del comprobante.
+        </span>
+        <button type="button" aria-label="Descartar aviso" (click)="avisoVisible.set(false)">
+          <span class="material-symbols-outlined" aria-hidden="true">close</span>
+        </button>
+      </div>
+    }
+
+    <div class="pago-modal__resumen">
+      <span>{{ productos() }} PRODUCTOS · {{ unidades() }} UNIDADES</span>
+      <span>Subtotal ${{ total().toFixed(2) }} · Descuento aplicado</span>
+      <strong>TOTAL A PAGAR</strong>
+      <b>${{ total().toFixed(2) }}</b>
+    </div>
+
+    <div class="pago-modal__grupo">
+      <span class="pago-modal__label">MÉTODO DE PAGO</span>
+      <div class="pago-modal__metodos" role="radiogroup" aria-label="Método de pago">
+        @for (opcion of metodos; track opcion) {
+          <button
+            type="button"
+            role="radio"
+            [attr.aria-checked]="metodo() === opcion"
+            [class.pago-modal__metodo--activo]="metodo() === opcion"
+            (click)="elegir(opcion)"
+          >
+            {{ opcion }}@if (opcion === 'Efectivo') { · predeterminado }
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="pago-modal__grupo pago-modal__grupo--monto">
+      <div>
+        <span class="pago-modal__label">MONTO RECIBIDO</span>
+        <sgfidm-form-field
+          label="Monto recibido"
+          type="number"
+          [(value)]="montoTexto"
+          placeholder="0.00"
+        />
+        <span class="pago-modal__moneda">MXN</span>
+      </div>
+      <sgfidm-button type="secondary" size="sm" [width]="'80px'" [height]="'44px'" (click)="exacto()">
+        Exacto
+      </sgfidm-button>
+      <div class="pago-modal__cambio">
+        <span>CAMBIO</span>
+        <strong>${{ cambio().toFixed(2) }}</strong>
+        <small>Recibido − total</small>
+      </div>
+    </div>
+
+    <div class="pago-modal__grupo">
+      <span class="pago-modal__label">DENOMINACIONES COMUNES</span>
+      <div class="pago-modal__denominaciones">
+        @for (valor of denominaciones; track valor) {
+          <sgfidm-button type="secondary" size="sm" [width]="'90px'" [height]="'40px'" (click)="usarDenominacion(valor)">
+            ${{ valor }}
+          </sgfidm-button>
+        }
+      </div>
+    </div>
+
+    <div class="pago-modal__grupo">
+      <span class="pago-modal__label">DATOS OPCIONALES</span>
+      <sgfidm-form-field
+        label="Nombre del cliente (opcional)"
+        [(value)]="cliente"
+        placeholder="Nombre del cliente"
+      />
+    </div>
+
+    @if (error()) {
+      <p class="pago-modal__error" role="alert">{{ error() }}</p>
+    }
+  </div>
+
+  <footer class="pago-modal__acciones">
+    <sgfidm-button type="secondary" size="md" [width]="'120px'" [height]="'44px'" (click)="cancelar.emit()">
+      Cancelar
+    </sgfidm-button>
+    <sgfidm-button type="primary" size="md" [width]="'160px'" [height]="'44px'" (click)="confirmarPago()">
+      Confirmar pago
+    </sgfidm-button>
+  </footer>
+</section>

@@ -125,7 +125,7 @@
         </div>
         <p class="sgfidm-pos-terminal-organism__moneda">Moneda MXN · descuento global aplicado</p>
 
-        <sgfidm-button type="primary" size="lg" class="pagar-btn" [fullWidth]="true" [height]="'56px'" [disabled]="pagarDisabled() || carrito().length === 0" (click)="pagar()">
+        <sgfidm-button type="primary" size="lg" class="pagar-btn" [fullWidth]="true" [height]="'56px'" [disabled]="pagarDisabled() || carrito().length === 0" (click)="onPagar()">
           <span>PAGAR</span>
           <span class="sgfidm-pos-terminal-organism__f9">F9</span>
         </sgfidm-button>

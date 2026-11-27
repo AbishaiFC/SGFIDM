@@ -1,0 +1,67 @@
+<div class="historial-movimientos-page">
+  <header class="historial-movimientos-page__header">
+    <div>
+      <h1 class="historial-movimientos-page__titulo">Historial de movimientos</h1>
+      <p class="historial-movimientos-page__subtitulo">
+        284 movimientos · registros inmutables · orden descendente
+      </p>
+    </div>
+    <sgfidm-button type="primary" size="md" [width]="'110px'" [height]="'44px'" (click)="exportar()">
+      Exportar
+    </sgfidm-button>
+  </header>
+
+  <div class="historial-movimientos-page__filtros">
+    <sgfidm-search-bar
+      class="historial-movimientos-page__buscar"
+      placeholder="Código, producto, empleado o nota"
+      [(ngModel)]="busqueda"
+    />
+    <select class="historial-movimientos-page__select" [(ngModel)]="tipo" aria-label="Tipo de movimiento">
+      @for (opcion of tipos; track opcion) {
+        <option [value]="opcion">{{ opcion }}</option>
+      }
+    </select>
+    <select class="historial-movimientos-page__select" [(ngModel)]="periodo" aria-label="Periodo">
+      @for (opcion of periodos; track opcion) {
+        <option [value]="opcion">{{ opcion }}</option>
+      }
+    </select>
+  </div>
+
+  <sgfidm-panel-card class="historial-movimientos-page__panel">
+    <table>
+      <thead>
+        <tr>
+          <th>FECHA</th>
+          <th>CÓDIGO</th>
+          <th>TIPO / MOTIVO</th>
+          <th>PRODUCTO</th>
+          <th>CANT. / STOCK</th>
+          <th>NOTAS</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (m of filtrados(); track m.codigo) {
+          <tr>
+            <td>{{ m.fecha }}</td>
+            <td>{{ m.codigo }}</td>
+            <td>{{ m.tipo }}</td>
+            <td>{{ m.producto }}</td>
+            <td>{{ m.cantidad }}</td>
+            <td>{{ m.notas }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </sgfidm-panel-card>
+
+  <div class="historial-movimientos-page__paginacion">
+    <span>50 por página · 1–{{ filtrados().length }} de 284</span>
+    <sgfidm-pagination [totalPages]="1" [currentPage]="pagina()" (pageChange)="pagina.set($event)" />
+  </div>
+
+  @if (aviso()) {
+    <p class="historial-movimientos-page__aviso" role="status">{{ aviso() }}</p>
+  }
+</div>

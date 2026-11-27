@@ -46,5 +46,9 @@
     </div>
   </div>
 
+  @if (aviso()) {
+    <p class="reportes-aviso" role="status">{{ aviso() }}</p>
+  }
+
   <button type="button" class="reportes-volver" (click)="irAlInicio()">Volver al Inicio</button>
 </div>

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { SgfidmPanelCardComponent } from '../../../../shared/components/molecules/panel-card/sgfidm-panel-card.component';
 import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
@@ -52,9 +52,15 @@ export class ReportesComponent {
     },
   ];
 
+  readonly aviso = signal('');
+
   abrir(id: string): void {
-    // ToDo: navegar a la pantalla del reporte cuando REP-02..05 estén implementadas.
-    void id;
+    const rutas: Record<string, string> = { 'REP-02': '/reportes/ventas' };
+    if (rutas[id]) {
+      this.router.navigate([rutas[id]]);
+      return;
+    }
+    this.aviso.set(`ToDo ${id}: reporte pendiente de implementar.`);
   }
 
   historial(): void {

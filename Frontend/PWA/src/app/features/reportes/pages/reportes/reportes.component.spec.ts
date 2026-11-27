@@ -41,6 +41,13 @@ describe('ReportesComponent (REP-01 Solo)', () => {
     expect(fixture.debugElement.nativeElement.querySelectorAll('sgfidm-panel-card')).toHaveLength(4);
   });
 
+  it('should open the REP-02 sales report from its card', () => {
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    component.abrir('REP-02');
+    expect(spy).toHaveBeenCalledWith(['/reportes/ventas']);
+    spy.mockRestore();
+  });
+
   it('should go back to the Inicio dashboard', () => {
     const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
     component.irAlInicio();

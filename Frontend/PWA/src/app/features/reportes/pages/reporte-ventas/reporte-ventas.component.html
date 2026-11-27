@@ -1,0 +1,127 @@
+<div class="reporte-ventas-page">
+  <header class="reporte-ventas-page__header">
+    <div>
+      <span class="reporte-ventas-page__eyebrow">PANTALLA REP-02 · REPORTE DE VENTAS · SOLO CONSULTA</span>
+      <h1 class="reporte-ventas-page__titulo">Reporte de ventas</h1>
+    </div>
+    <div class="reporte-ventas-page__acciones">
+      <sgfidm-button type="secondary" size="md" [width]="'130px'" [height]="'44px'" (click)="limpiar()">
+        Limpiar filtros
+      </sgfidm-button>
+      <sgfidm-button type="primary" size="md" [width]="'110px'" [height]="'44px'" (click)="exportar()">
+        Exportar
+      </sgfidm-button>
+    </div>
+  </header>
+
+  <div class="reporte-ventas-page__contexto">
+    <strong>CONTEXTO DE LA CONSULTA</strong>
+    <span>
+      Periodo: 1 oct – 31 oct 2025 · Método: Efectivo · Generado: 5 nov 2025, 14:23 · Por: Ana
+      Martínez · MXN
+    </span>
+  </div>
+
+  <div class="reporte-ventas-page__filtros">
+    <select aria-label="Rango"><option>Rango: Este mes</option></select>
+    <select aria-label="Categoría"><option>Categoría: Todas</option></select>
+    <select aria-label="Método"><option>Método: Efectivo</option></select>
+    <select aria-label="Estado"><option>Estado: Todas</option></select>
+    <select aria-label="Producto"><option>Producto: Todos</option></select>
+  </div>
+
+  <div class="reporte-ventas-page__indicadores">
+    @for (ind of indicadores; track ind.eyebrow) {
+      <sgfidm-indicator-card [eyebrow]="ind.eyebrow" [value]="ind.value" />
+    }
+  </div>
+  <p class="reporte-ventas-page__nota">
+    Neto = ventas − devoluciones − cancelaciones · No es un documento fiscal · reports.view para ver
+    / reports.export para exportar
+  </p>
+
+  <div class="reporte-ventas-page__paneles">
+    <sgfidm-panel-card class="reporte-ventas-page__panel">
+      <div class="reporte-ventas-page__cabecera">
+        <h2>DESGLOSE POR MÉTODO DE PAGO</h2>
+        <span>3 métodos</span>
+      </div>
+      <div class="reporte-ventas-page__thead"><span>MÉTODO</span><span>MONTO · %</span></div>
+      @for (m of metodos; track m.nombre) {
+        <div class="reporte-ventas-page__fila">
+          <span>{{ m.nombre }}</span>
+          <span>{{ m.monto }} · {{ m.porcentaje }}</span>
+        </div>
+      }
+    </sgfidm-panel-card>
+
+    <sgfidm-panel-card class="reporte-ventas-page__panel">
+      <div class="reporte-ventas-page__cabecera">
+        <h2>DESGLOSE POR SUCURSAL</h2>
+        <span>solo Sucursal: Todas</span>
+      </div>
+      <p class="reporte-ventas-page__vacio">
+        Visible solo con 2+ sucursales asignadas. En Mi negocio no existe comparativo entre
+        sucursales. Consulta el desglose por método de pago o por producto.
+      </p>
+      <h2 class="reporte-ventas-page__subtitulo">LECTURA RÁPIDA</h2>
+      <ul>
+        <li>Método líder: Efectivo — 53.3% del monto</li>
+        <li>Producto líder: Grano de café — 26.2%</li>
+        <li>Ticket promedio: $143.77</li>
+        <li>El neto ya descuenta devoluciones y cancelaciones</li>
+      </ul>
+    </sgfidm-panel-card>
+  </div>
+
+  <sgfidm-panel-card class="reporte-ventas-page__panel reporte-ventas-page__panel--ancho">
+    <div class="reporte-ventas-page__cabecera">
+      <h2>DESGLOSE POR PRODUCTO</h2>
+      <span>orden: ingresos</span>
+    </div>
+    <div class="reporte-ventas-page__thead reporte-ventas-page__thead--producto">
+      <span>PRODUCTO</span><span>UNID.</span><span>INGRESOS</span><span>%</span>
+    </div>
+    @for (p of productos; track p.codigo) {
+      <div class="reporte-ventas-page__fila reporte-ventas-page__fila--producto">
+        <span><strong>{{ p.nombre }}</strong><small>{{ p.codigo }}</small></span>
+        <span>{{ p.unidades }}</span>
+        <span>{{ p.ingresos }}</span>
+        <span>{{ p.porcentaje }}</span>
+      </div>
+    }
+    <p class="reporte-ventas-page__nota">
+      Más de 50 productos · paginación 50/página · cada nombre abre el detalle del producto.
+    </p>
+  </sgfidm-panel-card>
+
+  <sgfidm-panel-card class="reporte-ventas-page__panel reporte-ventas-page__panel--ancho">
+    <div class="reporte-ventas-page__cabecera">
+      <button type="button" class="reporte-ventas-page__toggle" (click)="detalleAbierto.set(!detalleAbierto())">
+        {{ detalleAbierto() ? '▾' : '▸' }} DETALLE DE VENTAS
+      </button>
+      <span>colapsable · clic en fila → detalle de venta</span>
+    </div>
+    @if (detalleAbierto()) {
+      <div class="reporte-ventas-page__thead reporte-ventas-page__thead--ventas">
+        <span>CÓDIGO</span><span>FECHA</span><span>MÉTODO</span><span>TOTAL</span><span>ESTADO</span>
+      </div>
+      @for (v of ventas; track v.codigo) {
+        <div class="reporte-ventas-page__fila reporte-ventas-page__fila--ventas">
+          <span>{{ v.codigo }}</span><span>{{ v.fecha }}</span><span>{{ v.metodo }}</span>
+          <span>{{ v.total }}</span>
+          <span class="reporte-ventas-page__chip">{{ v.estado }}</span>
+        </div>
+      }
+      <p class="reporte-ventas-page__nota">
+        Mostrando 2 de 1,284 · orden cronológico inverso · exportar detalle desde REP-07
+      </p>
+    }
+  </sgfidm-panel-card>
+
+  <button type="button" class="reporte-ventas-page__volver" (click)="volver()">Volver a Reportes</button>
+
+  @if (aviso()) {
+    <p class="reporte-ventas-page__aviso" role="status">{{ aviso() }}</p>
+  }
+</div>

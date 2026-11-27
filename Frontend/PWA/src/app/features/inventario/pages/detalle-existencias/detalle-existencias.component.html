@@ -1,0 +1,76 @@
+<!-- INV-02 en modo Solo: sin sucursal ni EMP-XXX en el registro de movimientos. -->
+<div class="detalle-existencias-page">
+  <header class="detalle-existencias-page__header">
+    <div>
+      <h1 class="detalle-existencias-page__titulo">{{ nombre }}</h1>
+      <p class="detalle-existencias-page__subtitulo">
+        {{ codigo }} · Código de barras {{ barras }} · {{ categoria }}
+      </p>
+      <span class="detalle-existencias-page__chip">Con stock</span>
+    </div>
+    <div class="detalle-existencias-page__acciones">
+      <sgfidm-button type="secondary" size="md" [width]="'130px'" [height]="'44px'" (click)="pendiente('INV-03', 'Registrar entrada')">
+        Registrar entrada
+      </sgfidm-button>
+      <sgfidm-button type="secondary" size="md" [width]="'130px'" [height]="'44px'" (click)="pendiente('INV-03', 'Registrar salida')">
+        Registrar salida
+      </sgfidm-button>
+      <sgfidm-button type="primary" size="md" [width]="'94px'" [height]="'44px'" (click)="pendiente('INV-05', 'Ajustar')">
+        Ajustar
+      </sgfidm-button>
+      <button type="button" class="detalle-existencias-page__volver" (click)="volver()">Volver</button>
+    </div>
+  </header>
+
+  <div class="detalle-existencias-page__indicadores">
+    @for (ind of indicadores; track ind.eyebrow) {
+      <sgfidm-indicator-card [eyebrow]="ind.eyebrow" [value]="ind.value" />
+    }
+  </div>
+
+  <div class="detalle-existencias-page__cabecera-tabla">
+    <h2>Movimientos recientes · últimos 20</h2>
+    <button type="button" class="detalle-existencias-page__link" (click)="pendiente('INV-04', 'Historial completo')">
+      Ver historial completo
+    </button>
+  </div>
+
+  <sgfidm-panel-card class="detalle-existencias-page__panel">
+    <table>
+      <thead>
+        <tr>
+          <th>FECHA</th>
+          <th>TIPO / MOTIVO</th>
+          <th>CANTIDAD</th>
+          <th>RESULTANTE</th>
+          <th>REGISTRADO POR</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (m of movimientos; track m.fecha + m.tipo) {
+          <tr>
+            <td>{{ m.fecha }}</td>
+            <td>{{ m.tipo }}</td>
+            <td [class.detalle-existencias-page__salida]="m.cantidad.startsWith('−')">{{ m.cantidad }}</td>
+            <td>{{ m.resultante }}</td>
+            <td>{{ m.usuario }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </sgfidm-panel-card>
+
+  <div class="detalle-existencias-page__paginacion">
+    <span>50 por página · 1–{{ movimientos.length }} de 20</span>
+    <sgfidm-pagination [totalPages]="1" [currentPage]="pagina()" (pageChange)="pagina.set($event)" />
+  </div>
+
+  <div class="detalle-existencias-page__aviso-info" role="status">
+    <span class="material-symbols-outlined" aria-hidden="true">info</span>
+    <span><strong>PRODUCTOS ARCHIVADOS</strong> · Un producto archivado deshabilita las operaciones de inventario hasta que lo reactives desde el detalle del producto.</span>
+  </div>
+
+  @if (aviso()) {
+    <p class="detalle-existencias-page__aviso" role="status">{{ aviso() }}</p>
+  }
+</div>

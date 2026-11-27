@@ -7,4 +7,11 @@ export const inventarioRoutes: Routes = [
     loadComponent: () =>
       import('./pages/inventario/inventario.component').then((m) => m.InventarioComponent),
   },
+  {
+    path: ':codigo',
+    loadComponent: () =>
+      import('./pages/detalle-existencias/detalle-existencias.component').then(
+        (m) => m.DetalleExistenciasComponent,
+      ),
+  },
 ];

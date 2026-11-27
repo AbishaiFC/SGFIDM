@@ -1,0 +1,148 @@
+/* INV-02 Detalle de existencias — canon Figma 1045:129726 (Solo) */
+.detalle-existencias-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: var(--sgfidm-font-family);
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__titulo {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.25px;
+    margin: 0;
+  }
+
+  &__subtitulo {
+    font-size: 11px;
+    margin: 6px 0;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+
+  &__chip {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--sgfidm-color-success-container, #e1ede5);
+    color: var(--sgfidm-color-on-success-container, #24402f);
+    font-size: 10px;
+    font-weight: 600;
+  }
+
+  &__acciones {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  &__volver {
+    padding: 8px;
+    border: 0;
+    background: transparent;
+    font-family: inherit;
+    font-size: 11px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  &__indicadores {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+
+    @media (max-width: 1100px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  &__cabecera-tabla {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+      font-size: 13px;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  &__link {
+    border: 0;
+    background: transparent;
+    font-family: inherit;
+    font-size: 11px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  &__panel {
+    width: 100%;
+
+    ::ng-deep .sgfidm-panel-card {
+      padding: 0;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+
+    th {
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 9px;
+      letter-spacing: 0.5px;
+      color: var(--sgfidm-color-text-muted, #8b8b8b);
+      background: var(--sgfidm-color-surface-container, #fafafa);
+    }
+
+    td {
+      padding: 12px 16px;
+      border-top: 1px solid var(--sgfidm-color-outline-variant, #e0e0e0);
+    }
+  }
+
+  &__salida {
+    color: var(--sgfidm-color-error, #a9442e);
+  }
+
+  &__paginacion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 16px;
+    border: 1px solid var(--sgfidm-color-outline-variant, #e0e0e0);
+    border-radius: 12px;
+    background: var(--sgfidm-color-surface, #fff);
+    font-size: 10px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+
+  &__aviso-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: var(--sgfidm-color-info-container, #e8f0f7);
+    font-size: 10px;
+  }
+
+  &__aviso {
+    margin: 0;
+    font-size: 11px;
+    color: var(--sgfidm-color-warning, #9a6b14);
+  }
+}

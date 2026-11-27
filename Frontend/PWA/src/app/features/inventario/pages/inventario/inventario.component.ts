@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   SgfidmInventarioOrganismComponent,
   ProductoInventarioDto,
@@ -26,6 +27,8 @@ import {
   `,
 })
 export class InventarioComponent {
+  private readonly router = inject(Router);
+
   readonly totalGeneral = 58;
   readonly totalBajoStock = 6;
   readonly totalAgotados = 2;
@@ -42,7 +45,6 @@ export class InventarioComponent {
   ];
 
   onAccion(producto: ProductoInventarioDto): void {
-    // ToDo INV-03: detalle del producto / ajuste de existencias.
-    void producto;
+    this.router.navigate(['/inventario', producto.codigo]);
   }
 }

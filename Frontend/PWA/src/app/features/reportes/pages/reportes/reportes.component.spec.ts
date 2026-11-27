@@ -48,6 +48,13 @@ describe('ReportesComponent (REP-01 Solo)', () => {
     spy.mockRestore();
   });
 
+  it('should open the REP-03 inventory report from its card', () => {
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    component.abrir('REP-03');
+    expect(spy).toHaveBeenCalledWith(['/reportes/inventario']);
+    spy.mockRestore();
+  });
+
   it('should go back to the Inicio dashboard', () => {
     const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
     component.irAlInicio();

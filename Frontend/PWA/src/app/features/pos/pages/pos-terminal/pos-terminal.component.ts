@@ -5,6 +5,7 @@ import {
   PagoConfirmado,
 } from '../procesar-pago/procesar-pago.component';
 import { VentaRegistradaComponent } from '../venta-registrada/venta-registrada.component';
+import { ComprobanteVentaComponent } from '../comprobante-venta/comprobante-venta.component';
 
 /**
  * PosTerminalPage — POS-01 + modal POS-02 (modo Solo, sucursal implícita).
@@ -12,7 +13,12 @@ import { VentaRegistradaComponent } from '../venta-registrada/venta-registrada.c
  */
 @Component({
   standalone: true,
-  imports: [SgfidmPosTerminalOrganismComponent, ProcesarPagoComponent, VentaRegistradaComponent],
+  imports: [
+    SgfidmPosTerminalOrganismComponent,
+    ProcesarPagoComponent,
+    VentaRegistradaComponent,
+    ComprobanteVentaComponent,
+  ],
   selector: 'sgfidm-pos-terminal',
   styleUrl: './pos-terminal.component.scss',
   templateUrl: './pos-terminal.component.html',
@@ -21,6 +27,8 @@ export class PosTerminalComponent {
   readonly totalPago = signal<number | null>(null);
   readonly ventaConfirmada = signal<PagoConfirmado | null>(null);
   readonly totalVenta = signal(0);
+  readonly comprobanteAbierto = signal(false);
+  readonly pagoComprobante = signal<PagoConfirmado | null>(null);
 
   abrirPago(total: number): void {
     this.totalPago.set(total);
@@ -46,6 +54,12 @@ export class PosTerminalComponent {
   }
 
   verComprobante(): void {
-    // ToDo POS-04: abrir el comprobante de la venta.
+    this.pagoComprobante.set(this.ventaConfirmada());
+    this.ventaConfirmada.set(null);
+    this.comprobanteAbierto.set(true);
+  }
+
+  cerrarComprobante(): void {
+    this.comprobanteAbierto.set(false);
   }
 }

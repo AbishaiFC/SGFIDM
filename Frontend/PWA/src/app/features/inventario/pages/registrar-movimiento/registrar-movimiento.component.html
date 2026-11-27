@@ -1,0 +1,78 @@
+<!-- INV-03 en modo Solo: sin sucursal ni EMP-XXX en el movimiento. -->
+<div class="registrar-movimiento-page">
+  <header class="registrar-movimiento-header">
+    <h1 class="registrar-movimiento-title">Registrar movimiento</h1>
+    <p class="registrar-movimiento-subtitle">
+      Entrada o salida manual · la existencia se modifica mediante movimientos
+    </p>
+  </header>
+
+  <sgfidm-panel-card class="registrar-movimiento-panel">
+    <h2 class="registrar-movimiento-seccion">Nuevo movimiento</h2>
+
+    <div class="registrar-movimiento-tipos" role="radiogroup" aria-label="Tipo de movimiento">
+      @for (opcion of tipos; track opcion) {
+        <button
+          type="button"
+          role="radio"
+          [attr.aria-checked]="tipo() === opcion"
+          [class.registrar-movimiento-tipo--activo]="tipo() === opcion"
+          (click)="elegirTipo(opcion)"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">check</span>
+          {{ opcion }}
+        </button>
+      }
+    </div>
+
+    <div class="registrar-movimiento-grid">
+      <div class="registrar-movimiento-campo">
+        <label for="producto-mov">Producto</label>
+        <select id="producto-mov" [(ngModel)]="producto">
+          @for (prod of productos; track prod) {
+            <option [value]="prod">{{ prod }}</option>
+          }
+        </select>
+      </div>
+      <div class="registrar-movimiento-campo">
+        <label for="motivo-mov">Motivo</label>
+        <select id="motivo-mov" [(ngModel)]="motivo">
+          @for (opcion of motivos(); track opcion) {
+            <option [value]="opcion">{{ opcion }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="registrar-movimiento-grid registrar-movimiento-grid--cantidad">
+      <sgfidm-form-field label="Cantidad" type="number" [(value)]="cantidad" />
+      <sgfidm-form-field label="Existencias actuales" [value]="actualesTexto" [disabled]="true" />
+    </div>
+
+    <div class="registrar-movimiento-campo registrar-movimiento-campo--notas">
+      <label for="notas-mov">Notas</label>
+      <textarea id="notas-mov" [(ngModel)]="notas" rows="2"></textarea>
+    </div>
+
+    <div class="registrar-movimiento-resultado" role="status">
+      <span class="registrar-movimiento-eyebrow">EXISTENCIAS RESULTANTES</span>
+      <span class="registrar-movimiento-resultado__detalle">
+        {{ actuales }} actuales · {{ cantidadValor() }} {{ tipo() === 'Entrada' ? 'entrada' : 'salida' }}
+      </span>
+      <strong>{{ resultante() }}</strong>
+    </div>
+
+    @if (error()) {
+      <p class="registrar-movimiento-error" role="alert">{{ error() }}</p>
+    }
+
+    <footer class="registrar-movimiento-acciones">
+      <sgfidm-button type="secondary" size="md" [width]="'120px'" [height]="'44px'" (click)="cancelar()">
+        Cancelar
+      </sgfidm-button>
+      <sgfidm-button type="primary" size="md" [width]="'190px'" [height]="'44px'" (click)="registrar()">
+        Registrar movimiento
+      </sgfidm-button>
+    </footer>
+  </sgfidm-panel-card>
+</div>

@@ -116,7 +116,8 @@ Métodos de pago, Configuración de seguridad.
   ~~PROD-03 Detalle (5 pestañas)~~ ✅, ~~PROD-05 Categorías~~ ✅, PROD-04 Editar, PROD-06 Archivar.
 - ~~POS-02 Procesar pago~~ ✅, ~~POS-03 Venta registrada~~ ✅, ~~POS-04 Comprobante~~ ✅,
   POS-05..11 (historial, detalle, cancelación, devoluciones, reembolso, pendientes).
-- ~~INV-02 Detalle~~ ✅, INV-03..12 (movimientos, historial, ajustes, transferencias, alertas).
+- ~~INV-02 Detalle~~ ✅, ~~INV-03 Registrar movimiento~~ ✅, INV-04..12 (historial, ajustes,
+  transferencias, alertas).
 - REP-02..07 (reportes de ventas/inventario/caja/finanzas, exportaciones y exportar).
 - CONF-02..09 (negocio, métodos de pago, seguridad, auditoría, sesiones, cambio de modo).
 - NOT-01..03 (centro de notificaciones, detalle, preferencias).

@@ -58,6 +58,12 @@ export class DetalleExistenciasComponent {
     { fecha: '31 oct', tipo: 'Entrada · Inicial', cantidad: '+8', resultante: 8, usuario: 'Ana Martínez' },
   ];
 
+  registrar(tipo: 'entrada' | 'salida'): void {
+    this.router.navigate(['/inventario/movimientos/registrar'], {
+      queryParams: { tipo },
+    });
+  }
+
   volver(): void {
     this.router.navigate(['/inventario']);
   }

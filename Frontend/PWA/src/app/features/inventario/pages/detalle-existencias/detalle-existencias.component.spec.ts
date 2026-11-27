@@ -42,9 +42,16 @@ describe('DetalleExistenciasComponent (INV-02 Solo)', () => {
     spy.mockRestore();
   });
 
-  it('should show a ToDo for the movement actions', () => {
-    component.pendiente('INV-03', 'Registrar entrada');
-    fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.textContent).toContain('INV-03');
+  it('should open the registrar movimiento view for entrada and salida', () => {
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    component.registrar('entrada');
+    expect(spy).toHaveBeenCalledWith(['/inventario/movimientos/registrar'], {
+      queryParams: { tipo: 'entrada' },
+    });
+    component.registrar('salida');
+    expect(spy).toHaveBeenCalledWith(['/inventario/movimientos/registrar'], {
+      queryParams: { tipo: 'salida' },
+    });
+    spy.mockRestore();
   });
 });

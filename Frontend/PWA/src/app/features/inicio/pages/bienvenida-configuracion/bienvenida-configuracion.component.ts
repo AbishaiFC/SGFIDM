@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,7 +10,7 @@ type ModoOperacion = 'solo' | 'empleados' | 'sucursales';
 /** INICIO-01 — Bienvenida y configuración (estado pending_config, §3.2). */
 @Component({
   standalone: true,
-  imports: [FormsModule, SgfidmFormFieldComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, FormsModule, SgfidmFormFieldComponent, SgfidmButtonComponent],
   selector: 'sgfidm-bienvenida-configuracion',
   styleUrl: './bienvenida-configuracion.component.scss',
   templateUrl: './bienvenida-configuracion.component.html',

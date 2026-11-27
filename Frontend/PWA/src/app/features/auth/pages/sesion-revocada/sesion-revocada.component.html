@@ -6,7 +6,7 @@
     [wide]="true"
   >
     <div class="revocada-aviso" role="status">
-      <span class="material-symbols-outlined revocada-aviso__icono" aria-hidden="true">lock</span>
+      <sgfidm-icon class="sgfidm-icon revocada-aviso__icono" [name]="'lock'"></sgfidm-icon>
       <span>
         La terminal permanece bloqueada hasta completar una autenticación válida. El PIN de acceso
         rápido no puede recuperar una sesión revocada.
@@ -15,15 +15,15 @@
 
     <div class="revocada-puntos">
       <div class="revocada-punto">
-        <span class="material-symbols-outlined" aria-hidden="true">cancel</span>
+        <sgfidm-icon class="sgfidm-icon" [name]="'cancel'"></sgfidm-icon>
         <span>La sesión dejó de ser válida.</span>
       </div>
       <div class="revocada-punto">
-        <span class="material-symbols-outlined" aria-hidden="true">shield</span>
+        <sgfidm-icon class="sgfidm-icon" [name]="'shield'"></sgfidm-icon>
         <span>La venta está protegida: conservamos la operación sin registrarla como completada.</span>
       </div>
       <div class="revocada-punto">
-        <span class="material-symbols-outlined" aria-hidden="true">login</span>
+        <sgfidm-icon class="sgfidm-icon" [name]="'login'"></sgfidm-icon>
         <span>Vuelve a autenticarte para recuperarla, si sigues autorizado.</span>
       </div>
     </div>

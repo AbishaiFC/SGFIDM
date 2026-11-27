@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../atoms/icon/sgfidm-icon.component';
 import { Component, input, output, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SgfidmPinInputComponent } from '../../atoms/pin-input/sgfidm-pin-input.component';
@@ -20,7 +21,7 @@ export type PinFieldState = 'idle' | 'loading' | 'error' | 'success';
 @Component({
   selector: 'sgfidm-pin-field',
   standalone: true,
-  imports: [CommonModule, SgfidmPinInputComponent],
+  imports: [SgfidmIconComponent, CommonModule, SgfidmPinInputComponent],
   templateUrl: './sgfidm-pin-field.component.html',
   styleUrl: './sgfidm-pin-field.component.scss',
 })

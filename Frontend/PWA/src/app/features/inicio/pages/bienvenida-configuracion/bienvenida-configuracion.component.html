@@ -9,7 +9,7 @@
 
     @if (errorNombre()) {
       <div class="bienvenida-aviso" role="alert">
-        <span class="material-symbols-outlined bienvenida-aviso__icono" aria-hidden="true">error_outline</span>
+        <sgfidm-icon class="sgfidm-icon bienvenida-aviso__icono" [name]="'error_outline'"></sgfidm-icon>
         <div>
           <span class="bienvenida-aviso__eyebrow">REVISE EL NOMBRE</span>
           <span>{{ errorNombre() }}</span>
@@ -30,9 +30,9 @@
 
       <div class="bienvenida-campo">
         <div class="bienvenida-moneda">
-          <span class="material-symbols-outlined bienvenida-moneda__icono" aria-hidden="true">attach_money</span>
+          <sgfidm-icon class="sgfidm-icon bienvenida-moneda__icono" [name]="'attach_money'"></sgfidm-icon>
           <span class="bienvenida-moneda__valor">{{ moneda }}</span>
-          <span class="material-symbols-outlined bienvenida-moneda__editar" aria-hidden="true">edit</span>
+          <sgfidm-icon class="sgfidm-icon bienvenida-moneda__editar" [name]="'edit'"></sgfidm-icon>
         </div>
         <span class="bienvenida-campo__label">Moneda</span>
         <p class="bienvenida-campo__helper">Detectada por tu región. Una sola moneda en esta fase.</p>
@@ -50,7 +50,7 @@
             [attr.aria-pressed]="modo() === opcion.id"
             (click)="seleccionarModo(opcion.id)"
           >
-            <span class="material-symbols-outlined bienvenida-modo__icono" aria-hidden="true">{{ opcion.icono }}</span>
+            <sgfidm-icon class="sgfidm-icon bienvenida-modo__icono" [name]="opcion.icono"></sgfidm-icon>
             <span class="bienvenida-modo__titulo">{{ opcion.titulo }}</span>
             <span class="bienvenida-modo__descripcion">{{ opcion.descripcion }}</span>
           </button>
@@ -64,7 +64,7 @@
 
     <div class="bienvenida-acciones">
       <sgfidm-button type="secondary" size="md" [width]="'320px'" [height]="'56px'" (click)="onOmitir()">
-        <span class="material-symbols-outlined bienvenida-flecha" aria-hidden="true">skip_next</span>
+        <sgfidm-icon class="sgfidm-icon bienvenida-flecha" [name]="'skip_next'"></sgfidm-icon>
         Omitir por ahora
       </sgfidm-button>
       <sgfidm-button
@@ -75,7 +75,7 @@
         [disabled]="!nombreValido"
         (click)="onGuardar()"
       >
-        <span class="material-symbols-outlined bienvenida-flecha" aria-hidden="true">arrow_forward</span>
+        <sgfidm-icon class="sgfidm-icon bienvenida-flecha" [name]="'arrow_forward'"></sgfidm-icon>
         Guardar y continuar
       </sgfidm-button>
     </div>

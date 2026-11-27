@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
@@ -11,7 +12,7 @@ interface Sucursal {
 /** AUTH-13 — Selección de sucursal activa (paso tras el login para empleados con 2+ sucursales). */
 @Component({
   standalone: true,
-  imports: [SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, SgfidmButtonComponent],
   selector: 'sgfidm-select-branch',
   styleUrl: './select-branch.component.scss',
   templateUrl: './select-branch.component.html',

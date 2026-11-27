@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../atoms/icon/sgfidm-icon.component';
 import { Component, input, output, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -15,7 +16,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'sgfidm-notification',
   standalone: true,
-  imports: [CommonModule],
+  imports: [SgfidmIconComponent, CommonModule],
   templateUrl: './sgfidm-notification.component.html',
   styleUrl: './sgfidm-notification.component.scss',
 })

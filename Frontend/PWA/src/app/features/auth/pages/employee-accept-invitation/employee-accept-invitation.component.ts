@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SgfidmPasswordFieldComponent } from '../../../../shared/components/molecules/password-field/sgfidm-password-field.component';
@@ -7,7 +8,7 @@ import { SgfidmAuthCardComponent } from '../../../../shared/components/molecules
 /** AUTH-12 — Aceptar invitación por correo y crear contraseña (Figma EMP / Aceptar invitación). */
 @Component({
   standalone: true,
-  imports: [SgfidmAuthCardComponent, SgfidmPasswordFieldComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, SgfidmAuthCardComponent, SgfidmPasswordFieldComponent, SgfidmButtonComponent],
   selector: 'sgfidm-employee-accept-invitation',
   styleUrl: './employee-accept-invitation.component.scss',
   templateUrl: './employee-accept-invitation.component.html',

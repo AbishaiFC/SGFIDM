@@ -7,11 +7,10 @@
 // radius-lg     : var(--sgfidm-radius-lg)           10px
 
 // ── Dimensiones (Figma 195:2705: 268×120, radio 10) ──────────────────────────
-$card-width:  268px;
-$card-height: 120px;
-$eyebrow-font: 10px;
-$value-font:   31px;
-$delta-font:   12px;
+$card-width: 100%;
+$eyebrow-font: 12px;
+$value-font: clamp(1.75rem, 2.2vw, 2rem);
+$delta-font: 14px;
 $gap:          8px;
 
 :host {
@@ -20,21 +19,17 @@ $gap:          8px;
 
 .sgfidm-indicator-card {
   width: $card-width;
-  height: $card-height;
-  padding: var(--sgfidm-space-3);
+  min-height: 144px;
+  padding: var(--sgfidm-space-4);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   gap: var(--sgfidm-space-2);
   background: var(--sgfidm-color-surface, #fff);
   border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
   border-radius: var(--sgfidm-radius-lg, 10px);
 
-  // En pantallas pequeñas: ocupar el ancho completo
-  @media (max-width: 320px) {
-    width: 100%;
-  }
 }
 
 // ── Eyebrow (label muy pequeño, caps) ────────────────────────────────────────
@@ -42,10 +37,10 @@ $gap:          8px;
   font-family: var(--sgfidm-font-family);
   font-size: $eyebrow-font;
   font-weight: 500;
-  line-height: 13px;
+  line-height: 18px;
   letter-spacing: 0.1px;
   text-transform: uppercase;
-  color: var(--sgfidm-color-text-muted, #8b8b8b);
+  color: var(--sgfidm-color-text-secondary, #575757);
   white-space: nowrap;
 }
 
@@ -54,7 +49,7 @@ $gap:          8px;
   font-family: var(--sgfidm-font-family);
   font-size: $value-font;
   font-weight: 500;
-  line-height: 36px;
+  line-height: 1.15;
   color: var(--sgfidm-color-text-primary, #1c1c1c);
   font-feature-settings: 'tnum' 1; // Números tabulares (números naturales)
   white-space: nowrap;
@@ -65,7 +60,7 @@ $gap:          8px;
   font-family: var(--sgfidm-font-family);
   font-size: $delta-font;
   font-weight: 400;
-  line-height: 17px;
+  line-height: 1.45;
   color: var(--sgfidm-color-text-secondary, #575757);
   white-space: nowrap;
 }

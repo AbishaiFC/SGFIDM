@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../atoms/icon/sgfidm-icon.component';
 import { Component, computed, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SgfidmPanelCardComponent } from '../../molecules/panel-card/sgfidm-panel-card.component';
@@ -32,7 +33,7 @@ export type FiltroProducto = 'Activos' | 'Todos' | 'Archivados' | 'Solo bajo sto
 @Component({
   selector: 'sgfidm-productos-organism',
   standalone: true,
-  imports: [
+  imports: [SgfidmIconComponent, 
     FormsModule,
     SgfidmPanelCardComponent,
     SgfidmEmptyStateComponent,

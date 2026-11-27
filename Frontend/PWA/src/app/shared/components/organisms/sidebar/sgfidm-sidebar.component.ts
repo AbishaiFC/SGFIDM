@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../atoms/icon/sgfidm-icon.component';
 import { Component, computed, inject, input, output, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
@@ -32,7 +33,7 @@ interface NavItem {
 @Component({
   selector: 'sgfidm-sidebar',
   standalone: true,
-  imports: [SgfidmSidebarItemComponent, SgfidmIconButtonComponent],
+  imports: [SgfidmIconComponent, SgfidmSidebarItemComponent, SgfidmIconButtonComponent],
   templateUrl: './sgfidm-sidebar.component.html',
   styleUrl: './sgfidm-sidebar.component.scss',
   host: {

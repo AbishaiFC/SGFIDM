@@ -1,7 +1,7 @@
 <div class="emp-page">
   <sgfidm-auth-card title="Únete a INKO" [showLogo]="false" [wide]="true">
     <div class="emp-aviso" role="status">
-      <span class="material-symbols-outlined emp-aviso__icon" aria-hidden="true">info</span>
+      <sgfidm-icon class="sgfidm-icon emp-aviso__icon" [name]="'info'"></sgfidm-icon>
       <div>
         <div>Invitación para: {{ nombre }}</div>
         <div>Código de empleado asignado: {{ codigo }}</div>
@@ -12,7 +12,7 @@
 
     @if (errorMessage) {
       <div class="emp-error-aviso" role="alert">
-        <span class="material-symbols-outlined" aria-hidden="true">error_outline</span>
+        <sgfidm-icon class="sgfidm-icon" [name]="'error_outline'"></sgfidm-icon>
         <span>{{ errorMessage }}</span>
       </div>
     }
@@ -35,7 +35,7 @@
 
     <div class="emp-actions">
       <sgfidm-button type="primary" size="md" [fullWidth]="true" [height]="'56px'" (click)="onAceptar()">
-        <span class="material-symbols-outlined emp-icon" aria-hidden="true">person</span>
+        <sgfidm-icon class="sgfidm-icon emp-icon" [name]="'person'"></sgfidm-icon>
         Aceptar invitación y crear cuenta
       </sgfidm-button>
     </div>

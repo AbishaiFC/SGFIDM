@@ -38,6 +38,7 @@ export class ConfiguracionComponent {
       titulo: 'Negocio',
       descripcion: 'Nombre, moneda, modo de operación y datos de contacto.',
       meta: 'Mi negocio · Con empleados',
+      ruta: '/inicio/configurar',
     },
     {
       id: 'CONF-04',

@@ -2,17 +2,24 @@
   display: inline-flex;
   align-items: center;
   gap: var(--sgfidm-space-2);
-  margin-bottom: var(--sgfidm-space-4);
+  min-height: 40px;
+  margin: 0 var(--sgfidm-space-3) var(--sgfidm-space-4) 0;
   font-family: var(--sgfidm-font-family);
-  font-size: 12.5px;
+  font-size: 14px;
   color: var(--sgfidm-color-text-secondary, #575757);
   text-decoration: none;
+  border-radius: var(--sgfidm-radius-sm);
+
+  &:focus-visible {
+    outline: 3px solid var(--sgfidm-color-focus-ring);
+    outline-offset: 3px;
+  }
 
   &:hover {
     color: var(--sgfidm-color-text-primary, #1c1c1c);
   }
 
-  .material-symbols-outlined {
+  .sgfidm-icon {
     font-size: 18px;
   }
 }

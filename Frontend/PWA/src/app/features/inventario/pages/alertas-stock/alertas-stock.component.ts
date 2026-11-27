@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { SgfidmPanelCardComponent } from '../../../../shared/components/molecules/panel-card/sgfidm-panel-card.component';
@@ -11,7 +12,7 @@ import { SgfidmChipComponent } from '../../../../shared/components/atoms/chip/sg
  */
 @Component({
   standalone: true,
-  imports: [SgfidmPanelCardComponent, SgfidmChipComponent],
+  imports: [SgfidmIconComponent, SgfidmPanelCardComponent, SgfidmChipComponent],
   selector: 'sgfidm-alertas-stock',
   templateUrl: './alertas-stock.component.html',
   styleUrl: './alertas-stock.component.scss',

@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
@@ -15,7 +16,7 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
  */
 @Component({
   standalone: true,
-  imports: [
+  imports: [SgfidmIconComponent, 
     CommonModule,
     FormsModule,
     RouterLink,

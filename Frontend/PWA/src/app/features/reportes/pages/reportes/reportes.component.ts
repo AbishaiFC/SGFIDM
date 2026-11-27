@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { SgfidmPanelCardComponent } from '../../../../shared/components/molecules/panel-card/sgfidm-panel-card.component';
@@ -21,7 +22,7 @@ interface ReporteCard {
  */
 @Component({
   standalone: true,
-  imports: [SgfidmPanelCardComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, SgfidmPanelCardComponent, SgfidmButtonComponent],
   selector: 'sgfidm-reportes',
   styleUrl: './reportes.component.scss',
   templateUrl: './reportes.component.html',

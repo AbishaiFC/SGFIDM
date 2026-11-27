@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, computed, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
@@ -20,7 +21,7 @@ export interface ExportacionSolicitud {
  */
 @Component({
   standalone: true,
-  imports: [FormsModule, SgfidmButtonComponent, SgfidmSwitchComponent],
+  imports: [SgfidmIconComponent, FormsModule, SgfidmButtonComponent, SgfidmSwitchComponent],
   selector: 'sgfidm-exportar-modal',
   templateUrl: './exportar-modal.component.html',
   styleUrl: './exportar-modal.component.scss',

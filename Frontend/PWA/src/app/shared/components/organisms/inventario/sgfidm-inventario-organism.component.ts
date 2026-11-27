@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../atoms/icon/sgfidm-icon.component';
 import { Component, computed, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -38,7 +39,7 @@ export interface ProductoInventarioDto {
 @Component({
   selector: 'sgfidm-inventario-organism',
   standalone: true,
-  imports: [
+  imports: [SgfidmIconComponent, 
     CommonModule,
     FormsModule,
     SgfidmPanelCardComponent,

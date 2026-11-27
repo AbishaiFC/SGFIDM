@@ -1,9 +1,12 @@
 <div class="sgfidm-tabs">
-  <div class="sgfidm-tabs__list">
+  <div class="sgfidm-tabs__list" role="tablist">
     @for (tab of tabs(); track tab) {
       <button
         type="button"
         class="sgfidm-tabs__tab"
+        role="tab"
+        [attr.aria-selected]="isActive(tab)"
+        [attr.tabindex]="isActive(tab) ? 0 : -1"
         [class.sgfidm-tabs__tab--active]="isActive(tab)"
         (click)="selectTab(tab)">
         {{ tab }}

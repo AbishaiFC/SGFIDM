@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { SgfidmPanelCardComponent } from '../../molecules/panel-card/sgfidm-panel-card.component';
 import { SgfidmIndicatorCardComponent } from '../../molecules/indicator-card/sgfidm-indicator-card.component';
 import { SgfidmBadgeComponent } from '../../molecules/../atoms/badge/sgfidm-badge.component';
-import { SgfidmButtonComponent } from '../../molecules/../atoms/button/sgfidm-button.component';
 import { SgfidmSwitchComponent } from '../../molecules/../atoms/switch/sgfidm-switch.component';
 
 /**
@@ -29,7 +28,7 @@ export interface SeguridadParamDto {
 @Component({
   selector: 'sgfidm-seguridad-organism',
   standalone: true,
-  imports: [CommonModule, SgfidmPanelCardComponent, SgfidmIndicatorCardComponent, SgfidmBadgeComponent, SgfidmButtonComponent, SgfidmSwitchComponent],
+  imports: [CommonModule, SgfidmPanelCardComponent, SgfidmIndicatorCardComponent, SgfidmBadgeComponent, SgfidmSwitchComponent],
   templateUrl: './sgfidm-seguridad-organism.component.html',
   styleUrl: './sgfidm-seguridad-organism.component.scss',
 })

@@ -14,7 +14,7 @@
     <div class="pasos-panel__header">
       <h2 class="pasos-panel__titulo">Tus primeros pasos</h2>
       <button type="button" class="pasos-ocultar" (click)="onOcultarGuia()">
-        <span class="material-symbols-outlined" aria-hidden="true">close</span>
+        <sgfidm-icon class="sgfidm-icon" [name]="'close'"></sgfidm-icon>
         Ocultar guía
       </button>
     </div>
@@ -32,7 +32,7 @@
         <div class="paso-fila">
           <span class="paso-fila__numero" [class.paso-fila__numero--hecho]="completados().includes(paso.numero)">
             @if (completados().includes(paso.numero)) {
-              <span class="material-symbols-outlined" aria-hidden="true">check</span>
+              <sgfidm-icon class="sgfidm-icon" [name]="'check'"></sgfidm-icon>
             } @else {
               {{ paso.numero }}
             }
@@ -45,7 +45,7 @@
             {{ estadoPaso(paso.numero) }}
           </span>
           <a class="paso-abrir" (click)="abrirPaso(paso)">
-            <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+            <sgfidm-icon class="sgfidm-icon" [name]="'chevron_right'"></sgfidm-icon>
             Abrir
           </a>
         </div>
@@ -55,15 +55,15 @@
 
   <div class="pasos-acciones">
     <sgfidm-button type="primary" size="md" [width]="'320px'" [height]="'56px'" (click)="abrirPaso(pasos[2])">
-      <span class="material-symbols-outlined" aria-hidden="true">add</span>
+      <sgfidm-icon class="sgfidm-icon" [name]="'add'"></sgfidm-icon>
       Nueva venta
     </sgfidm-button>
     <sgfidm-button type="secondary" size="md" [width]="'320px'" [height]="'56px'" (click)="abrirPaso(pasos[0])">
-      <span class="material-symbols-outlined" aria-hidden="true">add</span>
+      <sgfidm-icon class="sgfidm-icon" [name]="'add'"></sgfidm-icon>
       Agregar producto
     </sgfidm-button>
     <sgfidm-button type="secondary" size="md" [width]="'320px'" [height]="'56px'" (click)="abrirPaso(pasos[3])">
-      <span class="material-symbols-outlined" aria-hidden="true">receipt_long</span>
+      <sgfidm-icon class="sgfidm-icon" [name]="'receipt_long'"></sgfidm-icon>
       Registrar gasto
     </sgfidm-button>
   </div>
@@ -71,7 +71,7 @@
   <div class="pasos-footer">
     <span>¿Necesitas más? Configura empleados, sucursales o métodos de pago cuando quieras.</span>
     <a class="pasos-footer__link" (click)="onConfiguracion()">
-      <span class="material-symbols-outlined" aria-hidden="true">settings</span>
+      <sgfidm-icon class="sgfidm-icon" [name]="'settings'"></sgfidm-icon>
       Ir a Configuración
     </a>
   </div>

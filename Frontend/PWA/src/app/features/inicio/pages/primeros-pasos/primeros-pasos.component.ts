@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { SgfidmPanelCardComponent } from '../../../../shared/components/molecules/panel-card/sgfidm-panel-card.component';
@@ -13,7 +14,7 @@ interface Paso {
 /** INICIO-02 — Dashboard de primeros pasos (estado pending_first_sale, §3.1). */
 @Component({
   standalone: true,
-  imports: [SgfidmPanelCardComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, SgfidmPanelCardComponent, SgfidmButtonComponent],
   selector: 'sgfidm-primeros-pasos',
   styleUrl: './primeros-pasos.component.scss',
   templateUrl: './primeros-pasos.component.html',

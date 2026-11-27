@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SgfidmPasswordFieldComponent } from '../../../../shared/components/molecules/password-field/sgfidm-password-field.component';
@@ -7,7 +8,7 @@ import { SgfidmAuthCardComponent } from '../../../../shared/components/molecules
 /** AUTH-11 — Establecer contraseña personal del empleado (Figma EMP / Establecer contraseña). */
 @Component({
   standalone: true,
-  imports: [SgfidmAuthCardComponent, SgfidmPasswordFieldComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, SgfidmAuthCardComponent, SgfidmPasswordFieldComponent, SgfidmButtonComponent],
   selector: 'sgfidm-employee-set-password',
   styleUrl: './employee-set-password.component.scss',
   templateUrl: './employee-set-password.component.html',

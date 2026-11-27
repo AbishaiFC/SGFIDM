@@ -1,13 +1,84 @@
 @use './styles/tokens';
 @use './styles/material-theme';
 
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Variable.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Variable-Italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 html, body {
   height: 100%;
   margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
 }
 
 body {
   font-family: var(--sgfidm-font-family);
   background-color: var(--sgfidm-color-background);
   color: var(--sgfidm-color-text-primary);
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a,
+input,
+select,
+textarea,
+[tabindex]:not([tabindex='-1']) {
+  &:focus-visible {
+    outline: 3px solid var(--sgfidm-color-focus-ring);
+    outline-offset: 3px;
+  }
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--sgfidm-color-primary);
+  color: var(--sgfidm-color-on-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

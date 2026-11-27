@@ -1,4 +1,4 @@
-<div class="sgfidm-theme root-layout" style="display: flex; height: 100dvh; overflow: hidden;">
+<div class="sgfidm-theme root-layout">
   <!-- Auth, configuración inicial y POS son pantallas a todo ancho, sin Sidebar -->
   @if (!isAuthRoute()) {
     <sgfidm-sidebar
@@ -14,7 +14,7 @@
   }
 
   <!-- Contenido principal -->
-  <main class="contenido" style="flex: 1; overflow: auto; background: var(--sgfidm-color-background); padding: var(--sgfidm-space-8) var(--sgfidm-space-14) var(--sgfidm-space-10) var(--sgfidm-space-14);">
+  <main class="contenido" id="contenido-principal" tabindex="-1">
     <router-outlet />
   </main>
 </div>

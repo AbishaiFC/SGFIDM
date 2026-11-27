@@ -32,7 +32,8 @@ import { SgfidmFormFieldComponent } from '../form-field/sgfidm-form-field.compon
       [required]="required()"
       [leadingIcon]="leadingIcon()"
       [trailingIcon]="visible ? 'visibility_off' : 'visibility'"
-      autocomplete="current-password"
+      [trailingActionLabel]="visible ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+      [autocomplete]="autocomplete()"
       [inputId]="inputId()"
       (trailingIconClicked)="toggleVisibility()"
       (focused)="focused.emit()"
@@ -50,6 +51,7 @@ export class SgfidmPasswordFieldComponent {
   required     = input<boolean>(false);
   leadingIcon  = input<string>('lock');
   inputId      = input<string>(`sgfidm-pf-${Math.random().toString(36).slice(2, 7)}`);
+  autocomplete = input<string>('current-password');
 
   focused = output<void>();
   blurred = output<void>();

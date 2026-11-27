@@ -2,13 +2,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 20px;
+  min-height: 24px;
+  line-height: 1.2;
   padding: 0 var(--sgfidm-space-2);
   border-radius: var(--sgfidm-radius-lg);
   font-family: var(--sgfidm-font-family);
-  font-size: var(--sgfidm-label-medium);
+  font-size: 12px;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
+  letter-spacing: 0;
   white-space: nowrap;
 }

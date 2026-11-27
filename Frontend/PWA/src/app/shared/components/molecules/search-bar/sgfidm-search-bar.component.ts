@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../atoms/icon/sgfidm-icon.component';
 import { Component, input, output, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -15,7 +16,7 @@ import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/f
 @Component({
   selector: 'sgfidm-search-bar',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [SgfidmIconComponent, CommonModule, FormsModule],
   templateUrl: './sgfidm-search-bar.component.html',
   styleUrl: './sgfidm-search-bar.component.scss',
   providers: [

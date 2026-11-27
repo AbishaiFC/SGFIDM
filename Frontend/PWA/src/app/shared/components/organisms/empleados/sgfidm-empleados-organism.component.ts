@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { SgfidmPanelCardComponent } from '../../molecules/panel-card/sgfidm-panel-card.component';
 import { SgfidmIndicatorCardComponent } from '../../molecules/indicator-card/sgfidm-indicator-card.component';
 import { SgfidmBadgeComponent } from '../../molecules/../atoms/badge/sgfidm-badge.component';
-import { SgfidmButtonComponent } from '../../molecules/../atoms/button/sgfidm-button.component';
 import { SgfidmEmptyStateComponent } from '../../molecules/empty-state/sgfidm-empty-state.component';
 
 /**
@@ -29,7 +28,7 @@ export interface EmpleadoDto {
 @Component({
   selector: 'sgfidm-empleados-organism',
   standalone: true,
-  imports: [CommonModule, SgfidmPanelCardComponent, SgfidmIndicatorCardComponent, SgfidmBadgeComponent, SgfidmButtonComponent, SgfidmEmptyStateComponent],
+  imports: [CommonModule, SgfidmPanelCardComponent, SgfidmIndicatorCardComponent, SgfidmBadgeComponent, SgfidmEmptyStateComponent],
   templateUrl: './sgfidm-empleados-organism.component.html',
   styleUrl: './sgfidm-empleados-organism.component.scss',
 })

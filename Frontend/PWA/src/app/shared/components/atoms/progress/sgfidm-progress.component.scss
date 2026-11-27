@@ -22,22 +22,24 @@
   transition: width 0.3s ease;
 
   .sgfidm-progress--indeterminate & {
-    animation: sgfidm-progress-shimmer 1.5s infinite;
-    background: linear-gradient(
-      90deg,
-      var(--sgfidm-color-outline-variant) 0%,
-      var(--sgfidm-color-primary) 50%,
-      var(--sgfidm-color-outline-variant) 100%
-    );
-    background-size: 200% 100%;
+    animation: sgfidm-progress-shimmer 1.5s ease-in-out infinite alternate;
+    width: 40%;
   }
 }
 
 @keyframes sgfidm-progress-shimmer {
   0% {
-    background-position: 200% 0;
+    transform: translateX(-20%);
   }
   100% {
-    background-position: -200% 0;
+    transform: translateX(150%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sgfidm-progress--indeterminate .sgfidm-progress__fill {
+    animation: none;
+    width: 40%;
+    transform: translateX(75%);
   }
 }

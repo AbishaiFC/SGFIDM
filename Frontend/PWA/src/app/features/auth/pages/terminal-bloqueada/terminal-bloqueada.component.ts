@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject, signal, viewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SgfidmAuthCardComponent } from '../../../../shared/components/molecules/auth-card/sgfidm-auth-card.component';
@@ -7,7 +8,7 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
 /** AUTH-16 — Terminal POS bloqueada por inactividad; se desbloquea con el PIN de AUTH-15. */
 @Component({
   standalone: true,
-  imports: [SgfidmAuthCardComponent, SgfidmPinFieldComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, SgfidmAuthCardComponent, SgfidmPinFieldComponent, SgfidmButtonComponent],
   selector: 'sgfidm-terminal-bloqueada',
   styleUrl: './terminal-bloqueada.component.scss',
   templateUrl: './terminal-bloqueada.component.html',

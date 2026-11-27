@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, OnDestroy, OnInit, input, output, signal } from '@angular/core';
 import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
 import { PagoConfirmado } from '../procesar-pago/procesar-pago.component';
@@ -10,7 +11,7 @@ import { PagoConfirmado } from '../procesar-pago/procesar-pago.component';
  */
 @Component({
   standalone: true,
-  imports: [SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, SgfidmButtonComponent],
   selector: 'sgfidm-venta-registrada',
   templateUrl: './venta-registrada.component.html',
   styleUrl: './venta-registrada.component.scss',

@@ -22,14 +22,14 @@
         [loading]="isSending"
         (click)="onEnviarDeNuevo()"
       >
-        <span class="material-symbols-outlined recovery-sent-send-icon" aria-hidden="true">send</span>
+        <sgfidm-icon class="sgfidm-icon recovery-sent-send-icon" [name]="'send'"></sgfidm-icon>
         Enviar de nuevo
       </sgfidm-button>
     </div>
 
     <div class="recovery-sent-footer">
       <a class="recovery-sent-link" routerLink="/auth/login">
-        <span class="material-symbols-outlined recovery-sent-back-icon" aria-hidden="true">arrow_back</span>
+        <sgfidm-icon class="sgfidm-icon recovery-sent-back-icon" [name]="'arrow_back'"></sgfidm-icon>
         Volver al inicio de sesión
       </a>
     </div>

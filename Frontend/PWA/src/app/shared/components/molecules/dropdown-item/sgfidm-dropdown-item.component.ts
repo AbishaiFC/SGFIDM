@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../atoms/icon/sgfidm-icon.component';
 import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -15,7 +16,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'sgfidm-dropdown-item',
   standalone: true,
-  imports: [CommonModule],
+  imports: [SgfidmIconComponent, CommonModule],
   templateUrl: './sgfidm-dropdown-item.component.html',
   styleUrl: './sgfidm-dropdown-item.component.scss',
 })

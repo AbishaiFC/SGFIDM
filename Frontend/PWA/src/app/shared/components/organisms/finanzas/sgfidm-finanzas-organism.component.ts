@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../atoms/icon/sgfidm-icon.component';
 import { Component, output, signal } from '@angular/core';
 import { SgfidmPanelCardComponent } from '../../molecules/panel-card/sgfidm-panel-card.component';
 import { SgfidmIndicatorCardComponent } from '../../molecules/indicator-card/sgfidm-indicator-card.component';
@@ -29,7 +30,7 @@ interface Categoria {
 @Component({
   selector: 'sgfidm-finanzas-organism',
   standalone: true,
-  imports: [SgfidmPanelCardComponent, SgfidmIndicatorCardComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, SgfidmPanelCardComponent, SgfidmIndicatorCardComponent, SgfidmButtonComponent],
   templateUrl: './sgfidm-finanzas-organism.component.html',
   styleUrl: './sgfidm-finanzas-organism.component.scss',
 })

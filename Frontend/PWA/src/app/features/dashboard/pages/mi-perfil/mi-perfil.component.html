@@ -5,7 +5,7 @@
       <p class="perfil-subtitle">Tu cuenta personal en modo Solo.</p>
     </div>
     <sgfidm-button type="secondary" size="lg" class="perfil-volver" [width]="'245px'" [height]="'56px'" (click)="onVolver()">
-      <span class="material-symbols-outlined perfil-icono" aria-hidden="true">arrow_back</span>
+      <sgfidm-icon class="sgfidm-icon perfil-icono" [name]="'arrow_back'"></sgfidm-icon>
       Volver a Configuración
     </sgfidm-button>
   </header>
@@ -45,9 +45,7 @@
         </p>
 
         <span class="perfil-chip" [class.perfil-chip--success]="pinConfigurado()">
-          <span class="material-symbols-outlined perfil-chip__icono" aria-hidden="true">
-            {{ pinConfigurado() ? 'check_circle' : 'info' }}
-          </span>
+          <sgfidm-icon class="sgfidm-icon perfil-chip__icono" [name]="pinConfigurado() ? 'check_circle' : 'info'"></sgfidm-icon>
           {{ pinConfigurado() ? 'PIN configurado' : 'Sin PIN configurado' }}
         </span>
 

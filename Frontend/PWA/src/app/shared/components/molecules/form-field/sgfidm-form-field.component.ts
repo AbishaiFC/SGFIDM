@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../atoms/icon/sgfidm-icon.component';
 import {
   Component,
   input,
@@ -33,7 +34,7 @@ export type FormFieldState = 'default' | 'focus' | 'filled' | 'error' | 'disable
 @Component({
   selector: 'sgfidm-form-field',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatIconModule],
+  imports: [SgfidmIconComponent, CommonModule, FormsModule, MatIconModule],
   templateUrl: './sgfidm-form-field.component.html',
   styleUrl: './sgfidm-form-field.component.scss',
 })
@@ -47,6 +48,7 @@ export class SgfidmFormFieldComponent {
   helperText = input<string>('');
   leadingIcon = input<string>('');
   trailingIcon = input<string>('');
+  trailingActionLabel = input<string>('Acción de campo');
   disabled = input<boolean>(false);
   required = input<boolean>(false);
   autocomplete = input<string>('off');

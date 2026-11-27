@@ -21,12 +21,15 @@ import { CommonModule } from '@angular/common';
   styleUrl: './sgfidm-text-field.component.scss',
 })
 export class SgfidmTextFieldComponent {
+  private static nextId = 0;
+  readonly inputId = `sgfidm-field-${SgfidmTextFieldComponent.nextId++}`;
   readonly label = input('');
   readonly placeholder = input('');
   readonly value = model('');
   readonly disabled = input(false);
   readonly error = input<string | null>(null);
   readonly type = input<'text' | 'email' | 'password' | 'number'>('text');
+  readonly autocomplete = input<string | null>(null);
   readonly change = output<string>();
 
   readonly hasError = computed(() => !!this.error());

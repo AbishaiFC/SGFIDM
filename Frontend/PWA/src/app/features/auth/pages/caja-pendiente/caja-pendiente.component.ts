@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { SgfidmAuthCardComponent } from '../../../../shared/components/molecules/auth-card/sgfidm-auth-card.component';
@@ -12,7 +13,7 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
  */
 @Component({
   standalone: true,
-  imports: [SgfidmAuthCardComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, SgfidmAuthCardComponent, SgfidmButtonComponent],
   selector: 'sgfidm-caja-pendiente',
   styleUrl: './caja-pendiente.component.scss',
   templateUrl: './caja-pendiente.component.html',

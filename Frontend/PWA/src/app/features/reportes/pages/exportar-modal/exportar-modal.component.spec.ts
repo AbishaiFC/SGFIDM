@@ -19,13 +19,13 @@ describe('ExportarModalComponent (REP-07 Solo)', () => {
   it('should render the shared export modal', () => {
     const text = fixture.debugElement.nativeElement.textContent;
     expect(component).toBeTruthy();
-    expect(text).toContain('REP-07 · MODAL DE EXPORTACIÓN');
+    expect(text).toContain('MODAL DE EXPORTACIÓN · REP-02');
     expect(text).toContain('Exportar: Reporte de ventas');
     expect(text).toContain('RESUMEN DEL REPORTE');
-    expect(text).toContain('Excel (XLSX) — predeterminado desde REP-06');
+    expect(text).toContain('Excel (XLSX)');
     expect(text).toContain('SIEMPRE ACTIVO');
     expect(text).toContain('50,000 filas');
-    expect(text).toContain('reports.export requerido');
+    expect(text).toContain('FORMATO');
   });
 
   it('should show the CSV separator only for CSV', () => {

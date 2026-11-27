@@ -14,7 +14,7 @@
     width: 40px;
     height: 40px;
 
-    .material-symbols-outlined {
+    .sgfidm-icon {
       font-size: 22px;
     }
   }
@@ -31,13 +31,17 @@
 .sgfidm-dashboard-organism {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: clamp(1.25rem, 2.4vw, 2rem);
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
 
   &__header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: var(--sgfidm-space-4);
+    margin-bottom: 4px;
   }
 
   &__textos {
@@ -54,16 +58,18 @@
   }
 
   &__title {
-    font-size: 36px;
+    font-size: clamp(1.75rem, 2.5vw, 2.25rem);
     font-weight: 600;
-    letter-spacing: -0.25px;
+    line-height: 1.15;
+    letter-spacing: -0.04em;
     color: var(--sgfidm-color-text-primary, #1c1c1c);
     margin: 0;
   }
 
   &__subtitle,
   &__fecha {
-    font-size: 12px;
+    font-size: 14px;
+    line-height: 1.5;
     color: var(--sgfidm-color-text-secondary, #575757);
     margin: 0;
   }
@@ -72,7 +78,10 @@
     padding: 6px 12px;
     border: 1px solid var(--sgfidm-color-outline-variant, #dbdbdb);
     border-radius: 999px;
-    font-size: 11px;
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
     color: var(--sgfidm-color-text-secondary, #575757);
   }
 
@@ -89,21 +98,24 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--sgfidm-space-4);
-    padding: 20px 24px;
-    border-radius: 24px;
+    padding: clamp(1.25rem, 2vw, 2rem);
+    border-radius: var(--sgfidm-radius-2xl, 16px);
     background: var(--sgfidm-color-surface, #ffffff);
     border: 1px solid var(--sgfidm-color-outline-variant, #dbdbdb);
   }
 
   &__caja-titulo {
-    font-size: 22px;
+    font-size: 20px;
+    line-height: 1.3;
     font-weight: 600;
     color: var(--sgfidm-color-text-primary, #1c1c1c);
     margin: 4px 0;
   }
 
   &__caja-detalle {
-    font-size: 12px;
+    max-width: 62ch;
+    font-size: 14px;
+    line-height: 1.5;
     color: var(--sgfidm-color-text-secondary, #575757);
     margin: 0 0 8px;
   }
@@ -114,7 +126,7 @@
     border-radius: 999px;
     background: var(--sgfidm-color-success-container, #e1ede5);
     color: var(--sgfidm-color-on-success-container, #24402f);
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
 
     &--cerrada {
@@ -130,18 +142,15 @@
 
   &__indicators-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+    gap: 16px;
 
-    @media (max-width: 1000px) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
   }
 
   &__paneles {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+    gap: 20px;
 
     @media (max-width: 1000px) {
       grid-template-columns: 1fr;
@@ -153,8 +162,9 @@
 
     ::ng-deep .sgfidm-panel-card {
       width: 100%;
-      padding: 20px 24px;
-      border-radius: 24px;
+      min-height: 250px;
+      padding: 24px;
+      border-radius: var(--sgfidm-radius-2xl, 16px);
     }
 
     ::ng-deep .sgfidm-panel-card__body {
@@ -169,15 +179,16 @@
   }
 
   &__panel-titulo {
-    font-size: 16px;
+    font-size: 18px;
+    line-height: 1.35;
     font-weight: 600;
     color: var(--sgfidm-color-text-primary, #1c1c1c);
     margin: 0;
   }
 
   &__panel-subtitulo {
-    font-size: 11px;
-    color: var(--sgfidm-color-text-muted, #8b8b8b);
+    font-size: 13px;
+    color: var(--sgfidm-color-text-secondary, #575757);
     margin: 4px 0 12px;
   }
 
@@ -205,19 +216,23 @@
   }
 
   &__fila-titulo {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--sgfidm-color-text-primary, #1c1c1c);
   }
 
   &__fila-detalle {
-    font-size: 11px;
+    font-size: 13px;
+    line-height: 1.45;
     color: var(--sgfidm-color-text-secondary, #575757);
   }
 
   &__fila-link,
   &__panel-link {
-    font-size: 11px;
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    font-size: 13px;
     color: var(--sgfidm-color-text-primary, #1c1c1c);
     text-decoration: underline;
     cursor: pointer;
@@ -226,12 +241,24 @@
   &__panel-link {
     display: inline-block;
     margin-top: 12px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+    font-family: inherit;
+    text-align: left;
+    text-decoration: underline;
+    cursor: pointer;
   }
 
   &__acciones-lista {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--sgfidm-space-2);
+    gap: var(--sgfidm-space-3);
+
+    sgfidm-button {
+      min-width: min(100%, 220px);
+    }
   }
 
   // INICIO-06: drawer lateral de actividad reciente (modo Solo).
@@ -245,7 +272,7 @@
   }
 
   &__drawer {
-    width: 480px;
+    width: min(520px, 100%);
     max-width: 100%;
     height: 100%;
     padding: 24px;
@@ -282,7 +309,7 @@
     cursor: pointer;
     color: var(--sgfidm-color-text-secondary, #575757);
 
-    .material-symbols-outlined {
+    .sgfidm-icon {
       font-size: 22px;
     }
   }
@@ -368,7 +395,7 @@
   }
 
   &__drawer-detalle {
-    font-size: 11px;
+    font-size: 13px;
     color: var(--sgfidm-color-text-secondary, #575757);
   }
 
@@ -383,7 +410,65 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
-    font-size: 11px;
-    color: var(--sgfidm-color-text-muted, #8b8b8b);
+    font-size: 13px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+}
+
+@media (max-width: 720px) {
+  .sgfidm-dashboard-organism {
+    &__header {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    &__meta {
+      align-items: flex-start;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    &__caja {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    &__caja-acciones {
+      flex-wrap: wrap;
+    }
+
+    &__caja-acciones sgfidm-button {
+      flex: 1 1 160px;
+    }
+
+    &__paneles {
+      grid-template-columns: 1fr;
+    }
+
+    &__drawer {
+      padding: 20px 16px calc(20px + env(safe-area-inset-bottom));
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .sgfidm-dashboard-organism {
+    &__indicators-grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__panel ::ng-deep .sgfidm-panel-card {
+      padding: 20px 16px;
+    }
+
+    &__drawer-overlay {
+      align-items: flex-end;
+    }
+
+    &__drawer {
+      width: 100%;
+      max-height: 92dvh;
+      border-radius: 16px 16px 0 0;
+    }
   }
 }

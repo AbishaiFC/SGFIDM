@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -27,7 +28,7 @@ interface Gasto {
  */
 @Component({
   standalone: true,
-  imports: [FormsModule, SgfidmPanelCardComponent, SgfidmFormFieldComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, FormsModule, SgfidmPanelCardComponent, SgfidmFormFieldComponent, SgfidmButtonComponent],
   selector: 'sgfidm-registrar-gasto',
   styleUrl: './registrar-gasto.component.scss',
   templateUrl: './registrar-gasto.component.html',

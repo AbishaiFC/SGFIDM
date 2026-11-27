@@ -1,2 +1,4 @@
 <div class="sgfidm-divider"
-     [class.sgfidm-divider--vertical]="vertical()"></div>
+     [class.sgfidm-divider--vertical]="vertical()"
+     role="separator"
+     [attr.aria-orientation]="vertical() ? 'vertical' : 'horizontal'"></div>

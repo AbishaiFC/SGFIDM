@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SgfidmFormFieldComponent } from './sgfidm-form-field.component';
 import { By } from '@angular/platform-browser';
 import { vi } from 'vitest';
+import { SgfidmIconComponent } from '../../atoms/icon/sgfidm-icon.component';
 
 describe('SgfidmFormFieldComponent', () => {
   let fixture: ComponentFixture<SgfidmFormFieldComponent>;
@@ -90,7 +91,7 @@ describe('SgfidmFormFieldComponent', () => {
     fixture.detectChanges();
     const icon = fixture.debugElement.query(By.css('.sgfidm-form-field__leading-icon'));
     expect(icon).toBeTruthy();
-    expect(icon.nativeElement.textContent.trim()).toBe('email');
+    expect(icon.componentInstance.name()).toBe('email');
   });
 
   it('should render trailing icon button when provided', () => {

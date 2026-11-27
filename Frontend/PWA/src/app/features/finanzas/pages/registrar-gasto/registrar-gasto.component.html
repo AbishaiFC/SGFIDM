@@ -33,7 +33,7 @@
   <header class="registrar-gasto-drawer__header">
     <h2 class="registrar-gasto-drawer__titulo">Registrar gasto</h2>
     <button type="button" class="registrar-gasto-cerrar" aria-label="Cerrar" (click)="cerrar()">
-      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+      <sgfidm-icon class="sgfidm-icon" [name]="'close'"></sgfidm-icon>
     </button>
   </header>
 
@@ -102,7 +102,7 @@
 
     @if (sinCaja()) {
       <div class="registrar-gasto-aviso" role="status">
-        <span class="material-symbols-outlined" aria-hidden="true">warning</span>
+        <sgfidm-icon class="sgfidm-icon" [name]="'warning'"></sgfidm-icon>
         <span>
           <strong>Efectivo sin sesión:</strong> No hay caja abierta en este negocio. El gasto se
           registrará como efectivo no vinculado a caja. No se bloquea la operación ni genera una

@@ -1,13 +1,7 @@
-<a
-  class="dashboard-sucursal-link"
-  routerLink="/dashboard/select-branch"
-  [queryParams]="{ modo: 'filtro' }"
->
-  <span class="material-symbols-outlined" aria-hidden="true">account_tree</span>
-  Seleccionar sucursal
-</a>
-<a class="dashboard-sucursal-link" routerLink="/inicio/configurar">
-  <span class="material-symbols-outlined" aria-hidden="true">storefront</span>
-  Configurar negocio
-</a>
+<!--
+  Página de Inicio (INICIO-03, modo Solo):
+    - "Seleccionar sucursal" se oculta: en modo Solo solo existe SUC-001 implícita.
+      ToDo (Con Sucursales): mostrar el selector cuando haya 2+ sucursales.
+    - "Configurar negocio" se movió a la Página de Configuraciones (CONF-01, fila Negocio).
+-->
 <sgfidm-dashboard-organism [indicators]="indicators" [estadoVacio]="estadoVacio" />

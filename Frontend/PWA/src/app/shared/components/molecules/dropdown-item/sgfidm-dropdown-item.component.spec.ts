@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SgfidmDropdownItemComponent } from './sgfidm-dropdown-item.component';
 import { By } from '@angular/platform-browser';
+import { SgfidmIconComponent } from '../../atoms/icon/sgfidm-icon.component';
 
 describe('SgfidmDropdownItemComponent', () => {
   let fixture: ComponentFixture<SgfidmDropdownItemComponent>;
@@ -32,7 +33,7 @@ describe('SgfidmDropdownItemComponent', () => {
     fixture.detectChanges();
     const icon = fixture.debugElement.query(By.css('.sgfidm-dropdown-item__icon'));
     expect(icon).toBeTruthy();
-    expect(icon.nativeElement.textContent).toContain('check');
+    expect(icon.componentInstance.name()).toBe('check');
   });
 
   it('should emit select when clicked', () => {

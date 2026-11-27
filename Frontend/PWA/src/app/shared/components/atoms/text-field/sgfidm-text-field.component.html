@@ -1,18 +1,21 @@
 <div class="sgfidm-text-field" [class.sgfidm-text-field--error]="hasError()" [class.sgfidm-text-field--disabled]="disabled()">
-  <label class="sgfidm-text-field__label" *ngIf="label()">{{ label() }}</label>
+  <label class="sgfidm-text-field__label" *ngIf="label()" [for]="inputId">{{ label() }}</label>
 
   <input
     class="sgfidm-text-field__input sgfidm-focus-ring"
+    [id]="inputId"
     [type]="type()"
     [placeholder]="placeholder()"
     [value]="value()"
     [disabled]="disabled()"
+    [attr.autocomplete]="autocomplete()"
     [attr.aria-invalid]="hasError()"
+    [attr.aria-describedby]="hasError() ? inputId + '-error' : null"
     [style.height]="fieldHeight()"
     (input)="onInput($event)"
   />
 
   @if (hasError()) {
-    <span class="sgfidm-text-field__error">{{ error() }}</span>
+    <span class="sgfidm-text-field__error" [id]="inputId + '-error'" role="alert">{{ error() }}</span>
   }
 </div>

@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../atoms/icon/sgfidm-icon.component';
 import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SgfidmButtonComponent } from '../../atoms/button/sgfidm-button.component';
@@ -21,7 +22,7 @@ import { SgfidmButtonComponent } from '../../atoms/button/sgfidm-button.componen
 @Component({
   selector: 'sgfidm-empty-state',
   standalone: true,
-  imports: [CommonModule, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, CommonModule, SgfidmButtonComponent],
   templateUrl: './sgfidm-empty-state.component.html',
   styleUrl: './sgfidm-empty-state.component.scss',
 })

@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, computed, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SgfidmFormFieldComponent } from '../../../../shared/components/molecules/form-field/sgfidm-form-field.component';
@@ -18,7 +19,7 @@ export interface PagoConfirmado {
  */
 @Component({
   standalone: true,
-  imports: [FormsModule, SgfidmFormFieldComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, FormsModule, SgfidmFormFieldComponent, SgfidmButtonComponent],
   selector: 'sgfidm-procesar-pago',
   templateUrl: './procesar-pago.component.html',
   styleUrl: './procesar-pago.component.scss',

@@ -18,13 +18,13 @@
 
     <div class="emp-actions">
       <sgfidm-button type="primary" size="md" [fullWidth]="true" [height]="'56px'" [loading]="isLoading" [disabled]="isLoading" (click)="onVerificar(otp)">
-        <span class="material-symbols-outlined emp-icon" aria-hidden="true">check</span>
+        <sgfidm-icon class="sgfidm-icon emp-icon" [name]="'check'"></sgfidm-icon>
         Verificar
       </sgfidm-button>
     </div>
 
     <a class="emp-link emp-link--reenviar" (click)="onReenviar()">
-      <span class="material-symbols-outlined emp-icon" aria-hidden="true">send</span>
+      <sgfidm-icon class="sgfidm-icon emp-icon" [name]="'send'"></sgfidm-icon>
       Reenviar código
     </a>
 

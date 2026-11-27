@@ -7,9 +7,8 @@
 // radius-lg    : var(--sgfidm-radius-lg)          10px
 
 // ── Dimensiones (Figma 195:2710: 420×150, radio 10) ──────────────────────────
-$card-width:  420px;
-$card-height: 150px;
-$eyebrow-font: 10px;
+$card-width: 100%;
+$eyebrow-font: 12px;
 $gap: var(--sgfidm-space-2);
 
 :host {
@@ -18,7 +17,7 @@ $gap: var(--sgfidm-space-2);
 
 .sgfidm-panel-card {
   width: $card-width;
-  height: $card-height;
+  min-height: 150px;
   padding: var(--sgfidm-space-4);
   box-sizing: border-box;
   display: flex;
@@ -55,6 +54,6 @@ $gap: var(--sgfidm-space-2);
   // El contenido se alinea a la izquierda y hereda tokens del sistema
   color: var(--sgfidm-color-text-primary, #1c1c1c);
   font-family: var(--sgfidm-font-family);
-  font-size: var(--sgfidm-body-medium, 12.5px);
-  line-height: var(--sgfidm-body-medium, 19px);
+  font-size: 14px;
+  line-height: 1.5;
 }

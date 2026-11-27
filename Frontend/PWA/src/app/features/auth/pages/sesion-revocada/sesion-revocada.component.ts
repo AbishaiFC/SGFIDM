@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SgfidmAuthCardComponent } from '../../../../shared/components/molecules/auth-card/sgfidm-auth-card.component';
@@ -12,7 +13,7 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
  */
 @Component({
   standalone: true,
-  imports: [SgfidmAuthCardComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, SgfidmAuthCardComponent, SgfidmButtonComponent],
   selector: 'sgfidm-sesion-revocada',
   styleUrl: './sesion-revocada.component.scss',
   templateUrl: './sesion-revocada.component.html',

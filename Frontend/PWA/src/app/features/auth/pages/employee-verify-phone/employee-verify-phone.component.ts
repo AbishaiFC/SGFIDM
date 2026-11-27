@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthRepository } from '../../../../../app/core/services/data/repositories/auth.repository';
@@ -8,7 +9,7 @@ import { SgfidmAuthCardComponent } from '../../../../shared/components/molecules
 /** AUTH-08 — Verificación por teléfono con código OTP de 6 dígitos (Figma EMP / Verificación por teléfono). */
 @Component({
   standalone: true,
-  imports: [SgfidmAuthCardComponent, SgfidmPinFieldComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, SgfidmAuthCardComponent, SgfidmPinFieldComponent, SgfidmButtonComponent],
   selector: 'sgfidm-employee-verify-phone',
   styleUrl: './employee-verify-phone.component.scss',
   templateUrl: './employee-verify-phone.component.html',

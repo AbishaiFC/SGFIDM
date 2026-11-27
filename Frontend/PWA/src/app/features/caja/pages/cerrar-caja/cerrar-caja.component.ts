@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -8,7 +9,7 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
 /** CAJ-03 Cerrar caja con arqueo — modo Solo (Figma 1145:82530). */
 @Component({
   standalone: true,
-  imports: [FormsModule, SgfidmPanelCardComponent, SgfidmFormFieldComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, FormsModule, SgfidmPanelCardComponent, SgfidmFormFieldComponent, SgfidmButtonComponent],
   selector: 'sgfidm-cerrar-caja',
   styleUrl: './cerrar-caja.component.scss',
   templateUrl: './cerrar-caja.component.html',

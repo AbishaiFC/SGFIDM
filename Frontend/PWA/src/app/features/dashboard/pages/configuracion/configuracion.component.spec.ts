@@ -56,10 +56,17 @@ describe('ConfiguracionComponent (CONF-01)', () => {
     spy.mockRestore();
   });
 
-  it('should show a ToDo notice for destinations not yet implemented', () => {
+  it('should link Negocio to the business configuration page', () => {
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigateByUrl').mockResolvedValue(true);
     component.abrir(component.opciones[0]);
+    expect(spy).toHaveBeenCalledWith('/inicio/configurar');
+    spy.mockRestore();
+  });
+
+  it('should show a ToDo notice for destinations not yet implemented', () => {
+    component.abrir(component.opciones[1]);
     fixture.detectChanges();
-    expect(component.aviso()).toContain('CONF-02');
+    expect(component.aviso()).toContain('CONF-04');
     expect(fixture.debugElement.nativeElement.textContent).toContain('pendiente de implementar');
   });
 });

@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../atoms/icon/sgfidm-icon.component';
 import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +12,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'sgfidm-sidebar-item',
   standalone: true,
-  imports: [CommonModule],
+  imports: [SgfidmIconComponent, CommonModule],
   templateUrl: './sgfidm-sidebar-item.component.html',
   styleUrl: './sgfidm-sidebar-item.component.scss',
 })

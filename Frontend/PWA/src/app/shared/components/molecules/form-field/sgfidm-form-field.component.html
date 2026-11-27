@@ -1,12 +1,10 @@
-﻿<div class="sgfidm-form-field" [class.sgfidm-form-field--focus]="state() === 'focus'"
+<div class="sgfidm-form-field" [class.sgfidm-form-field--focus]="state() === 'focus'"
   [class.sgfidm-form-field--filled]="state() === 'filled'" [class.sgfidm-form-field--error]="state() === 'error'"
   [class.sgfidm-form-field--disabled]="state() === 'disabled'" [class.sgfidm-form-field--has-leading]="leadingIcon()"
   [class.sgfidm-form-field--has-trailing]="trailingIcon()">
   <!-- Leading icon -->
   @if (leadingIcon()) {
-  <span class="sgfidm-form-field__leading-icon material-symbols-outlined" aria-hidden="true">
-    {{ leadingIcon() }}
-  </span>
+  <sgfidm-icon class="sgfidm-form-field__leading-icon sgfidm-icon" [name]="leadingIcon()"></sgfidm-icon>
   }
 
   <!-- Input wrapper -->
@@ -25,9 +23,9 @@
 
   <!-- Trailing icon -->
   @if (trailingIcon()) {
-  <button type="button" class="sgfidm-form-field__trailing-icon" tabindex="-1" [attr.aria-label]="'Acción de campo'"
+  <button type="button" class="sgfidm-form-field__trailing-icon" [attr.aria-label]="trailingActionLabel()"
     (click)="onTrailingIconClick()">
-    <span class="material-symbols-outlined" aria-hidden="true">{{ trailingIcon() }}</span>
+    <sgfidm-icon class="sgfidm-icon" [name]="trailingIcon()"></sgfidm-icon>
   </button>
   }
 
@@ -44,7 +42,7 @@
 <p class="sgfidm-form-field__message" [class.sgfidm-form-field__message--error]="!!errorMessage()"
   [id]="inputId() + '-msg'" role="alert">
   @if (errorMessage()) {
-  <span class="material-symbols-outlined sgfidm-form-field__message-icon" aria-hidden="true">error_outline</span>
+  <sgfidm-icon class="sgfidm-icon sgfidm-form-field__message-icon" [name]="'error_outline'"></sgfidm-icon>
   }
   {{ errorMessage() || helperText() }}
 </p>

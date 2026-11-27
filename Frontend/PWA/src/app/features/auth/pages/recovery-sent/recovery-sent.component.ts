@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
@@ -12,7 +13,7 @@ import { SgfidmAuthCardComponent } from '../../../../shared/components/molecules
  */
 @Component({
   standalone: true,
-  imports: [RouterLink, SgfidmAuthCardComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, RouterLink, SgfidmAuthCardComponent, SgfidmButtonComponent],
   selector: 'sgfidm-recovery-sent',
   styleUrl: './recovery-sent.component.scss',
   templateUrl: './recovery-sent.component.html',

@@ -1,5 +1,5 @@
-﻿<div class="sgfidm-search-bar" role="search">
-  <span class="sgfidm-search-bar__icon material-symbols-outlined" aria-hidden="true">search</span>
+<div class="sgfidm-search-bar" role="search">
+  <sgfidm-icon class="sgfidm-search-bar__icon sgfidm-icon" [name]="'search'"></sgfidm-icon>
   <input
     class="sgfidm-search-bar__input"
     type="search"
@@ -17,7 +17,7 @@
       aria-label="Borrar búsqueda"
       (click)="onClear()"
     >
-      <span class="material-symbols-outlined">close</span>
+      <sgfidm-icon class="sgfidm-icon" [name]="'close'"></sgfidm-icon>
     </button>
   }
 </div>

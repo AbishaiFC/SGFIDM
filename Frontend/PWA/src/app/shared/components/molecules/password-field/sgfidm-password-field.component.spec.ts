@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SgfidmPasswordFieldComponent } from './sgfidm-password-field.component';
 import { By } from '@angular/platform-browser';
+import { SgfidmIconComponent } from '../../atoms/icon/sgfidm-icon.component';
 
 describe('SgfidmPasswordFieldComponent', () => {
   let fixture: ComponentFixture<SgfidmPasswordFieldComponent>;
@@ -30,7 +31,7 @@ describe('SgfidmPasswordFieldComponent', () => {
 
   it('should show visibility icon when hidden', () => {
     const btn = fixture.debugElement.query(By.css('.sgfidm-form-field__trailing-icon'));
-    expect(btn.nativeElement.textContent).toContain('visibility');
+    expect(btn.query(By.directive(SgfidmIconComponent)).componentInstance.name()).toBe('visibility');
   });
 
   it('should toggle to text type after toggleVisibility', () => {
@@ -45,7 +46,7 @@ describe('SgfidmPasswordFieldComponent', () => {
     component.toggleVisibility();
     fixture.detectChanges();
     const btn = fixture.debugElement.query(By.css('.sgfidm-form-field__trailing-icon'));
-    expect(btn.nativeElement.textContent).toContain('visibility_off');
+    expect(btn.query(By.directive(SgfidmIconComponent)).componentInstance.name()).toBe('visibility_off');
   });
 
   it('should toggle back to password on second click', () => {
@@ -65,7 +66,7 @@ describe('SgfidmPasswordFieldComponent', () => {
 
   it('should use lock icon as default leading icon', () => {
     const icon = fixture.debugElement.query(By.css('.sgfidm-form-field__leading-icon'));
-    expect(icon.nativeElement.textContent.trim()).toBe('lock');
+    expect(icon.componentInstance.name()).toBe('lock');
   });
 
   it('should forward disabled state', () => {

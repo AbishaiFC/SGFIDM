@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -13,7 +14,7 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
  */
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, SgfidmFormFieldComponent, SgfidmAuthCardComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, CommonModule, FormsModule, SgfidmFormFieldComponent, SgfidmAuthCardComponent, SgfidmButtonComponent],
   selector: 'sgfidm-verify-email',
   styleUrl: './verify-email.component.scss',
   templateUrl: './verify-email.component.html',

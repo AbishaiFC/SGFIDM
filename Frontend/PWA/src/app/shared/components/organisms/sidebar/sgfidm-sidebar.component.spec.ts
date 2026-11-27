@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router, provideRouter } from '@angular/router';
 import { vi } from 'vitest';
 import { SgfidmSidebarComponent } from './sgfidm-sidebar.component';
+import { By } from '@angular/platform-browser';
+import { SgfidmIconComponent } from '../../atoms/icon/sgfidm-icon.component';
 
 describe('SgfidmSidebarComponent (Ficha 366:15636)', () => {
   let fixture: ComponentFixture<SgfidmSidebarComponent>;
@@ -46,7 +48,10 @@ describe('SgfidmSidebarComponent (Ficha 366:15636)', () => {
     expect(logo?.getAttribute('src')).toBe('Inko(Light).svg');
     expect(raiz.querySelector('.sgfidm-sidebar__colapsar')).toBeTruthy();
     expect(raiz.querySelector('.sgfidm-sidebar__pie .sgfidm-sidebar__colapsar')).toBeNull();
-    expect(raiz.querySelector('.sgfidm-sidebar__colapsar .material-symbols-outlined')?.textContent).toContain('right_panel_close');
+    const colapsar = fixture.debugElement.query(By.css('.sgfidm-sidebar__colapsar'));
+    expect(colapsar.query(By.directive(SgfidmIconComponent)).componentInstance.name()).toBe(
+      'right_panel_close',
+    );
   });
 
   it('should hide the panel icon and use the logo as the toggle when collapsed', () => {

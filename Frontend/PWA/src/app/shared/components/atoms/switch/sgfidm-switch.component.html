@@ -1,10 +1,11 @@
-<label class="sgfidm-switch sgfidm-focus-ring"
+<label class="sgfidm-switch"
      [class.sgfidm-switch--checked]="isChecked()"
      [class.sgfidm-switch--disabled]="isDisabled()">
   <input type="checkbox"
          class="sgfidm-switch__input"
          [checked]="isChecked()"
          [disabled]="isDisabled()"
+         role="switch"
          [attr.aria-label]="label() || undefined"
          (change)="onChange($event)" />
 

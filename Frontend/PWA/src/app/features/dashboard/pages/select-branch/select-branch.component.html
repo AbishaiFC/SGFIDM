@@ -5,13 +5,13 @@
       <p class="sucursal-subtitle">{{ subtitulo }}</p>
     </div>
     <sgfidm-button type="secondary" size="lg" class="sucursal-volver" [width]="'245px'" [height]="'56px'" (click)="onVolver()">
-      <span class="material-symbols-outlined sucursal-icono" aria-hidden="true">arrow_back</span>
+      <sgfidm-icon class="sgfidm-icon sucursal-icono" [name]="'arrow_back'"></sgfidm-icon>
       Volver a Configuración
     </sgfidm-button>
   </header>
 
   <div class="sucursal-aviso" role="status">
-    <span class="material-symbols-outlined sucursal-aviso__icono" aria-hidden="true">info</span>
+    <sgfidm-icon class="sgfidm-icon sucursal-aviso__icono" [name]="'info'"></sgfidm-icon>
     <span>
       @if (esFiltro) {
         El selector filtra las consultas; no cambia tu contexto operativo.

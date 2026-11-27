@@ -1,5 +1,7 @@
+import { SgfidmIconComponent } from './../../atoms/icon/sgfidm-icon.component';
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { SgfidmIndicatorCardComponent } from '../../molecules/indicator-card/sgfidm-indicator-card.component';
 import { SgfidmPanelCardComponent } from '../../molecules/panel-card/sgfidm-panel-card.component';
 import { SgfidmButtonComponent } from '../../atoms/button/sgfidm-button.component';
@@ -21,11 +23,12 @@ export interface IndicatorDto {
 @Component({
   selector: 'sgfidm-dashboard-organism',
   standalone: true,
-  imports: [
+  imports: [SgfidmIconComponent, 
     SgfidmIndicatorCardComponent,
     SgfidmPanelCardComponent,
     SgfidmButtonComponent,
     SgfidmEmptyStateComponent,
+    RouterLink,
   ],
   templateUrl: './sgfidm-dashboard-organism.component.html',
   styleUrl: './sgfidm-dashboard-organism.component.scss',

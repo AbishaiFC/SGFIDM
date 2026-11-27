@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
@@ -11,7 +12,7 @@ import { SgfidmAuthCardComponent } from '../../../../shared/components/molecules
 /** AUTH-07 — Acceso de empleado con código EMP-XXX y contraseña (Figma EMP / Inicio de sesión). */
 @Component({
   standalone: true,
-  imports: [
+  imports: [SgfidmIconComponent, 
     CommonModule,
     FormsModule,
     RouterLink,

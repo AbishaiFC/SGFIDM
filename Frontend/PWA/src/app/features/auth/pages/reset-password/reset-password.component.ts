@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthRepository } from '../../../../../app/core/services/data/repositories/auth.repository';
@@ -14,7 +15,7 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
  */
 @Component({
   standalone: true,
-  imports: [SgfidmPasswordFieldComponent, SgfidmAuthCardComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, SgfidmPasswordFieldComponent, SgfidmAuthCardComponent, SgfidmButtonComponent],
   selector: 'sgfidm-reset-password',
   styleUrl: './reset-password.component.scss',
   templateUrl: './reset-password.component.html',

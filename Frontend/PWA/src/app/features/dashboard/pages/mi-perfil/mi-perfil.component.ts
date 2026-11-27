@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthRepository } from '../../../../core/services/data/repositories/auth.repository';
@@ -13,7 +14,7 @@ import { SgfidmDialogComponent } from '../../../../shared/components/molecules/d
  */
 @Component({
   standalone: true,
-  imports: [SgfidmButtonComponent, SgfidmPinFieldComponent, SgfidmDialogComponent],
+  imports: [SgfidmIconComponent, SgfidmButtonComponent, SgfidmPinFieldComponent, SgfidmDialogComponent],
   selector: 'sgfidm-mi-perfil',
   styleUrl: './mi-perfil.component.scss',
   templateUrl: './mi-perfil.component.html',

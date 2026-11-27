@@ -3,14 +3,14 @@
 <section class="exportar-modal" role="dialog" aria-modal="true" aria-label="Exportar reporte">
   <header class="exportar-modal__header">
     <div>
-      <span class="exportar-modal__eyebrow">REP-07 · MODAL DE EXPORTACIÓN · {{ codigo() }}</span>
+      <span class="exportar-modal__eyebrow">MODAL DE EXPORTACIÓN · {{ codigo() }}</span>
       <h2 class="exportar-modal__titulo">Exportar: {{ reporte() }}</h2>
       <p class="exportar-modal__subtitulo">
-        Los filtros y el formato de esta exportación se guardarán en el historial (REP-06).
+        Los filtros y el formato de esta exportación se guardarán en el historial.
       </p>
     </div>
     <button type="button" class="exportar-modal__cerrar" aria-label="Cerrar" (click)="cancelar.emit()">
-      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+      <sgfidm-icon class="sgfidm-icon" [name]="'close'"></sgfidm-icon>
     </button>
   </header>
 
@@ -26,25 +26,26 @@
     <div class="exportar-modal__grupo">
       <span class="exportar-modal__label">FORMATO</span>
       <label class="exportar-modal__radio">
-        <input type="radio" name="formato" [checked]="formato() === 'Excel (XLSX)'" (change)="formato.set('Excel (XLSX)')" />
-        <span>Excel (XLSX) — predeterminado desde REP-06</span>
+        <input type="radio" name="formato" [checked]="formato() === 'Excel (XLSX)'"
+          (change)="formato.set('Excel (XLSX)')" />
+        <span>Excel (XLSX)</span>
       </label>
       <label class="exportar-modal__radio">
         <input type="radio" name="formato" [checked]="formato() === 'CSV'" (change)="formato.set('CSV')" />
         <span>CSV</span>
       </label>
       @if (formato() === 'CSV') {
-        <div class="exportar-modal__separador">
-          <label for="separador-export">SEPARADOR CSV</label>
-          <select id="separador-export" [(ngModel)]="separador">
-            <option>Coma (predeterminado)</option>
-            <option>Punto y coma</option>
-          </select>
-        </div>
+      <div class="exportar-modal__separador">
+        <label for="separador-export">SEPARADOR CSV</label>
+        <select id="separador-export" [(ngModel)]="separador">
+          <option>Coma (predeterminado)</option>
+          <option>Punto y coma</option>
+        </select>
+      </div>
       } @else {
-        <p class="exportar-modal__nota">
-          Coma (predeterminado) · punto y coma (visible al elegir CSV)
-        </p>
+      <p class="exportar-modal__nota">
+        Coma (predeterminado) · punto y coma (visible al elegir CSV)
+      </p>
       }
     </div>
 
@@ -58,15 +59,16 @@
       <div class="exportar-modal__opcion">
         <span><strong>Incluir filas de totales</strong><small>Opcional · solo totales</small></span>
         <select [(ngModel)]="incluirTotales" aria-label="Incluir filas de totales">
-          <option>Sí</option><option>No</option>
+          <option>Sí</option>
+          <option>No</option>
         </select>
       </div>
       <span class="exportar-modal__label">INCLUIR DETALLE (predeterminado: ambos)</span>
       @for (opcion of ['Ambos (indicadores + detalle)', 'Solo indicadores', 'Solo detalle (tabla)']; track opcion) {
-        <label class="exportar-modal__radio">
-          <input type="radio" name="detalle" [checked]="detalle() === opcion" (change)="detalle.set(opcion)" />
-          <span>{{ opcion }}</span>
-        </label>
+      <label class="exportar-modal__radio">
+        <input type="radio" name="detalle" [checked]="detalle() === opcion" (change)="detalle.set(opcion)" />
+        <span>{{ opcion }}</span>
+      </label>
       }
     </div>
 
@@ -80,12 +82,9 @@
     <sgfidm-button type="secondary" size="md" [width]="'120px'" [height]="'44px'" (click)="cancelar.emit()">
       Cancelar
     </sgfidm-button>
-    <sgfidm-button type="primary" size="md" [width]="'120px'" [height]="'44px'" [disabled]="excedeLimite()" (click)="confirmar()">
+    <sgfidm-button type="primary" size="md" [width]="'120px'" [height]="'44px'" [disabled]="excedeLimite()"
+      (click)="confirmar()">
       Exportar
     </sgfidm-button>
   </footer>
-  <p class="exportar-modal__pie">
-    Compartido por REP-02..REP-05 · preferencias desde REP-06 · el archivo se descarga y se registra
-    en REP-06 · reports.export requerido
-  </p>
 </section>

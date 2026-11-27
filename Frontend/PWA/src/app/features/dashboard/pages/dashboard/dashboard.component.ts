@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -22,7 +23,7 @@ const DEFAULT_INDICATORS: IndicatorDto[] = [
  */
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterLink, SgfidmDashboardOrganismComponent],
+  imports: [SgfidmIconComponent, CommonModule, RouterLink, SgfidmDashboardOrganismComponent],
   selector: 'sgfidm-dashboard',
   styleUrl: './dashboard.component.scss',
   templateUrl: './dashboard.component.html',

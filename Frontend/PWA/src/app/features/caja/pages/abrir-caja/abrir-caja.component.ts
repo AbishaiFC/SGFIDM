@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -8,7 +9,7 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
 /** CAJ-02 Abrir caja — nueva sesión de caja en modo Solo (Figma 1145:86450). */
 @Component({
   standalone: true,
-  imports: [FormsModule, SgfidmPanelCardComponent, SgfidmFormFieldComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, FormsModule, SgfidmPanelCardComponent, SgfidmFormFieldComponent, SgfidmButtonComponent],
   selector: 'sgfidm-abrir-caja',
   styleUrl: './abrir-caja.component.scss',
   templateUrl: './abrir-caja.component.html',

@@ -6,11 +6,11 @@
   position: relative;
 
   &__label {
-    font-size: var(--sgfidm-label-medium);
-    color: var(--sgfidm-color-text-muted);
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--sgfidm-color-text-primary);
     font-weight: 500;
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
+    letter-spacing: 0;
   }
 
   &__input {
@@ -27,9 +27,9 @@
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
     &:focus-visible {
-      outline: none;
+      outline: 3px solid var(--sgfidm-color-focus-ring);
+      outline-offset: 2px;
       border-color: var(--sgfidm-color-focus-ring);
-      box-shadow: 0 0 0 var(--sgfidm-focus-ring-width) var(--sgfidm-color-focus-ring);
     }
 
     &:disabled {
@@ -39,7 +39,7 @@
     }
 
     &::placeholder {
-      color: var(--sgfidm-color-text-muted);
+      color: #626262;
     }
   }
 
@@ -48,14 +48,11 @@
     color: var(--sgfidm-color-error);
   }
 
-  &--error {
-    &__input {
-      border-color: var(--sgfidm-color-error);
-      box-shadow: 0 0 0 var(--sgfidm-error-border-width) var(--sgfidm-color-error);
-    }
+  &--error &__input {
+    border-color: var(--sgfidm-color-error);
   }
 
   &--disabled {
-    opacity: 0.6;
+    opacity: 1;
   }
 }

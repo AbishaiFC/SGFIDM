@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../../../shared/components/atoms/icon/sgfidm-icon.component';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SgfidmAuthCardComponent } from '../../../../shared/components/molecules/auth-card/sgfidm-auth-card.component';
@@ -6,7 +7,7 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
 /** AUTH-05 — Contraseña restablecida: confirmación y acceso a login (Figma 1130:77870). */
 @Component({
   standalone: true,
-  imports: [SgfidmAuthCardComponent, SgfidmButtonComponent],
+  imports: [SgfidmIconComponent, SgfidmAuthCardComponent, SgfidmButtonComponent],
   selector: 'sgfidm-password-reset-success',
   styleUrl: './password-reset-success.component.scss',
   templateUrl: './password-reset-success.component.html',

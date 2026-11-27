@@ -14,7 +14,7 @@
         aria-label="Cerrar panel de navegación"
         title="Cerrar panel"
       >
-        <span class="material-symbols-outlined" aria-hidden="true">right_panel_close</span>
+        <sgfidm-icon class="sgfidm-icon" [name]="'right_panel_close'"></sgfidm-icon>
       </sgfidm-icon-button>
     } @else {
       <!-- Cerrada: el propio logo es el control para abrir el panel. -->
@@ -69,10 +69,10 @@
         [attr.title]="'Cerrar sesión'"
         (click)="cerrarSesion.emit()"
       >
-        <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+        <sgfidm-icon class="sgfidm-icon" [name]="'logout'"></sgfidm-icon>
       </sgfidm-icon-button>
       <sgfidm-icon-button [attr.aria-label]="'Notificaciones'" [attr.title]="'Notificaciones'">
-        <span class="material-symbols-outlined" aria-hidden="true">notifications</span>
+        <sgfidm-icon class="sgfidm-icon" [name]="'notifications'"></sgfidm-icon>
         @if (notificaciones() > 0) {
           <span class="sgfidm-sidebar__badge">{{ notificaciones() }}</span>
         }

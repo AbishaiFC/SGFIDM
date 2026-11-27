@@ -1,4 +1,4 @@
-﻿// ── Tokens SGFIDM (CSS custom properties de _tokens.scss) ────────────────────
+// ── Tokens SGFIDM (CSS custom properties de _tokens.scss) ────────────────────
 // surface        : var(--sgfidm-color-surface)       #FFFFFF
 // outline        : var(--sgfidm-color-outline)       #C6C6C6
 // text-primary   : var(--sgfidm-color-text-primary)  #1C1C1C
@@ -51,7 +51,7 @@ $icon-circle: 44px;
   // confirm (195:2749): círculo-icono 44×44 #F2F2F2
   background: var(--sgfidm-color-off-f2f2f2, #f2f2f2);
 
-  .material-symbols-outlined {
+  .sgfidm-icon {
     font-size: 24px;
     color: var(--sgfidm-color-text-primary, #1c1c1c);
   }

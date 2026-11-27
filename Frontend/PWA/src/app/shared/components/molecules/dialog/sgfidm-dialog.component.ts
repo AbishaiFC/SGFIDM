@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../atoms/icon/sgfidm-icon.component';
 import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -19,7 +20,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'sgfidm-dialog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [SgfidmIconComponent, CommonModule],
   templateUrl: './sgfidm-dialog.component.html',
   styleUrl: './sgfidm-dialog.component.scss',
 })

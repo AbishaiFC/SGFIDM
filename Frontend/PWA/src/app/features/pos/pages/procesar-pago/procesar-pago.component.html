@@ -5,7 +5,7 @@
   <header class="pago-modal__header">
     <h2 class="pago-modal__titulo">Procesar pago</h2>
     <button type="button" class="pago-modal__cerrar" aria-label="Cerrar" (click)="cancelar.emit()">
-      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+      <sgfidm-icon class="sgfidm-icon" [name]="'close'"></sgfidm-icon>
     </button>
     <p class="pago-modal__subtitulo">Venta en curso · Mi negocio · CAJ-002</p>
   </header>
@@ -18,7 +18,7 @@
           dirección. Aviso descartable · no bloquea la emisión del comprobante.
         </span>
         <button type="button" aria-label="Descartar aviso" (click)="avisoVisible.set(false)">
-          <span class="material-symbols-outlined" aria-hidden="true">close</span>
+          <sgfidm-icon class="sgfidm-icon" [name]="'close'"></sgfidm-icon>
         </button>
       </div>
     }

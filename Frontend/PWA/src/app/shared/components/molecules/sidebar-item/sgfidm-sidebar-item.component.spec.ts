@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SgfidmSidebarItemComponent } from './sgfidm-sidebar-item.component';
 import { By } from '@angular/platform-browser';
+import { SgfidmIconComponent } from '../../atoms/icon/sgfidm-icon.component';
 
 describe('SgfidmSidebarItemComponent', () => {
   let fixture: ComponentFixture<SgfidmSidebarItemComponent>;
@@ -20,7 +21,7 @@ describe('SgfidmSidebarItemComponent', () => {
 
   it('should render the icon', () => {
     const icon = fixture.debugElement.query(By.css('.sgfidm-sidebar-item__icon'));
-    expect(icon.nativeElement.textContent).toContain('dashboard');
+    expect(icon.componentInstance.name()).toBe('dashboard');
   });
 
   it('should render the label', () => {

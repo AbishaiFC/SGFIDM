@@ -4,7 +4,7 @@
     <div class="register-form">
       @if (errorMessage) {
       <div class="register-error-aviso" role="alert">
-        <span class="material-symbols-outlined register-error-aviso__icon" aria-hidden="true">error</span>
+        <sgfidm-icon class="sgfidm-icon register-error-aviso__icon" [name]="'error'"></sgfidm-icon>
         <div>
           <span class="register-error-aviso__eyebrow">ERROR DE REGISTRO</span>
           <span class="register-error-aviso__text">{{ errorMessage }}</span>
@@ -16,10 +16,10 @@
         [required]="true" />
       <sgfidm-form-field label="Correo electrónico" type="email" placeholder="nombre@empresa.com" [(value)]="email"
         [required]="true" />
-      <sgfidm-password-field label="Contraseña" placeholder="Mínimo 8 caracteres"
+      <sgfidm-password-field label="Contraseña" placeholder="Mínimo 8 caracteres" autocomplete="new-password"
         helperText="La contraseña debe incluir al menos 8 caracteres, 1 letra mayúscula y 1 número."
         [(value)]="password" />
-      <sgfidm-password-field label="Confirmar contraseña" placeholder="Vuelve a escribir tu contraseña"
+      <sgfidm-password-field label="Confirmar contraseña" placeholder="Vuelve a escribir tu contraseña" autocomplete="new-password"
         helperText="Las contraseñas deben coincidir." [(value)]="confirmPassword" />
 
       <sgfidm-button type="primary" size="md" [disabled]="isLoading" [loading]="isLoading" (click)="onRegister()"

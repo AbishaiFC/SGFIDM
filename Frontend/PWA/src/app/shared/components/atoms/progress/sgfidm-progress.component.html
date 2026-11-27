@@ -1,4 +1,9 @@
 <div class="sgfidm-progress"
+     role="progressbar"
+     [attr.aria-valuemin]="type() === 'determinate' ? 0 : null"
+     [attr.aria-valuemax]="type() === 'determinate' ? 100 : null"
+     [attr.aria-valuenow]="type() === 'determinate' ? value() : null"
+     [attr.aria-label]="type() === 'indeterminate' ? 'Progreso en curso' : 'Progreso'"
      [class.sgfidm-progress--indeterminate]="type() === 'indeterminate'">
   <div class="sgfidm-progress__track"></div>
   <div class="sgfidm-progress__fill"

@@ -2,7 +2,6 @@ import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SgfidmPanelCardComponent } from '../../molecules/panel-card/sgfidm-panel-card.component';
 import { SgfidmIndicatorCardComponent } from '../../molecules/indicator-card/sgfidm-indicator-card.component';
-import { SgfidmBadgeComponent } from '../../molecules/../atoms/badge/sgfidm-badge.component';
 import { SgfidmButtonComponent } from '../../molecules/../atoms/button/sgfidm-button.component';
 
 /**
@@ -28,7 +27,7 @@ export interface ReporteDto {
 @Component({
   selector: 'sgfidm-reportes-organism',
   standalone: true,
-  imports: [CommonModule, SgfidmPanelCardComponent, SgfidmIndicatorCardComponent, SgfidmBadgeComponent, SgfidmButtonComponent],
+  imports: [CommonModule, SgfidmPanelCardComponent, SgfidmIndicatorCardComponent, SgfidmButtonComponent],
   templateUrl: './sgfidm-reportes-organism.component.html',
   styleUrl: './sgfidm-reportes-organism.component.scss',
 })

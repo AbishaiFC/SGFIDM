@@ -1,3 +1,4 @@
+import { SgfidmIconComponent } from './../../atoms/icon/sgfidm-icon.component';
 import { Component, computed, inject, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -35,7 +36,7 @@ interface LineaCarrito {
 @Component({
   selector: 'sgfidm-pos-terminal-organism',
   standalone: true,
-  imports: [
+  imports: [SgfidmIconComponent, 
     CommonModule,
     FormsModule,
     SgfidmPanelCardComponent,

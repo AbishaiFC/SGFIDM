@@ -1,4 +1,4 @@
-﻿<div
+<div
   class="sgfidm-dialog"
   [class.sgfidm-dialog--destructive]="variant() === 'destructive'"
   role="alertdialog"
@@ -7,9 +7,7 @@
 >
   <!-- Círculo-icono -->
   <div class="sgfidm-dialog__icon" aria-hidden="true">
-    <span class="material-symbols-outlined sgfidm-dialog__icon-glyph">
-      {{ variant() === 'destructive' ? 'error_outline' : 'help_outline' }}
-    </span>
+    <sgfidm-icon class="sgfidm-icon sgfidm-dialog__icon-glyph" [name]="variant() === 'destructive' ? 'error_outline' : 'help_outline'"></sgfidm-icon>
   </div>
 
   <!-- Título -->

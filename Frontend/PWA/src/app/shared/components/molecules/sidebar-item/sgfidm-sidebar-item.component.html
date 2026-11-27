@@ -1,4 +1,4 @@
-﻿<button
+<button
   type="button"
   class="sgfidm-sidebar-item"
   [class.sgfidm-sidebar-item--active]="variant() === 'active'"
@@ -10,9 +10,7 @@
   [attr.title]="layout() === 'icon-only' ? label() : null"
   (click)="onClick()"
 >
-  <span class="sgfidm-sidebar-item__icon material-symbols-outlined" aria-hidden="true">
-    {{ icon() }}
-  </span>
+  <sgfidm-icon class="sgfidm-sidebar-item__icon sgfidm-icon" [name]="icon()"></sgfidm-icon>
   @if (layout() === 'expanded') {
     <span class="sgfidm-sidebar-item__label">{{ label() }}</span>
   }

@@ -2,6 +2,7 @@
 import { SgfidmEmptyStateComponent } from './sgfidm-empty-state.component';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
+import { SgfidmIconComponent } from '../../atoms/icon/sgfidm-icon.component';
 
 @Component({
   standalone: true,
@@ -41,8 +42,10 @@ describe('SgfidmEmptyStateComponent', () => {
   });
 
   it('should render default icon', () => {
-    const icon = fixture.debugElement.query(By.css('.sgfidm-empty-state__icon .material-symbols-outlined'));
-    expect(icon.nativeElement.textContent).toContain('folder_off');
+    const icon = fixture.debugElement
+      .query(By.css('.sgfidm-empty-state__icon'))
+      .query(By.directive(SgfidmIconComponent));
+    expect(icon.componentInstance.name()).toBe('folder_off');
   });
 
   it('should render message when provided', () => {

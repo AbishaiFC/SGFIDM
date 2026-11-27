@@ -4,6 +4,11 @@ import { Router } from '@angular/router';
 import { SgfidmPanelCardComponent } from '../../../../shared/components/molecules/panel-card/sgfidm-panel-card.component';
 import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
 import { SgfidmSwitchComponent } from '../../../../shared/components/atoms/switch/sgfidm-switch.component';
+import {
+  ExportarModalComponent,
+  ExportacionSolicitud,
+} from '../exportar-modal/exportar-modal.component';
+import { registrarExportacion } from '../exportar-modal/exportar.utils';
 
 /**
  * REP-06 — Reportes: Exportaciones (historial y configuración), modo Solo.
@@ -13,7 +18,13 @@ import { SgfidmSwitchComponent } from '../../../../shared/components/atoms/switc
  */
 @Component({
   standalone: true,
-  imports: [FormsModule, SgfidmPanelCardComponent, SgfidmButtonComponent, SgfidmSwitchComponent],
+  imports: [
+    FormsModule,
+    SgfidmPanelCardComponent,
+    SgfidmButtonComponent,
+    SgfidmSwitchComponent,
+    ExportarModalComponent,
+  ],
   selector: 'sgfidm-exportaciones',
   templateUrl: './exportaciones.component.html',
   styleUrl: './exportaciones.component.scss',
@@ -25,6 +36,7 @@ export class ExportacionesComponent {
   readonly separador = signal('Coma');
   readonly siempreActivo = signal(true);
   readonly guardado = signal(false);
+  readonly regenerando = signal<string | null>(null);
 
   readonly exportaciones = [
     { id: 'EXP-014', descripcion: 'Ventas · Oct · Centro · Efectivo', fecha: '05 nov', reporte: 'Ventas', formato: 'XLSX', estado: 'COMPLETADA' },
@@ -39,8 +51,16 @@ export class ExportacionesComponent {
   }
 
   regenerar(id: string): void {
-    // ToDo REP-07: abrir el modal con los filtros y formato originales.
-    void id;
+    this.regenerando.set(id);
+  }
+
+  cerrarExportar(): void {
+    this.regenerando.set(null);
+  }
+
+  confirmarExportar(solicitud: ExportacionSolicitud): void {
+    registrarExportacion(solicitud);
+    this.regenerando.set(null);
   }
 
   volver(): void {

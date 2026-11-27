@@ -67,6 +67,18 @@
     <p class="exportaciones-page__nota">Mostrando 1–5 de 37 · Pág. 1 de 1 · 50 registros por página</p>
   </sgfidm-panel-card>
 
+  @if (regenerando() !== null) {
+    <sgfidm-exportar-modal
+      codigo="REP-07"
+      [reporte]="'Exportación ' + regenerando()"
+      periodo="Filtros originales de la exportación"
+      filtros="Ver detalle en REP-06"
+      [filas]="1284"
+      (cancelar)="cerrarExportar()"
+      (exportar)="confirmarExportar($event)"
+    />
+  }
+
   <div class="exportaciones-page__aviso-info" role="status">
     Los archivos exportados no se almacenan en SGFIDM. Si necesitas el archivo de nuevo, puedes
     regenerarlo desde el historial. El historial conserva metadatos (formato · fecha · filas ·

@@ -121,4 +121,16 @@
     <p class="reporte-finanzas-page__aviso" role="status">{{ aviso() }}</p>
   }
   <button type="button" class="reporte-finanzas-page__volver" (click)="volver()">Volver a Reportes</button>
+
+  @if (exportando()) {
+    <sgfidm-exportar-modal
+      codigo="REP-05"
+      reporte="Reporte de finanzas"
+      periodo="1 oct – 31 oct 2025"
+      filtros="Categoría: Todas · Estado: Todos"
+      [filas]="1284"
+      (cancelar)="cerrarExportar()"
+      (exportar)="confirmarExportar($event)"
+    />
+  }
 </div>

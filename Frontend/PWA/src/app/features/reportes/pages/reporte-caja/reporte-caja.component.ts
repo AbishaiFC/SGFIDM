@@ -3,6 +3,11 @@ import { Router } from '@angular/router';
 import { SgfidmPanelCardComponent } from '../../../../shared/components/molecules/panel-card/sgfidm-panel-card.component';
 import { SgfidmIndicatorCardComponent } from '../../../../shared/components/molecules/indicator-card/sgfidm-indicator-card.component';
 import { SgfidmButtonComponent } from '../../../../shared/components/atoms/button/sgfidm-button.component';
+import {
+  ExportarModalComponent,
+  ExportacionSolicitud,
+} from '../exportar-modal/exportar-modal.component';
+import { registrarExportacion } from '../exportar-modal/exportar.utils';
 
 /**
  * REP-04 — Reportes: Caja (Módulo 10), modo Solo. Canon Figma 1045:120203.
@@ -12,7 +17,12 @@ import { SgfidmButtonComponent } from '../../../../shared/components/atoms/butto
  */
 @Component({
   standalone: true,
-  imports: [SgfidmPanelCardComponent, SgfidmIndicatorCardComponent, SgfidmButtonComponent],
+  imports: [
+    SgfidmPanelCardComponent,
+    SgfidmIndicatorCardComponent,
+    SgfidmButtonComponent,
+    ExportarModalComponent,
+  ],
   selector: 'sgfidm-reporte-caja',
   templateUrl: './reporte-caja.component.html',
   styleUrl: './reporte-caja.component.scss',
@@ -21,6 +31,7 @@ export class ReporteCajaComponent {
   private readonly router = inject(Router);
 
   readonly aviso = signal('');
+  readonly exportando = signal(false);
 
   readonly indicadores = [
     { eyebrow: 'SESIONES CERRADAS', value: '44' },
@@ -51,7 +62,18 @@ export class ReporteCajaComponent {
   }
 
   exportar(): void {
-    this.aviso.set('ToDo REP-07: exportación del reporte pendiente de implementar.');
+    this.aviso.set('');
+    this.exportando.set(true);
+  }
+
+  cerrarExportar(): void {
+    this.exportando.set(false);
+  }
+
+  confirmarExportar(solicitud: ExportacionSolicitud): void {
+    registrarExportacion(solicitud);
+    this.exportando.set(false);
+    this.aviso.set(`Exportación de ${solicitud.reporte} registrada en el historial (REP-06).`);
   }
 
   verSesion(codigo: string): void {

@@ -119,7 +119,7 @@ Métodos de pago, Configuración de seguridad.
 - ~~INV-02 Detalle~~ ✅, ~~INV-03 Registrar movimiento~~ ✅, ~~INV-04 Historial~~ ✅,
   ~~INV-08 Alertas de stock~~ ✅, INV-05..07 y INV-09..12 (ajustes, transferencias).
 - ~~REP-02 Ventas~~ ✅, ~~REP-03 Inventario~~ ✅, ~~REP-04 Caja~~ ✅, ~~REP-05 Finanzas~~ ✅,
-  ~~REP-06 Exportaciones~~ ✅, REP-07 Exportar (modal).
+  ~~REP-06 Exportaciones~~ ✅, ~~REP-07 Exportar (modal)~~ ✅.
 - CONF-02..09 (negocio, métodos de pago, seguridad, auditoría, sesiones, cambio de modo).
 - NOT-01..03 (centro de notificaciones, detalle, preferencias).
 

@@ -124,4 +124,16 @@
   @if (aviso()) {
     <p class="reporte-ventas-page__aviso" role="status">{{ aviso() }}</p>
   }
+
+  @if (exportando()) {
+    <sgfidm-exportar-modal
+      codigo="REP-02"
+      reporte="Reporte de ventas"
+      periodo="1 oct – 31 oct 2025"
+      filtros="Método: Efectivo · Estado: Todas"
+      [filas]="1284"
+      (cancelar)="cerrarExportar()"
+      (exportar)="confirmarExportar($event)"
+    />
+  }
 </div>

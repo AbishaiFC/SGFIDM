@@ -1,0 +1,91 @@
+<div class="exportar-overlay" (click)="cancelar.emit()"></div>
+
+<section class="exportar-modal" role="dialog" aria-modal="true" aria-label="Exportar reporte">
+  <header class="exportar-modal__header">
+    <div>
+      <span class="exportar-modal__eyebrow">REP-07 · MODAL DE EXPORTACIÓN · {{ codigo() }}</span>
+      <h2 class="exportar-modal__titulo">Exportar: {{ reporte() }}</h2>
+      <p class="exportar-modal__subtitulo">
+        Los filtros y el formato de esta exportación se guardarán en el historial (REP-06).
+      </p>
+    </div>
+    <button type="button" class="exportar-modal__cerrar" aria-label="Cerrar" (click)="cancelar.emit()">
+      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+    </button>
+  </header>
+
+  <div class="exportar-modal__cuerpo">
+    <span class="exportar-modal__label">RESUMEN DEL REPORTE</span>
+    <div class="exportar-modal__resumen">
+      <div><span>REPORTE</span><strong>{{ reporte() }} ({{ codigo() }})</strong></div>
+      <div><span>PERIODO</span><strong>{{ periodo() }}</strong></div>
+      <div><span>FILTROS</span><strong>{{ filtros() }}</strong></div>
+      <div><span>FILAS ESTIMADAS</span><strong>{{ filas() }} (calculable rápidamente)</strong></div>
+    </div>
+
+    <div class="exportar-modal__grupo">
+      <span class="exportar-modal__label">FORMATO</span>
+      <label class="exportar-modal__radio">
+        <input type="radio" name="formato" [checked]="formato() === 'Excel (XLSX)'" (change)="formato.set('Excel (XLSX)')" />
+        <span>Excel (XLSX) — predeterminado desde REP-06</span>
+      </label>
+      <label class="exportar-modal__radio">
+        <input type="radio" name="formato" [checked]="formato() === 'CSV'" (change)="formato.set('CSV')" />
+        <span>CSV</span>
+      </label>
+      @if (formato() === 'CSV') {
+        <div class="exportar-modal__separador">
+          <label for="separador-export">SEPARADOR CSV</label>
+          <select id="separador-export" [(ngModel)]="separador">
+            <option>Coma (predeterminado)</option>
+            <option>Punto y coma</option>
+          </select>
+        </div>
+      } @else {
+        <p class="exportar-modal__nota">
+          Coma (predeterminado) · punto y coma (visible al elegir CSV)
+        </p>
+      }
+    </div>
+
+    <div class="exportar-modal__grupo">
+      <span class="exportar-modal__label">OPCIONES</span>
+      <div class="exportar-modal__opcion">
+        <span><strong>Incluir encabezado contextual</strong><small>No editable</small></span>
+        <span class="exportar-modal__badge">SIEMPRE ACTIVO</span>
+        <sgfidm-switch [checked]="contextHeader()" [disabled]="true" />
+      </div>
+      <div class="exportar-modal__opcion">
+        <span><strong>Incluir filas de totales</strong><small>Opcional · solo totales</small></span>
+        <select [(ngModel)]="incluirTotales" aria-label="Incluir filas de totales">
+          <option>Sí</option><option>No</option>
+        </select>
+      </div>
+      <span class="exportar-modal__label">INCLUIR DETALLE (predeterminado: ambos)</span>
+      @for (opcion of ['Ambos (indicadores + detalle)', 'Solo indicadores', 'Solo detalle (tabla)']; track opcion) {
+        <label class="exportar-modal__radio">
+          <input type="radio" name="detalle" [checked]="detalle() === opcion" (change)="detalle.set(opcion)" />
+          <span>{{ opcion }}</span>
+        </label>
+      }
+    </div>
+
+    <div class="exportar-modal__limite" role="status">
+      Límite máximo: 50,000 filas. Si las filas estimadas lo superan, «Exportar» se deshabilita
+      automáticamente. No hay exportación por lotes.
+    </div>
+  </div>
+
+  <footer class="exportar-modal__acciones">
+    <sgfidm-button type="secondary" size="md" [width]="'120px'" [height]="'44px'" (click)="cancelar.emit()">
+      Cancelar
+    </sgfidm-button>
+    <sgfidm-button type="primary" size="md" [width]="'120px'" [height]="'44px'" [disabled]="excedeLimite()" (click)="confirmar()">
+      Exportar
+    </sgfidm-button>
+  </footer>
+  <p class="exportar-modal__pie">
+    Compartido por REP-02..REP-05 · preferencias desde REP-06 · el archivo se descarga y se registra
+    en REP-06 · reports.export requerido
+  </p>
+</section>

@@ -115,4 +115,16 @@
     <p class="reporte-inventario-page__aviso" role="status">{{ aviso() }}</p>
   }
   <button type="button" class="reporte-inventario-page__volver" (click)="volver()">Volver a Reportes</button>
+
+  @if (exportando()) {
+    <sgfidm-exportar-modal
+      codigo="REP-03"
+      reporte="Reporte de inventario"
+      periodo="1 oct – 31 oct 2025"
+      filtros="Producto: Todos · Estado: Activos"
+      [filas]="327"
+      (cancelar)="cerrarExportar()"
+      (exportar)="confirmarExportar($event)"
+    />
+  }
 </div>

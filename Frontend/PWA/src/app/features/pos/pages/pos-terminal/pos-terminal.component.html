@@ -1,1 +1,9 @@
-<sgfidm-pos-terminal-organism />
+<sgfidm-pos-terminal-organism (pagar)="abrirPago($event)" />
+
+@if (totalPago() !== null) {
+  <sgfidm-procesar-pago
+    [total]="totalPago()!"
+    (cancelar)="cancelarPago()"
+    (confirmar)="confirmarPago($event)"
+  />
+}

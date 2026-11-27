@@ -1,0 +1,192 @@
+/* POS-02 Procesar pago — canon Figma 1045:147208 (Solo) */
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  font-family: var(--sgfidm-font-family);
+}
+
+.pago-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.pago-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(560px, calc(100% - 32px));
+  max-height: calc(100dvh - 48px);
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  background: var(--sgfidm-color-surface, #fff);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+
+  &__header {
+    position: relative;
+    padding-right: 32px;
+  }
+
+  &__titulo {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--sgfidm-color-text-primary, #1c1c1c);
+  }
+
+  &__subtitulo {
+    font-size: 11px;
+    margin: 4px 0 0;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+
+  &__cerrar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  &__cuerpo {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    overflow-y: auto;
+    padding: 16px 0;
+  }
+
+  &__aviso {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--sgfidm-color-info-container, #e8f0f7);
+    font-size: 10px;
+    line-height: 15px;
+
+    button {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  }
+
+  &__resumen {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+
+    strong {
+      font-size: 10px;
+      letter-spacing: 0.6px;
+      color: var(--sgfidm-color-text-muted, #8b8b8b);
+    }
+
+    b {
+      font-size: 24px;
+      color: var(--sgfidm-color-text-primary, #1c1c1c);
+    }
+  }
+
+  &__grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &--monto {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      align-items: end;
+      gap: 8px;
+    }
+  }
+
+  &__label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    color: var(--sgfidm-color-text-muted, #8b8b8b);
+  }
+
+  &__metodos,
+  &__denominaciones {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  &__metodos button {
+    flex: 1;
+    padding: 10px 8px;
+    border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+    border-radius: 999px;
+    background: var(--sgfidm-color-surface, #fff);
+    font-family: inherit;
+    font-size: 11px;
+    cursor: pointer;
+
+    &.pago-modal__metodo--activo {
+      border-color: var(--sgfidm-color-primary, #2a2a2a);
+    }
+  }
+
+  &__moneda {
+    display: block;
+    text-align: right;
+    font-size: 10px;
+    color: var(--sgfidm-color-text-muted, #8b8b8b);
+  }
+
+  &__cambio {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--sgfidm-color-success-container, #e1ede5);
+
+    span {
+      font-size: 9px;
+      color: var(--sgfidm-color-text-secondary, #575757);
+    }
+
+    strong {
+      font-size: 16px;
+      color: var(--sgfidm-color-on-success-container, #24402f);
+    }
+
+    small {
+      font-size: 8px;
+      color: var(--sgfidm-color-text-muted, #8b8b8b);
+    }
+  }
+
+  &__error {
+    margin: 0;
+    font-size: 11px;
+    color: var(--sgfidm-color-error, #a9442e);
+  }
+
+  &__acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--sgfidm-color-outline-variant, #e0e0e0);
+  }
+}

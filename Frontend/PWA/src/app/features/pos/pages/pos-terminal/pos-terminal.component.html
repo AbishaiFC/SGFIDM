@@ -7,3 +7,13 @@
     (confirmar)="confirmarPago($event)"
   />
 }
+
+@if (ventaConfirmada() !== null) {
+  <sgfidm-venta-registrada
+    [pago]="ventaConfirmada()!"
+    [total]="totalVenta()"
+    (cerrar)="cerrarVenta()"
+    (verComprobante)="verComprobante()"
+    (imprimir)="verComprobante()"
+  />
+}

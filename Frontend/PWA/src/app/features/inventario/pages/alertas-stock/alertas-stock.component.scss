@@ -1,0 +1,122 @@
+/* INV-08 Alertas de stock — canon Figma 1045:129243 (Solo) */
+.alertas-stock-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: var(--sgfidm-font-family);
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__titulo {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.25px;
+    margin: 0;
+  }
+
+  &__subtitulo {
+    font-size: 12px;
+    margin: 0;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+
+  &__filtros {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__paneles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+
+    @media (max-width: 1000px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__panel {
+    width: 100%;
+
+    ::ng-deep .sgfidm-panel-card {
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    ::ng-deep .sgfidm-panel-card__body {
+      gap: 8px;
+    }
+  }
+
+  &__cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  &__badge {
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--sgfidm-color-warning-container, #f5e8c8);
+    color: #5c4413;
+    font-size: 9px;
+    font-weight: 600;
+  }
+
+  &__thead,
+  &__fila {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 80px 110px 28px;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 8px;
+    font-size: 11px;
+  }
+
+  &__thead {
+    background: var(--sgfidm-color-surface-container, #fafafa);
+    border-radius: 6px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--sgfidm-color-text-muted, #8b8b8b);
+  }
+
+  &__fila {
+    border-bottom: 1px solid var(--sgfidm-color-outline-variant, #e0e0e0);
+    cursor: pointer;
+
+    strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    small {
+      font-size: 9px;
+      color: var(--sgfidm-color-text-muted, #8b8b8b);
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &__menu {
+    width: 28px;
+    height: 28px;
+    border: 0;
+    background: transparent;
+    color: var(--sgfidm-color-text-secondary, #575757);
+    cursor: pointer;
+  }
+}

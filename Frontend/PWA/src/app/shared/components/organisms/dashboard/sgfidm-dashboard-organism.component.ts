@@ -47,13 +47,13 @@ export class SgfidmDashboardOrganismComponent {
     {
       titulo: 'Productos con bajo stock',
       detalle: '8 productos por debajo del mínimo',
-      ruta: '/inventario',
+      ruta: '/inventario/alertas',
       accion: 'Ir a Inventario',
     },
     {
       titulo: 'Productos agotados',
       detalle: '3 productos sin existencias',
-      ruta: '/inventario',
+      ruta: '/inventario/alertas',
       accion: 'Ir a Inventario',
     },
     {

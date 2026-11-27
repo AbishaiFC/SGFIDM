@@ -18,6 +18,17 @@ describe('InventarioComponent (INV-01 Solo)', () => {
     expect(texto).toContain('Café de altura');
   });
 
+  it('should open the stock alerts from the header action', async () => {
+    await TestBed.configureTestingModule({
+      imports: [InventarioComponent, RouterTestingModule],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(InventarioComponent);
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    fixture.componentInstance.verAlertas();
+    expect(spy).toHaveBeenCalledWith(['/inventario/alertas']);
+    spy.mockRestore();
+  });
+
   it('should open the stock detail from a row', async () => {
     await TestBed.configureTestingModule({
       imports: [InventarioComponent, RouterTestingModule],

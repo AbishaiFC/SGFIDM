@@ -23,6 +23,7 @@ import {
       [totalBajoStock]="totalBajoStock"
       [totalAgotados]="totalAgotados"
       (accion)="onAccion($event)"
+      (alertas)="verAlertas()"
     />
   `,
 })
@@ -46,5 +47,9 @@ export class InventarioComponent {
 
   onAccion(producto: ProductoInventarioDto): void {
     this.router.navigate(['/inventario', producto.codigo]);
+  }
+
+  verAlertas(): void {
+    this.router.navigate(['/inventario/alertas']);
   }
 }

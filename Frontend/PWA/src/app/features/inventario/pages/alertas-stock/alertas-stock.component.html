@@ -1,0 +1,61 @@
+<div class="alertas-stock-page">
+  <header class="alertas-stock-page__header">
+    <h1 class="alertas-stock-page__titulo">Alertas de stock</h1>
+    <p class="alertas-stock-page__subtitulo">2 productos agotados · 6 con bajo stock</p>
+  </header>
+
+  <div class="alertas-stock-page__filtros" role="group" aria-label="Tipo de alerta">
+    <sgfidm-chip
+      variant="filter"
+      [selected]="vista() === 'Agotados'"
+      (click)="vista.set('Agotados')"
+    >Agotados · 2</sgfidm-chip>
+    <sgfidm-chip
+      variant="filter"
+      [selected]="vista() === 'Bajo stock'"
+      (click)="vista.set('Bajo stock')"
+    >Bajo stock · 6</sgfidm-chip>
+  </div>
+
+  <div class="alertas-stock-page__paneles">
+    <sgfidm-panel-card class="alertas-stock-page__panel">
+      <div class="alertas-stock-page__cabecera">
+        <h2>Agotados · prioridad alta</h2>
+        <span class="alertas-stock-page__badge">Agotados · 2</span>
+      </div>
+      <div class="alertas-stock-page__thead">
+        <span>PRODUCTO</span><span>MÍNIMO</span><span>ÚLTIMA ENTRADA</span><span></span>
+      </div>
+      @for (p of agotados; track p.codigo) {
+        <div class="alertas-stock-page__fila" (click)="abrir(p.codigo)">
+          <span><strong>{{ p.nombre }}</strong><small>{{ p.codigo }}</small></span>
+          <span>{{ p.minimo }}</span>
+          <span>{{ p.entrada }}</span>
+          <button type="button" class="alertas-stock-page__menu" aria-label="Acciones del producto">
+            <span class="material-symbols-outlined" aria-hidden="true">more_horiz</span>
+          </button>
+        </div>
+      }
+    </sgfidm-panel-card>
+
+    <sgfidm-panel-card class="alertas-stock-page__panel">
+      <div class="alertas-stock-page__cabecera">
+        <h2>Bajo stock · déficit</h2>
+        <span class="alertas-stock-page__badge">Bajo stock · 6</span>
+      </div>
+      <div class="alertas-stock-page__thead">
+        <span>PRODUCTO</span><span>ACTUAL / MÍN.</span><span>DÉFICIT</span><span></span>
+      </div>
+      @for (p of bajoStock; track p.codigo) {
+        <div class="alertas-stock-page__fila" (click)="abrir(p.codigo)">
+          <span><strong>{{ p.nombre }}</strong><small>{{ p.codigo }}</small></span>
+          <span>{{ p.actual }} / {{ p.minimo }}</span>
+          <span>{{ p.deficit }}</span>
+          <button type="button" class="alertas-stock-page__menu" aria-label="Acciones del producto">
+            <span class="material-symbols-outlined" aria-hidden="true">more_horiz</span>
+          </button>
+        </div>
+      }
+    </sgfidm-panel-card>
+  </div>
+</div>

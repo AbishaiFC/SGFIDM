@@ -1,0 +1,35 @@
+<div class="venta-overlay">
+  <section class="venta-modal" role="dialog" aria-modal="true" aria-label="Venta registrada">
+    <span class="venta-modal__icono material-symbols-outlined" aria-hidden="true">check</span>
+    <h2 class="venta-modal__titulo">Venta registrada</h2>
+
+    <div class="venta-modal__totales">
+      <div><span>FOLIO</span><strong>{{ folio }}</strong></div>
+      <div><span>TOTAL</span><strong>{{ monto(total()) }}</strong></div>
+      <div><span>CAMBIO</span><strong>{{ monto(pago().cambio) }}</strong></div>
+    </div>
+
+    <p class="venta-modal__detalle">
+      Pago en {{ pago().metodo.toLowerCase() }} · recibido {{ monto(pago().montoRecibido) }} ·
+      3 productos · 7 unidades
+    </p>
+
+    <div class="venta-modal__acciones">
+      <sgfidm-button type="primary" size="md" [width]="'150px'" [height]="'44px'" (click)="imprimir.emit()">
+        Imprimir comprobante
+      </sgfidm-button>
+      <sgfidm-button type="secondary" size="md" [width]="'130px'" [height]="'44px'" (click)="verComprobante.emit()">
+        Ver comprobante
+      </sgfidm-button>
+      <sgfidm-button type="secondary" size="md" [width]="'110px'" [height]="'44px'" (click)="nuevaVenta()">
+        Nueva venta
+      </sgfidm-button>
+    </div>
+
+    <div class="venta-modal__cierre" role="status">
+      <span>Cierre automático en {{ segundos() }} s</span>
+      <span class="venta-modal__contador">{{ segundos() }}</span>
+    </div>
+    <p class="venta-modal__nota">Comportamiento contemplado; su configuración está pendiente.</p>
+  </section>
+</div>

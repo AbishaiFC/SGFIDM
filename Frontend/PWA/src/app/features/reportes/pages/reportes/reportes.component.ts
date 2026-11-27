@@ -69,7 +69,7 @@ export class ReportesComponent {
   }
 
   historial(): void {
-    // ToDo REP-06: historial de exportaciones.
+    this.router.navigate(['/reportes/exportaciones']);
   }
 
   irAlInicio(): void {

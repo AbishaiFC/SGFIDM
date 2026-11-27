@@ -69,6 +69,13 @@ describe('ReportesComponent (REP-01 Solo)', () => {
     spy.mockRestore();
   });
 
+  it('should open the REP-06 export history', () => {
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    component.historial();
+    expect(spy).toHaveBeenCalledWith(['/reportes/exportaciones']);
+    spy.mockRestore();
+  });
+
   it('should go back to the Inicio dashboard', () => {
     const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
     component.irAlInicio();

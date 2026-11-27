@@ -23,7 +23,7 @@ import {
       [totalBajoStock]="3"
       (accion)="onAccion($event)"
       (agregarProducto)="agregarProducto()"
-      (categorias)="pendiente()"
+      (categorias)="abrirCategorias()"
     />
     @if (aviso()) {
       <p class="productos-page__aviso" role="status">{{ aviso() }}</p>
@@ -56,8 +56,9 @@ export class ProductosComponent {
     this.router.navigate(['/productos/registrar']);
   }
 
-  pendiente(): void {
-    this.aviso.set('ToDo PROD-05: «Categorías» pendiente de implementar.');
+  abrirCategorias(): void {
+    this.aviso.set('');
+    this.router.navigate(['/productos/categorias']);
   }
 
   onAccion(producto: ProductoCatalogDto): void {

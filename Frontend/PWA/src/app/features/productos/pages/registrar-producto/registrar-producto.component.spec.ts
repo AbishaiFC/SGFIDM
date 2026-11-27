@@ -88,6 +88,13 @@ describe('RegistrarProductoComponent (PROD-02 Solo)', () => {
     expect(guardados).toHaveLength(1);
   });
 
+  it('should open the categories hub from Gestionar categorías', () => {
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    component.gestionarCategorias();
+    expect(spy).toHaveBeenCalledWith(['/productos/categorias']);
+    spy.mockRestore();
+  });
+
   it('should cancel back to the dashboard', () => {
     const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
     component.onCancelar();

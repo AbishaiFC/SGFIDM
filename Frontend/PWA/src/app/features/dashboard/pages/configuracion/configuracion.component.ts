@@ -55,6 +55,7 @@ export class ConfiguracionComponent {
       id: 'PROD-05',
       titulo: 'Categorías de productos',
       descripcion: 'Organiza tu catálogo por categorías.',
+      ruta: '/productos/categorias',
     },
     {
       id: 'FIN-04',

@@ -1,0 +1,61 @@
+<div class="categorias-page">
+  <header class="categorias-page__header">
+    <div>
+      <h1 class="categorias-page__titulo">Categorías</h1>
+      <p class="categorias-page__subtitulo">{{ total }} categorías · opcionales · sin categorías predefinidas</p>
+    </div>
+    <div class="categorias-page__acciones">
+      <sgfidm-button type="secondary" size="md" [width]="'140px'" [height]="'44px'" (click)="volver()">
+        Volver al catálogo
+      </sgfidm-button>
+      <sgfidm-button type="primary" size="md" [width]="'150px'" [height]="'44px'" (click)="nueva()">
+        Nueva categoría
+      </sgfidm-button>
+    </div>
+  </header>
+
+  <sgfidm-tabs [tabs]="tabs" [activeTab]="tab()" (tabClick)="tab.set($event)" />
+
+  <sgfidm-panel-card class="categorias-page__panel">
+    @if (visibles().length === 0) {
+      <p class="categorias-page__vacio">No hay categorías archivadas.</p>
+    } @else {
+      <table>
+        <thead>
+          <tr>
+            <th>CATEGORÍA</th>
+            <th>DESCRIPCIÓN</th>
+            <th>N° DE PRODUCTOS ACTIVOS</th>
+            <th><span class="sr-only">Acciones</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (cat of visibles(); track cat.codigo) {
+            <tr>
+              <td>
+                <strong>{{ cat.nombre }}</strong>
+                <span>{{ cat.codigo }}</span>
+              </td>
+              <td>{{ cat.descripcion }}</td>
+              <td>{{ cat.productos }}</td>
+              <td>
+                <button type="button" class="categorias-page__menu" aria-label="Acciones de la categoría">
+                  <span class="material-symbols-outlined" aria-hidden="true">more_horiz</span>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </sgfidm-panel-card>
+
+  <div class="categorias-page__paginacion">
+    <span>50 por página · 1–{{ visibles().length }} de {{ total }}</span>
+    <sgfidm-pagination [totalPages]="1" [currentPage]="pagina()" (pageChange)="pagina.set($event)" />
+  </div>
+
+  @if (aviso()) {
+    <p class="categorias-page__aviso" role="status">{{ aviso() }}</p>
+  }
+</div>

@@ -55,7 +55,10 @@ export class ReportesComponent {
   readonly aviso = signal('');
 
   abrir(id: string): void {
-    const rutas: Record<string, string> = { 'REP-02': '/reportes/ventas' };
+    const rutas: Record<string, string> = {
+      'REP-02': '/reportes/ventas',
+      'REP-03': '/reportes/inventario',
+    };
     if (rutas[id]) {
       this.router.navigate([rutas[id]]);
       return;

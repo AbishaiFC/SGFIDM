@@ -1,0 +1,118 @@
+<div class="reporte-inventario-page">
+  <header class="reporte-inventario-page__header">
+    <div>
+      <span class="reporte-inventario-page__eyebrow">PANTALLA REP-03 · REPORTE DE INVENTARIO · SOLO CONSULTA</span>
+      <h1 class="reporte-inventario-page__titulo">Reporte de inventario</h1>
+    </div>
+    <div class="reporte-inventario-page__acciones">
+      <sgfidm-button type="secondary" size="md" [width]="'130px'" [height]="'44px'" (click)="limpiar()">
+        Limpiar filtros
+      </sgfidm-button>
+      <sgfidm-button type="primary" size="md" [width]="'110px'" [height]="'44px'" (click)="exportar()">
+        Exportar
+      </sgfidm-button>
+    </div>
+  </header>
+
+  <div class="reporte-inventario-page__contexto">
+    <strong>CONTEXTO DE LA CONSULTA</strong>
+    <span>Periodo: 1 oct – 31 oct 2025 · Generado: 5 nov 2025, 14:23 · Por: Ana Martínez · MXN</span>
+  </div>
+
+  <div class="reporte-inventario-page__filtros">
+    <select aria-label="Rango"><option>Rango: Este mes</option></select>
+    <select aria-label="Producto"><option>Producto: Todos</option></select>
+    <select aria-label="Categoría"><option>Categoría: Todas</option></select>
+    <select aria-label="Tipo"><option>Tipo: Todos</option></select>
+    <select aria-label="Estado"><option>Estado: Activos</option></select>
+  </div>
+
+  <div class="reporte-inventario-page__indicadores">
+    @for (ind of indicadores; track ind.eyebrow) {
+      <sgfidm-indicator-card [eyebrow]="ind.eyebrow" [value]="ind.value" />
+    }
+  </div>
+  <p class="reporte-inventario-page__nota">
+    Valor a costo congelado · 2 productos sin costo · archivados solo con filtro · reports.view /
+    reports.export
+  </p>
+
+  <div class="reporte-inventario-page__laterales">
+    <sgfidm-panel-card class="reporte-inventario-page__panel">
+      <div class="reporte-inventario-page__cabecera">
+        <h2>DESGLOSE POR SUCURSAL</h2><span>solo Sucursal: Todas</span>
+      </div>
+      <p class="reporte-inventario-page__vacio">
+        Visible solo con 2+ sucursales asignadas. En Mi negocio no existe comparativo entre
+        sucursales. Consulta existencias por producto o el reporte de movimientos.
+      </p>
+    </sgfidm-panel-card>
+
+    <sgfidm-panel-card class="reporte-inventario-page__panel">
+      <div class="reporte-inventario-page__cabecera">
+        <h2>ALERTAS DE STOCK</h2><span>resumen contextual</span>
+      </div>
+      <ul>
+        @for (a of alertas; track a.texto) {
+          <li><strong>{{ a.tipo }}</strong> · {{ a.texto }}</li>
+        }
+      </ul>
+      <p class="reporte-inventario-page__nota">
+        14 bajo stock · 3 agotados · este bloque es resumen, no un centro de notificaciones · ver INV-08
+      </p>
+    </sgfidm-panel-card>
+
+    <sgfidm-panel-card class="reporte-inventario-page__panel">
+      <div class="reporte-inventario-page__cabecera">
+        <h2>LECTURA RÁPIDA</h2><span>valor $186,400 a costo</span>
+      </div>
+      <ul>
+        <li>Valor: $186,400 a costo + $18,200 estimado (2 sin costo)</li>
+        <li>Movimientos: 327 · entradas y salidas del periodo</li>
+        <li>Sin comparativo entre sucursales (Modo Solo)</li>
+      </ul>
+    </sgfidm-panel-card>
+  </div>
+
+  <sgfidm-panel-card class="reporte-inventario-page__panel reporte-inventario-page__panel--ancho">
+    <div class="reporte-inventario-page__cabecera">
+      <h2>EXISTENCIAS POR PRODUCTO</h2><span>archivados solo con filtro</span>
+    </div>
+    <div class="reporte-inventario-page__thead reporte-inventario-page__thead--producto">
+      <span>PRODUCTO</span><span>DISPONIBLES</span><span>MÍN</span><span>ESTADO</span>
+    </div>
+    @for (p of productos; track p.codigo) {
+      <div class="reporte-inventario-page__fila reporte-inventario-page__fila--producto">
+        <span><strong>{{ p.nombre }}</strong><small>{{ p.codigo }}</small></span>
+        <span>{{ p.disponibles }}</span>
+        <span>{{ p.minimo }}</span>
+        <span class="reporte-inventario-page__chip" [attr.data-estado]="p.estado">{{ p.estado }}</span>
+      </div>
+    }
+  </sgfidm-panel-card>
+
+  <sgfidm-panel-card class="reporte-inventario-page__panel reporte-inventario-page__panel--ancho">
+    <div class="reporte-inventario-page__cabecera">
+      <h2>MOVIMIENTOS DEL PERIODO</h2><span>→ Detalle en INV-02 / INV-09</span>
+    </div>
+    <div class="reporte-inventario-page__thead reporte-inventario-page__thead--mov">
+      <span>MOVIMIENTO</span><span>TIPO</span><span>MOTIVO · PRODUCTO</span><span>CANT.</span>
+    </div>
+    @for (m of movimientos; track m.codigo) {
+      <div class="reporte-inventario-page__fila reporte-inventario-page__fila--mov">
+        <span><strong>{{ m.codigo }}</strong><small>{{ m.fecha }}</small></span>
+        <span>{{ m.tipo }}</span>
+        <span>{{ m.motivo }}</span>
+        <span>{{ m.cantidad }}</span>
+      </div>
+    }
+    <p class="reporte-inventario-page__nota">
+      Persona anotada en cada movimiento · notas en INV-02 · archivados con filtro Estado
+    </p>
+  </sgfidm-panel-card>
+
+  @if (aviso()) {
+    <p class="reporte-inventario-page__aviso" role="status">{{ aviso() }}</p>
+  }
+  <button type="button" class="reporte-inventario-page__volver" (click)="volver()">Volver a Reportes</button>
+</div>

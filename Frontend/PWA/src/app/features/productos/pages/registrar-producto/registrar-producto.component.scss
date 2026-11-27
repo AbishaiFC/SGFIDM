@@ -94,9 +94,18 @@
 }
 
 .registrar-producto-link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: var(--sgfidm-font-family);
+  font-size: 11px;
   color: var(--sgfidm-color-primary, #2c5d71);
   text-decoration: none;
-  cursor: help;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 /* Select y textarea: no existe molécula en el DS; se alinean al FormField. */

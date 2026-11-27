@@ -15,6 +15,11 @@ export const productosRoutes: Routes = [
       ),
   },
   {
+    path: 'categorias',
+    loadComponent: () =>
+      import('./pages/categorias/categorias.component').then((m) => m.CategoriasComponent),
+  },
+  {
     path: ':codigo',
     loadComponent: () =>
       import('./pages/detalle-producto/detalle-producto.component').then(

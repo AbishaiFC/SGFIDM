@@ -101,6 +101,10 @@ export class RegistrarProductoComponent {
     this.router.navigate(['/dashboard']);
   }
 
+  gestionarCategorias(): void {
+    this.router.navigate(['/productos/categorias']);
+  }
+
   onCancelar(): void {
     this.router.navigate(['/dashboard']);
   }

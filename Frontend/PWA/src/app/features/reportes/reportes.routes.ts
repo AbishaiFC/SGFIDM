@@ -8,6 +8,13 @@ export const reportesRoutes: Routes = [
       import('./pages/reportes/reportes.component').then((m) => m.ReportesComponent),
   },
   {
+    path: 'finanzas',
+    loadComponent: () =>
+      import('./pages/reporte-finanzas/reporte-finanzas.component').then(
+        (m) => m.ReporteFinanzasComponent,
+      ),
+  },
+  {
     path: 'caja',
     loadComponent: () =>
       import('./pages/reporte-caja/reporte-caja.component').then((m) => m.ReporteCajaComponent),

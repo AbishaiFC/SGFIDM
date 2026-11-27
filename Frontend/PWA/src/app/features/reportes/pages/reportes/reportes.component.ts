@@ -59,6 +59,7 @@ export class ReportesComponent {
       'REP-02': '/reportes/ventas',
       'REP-03': '/reportes/inventario',
       'REP-04': '/reportes/caja',
+      'REP-05': '/reportes/finanzas',
     };
     if (rutas[id]) {
       this.router.navigate([rutas[id]]);

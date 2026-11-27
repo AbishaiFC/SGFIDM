@@ -1,0 +1,124 @@
+<div class="reporte-finanzas-page">
+  <header class="reporte-finanzas-page__header">
+    <div>
+      <span class="reporte-finanzas-page__eyebrow">PANTALLA REP-05 · REPORTE DE FINANZAS · SOLO CONSULTA</span>
+      <h1 class="reporte-finanzas-page__titulo">Reporte de finanzas</h1>
+    </div>
+    <div class="reporte-finanzas-page__acciones">
+      <sgfidm-button type="secondary" size="md" [width]="'130px'" [height]="'44px'" (click)="limpiar()">
+        Limpiar filtros
+      </sgfidm-button>
+      <sgfidm-button type="primary" size="md" [width]="'110px'" [height]="'44px'" (click)="exportar()">
+        Exportar
+      </sgfidm-button>
+    </div>
+  </header>
+
+  <div class="reporte-finanzas-page__contexto">
+    <strong>CONTEXTO DE LA CONSULTA</strong>
+    <span>Periodo: 1 oct – 31 oct 2025 · Generado: 5 nov 2025, 14:23 · Por: Ana Martínez · MXN</span>
+  </div>
+
+  <div class="reporte-finanzas-page__filtros">
+    <select aria-label="Rango"><option>Rango: Este mes</option></select>
+    <select aria-label="Categoría"><option>Categoría: Todas</option></select>
+    <select aria-label="Tipo"><option>Tipo: Todos</option></select>
+    <select aria-label="Estado"><option>Estado: Todos</option></select>
+  </div>
+
+  <div class="reporte-finanzas-page__resultado">
+    <div class="reporte-finanzas-page__resultado-header">
+      <strong>RESULTADO COMERCIAL</strong>
+      <span>valor económico generado · no equivale a flujo</span>
+    </div>
+    <div class="reporte-finanzas-page__resultado-grid">
+      @for (d of resultado; track d.etiqueta) {
+        <div>
+          <span>{{ d.etiqueta }}</span>
+          <strong>{{ d.valor }}</strong>
+          @if (d.estimada) { <small>Estimada</small> }
+        </div>
+      }
+    </div>
+    <p>
+      CMV = costo congelado en la línea de venta · Estimada: faltan costos en 2 productos
+      (PROD-031, PROD-073) · anulaciones excluidas de los totales
+    </p>
+  </div>
+
+  <div class="reporte-finanzas-page__flujo">
+    <div class="reporte-finanzas-page__resultado-header">
+      <strong>FLUJO DE EFECTIVO</strong>
+      <span>dinero físico que ingresó a cajas activas · no equivale a utilidad</span>
+    </div>
+    <div class="reporte-finanzas-page__flujo-grid">
+      @for (f of flujo; track f.etiqueta) {
+        <div><span>{{ f.etiqueta }}</span><strong>{{ f.valor }}</strong></div>
+      }
+    </div>
+    <p>
+      Entradas = ventas en efectivo + ingresos manuales en efectivo + entradas manuales · Salidas =
+      cancelaciones + devoluciones + gastos en efectivo + salidas manuales
+    </p>
+  </div>
+
+  <div class="reporte-finanzas-page__aviso-info" role="status">
+    3 gastos en efectivo ($1,450.00) no están vinculados a una caja (GAS-0042, GAS-0043, GAS-0041).
+    El flujo de efectivo mostrado no los incluye.
+  </div>
+
+  <div class="reporte-finanzas-page__desgloses">
+    <sgfidm-panel-card class="reporte-finanzas-page__panel">
+      <div class="reporte-finanzas-page__cabecera">
+        <h2>DESGLOSE DE INGRESOS</h2><span>origen · categoría</span>
+      </div>
+      @for (i of ingresos; track i.nombre) {
+        <div class="reporte-finanzas-page__fila">
+          <span>{{ i.nombre }}</span><span>{{ i.monto }}</span><span>{{ i.porcentaje }}</span>
+        </div>
+      }
+      <p class="reporte-finanzas-page__nota">
+        Ingresos netos de ventas = ventas − devoluciones − cancelaciones
+      </p>
+    </sgfidm-panel-card>
+
+    <sgfidm-panel-card class="reporte-finanzas-page__panel">
+      <div class="reporte-finanzas-page__cabecera">
+        <h2>DESGLOSE DE GASTOS</h2><span>4 categorías</span>
+      </div>
+      @for (g of gastos; track g.nombre) {
+        <div class="reporte-finanzas-page__fila">
+          <span>{{ g.nombre }}</span><span>{{ g.monto }}</span><span>{{ g.porcentaje }}</span>
+        </div>
+      }
+    </sgfidm-panel-card>
+  </div>
+
+  <sgfidm-panel-card class="reporte-finanzas-page__panel reporte-finanzas-page__panel--ancho">
+    <div class="reporte-finanzas-page__cabecera">
+      <h2>DETALLE DE MOVIMIENTOS FINANCIEROS</h2><span>clic → FIN-09 · POS-06</span>
+    </div>
+    <div class="reporte-finanzas-page__thead reporte-finanzas-page__thead--mov">
+      <span>MOVIMIENTO</span><span>TIPO</span><span>CONCEPTO</span><span>MÉTODO</span><span>ESTADO</span><span>MONTO</span>
+    </div>
+    @for (m of movimientos; track m.codigo) {
+      <button type="button" class="reporte-finanzas-page__fila reporte-finanzas-page__fila--mov" (click)="verDetalle(m.codigo)">
+        <span><strong>{{ m.codigo }}</strong><small>{{ m.fecha }}</small></span>
+        <span>{{ m.tipo }}</span>
+        <span>{{ m.concepto }}</span>
+        <span>{{ m.metodo }}</span>
+        <span class="reporte-finanzas-page__chip" [attr.data-estado]="m.estado">{{ m.estado }}</span>
+        <span>{{ m.monto }}</span>
+      </button>
+    }
+    <p class="reporte-finanzas-page__nota">
+      El anulado se excluye de los totales (con Estado: Todos aparece con distintivo) · → FIN-09
+      gasto/ingreso · → POS-06 venta
+    </p>
+  </sgfidm-panel-card>
+
+  @if (aviso()) {
+    <p class="reporte-finanzas-page__aviso" role="status">{{ aviso() }}</p>
+  }
+  <button type="button" class="reporte-finanzas-page__volver" (click)="volver()">Volver a Reportes</button>
+</div>

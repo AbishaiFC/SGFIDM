@@ -62,6 +62,13 @@ describe('ReportesComponent (REP-01 Solo)', () => {
     spy.mockRestore();
   });
 
+  it('should open the REP-05 finance report from its card', () => {
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    component.abrir('REP-05');
+    expect(spy).toHaveBeenCalledWith(['/reportes/finanzas']);
+    spy.mockRestore();
+  });
+
   it('should go back to the Inicio dashboard', () => {
     const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
     component.irAlInicio();

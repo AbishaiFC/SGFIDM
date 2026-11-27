@@ -8,6 +8,11 @@ export const inventarioRoutes: Routes = [
       import('./pages/inventario/inventario.component').then((m) => m.InventarioComponent),
   },
   {
+    path: 'alertas',
+    loadComponent: () =>
+      import('./pages/alertas-stock/alertas-stock.component').then((m) => m.AlertasStockComponent),
+  },
+  {
     path: 'movimientos',
     loadComponent: () =>
       import('./pages/historial-movimientos/historial-movimientos.component').then(

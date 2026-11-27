@@ -1,0 +1,250 @@
+/* REP-04 Reporte de caja — canon Figma 1045:120203 (Solo) */
+.reporte-caja-page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: var(--sgfidm-font-family);
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__eyebrow {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    color: var(--sgfidm-color-text-muted, #8b8b8b);
+  }
+
+  &__titulo {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.25px;
+    margin: 6px 0 0;
+  }
+
+  &__acciones {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__contexto {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: var(--sgfidm-color-surface-variant, #f5f5f5);
+    font-size: 10px;
+
+    strong {
+      font-size: 9px;
+      letter-spacing: 0.6px;
+      color: var(--sgfidm-color-text-muted, #8b8b8b);
+    }
+  }
+
+  &__filtros {
+    display: flex;
+    gap: 8px;
+    padding: 10px;
+    border: 1px solid var(--sgfidm-color-outline-variant, #e0e0e0);
+    border-radius: 8px;
+
+    select {
+      height: 36px;
+      padding: 0 10px;
+      border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+      border-radius: 999px;
+      background: var(--sgfidm-color-surface, #fff);
+      font-family: inherit;
+      font-size: 11px;
+    }
+  }
+
+  &__indicadores {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 8px;
+
+    @media (max-width: 1100px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  &__nota {
+    margin: 0;
+    font-size: 9px;
+    color: var(--sgfidm-color-text-muted, #8b8b8b);
+  }
+
+  &__laterales {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+
+    @media (max-width: 1000px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__panel {
+    width: 100%;
+
+    ::ng-deep .sgfidm-panel-card {
+      padding: 16px 20px;
+      border-radius: 12px;
+    }
+
+    ::ng-deep .sgfidm-panel-card__body {
+      gap: 8px;
+    }
+
+    &--ancho {
+      grid-column: 1 / -1;
+    }
+
+    &--aviso p {
+      margin: 0;
+      font-size: 10px;
+      line-height: 15px;
+      color: var(--sgfidm-color-text-secondary, #575757);
+    }
+  }
+
+  &__cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+      font-size: 11px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    span {
+      font-size: 9px;
+      color: var(--sgfidm-color-text-muted, #8b8b8b);
+    }
+  }
+
+  &__subtitulo {
+    margin-top: 12px !important;
+  }
+
+  &__thead,
+  &__fila {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    padding: 8px;
+    font-size: 10px;
+
+    &--sesiones {
+      grid-template-columns: 100px repeat(3, 100px) 90px;
+    }
+
+    &--mov {
+      grid-template-columns: 110px minmax(0, 2fr) 90px 70px;
+    }
+  }
+
+  &__thead {
+    border-radius: 6px;
+    background: var(--sgfidm-color-surface-container, #fafafa);
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--sgfidm-color-text-muted, #8b8b8b);
+  }
+
+  &__fila {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--sgfidm-color-outline-variant, #e0e0e0);
+    background: transparent;
+    text-align: left;
+    font-family: inherit;
+
+    small {
+      display: block;
+      font-size: 9px;
+      color: var(--sgfidm-color-text-muted, #8b8b8b);
+    }
+
+    &--sesiones {
+      cursor: pointer;
+
+      &:hover {
+        background: var(--sgfidm-color-surface-variant, #f5f5f5);
+      }
+    }
+  }
+
+  &__vacio {
+    margin: 0;
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--sgfidm-color-surface-container, #fafafa);
+    font-size: 10px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 16px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  &__chip {
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--sgfidm-color-success-container, #e1ede5);
+    color: var(--sgfidm-color-on-success-container, #24402f);
+    text-align: center;
+    font-size: 9px;
+
+    &[data-estado='Faltante'] {
+      background: var(--sgfidm-color-error-container, #f6ded9);
+      color: #7a2d20;
+    }
+
+    &[data-estado='Sobrante'] {
+      background: var(--sgfidm-color-warning-container, #f5e8c8);
+      color: #5c4413;
+    }
+
+    &[data-estado='Abierta'] {
+      background: var(--sgfidm-color-surface-variant, #f0f0f0);
+      color: var(--sgfidm-color-text-secondary, #575757);
+    }
+  }
+
+  &__origen {
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: var(--sgfidm-color-surface-variant, #f0f0f0);
+    text-align: center;
+    font-size: 9px;
+  }
+
+  &__volver {
+    align-self: flex-start;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-size: 11px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  &__aviso {
+    margin: 0;
+    font-size: 11px;
+    color: var(--sgfidm-color-warning, #9a6b14);
+  }
+}

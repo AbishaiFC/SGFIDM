@@ -150,6 +150,12 @@
   }
 }
 
+.reportes-aviso {
+  margin: 0;
+  font-size: 11px;
+  color: var(--sgfidm-color-warning, #9a6b14);
+}
+
 .reportes-volver {
   align-self: flex-start;
   padding: 0;

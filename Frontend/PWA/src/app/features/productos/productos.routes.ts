@@ -14,4 +14,11 @@ export const productosRoutes: Routes = [
         (m) => m.RegistrarProductoComponent,
       ),
   },
+  {
+    path: ':codigo',
+    loadComponent: () =>
+      import('./pages/detalle-producto/detalle-producto.component').then(
+        (m) => m.DetalleProductoComponent,
+      ),
+  },
 ];

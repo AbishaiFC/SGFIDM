@@ -1,0 +1,75 @@
+<div class="exportaciones-page">
+  <header class="exportaciones-page__header">
+    <div>
+      <span class="exportaciones-page__eyebrow">PANTALLA REP-06 · EXPORTACIONES · HISTORIAL Y CONFIGURACIÓN</span>
+      <h1 class="exportaciones-page__titulo">Exportaciones</h1>
+      <p class="exportaciones-page__subtitulo">37 exportaciones en los últimos 90 días.</p>
+    </div>
+    <sgfidm-button type="secondary" size="md" [width]="'160px'" [height]="'44px'" (click)="volver()">
+      Volver a reportes →
+    </sgfidm-button>
+  </header>
+
+  <sgfidm-panel-card class="exportaciones-page__panel">
+    <h2 class="exportaciones-page__seccion">CONFIGURACIÓN POR DEFECTO</h2>
+    <p class="exportaciones-page__nota">
+      Ver y configurar: reports.view · ejecutar exportaciones: reports.export
+    </p>
+    <div class="exportaciones-page__config">
+      <div class="exportaciones-page__config-item">
+        <label for="formato-preferido">Formato preferido</label>
+        <small>Opciones: CSV · Excel · predeterminado Excel</small>
+        <select id="formato-preferido" [(ngModel)]="formato"><option>Excel</option><option>CSV</option></select>
+      </div>
+      <div class="exportaciones-page__config-item exportaciones-page__config-item--switch">
+        <span class="exportaciones-page__badge">SIEMPRE ACTIVO</span>
+        <sgfidm-switch [checked]="siempreActivo()" [disabled]="true" />
+      </div>
+      <div class="exportaciones-page__config-item">
+        <label for="separador-csv">Separador CSV (UTF-8)</label>
+        <small>Opciones: coma · punto y coma · predeterminado coma</small>
+        <select id="separador-csv" [(ngModel)]="separador"><option>Coma</option><option>Punto y coma</option></select>
+      </div>
+    </div>
+    <sgfidm-button type="secondary" size="md" [width]="'170px'" [height]="'44px'" [disabled]="true" (click)="guardar()">
+      Guardar configuración
+    </sgfidm-button>
+    <p class="exportaciones-page__nota">
+      Sin cambios · botón deshabilitado · los cambios aplican a exportaciones futuras
+    </p>
+    @if (guardado()) {
+      <p class="exportaciones-page__aviso" role="status">Configuración guardada.</p>
+    }
+  </sgfidm-panel-card>
+
+  <sgfidm-panel-card class="exportaciones-page__panel">
+    <div class="exportaciones-page__cabecera">
+      <h2 class="exportaciones-page__seccion">HISTORIAL DE EXPORTACIONES</h2>
+      <span>clic → REP-07</span>
+    </div>
+    <div class="exportaciones-page__thead">
+      <span>EXPORTACIÓN</span><span>FECHA</span><span>REPORTE</span><span>FORMATO</span><span>ESTADO</span><span>ACCIÓN</span>
+    </div>
+    @for (e of exportaciones; track e.id) {
+      <div class="exportaciones-page__fila">
+        <span><strong>{{ e.id }}</strong><small>{{ e.descripcion }}</small></span>
+        <span>{{ e.fecha }}</span>
+        <span>{{ e.reporte }}</span>
+        <span>{{ e.formato }}</span>
+        <span class="exportaciones-page__chip" [attr.data-estado]="e.estado">{{ e.estado }}</span>
+        <button type="button" class="exportaciones-page__link" (click)="regenerar(e.id)">Volver a generar →</button>
+      </div>
+    }
+    <p class="exportaciones-page__nota">
+      «Volver a generar» abre REP-07 con los filtros y formato ORIGINALES de esa exportación (no los
+      filtros actuales) · 50 registros por página
+    </p>
+    <p class="exportaciones-page__nota">Mostrando 1–5 de 37 · Pág. 1 de 1 · 50 registros por página</p>
+  </sgfidm-panel-card>
+
+  <div class="exportaciones-page__aviso-info" role="status">
+    Los archivos exportados no se almacenan en SGFIDM. Si necesitas el archivo de nuevo, puedes
+    regenerarlo desde el historial. El historial conserva metadatos (formato · fecha · filas ·
+    estado), no archivos descargables. Regenerar produce una NUEVA exportación.
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="comprobante-overlay" (click)="cerrar.emit()"></div>
+
+<section class="comprobante-modal" role="dialog" aria-modal="true" aria-label="Comprobante de venta">
+  <header class="comprobante-modal__header">
+    <div>
+      <h2 class="comprobante-modal__titulo">Comprobante de venta</h2>
+      <p class="comprobante-modal__subtitulo">{{ folio }} · {{ fecha }} · Mi negocio</p>
+    </div>
+    <sgfidm-button type="secondary" size="sm" [width]="'80px'" [height]="'40px'" (click)="cerrar.emit()">
+      Cerrar
+    </sgfidm-button>
+  </header>
+
+  <div class="comprobante-modal__cuerpo">
+    <div class="comprobante-modal__vista">
+      <span class="comprobante-modal__label">VISTA PREVIA · TÉRMICO 80 MM</span>
+      <div class="ticket">
+        <strong class="ticket__marca">CAFÉ ALTURA</strong>
+        <span>Mi negocio</span>
+        <span>{{ fecha }}</span>
+        <span>Folio {{ folio }}</span>
+        <span>Atendido por: Ana Martínez · Propietaria</span>
+        @if (pago().cliente) {
+          <span>Cliente: {{ pago().cliente }}</span>
+        }
+        <div class="ticket__lineas">
+          @for (linea of lineas; track linea.codigo) {
+            <div><span>{{ linea.cantidad }} × {{ linea.nombre }}</span><span>{{ monto(linea.subtotal) }}</span></div>
+            <small>{{ linea.codigo }}</small>
+          }
+        </div>
+        <div class="ticket__totales">
+          <div><span>Subtotal</span><span>{{ monto(subtotal) }}</span></div>
+          <div><span>Descuento 10%</span><span>−{{ monto(descuento) }}</span></div>
+          <div class="ticket__total"><span>TOTAL</span><span>{{ monto(total()) }}</span></div>
+        </div>
+        <span>{{ pago().metodo }}</span>
+        <span>Recibido: {{ monto(pago().montoRecibido) }}</span>
+        <span>Cambio: {{ monto(pago().cambio) }}</span>
+        <span class="ticket__nota">Comprobante de venta. No válido como factura.</span>
+        <strong class="ticket__folio">{{ folio }}</strong>
+        <span class="ticket__gracias">¡Gracias por su compra!</span>
+        <small>COMPROBANTE SIMPLE · NO FISCAL<br />80 mm · impresión térmica</small>
+      </div>
+    </div>
+
+    <div class="comprobante-modal__config">
+      <span class="comprobante-modal__label">FORMATO</span>
+      <div class="comprobante-modal__formatos" role="radiogroup" aria-label="Formato del comprobante">
+        @for (opcion of formatos; track opcion) {
+          <button
+            type="button"
+            role="radio"
+            [attr.aria-checked]="formato() === opcion"
+            [class.comprobante-modal__formato--activo]="formato() === opcion"
+            (click)="formato.set(opcion)"
+          >
+            {{ opcion }}
+          </button>
+        }
+      </div>
+
+      <span class="comprobante-modal__label">VISTA PREVIA · A4</span>
+      <div class="comprobante-modal__a4" aria-hidden="true">
+        <i class="ancho"></i><i></i><i></i><i></i><i></i>
+      </div>
+
+      <span class="comprobante-modal__label">ACCIONES</span>
+      <div class="comprobante-modal__acciones">
+        <sgfidm-button type="primary" size="md" [fullWidth]="true" [height]="'44px'" (click)="imprimir()">
+          Imprimir
+        </sgfidm-button>
+        <sgfidm-button type="secondary" size="md" [fullWidth]="true" [height]="'44px'" (click)="descargar()">
+          Descargar PDF
+        </sgfidm-button>
+        <sgfidm-button type="secondary" size="md" [fullWidth]="true" [height]="'44px'" (click)="cerrar.emit()">
+          Cerrar
+        </sgfidm-button>
+      </div>
+      <p class="comprobante-modal__nota">
+        Comprobante simple · No válido como factura. Sin facturación, envío por correo ni integración fiscal.
+      </p>
+    </div>
+  </div>
+</section>

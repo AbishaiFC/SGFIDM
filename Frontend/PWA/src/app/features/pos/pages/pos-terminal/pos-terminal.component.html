@@ -8,6 +8,14 @@
   />
 }
 
+@if (comprobanteAbierto()) {
+  <sgfidm-comprobante-venta
+    [pago]="pagoComprobante()!"
+    [total]="totalVenta()"
+    (cerrar)="cerrarComprobante()"
+  />
+}
+
 @if (ventaConfirmada() !== null) {
   <sgfidm-venta-registrada
     [pago]="ventaConfirmada()!"

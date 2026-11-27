@@ -1,0 +1,120 @@
+<div class="reporte-caja-page">
+  <header class="reporte-caja-page__header">
+    <div>
+      <span class="reporte-caja-page__eyebrow">PANTALLA REP-04 · REPORTE DE CAJA · SOLO CONSULTA</span>
+      <h1 class="reporte-caja-page__titulo">Reporte de caja</h1>
+    </div>
+    <div class="reporte-caja-page__acciones">
+      <sgfidm-button type="secondary" size="md" [width]="'130px'" [height]="'44px'" (click)="limpiar()">
+        Limpiar filtros
+      </sgfidm-button>
+      <sgfidm-button type="primary" size="md" [width]="'110px'" [height]="'44px'" (click)="exportar()">
+        Exportar
+      </sgfidm-button>
+    </div>
+  </header>
+
+  <div class="reporte-caja-page__contexto">
+    <strong>CONTEXTO DE LA CONSULTA</strong>
+    <span>Periodo: 1 oct – 31 oct 2025 · Generado: 5 nov 2025, 14:23 · Por: Ana Martínez · MXN</span>
+  </div>
+
+  <div class="reporte-caja-page__filtros">
+    <select aria-label="Rango"><option>Rango: Este mes</option></select>
+    <select aria-label="Resultado"><option>Resultado: Todas</option></select>
+    <select aria-label="Estado sesión"><option>Estado sesión: Todas</option></select>
+  </div>
+
+  <div class="reporte-caja-page__indicadores">
+    @for (ind of indicadores; track ind.eyebrow) {
+      <sgfidm-indicator-card [eyebrow]="ind.eyebrow" [value]="ind.value" />
+    }
+  </div>
+  <p class="reporte-caja-page__nota">
+    Diferencias por sesión; un faltante no se compensa con un sobrante · agregado solo informativo ·
+    reports.view / reports.export
+  </p>
+
+  <div class="reporte-caja-page__laterales">
+    <sgfidm-panel-card class="reporte-caja-page__panel">
+      <div class="reporte-caja-page__cabecera">
+        <h2>DESGLOSE POR SUCURSAL</h2><span>solo Sucursal: Todas</span>
+      </div>
+      <p class="reporte-caja-page__vacio">
+        Visible solo con 2+ sucursales asignadas. En Mi negocio no existe comparativo entre
+        sucursales. Consulta sesiones y diferencias por sesión abajo.
+      </p>
+    </sgfidm-panel-card>
+
+    <sgfidm-panel-card class="reporte-caja-page__panel reporte-caja-page__panel--aviso">
+      <p>
+        <strong>Las diferencias son por sesión.</strong> Un faltante en una sesión no se compensa con
+        un sobrante en otra. El agregado es informativo; la sesión es la verdad operativa.
+      </p>
+    </sgfidm-panel-card>
+
+    <sgfidm-panel-card class="reporte-caja-page__panel">
+      <div class="reporte-caja-page__cabecera">
+        <h2>LECTURA RÁPIDA</h2><span>9 con diferencia de 44 cerradas</span>
+      </div>
+      <ul>
+        <li>Sesiones cerradas: 44 · con diferencia 9 (20.5%)</li>
+        <li>Diferencias agregadas: −$340.00 (informativo)</li>
+        <li>Faltantes: −$810.00 · Sobrantes: +$470.00</li>
+        <li>Sesión crítica: CAJ-018 (−$240.00)</li>
+      </ul>
+      <h2 class="reporte-caja-page__subtitulo">ACCIONES DE NAVEGACIÓN</h2>
+      <ul>
+        <li>CAJ-08 · Detalle de sesión (desde la tabla)</li>
+        <li>CAJ-06 · Resumen de cierre</li>
+        <li>M09 · «Ver reporte de caja» desde notificaciones</li>
+      </ul>
+    </sgfidm-panel-card>
+  </div>
+
+  <sgfidm-panel-card class="reporte-caja-page__panel reporte-caja-page__panel--ancho">
+    <div class="reporte-caja-page__cabecera">
+      <h2>SESIONES DEL PERIODO</h2><span>clic → CAJ-08 · CAJ-06</span>
+    </div>
+    <div class="reporte-caja-page__thead reporte-caja-page__thead--sesiones">
+      <span>SESIÓN</span><span>ESPERADO</span><span>CONTADO</span><span>DIF.</span><span>ESTADO</span>
+    </div>
+    @for (s of sesiones; track s.codigo) {
+      <button type="button" class="reporte-caja-page__fila reporte-caja-page__fila--sesiones" (click)="verSesion(s.codigo)">
+        <span><strong>{{ s.codigo }}</strong><small>{{ s.fecha }}</small></span>
+        <span>{{ s.esperado }}</span>
+        <span>{{ s.contado }}</span>
+        <span>{{ s.dif }}</span>
+        <span class="reporte-caja-page__chip" [attr.data-estado]="s.estado">{{ s.estado }}</span>
+      </button>
+    }
+    <p class="reporte-caja-page__nota">
+      Las abiertas aparecen solo con Estado: Todas o Abiertas · sin contado ni diferencia
+    </p>
+  </sgfidm-panel-card>
+
+  <sgfidm-panel-card class="reporte-caja-page__panel reporte-caja-page__panel--ancho">
+    <div class="reporte-caja-page__cabecera">
+      <h2>MOVIMIENTOS DEL PERIODO</h2><span>paginación 50/página</span>
+    </div>
+    <div class="reporte-caja-page__thead reporte-caja-page__thead--mov">
+      <span>MOVIMIENTO</span><span>TIPO · MOTIVO</span><span>MONTO</span><span>ORIGEN</span>
+    </div>
+    @for (m of movimientos; track m.codigo) {
+      <div class="reporte-caja-page__fila reporte-caja-page__fila--mov">
+        <span><strong>{{ m.codigo }}</strong><small>{{ m.fecha }}</small></span>
+        <span>{{ m.motivo }}</span>
+        <span>{{ m.monto }}</span>
+        <span class="reporte-caja-page__origen">{{ m.origen }}</span>
+      </div>
+    }
+    <p class="reporte-caja-page__nota">
+      Mostrando 1–4 de 61 movimientos · notas en INV-02 y CAJ-04 · sin edición desde el reporte
+    </p>
+  </sgfidm-panel-card>
+
+  @if (aviso()) {
+    <p class="reporte-caja-page__aviso" role="status">{{ aviso() }}</p>
+  }
+  <button type="button" class="reporte-caja-page__volver" (click)="volver()">Volver a Reportes</button>
+</div>

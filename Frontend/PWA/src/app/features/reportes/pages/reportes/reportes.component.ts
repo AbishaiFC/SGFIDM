@@ -58,6 +58,7 @@ export class ReportesComponent {
     const rutas: Record<string, string> = {
       'REP-02': '/reportes/ventas',
       'REP-03': '/reportes/inventario',
+      'REP-04': '/reportes/caja',
     };
     if (rutas[id]) {
       this.router.navigate([rutas[id]]);

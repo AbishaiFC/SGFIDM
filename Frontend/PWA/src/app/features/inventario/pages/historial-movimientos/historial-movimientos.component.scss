@@ -1,0 +1,100 @@
+/* INV-04 Historial de movimientos — canon Figma 1045:131543 (Solo) */
+.historial-movimientos-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: var(--sgfidm-font-family);
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__titulo {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.25px;
+    margin: 0;
+  }
+
+  &__subtitulo {
+    font-size: 11px;
+    margin: 6px 0 0;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+
+  &__filtros {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  &__buscar {
+    width: 320px;
+  }
+
+  &__select {
+    height: 44px;
+    padding: 0 32px 0 12px;
+    border: 1px solid var(--sgfidm-color-outline, #c6c6c6);
+    border-radius: 6px;
+    background: var(--sgfidm-color-surface, #fff);
+    font-family: inherit;
+    font-size: 12px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23575757' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+  }
+
+  &__panel {
+    width: 100%;
+
+    ::ng-deep .sgfidm-panel-card {
+      padding: 0;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+
+    th {
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 9px;
+      letter-spacing: 0.5px;
+      color: var(--sgfidm-color-text-muted, #8b8b8b);
+      background: var(--sgfidm-color-surface-container, #fafafa);
+    }
+
+    td {
+      padding: 12px 16px;
+      border-top: 1px solid var(--sgfidm-color-outline-variant, #e0e0e0);
+    }
+  }
+
+  &__paginacion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 16px;
+    border: 1px solid var(--sgfidm-color-outline-variant, #e0e0e0);
+    border-radius: 12px;
+    background: var(--sgfidm-color-surface, #fff);
+    font-size: 10px;
+    color: var(--sgfidm-color-text-secondary, #575757);
+  }
+
+  &__aviso {
+    margin: 0;
+    font-size: 11px;
+    color: var(--sgfidm-color-warning, #9a6b14);
+  }
+}

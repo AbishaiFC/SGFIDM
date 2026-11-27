@@ -42,6 +42,13 @@ describe('DetalleExistenciasComponent (INV-02 Solo)', () => {
     spy.mockRestore();
   });
 
+  it('should open the movements history', () => {
+    const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    component.verHistorial();
+    expect(spy).toHaveBeenCalledWith(['/inventario/movimientos']);
+    spy.mockRestore();
+  });
+
   it('should open the registrar movimiento view for entrada and salida', () => {
     const spy = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
     component.registrar('entrada');

@@ -8,6 +8,13 @@ export const inventarioRoutes: Routes = [
       import('./pages/inventario/inventario.component').then((m) => m.InventarioComponent),
   },
   {
+    path: 'movimientos',
+    loadComponent: () =>
+      import('./pages/historial-movimientos/historial-movimientos.component').then(
+        (m) => m.HistorialMovimientosComponent,
+      ),
+  },
+  {
     path: 'movimientos/registrar',
     loadComponent: () =>
       import('./pages/registrar-movimiento/registrar-movimiento.component').then(
